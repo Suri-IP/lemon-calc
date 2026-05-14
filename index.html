@@ -175,14 +175,14 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       <div>
         <div class="mc-title">CPF<br>module1</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น ▶</button>
+        <button class="mc-btn">เริ่มเล่น <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
       </div>
     </div>
     <div class="mc gr" onclick="openComingSoon()">
       <div>
         <div class="mc-title">CPF<br>module3</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น ▶</button>
+        <button class="mc-btn">เริ่มเล่น <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
       </div>
     </div>
   </div>
@@ -295,7 +295,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
   <!-- BOTTOM NAV: prev / next / submit -->
   <div id="quiz-bottom-nav" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:#f5f5e0;border-top:1px solid #d8d8c0;padding:10px 16px 28px;z-index:550;display:none;gap:8px;">
     <button id="btn-prev" onclick="qNav(-1)" style="flex:0 0 auto;padding:13px 18px;background:#fff;color:#1a1a1a;border:1px solid #d0d0b8;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;">◀ ย้อนกลับ</button>
-    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป ▶</button>
+    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
   </div>
 
   <!-- GO-TO MODAL -->
@@ -371,37 +371,39 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
     </div>
     <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,235,0.12);border-radius:10px;padding:8px 12px;text-align:right;margin-bottom:10px;">
       <div style="font-size:0.62rem;color:rgba(255,255,235,0.5);font-family:'Sarabun',sans-serif;min-height:14px;" id="calc-expr"></div>
-      <div style="font-size:1.5rem;font-weight:800;color:var(--ws);font-variant-numeric:tabular-nums;line-height:1.1;" id="calc-display">0</div>
+      <div style="font-size:1.1rem;font-weight:800;color:var(--ws);font-variant-numeric:tabular-nums;line-height:1.1;" id="calc-display">0</div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
       <button class="cb2 cb2-gray" onclick="calcInput('C')">C</button>
       <button class="cb2 cb2-gray" onclick="calcInput('±')">±</button>
       <button class="cb2 cb2-gray" onclick="calcInput('%')">%</button>
-      <button class="cb2 cb2-op" onclick="calcInput('÷')">÷</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('⌫')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>
       <button class="cb2 cb2-dark" onclick="calcInput('7')">7</button>
       <button class="cb2 cb2-dark" onclick="calcInput('8')">8</button>
       <button class="cb2 cb2-dark" onclick="calcInput('9')">9</button>
-      <button class="cb2 cb2-op" onclick="calcInput('×')">×</button>
+      <button class="cb2 cb2-op" onclick="calcInput('÷')">÷</button>
       <button class="cb2 cb2-dark" onclick="calcInput('4')">4</button>
       <button class="cb2 cb2-dark" onclick="calcInput('5')">5</button>
       <button class="cb2 cb2-dark" onclick="calcInput('6')">6</button>
-      <button class="cb2 cb2-op" onclick="calcInput('−')">−</button>
+      <button class="cb2 cb2-op" onclick="calcInput('×')">×</button>
       <button class="cb2 cb2-dark" onclick="calcInput('1')">1</button>
       <button class="cb2 cb2-dark" onclick="calcInput('2')">2</button>
       <button class="cb2 cb2-dark" onclick="calcInput('3')">3</button>
-      <button class="cb2 cb2-op" onclick="calcInput('+')">+</button>
+      <button class="cb2 cb2-op" onclick="calcInput('−')">−</button>
       <button class="cb2 cb2-dark" onclick="calcInput('0')" style="grid-column:span 2;">0</button>
       <button class="cb2 cb2-dark" onclick="calcInput('.')">.</button>
-      <button class="cb2 cb2-lime" onclick="calcInput('=')">=</button>
+      <button class="cb2 cb2-op" onclick="calcInput('+')">+</button>
+      <button class="cb2 cb2-lime" onclick="calcInput('=')" style="grid-column:span 4;">=</button>
     </div>
 </div>
+<style>
 .cb{height:48px;border-radius:12px;border:none;font-family:'Prompt',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
 .cb:active{transform:scale(0.93);}
 .cb-dark{background:#1a2a08;color:var(--ws);}
 .cb-gray{background:#2e3e10;color:var(--ws);}
 .cb-op{background:rgba(255,225,30,0.15);color:var(--yellow2);}
 .cb-lime{background:var(--lime);color:var(--black);}
-.cb2{height:40px;border-radius:10px;border:none;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
+.cb2{height:46px;border-radius:10px;border:none;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
 .cb2:active{transform:scale(0.93);}
 .cb2-dark{background:rgba(255,255,235,0.1);color:var(--ws);}
 .cb2-gray{background:rgba(255,255,235,0.18);color:var(--ws);}
@@ -658,16 +660,16 @@ function updateNavBtns() {
 
   if (qIdx === total - 1) {
     if (allAnswered) {
-      nextBtn.textContent = '✓ ตรวจผล';
+      nextBtn.innerHTML = 'ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><polygon points="5,3 19,12 5,21"/></svg>';
       nextBtn.style.background = 'var(--lime)';
       nextBtn.onclick = showResult;
     } else {
-      nextBtn.textContent = 'ถัดไป ▶';
+      nextBtn.innerHTML = 'ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><polygon points="5,3 19,12 5,21"/></svg>';
       nextBtn.style.background = 'rgb(160,225,45)';
       nextBtn.onclick = () => qNav(1);
     }
   } else {
-    nextBtn.textContent = 'ถัดไป ▶';
+    nextBtn.innerHTML = 'ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><polygon points="5,3 19,12 5,21"/></svg>';
     nextBtn.style.background = 'rgb(160,225,45)';
     nextBtn.onclick = () => qNav(1);
   }
@@ -835,6 +837,7 @@ function closeCalcSheet() {
 }
 function calcInput(v) {
   if (v === 'C') { calcVal='0'; calcExpr=''; calcPrevOp=null; calcPrevVal=null; calcJustEq=false; }
+  else if (v === '⌫') { calcVal = calcVal.length > 1 ? calcVal.slice(0,-1) : '0'; calcJustEq=false; }
   else if (v === '±') { calcVal = calcVal.startsWith('-') ? calcVal.slice(1) : '-'+calcVal; }
   else if (v === '%') { calcVal = String(parseFloat(calcVal)/100); }
   else if (['÷','×','−','+'].includes(v)) {
