@@ -95,29 +95,19 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 .modal-title{font-size:1rem;font-weight:700;color:var(--ws);margin-bottom:16px;}
 .modal-input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'Sarabun',sans-serif;font-size:0.9rem;background:var(--card-dark);color:var(--ws);margin-bottom:16px;box-sizing:border-box;color-scheme:dark;}
 .modal-btn-p{width:100%;padding:13px;background:var(--lime);color:#1F2D00;border:none;border-radius:12px;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-bottom:10px;}
-/* MODAL */
-.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9000;align-items:flex-end;justify-content:center;}
-.modal-ov.open{display:flex;}
-.modal-sh{width:100%;max-width:420px;background:#263510;border-radius:24px 24px 0 0;padding:24px 20px 44px;}
-.modal-handle{width:40px;height:4px;background:rgba(255,255,235,0.2);border-radius:2px;margin:0 auto 20px;}
-.modal-title{font-size:1rem;font-weight:700;color:var(--ws);margin-bottom:16px;}
-.modal-input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-family:'Sarabun',sans-serif;font-size:0.9rem;background:var(--card-dark);color:var(--ws);margin-bottom:16px;box-sizing:border-box;color-scheme:dark;}
-.modal-btn-p{width:100%;padding:13px;background:var(--lime);color:#1F2D00;border:none;border-radius:12px;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-bottom:10px;}
 .modal-btn-o{width:100%;padding:11px;background:transparent;border:1px solid var(--border);border-radius:12px;font-family:'Prompt',sans-serif;font-size:0.85rem;color:var(--muted);cursor:pointer;}
-
-/* CALC BUTTONS */
 .cb{height:48px;border-radius:12px;border:none;font-family:'Prompt',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
 .cb:active{transform:scale(0.93);}
 .cb-dark{background:#1a2a08;color:var(--ws);}
 .cb-gray{background:#2e3e10;color:var(--ws);}
 .cb-op{background:rgba(255,225,30,0.15);color:var(--yellow2);}
 .cb-lime{background:var(--lime);color:var(--black);}
-.cb2{height:46px;border-radius:10px;border:none;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
+.cb2{height:40px;border-radius:10px;border:none;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.12s;display:flex;align-items:center;justify-content:center;}
 .cb2:active{transform:scale(0.93);}
-.cb2-dark{background:rgba(255,255,235,0.08);color:var(--ws);}
-.cb2-gray{background:rgba(255,255,235,0.15);color:var(--ws);}
-.cb2-op{background:rgba(255,225,30,0.2);color:var(--yellow2);}
-.cb2-lime{background:var(--lime);color:var(--black);}
+.cb2-dark{background:rgba(255,255,235,0.1);color:var(--ws);}
+.cb2-gray{background:rgba(255,255,235,0.18);color:var(--ws);}
+.cb2-op{background:rgba(255,225,30,0.18);color:var(--yellow2);}
+.cb2-lime{background:rgba(160,255,45,0.85);color:var(--black);}
 </style>
 </head>
 <body>
@@ -197,14 +187,14 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       <div>
         <div class="mc-title">CPF<br>module1</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <button class="mc-btn">เริ่มเล่น ▶</button>
       </div>
     </div>
     <div class="mc gr" onclick="openComingSoon()">
       <div>
         <div class="mc-title">CPF<br>module3</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
+        <button class="mc-btn">เริ่มเล่น ▶</button>
       </div>
     </div>
   </div>
@@ -274,7 +264,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
   <div style="background:rgb(160,225,45);padding:12px 16px 0;flex-shrink:0;">
     <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;">
       <button onclick="closeQuiz()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a2a00" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div style="flex:1;">
         <div style="font-size:0.62rem;color:rgba(26,42,0,0.55);font-family:'Sarabun',sans-serif;letter-spacing:0.5px;">CFP M2</div>
@@ -317,7 +307,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
   <!-- BOTTOM NAV: prev / next / submit -->
   <div id="quiz-bottom-nav" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:#f5f5e0;border-top:1px solid #d8d8c0;padding:10px 16px 28px;z-index:550;display:none;gap:8px;">
     <button id="btn-prev" onclick="qNav(-1)" style="flex:0 0 auto;padding:13px 18px;background:#fff;color:#1a1a1a;border:1px solid #d0d0b8;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;">◀ ย้อนกลับ</button>
-    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;-webkit-appearance:none;"><polygon points="5,3 19,12 5,21"/></svg></button>
+    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป ▶</button>
   </div>
 
   <!-- GO-TO MODAL -->
@@ -383,41 +373,44 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       <div style="background:#fff;border:1.5px solid rgb(160,225,45);border-radius:14px;padding:14px 16px;font-family:'Sarabun',sans-serif;font-size:0.84rem;line-height:1.85;color:#1a1a1a;" id="review-explain"></div>
     </div>
   </div>
+</div>
 
-  <!-- CALC SHEET: inside quiz-screen -->
-  <div id="calc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:#1a2a08;border-radius:24px 24px 0 0;border-top:1px solid var(--border);padding:12px 14px 28px;z-index:600;transition:bottom 0.3s ease;">
+<!-- CALC SHEET: outside quiz-screen so backdrop-filter works -->
+<div id="calc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.55);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:12px 14px 28px;z-index:620;transition:bottom 0.3s ease;">
+    <!-- โจทย์ข้อปัจจุบัน -->
+    <div id="calc-q-box" style="display:none;background:rgba(255,255,255,0.95);border-radius:12px;padding:10px 14px;margin-bottom:10px;max-height:120px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+      <div style="font-size:0.62rem;font-weight:700;color:#888;margin-bottom:4px;font-family:'Sarabun',sans-serif;">โจทย์ข้อที่ <span id="calc-q-num"></span></div>
+      <div id="calc-q-text" style="font-family:'Sarabun',sans-serif;font-size:0.82rem;line-height:1.75;color:#1a1a1a;"></div>
+    </div>
     <div style="display:flex;align-items:center;margin-bottom:8px;">
       <div style="font-size:0.78rem;font-weight:700;color:var(--ws);">±×÷ เครื่องคิดเลข</div>
       <button onclick="toggleCalc()" style="margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,235,0.15);border:none;color:var(--ws);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
     </div>
-    <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,235,0.12);border-radius:10px;padding:5px 12px 6px;text-align:right;margin-bottom:8px;">
+    <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,235,0.12);border-radius:10px;padding:8px 12px;text-align:right;margin-bottom:10px;">
       <div style="font-size:0.62rem;color:rgba(255,255,235,0.5);font-family:'Sarabun',sans-serif;min-height:14px;" id="calc-expr"></div>
-      <div style="font-size:1.1rem;font-weight:800;color:var(--ws);font-variant-numeric:tabular-nums;line-height:1.1;" id="calc-display">0</div>
+      <div style="font-size:1.5rem;font-weight:800;color:var(--ws);font-variant-numeric:tabular-nums;line-height:1.1;" id="calc-display">0</div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
       <button class="cb2 cb2-gray" onclick="calcInput('C')">C</button>
       <button class="cb2 cb2-gray" onclick="calcInput('±')">±</button>
       <button class="cb2 cb2-gray" onclick="calcInput('%')">%</button>
-      <button class="cb2 cb2-gray" onclick="calcInput('⌫')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>
+      <button class="cb2 cb2-op" onclick="calcInput('÷')">÷</button>
       <button class="cb2 cb2-dark" onclick="calcInput('7')">7</button>
       <button class="cb2 cb2-dark" onclick="calcInput('8')">8</button>
       <button class="cb2 cb2-dark" onclick="calcInput('9')">9</button>
-      <button class="cb2 cb2-op" onclick="calcInput('÷')">÷</button>
+      <button class="cb2 cb2-op" onclick="calcInput('×')">×</button>
       <button class="cb2 cb2-dark" onclick="calcInput('4')">4</button>
       <button class="cb2 cb2-dark" onclick="calcInput('5')">5</button>
       <button class="cb2 cb2-dark" onclick="calcInput('6')">6</button>
-      <button class="cb2 cb2-op" onclick="calcInput('×')">×</button>
+      <button class="cb2 cb2-op" onclick="calcInput('−')">−</button>
       <button class="cb2 cb2-dark" onclick="calcInput('1')">1</button>
       <button class="cb2 cb2-dark" onclick="calcInput('2')">2</button>
       <button class="cb2 cb2-dark" onclick="calcInput('3')">3</button>
-      <button class="cb2 cb2-op" onclick="calcInput('−')">−</button>
       <button class="cb2 cb2-op" onclick="calcInput('+')">+</button>
       <button class="cb2 cb2-dark" onclick="calcInput('0')" style="grid-column:span 2;">0</button>
+      <button class="cb2 cb2-dark" onclick="calcInput('.')">.</button>
       <button class="cb2 cb2-lime" onclick="calcInput('=')">=</button>
     </div>
-    </div>
-  </div>
-
 </div>
 <!-- COMING SOON MODAL -->
 <div id="coming-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;align-items:center;justify-content:center;" onclick="closeModal('coming-modal')">
@@ -467,6 +460,45 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 
 <script>
 // ============================================================
+// ============================================================
+// SOUND
+// ============================================================
+function playSound(type) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const g = ctx.createGain();
+    g.connect(ctx.destination);
+    if (type === 'select') {
+      // เสียงกดเลือกตัวเลือก: pop สั้นๆ นุ่มๆ
+      const o = ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(520, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(620, ctx.currentTime + 0.06);
+      g.gain.setValueAtTime(0.18, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      o.connect(g);
+      o.start(ctx.currentTime);
+      o.stop(ctx.currentTime + 0.12);
+    } else if (type === 'result') {
+      // เสียงตรวจผล: chord 3 โน้ตขึ้นสั้นๆ
+      [440, 554, 659].forEach((freq, i) => {
+        const o = ctx.createOscillator();
+        o.type = 'triangle';
+        o.frequency.value = freq;
+        const og = ctx.createGain();
+        og.gain.setValueAtTime(0, ctx.currentTime + i * 0.07);
+        og.gain.linearRampToValueAtTime(0.13, ctx.currentTime + i * 0.07 + 0.04);
+        og.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.07 + 0.28);
+        o.connect(og);
+        og.connect(ctx.destination);
+        o.start(ctx.currentTime + i * 0.07);
+        o.stop(ctx.currentTime + i * 0.07 + 0.3);
+      });
+    }
+    setTimeout(() => ctx.close(), 600);
+  } catch(e) {}
+}
+
 // QUIZ DATA
 // ============================================================
 const QUIZ_DATA = [
@@ -666,15 +698,19 @@ function updateNavBtns() {
 
   prevBtn.style.display = qIdx === 0 ? 'none' : '';
 
-  if (allAnswered && qIdx === total - 1) {
-    nextBtn.innerHTML = '✓ ตรวจผล';
-    nextBtn.style.background = 'var(--lime)';
-    nextBtn.style.color = '#1a1a1a';
-    nextBtn.onclick = showResult;
+  if (qIdx === total - 1) {
+    if (allAnswered) {
+      nextBtn.textContent = '✓ ตรวจผล';
+      nextBtn.style.background = 'var(--lime)';
+      nextBtn.onclick = showResult;
+    } else {
+      nextBtn.textContent = 'ถัดไป ▶';
+      nextBtn.style.background = 'rgb(160,225,45)';
+      nextBtn.onclick = () => qNav(1);
+    }
   } else {
-    nextBtn.innerHTML = 'ถัดไป <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><polygon points="5,3 19,12 5,21"/></svg>';
+    nextBtn.textContent = 'ถัดไป ▶';
     nextBtn.style.background = 'rgb(160,225,45)';
-    nextBtn.style.color = '#1a1a1a';
     nextBtn.onclick = () => qNav(1);
   }
 }
@@ -753,18 +789,16 @@ function showSolution() {
 }
 
 function selectAnswer(origIdx) {
-  if (qRevealed[qIdx]) return;
-  qAnswers[qIdx] = origIdx;
+  if (qRevealed[qIdx]) return; // ถ้าเปิดเฉลยแล้วห้ามเปลี่ยน
   playSound('select');
+  qAnswers[qIdx] = origIdx; // เปลี่ยนได้เสมอจนกว่าจะ reveal
   renderQuestion();
 }
 
 function showSolution() {
   qPeeked[qIdx] = true;
-  qRevealed[qIdx] = true;
-  const isCorrect = qAnswers[qIdx] === QUIZ_DATA[qIdx].answer;
-  if (qAnswers[qIdx] !== null) playSound(isCorrect ? 'correct' : 'wrong');
-  renderQuestion();
+  document.getElementById('q-explain').style.display = 'block';
+  document.getElementById('q-explain').innerHTML = QUIZ_DATA[qIdx].explain;
 }
 
 function toggleGoTo() {
@@ -801,6 +835,7 @@ function showResult() {
   document.getElementById('result-score').textContent = `${correct}/${total}`;
   document.getElementById('result-peeked').textContent = `${peeked} ข้อ`;
   document.getElementById('result-emoji').textContent = correct === total ? '🏆' : correct >= total * 0.7 ? '🎉' : '📚';
+  playSound('result');
   const m = document.getElementById('result-modal');
   m.style.display = 'flex';
   m.style.alignItems = 'center';
@@ -836,20 +871,27 @@ function updateTimerDisplay() {
 function toggleCalc() {
   calcOpen = !calcOpen;
   const sheet = document.getElementById('calc-sheet');
-  const body = document.getElementById('q-body');
   sheet.style.bottom = calcOpen ? '0' : '-100%';
-  if (body) body.style.paddingBottom = calcOpen ? '280px' : '100px';
+  if (calcOpen) {
+    // แสดงโจทย์ข้อปัจจุบันถ้าอยู่ในหน้า quiz
+    const q = QUIZ_DATA[qIdx];
+    const qBox = document.getElementById('calc-q-box');
+    if (q && document.getElementById('quiz-screen').style.display !== 'none') {
+      document.getElementById('calc-q-num').textContent = qIdx + 1;
+      document.getElementById('calc-q-text').innerHTML = q.q;
+      qBox.style.display = 'block';
+      qBox.scrollTop = 0;
+    } else {
+      qBox.style.display = 'none';
+    }
+  }
 }
 function closeCalcSheet() {
   calcOpen = false;
-  const sheet = document.getElementById('calc-sheet');
-  const body = document.getElementById('q-body');
-  if (sheet) sheet.style.bottom = '-100%';
-  if (body) body.style.paddingBottom = '100px';
+  document.getElementById('calc-sheet').style.bottom = '-100%';
 }
 function calcInput(v) {
   if (v === 'C') { calcVal='0'; calcExpr=''; calcPrevOp=null; calcPrevVal=null; calcJustEq=false; }
-  else if (v === '⌫') { calcVal = calcVal.length > 1 ? calcVal.slice(0,-1) : '0'; calcJustEq=false; }
   else if (v === '±') { calcVal = calcVal.startsWith('-') ? calcVal.slice(1) : '-'+calcVal; }
   else if (v === '%') { calcVal = String(parseFloat(calcVal)/100); }
   else if (['÷','×','−','+'].includes(v)) {
@@ -952,39 +994,6 @@ function openComingSoon(){
 function closeModal(id){
   document.getElementById(id).style.display = 'none';
 }
-// ============================================================
-// SOUNDS
-// ============================================================
-function playSound(type) {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    if (type === 'select') {
-      osc.frequency.setValueAtTime(520, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(640, ctx.currentTime + 0.08);
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-      osc.start(); osc.stop(ctx.currentTime + 0.12);
-    } else if (type === 'correct') {
-      osc.frequency.setValueAtTime(523, ctx.currentTime);
-      osc.frequency.setValueAtTime(659, ctx.currentTime + 0.1);
-      osc.frequency.setValueAtTime(784, ctx.currentTime + 0.2);
-      gain.gain.setValueAtTime(0.18, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-      osc.start(); osc.stop(ctx.currentTime + 0.35);
-    } else if (type === 'wrong') {
-      osc.frequency.setValueAtTime(300, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.18);
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
-      osc.start(); osc.stop(ctx.currentTime + 0.2);
-    }
-  } catch(e) {}
-}
-
 function openExamModal(){
   const m=document.getElementById('exam-modal');
   const s=localStorage.getItem('lc_exam');
