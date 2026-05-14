@@ -285,11 +285,17 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
   </div>
 
   <!-- QUESTION BODY: light warm bg, dark text, extra bottom padding for calc -->
-  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 200px;background:#f5f5e0;" id="q-body">
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 100px;background:#f5f5e0;" id="q-body">
     <div style="font-size:0.68rem;color:#888;font-family:'Sarabun',sans-serif;margin-bottom:8px;" id="q-num-label">ข้อที่ 1</div>
     <div style="background:#fff;border:1px solid #e0e0cc;border-radius:16px;padding:16px 18px;font-family:'Sarabun',sans-serif;font-size:0.9rem;line-height:1.9;color:#1a1a1a;margin-bottom:14px;" id="q-text"></div>
     <div style="display:flex;flex-direction:column;gap:10px;" id="q-choices"></div>
     <div id="q-explain" style="display:none;margin-top:14px;background:#fff;border:1.5px solid rgb(160,225,45);border-radius:14px;padding:14px 16px;font-family:'Sarabun',sans-serif;font-size:0.84rem;line-height:1.8;color:#1a1a1a;"></div>
+  </div>
+
+  <!-- BOTTOM NAV: prev / next / submit -->
+  <div id="quiz-bottom-nav" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:#f5f5e0;border-top:1px solid #d8d8c0;padding:10px 16px 28px;z-index:550;display:none;gap:8px;">
+    <button id="btn-prev" onclick="qNav(-1)" style="flex:0 0 auto;padding:13px 18px;background:#fff;color:#1a1a1a;border:1px solid #d0d0b8;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;">◀ ย้อนกลับ</button>
+    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป ▶</button>
   </div>
 
   <!-- CALC SHEET: transparent/blur, compact buttons -->
@@ -464,7 +470,7 @@ const QUIZ_DATA = [
       "ค่าเฉลี่ยเลขคณิต = 2.50%, ค่าเฉลี่ยเรขาคณิต = 0%",
       "ค่าเฉลี่ยเลขคณิต = 0%, ค่าเฉลี่ยเรขาคณิต = 0%",
     ],
-    answer: 1,
+    answer: 0,
     explain: `<b>ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)</b><br>
 = (15 + 20 + (−20) + (−15)) ÷ 4 = 0 ÷ 4 = <b>0%</b><br><br>
 <b>ค่าเฉลี่ยเรขาคณิต (Geometric Mean)</b><br>
@@ -472,6 +478,27 @@ const QUIZ_DATA = [
 = ⁴√(0.9384) − 1<br>
 = 0.9844 − 1 = <b>−1.56%</b><br><br>
 ⚠️ ค่าเฉลี่ยเรขาคณิตสะท้อนผลตอบแทนที่แท้จริงของนักลงทุน เนื่องจากคำนึงถึง Compounding Effect`
+  },
+  {
+    q: "จงคำนวณหาอัตราผลตอบแทนที่คาดหวัง หากโอกาสเกิดเหตุการณ์ A คือ 0.5 และผลตอบแทนของเหตุการณ์ A คือ 25% โอกาสเกิดเหตุการณ์ B คือ 0.3 และผลตอบแทนของเหตุการณ์ B คือ 10% โอกาสเกิดเหตุการณ์ C คือ 0.2 และผลตอบแทนของเหตุการณ์ C คือ 12%",
+    choices: [
+      "15.9%",
+      "16.9%",
+      "17.9%",
+      "18.9%",
+    ],
+    answer: 2,
+    explain: `<b>สูตร E(R) = (P<sub>1</sub>×R<sub>1</sub>) + (P<sub>2</sub>×R<sub>2</sub>) + (P<sub>3</sub>×R<sub>3</sub>) + … + (P<sub>n</sub>×R<sub>n</sub>)</b><br><br>
+= (0.5×25%) + (0.3×10%) + (0.2×12%)<br>
+= 12.5 + 3 + 2.4<br>
+= <b>17.9%</b><br><br>
+<span style="color:#cc3333;font-weight:600;">ทำไม P เป็นจำนวนปกติ แต่ R เป็น %?</span><br>
+เพราะโจทย์ให้หาค่า E(R) หรือ "อัตราผลตอบแทนที่คาดหวัง" ซึ่งต้องเป็น % อยู่แล้ว<br>
+แต่ถ้าใช้จำนวนปกติทั้งคู่ก็ได้ผลเท่ากัน เช่น<br>
+0.5×0.25 = 0.125<br>
+0.3×0.10 = 0.030<br>
+0.2×0.12 = 0.024<br>
+รวม = 0.179 × 100 = <b>17.9%</b>`
   }
 ];
 
@@ -504,6 +531,7 @@ function openQuiz() {
   document.getElementById('quiz-screen').style.display = 'flex';
   document.getElementById('quiz-screen').style.flexDirection = 'column';
   document.querySelector('.bnav').style.display = 'none';
+  document.getElementById('quiz-bottom-nav').style.display = 'flex';
   const rb = document.getElementById('result-btn');
   if (rb) rb.remove();
   document.getElementById('solution-btn').style.display = '';
@@ -513,9 +541,43 @@ function openQuiz() {
 
 function closeQuiz() {
   document.getElementById('quiz-screen').style.display = 'none';
+  document.getElementById('quiz-bottom-nav').style.display = 'none';
   document.querySelector('.bnav').style.display = 'flex';
   clearInterval(qTimerInterval);
   closeCalcSheet();
+}
+
+function qNav(dir) {
+  const next = qIdx + dir;
+  if (next < 0 || next >= QUIZ_DATA.length) return;
+  qIdx = next;
+  renderQuestion();
+  document.getElementById('q-body').scrollTop = 0;
+}
+
+function updateNavBtns() {
+  const total = QUIZ_DATA.length;
+  const prevBtn = document.getElementById('btn-prev');
+  const nextBtn = document.getElementById('btn-next');
+  const allAnswered = qAnswers.every(a => a !== null);
+
+  prevBtn.style.display = qIdx === 0 ? 'none' : '';
+
+  if (qIdx === total - 1) {
+    if (allAnswered) {
+      nextBtn.textContent = '✓ ตรวจผล';
+      nextBtn.style.background = 'var(--lime)';
+      nextBtn.onclick = showResult;
+    } else {
+      nextBtn.textContent = 'ถัดไป ▶';
+      nextBtn.style.background = 'rgb(160,225,45)';
+      nextBtn.onclick = () => qNav(1);
+    }
+  } else {
+    nextBtn.textContent = 'ถัดไป ▶';
+    nextBtn.style.background = 'rgb(160,225,45)';
+    nextBtn.onclick = () => qNav(1);
+  }
 }
 
 function renderQuestion() {
@@ -526,21 +588,6 @@ function renderQuestion() {
   document.getElementById('q-num-label').textContent = `ข้อที่ ${qIdx + 1} / ${total}`;
   document.getElementById('q-text').innerHTML = q.q;
   document.getElementById('q-progress-num').textContent = `${answered}/${total}`;
-
-  // Check if all answered → change solution btn to result btn
-  if (answered === total) {
-    document.getElementById('solution-btn').style.display = 'none';
-    // show result button if not shown yet
-    let rb = document.getElementById('result-btn');
-    if (!rb) {
-      rb = document.createElement('button');
-      rb.id = 'result-btn';
-      rb.onclick = showResult;
-      rb.style.cssText = 'display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;background:var(--lime);border:none;color:var(--black);font-family:\'Prompt\',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;white-space:nowrap;';
-      rb.textContent = '✓ ตรวจผล';
-      document.getElementById('solution-btn').parentNode.insertBefore(rb, document.getElementById('solution-btn'));
-    }
-  }
 
   // Choices — use shuffled order
   const choicesEl = document.getElementById('q-choices');
@@ -596,6 +643,8 @@ function renderQuestion() {
   } else {
     expEl.style.display = 'none';
   }
+
+  updateNavBtns();
 }
 
 function showSolution() {
