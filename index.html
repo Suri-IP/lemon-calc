@@ -2,17 +2,19 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>LemonCalc</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700;800;900&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);}
+:root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);color-scheme:light only;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;min-height:100vh;overflow-x:hidden;}
 .app{max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:104px;}
 
 /* HEADER */
-.hdr{padding:52px 20px 16px;display:flex;align-items:flex-start;justify-content:space-between;}
+.hdr{padding:36px 20px 16px;display:flex;align-items:flex-start;justify-content:space-between;}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);border-radius:20px;padding:5px 14px;font-size:0.72rem;font-weight:800;color:var(--black);margin-bottom:10px;}
 .badge-stars{display:flex;gap:1px;}
 .badge-star{color:var(--pink);font-size:0.8rem;}
@@ -551,7 +553,7 @@ const QUIZ_DATA = [
 รวม = 0.179 × 100 = <b>17.9%</b>`
   },
   {
-    q: `หลักทรัพย์ A, B, C มีอัตราผลตอบแทนคาดหวังในแต่ละเหตุการณ์ดังนี้<br><br>
+    q: `หลักทรัพย์ A, B, C มีอัตราผลตอบแทนคาดหวังในแต่ละเหตุการณ์ดังนี้ ใช้ตอบคำถามข้อ 3-6<br><br>
 <table style="width:100%;border-collapse:collapse;font-size:0.82rem;font-family:'Sarabun',sans-serif;">
   <tr style="background:rgb(160,225,45);color:#1a1a1a;">
     <th style="padding:7px 8px;text-align:left;border-radius:6px 0 0 0;">เศรษฐกิจ</th>
@@ -644,6 +646,47 @@ const QUIZ_DATA = [
 = 1.5% + 1.0% + 7.5% = <b>10.0%</b><br><br>
 ดังนั้น C (10%) > B (2.5%) > A (−6.5%) = <b>C > B > A</b><br><br>
 <span style="color:#555;font-size:0.82rem;">การพิจารณา "น่าลงทุน" ในบริบทนี้ใช้ E(R) เป็นเกณฑ์เดียว — อัตราผลตอบแทนคาดหวังสูงกว่า = น่าลงทุนกว่า</span>`
+  },
+  {
+    q: `จากข้อมูลตารางในข้อ 3 ค่าความแปรปรวนของ A, B, C คือเท่าไหร่?`,
+    choices: [
+      "A = 555.25, B = 56.25, C = 25",
+      "A = 56.25, B = 555.25, C = 25",
+      "A = -6.5, B = 2.5, C = 10",
+      "A = 23.56, B = 7.5, C = 5",
+    ],
+    answer: 0,
+    explain: `<b>สูตรความแปรปรวน σ² = Σ P<sub>i</sub> × (R<sub>i</sub> − E(R))²</b><br><br>
+จาก E(R) ที่คำนวณไว้: E(R<sub>A</sub>) = −6.5%, E(R<sub>B</sub>) = 2.5%, E(R<sub>C</sub>) = 10%<br><br>
+<b>σ²(A)</b><br>
+= P<sub>A1</sub>×[R<sub>A1</sub>−E(R<sub>A</sub>)]² + P<sub>A2</sub>×[R<sub>A2</sub>−E(R<sub>A</sub>)]² + P<sub>A3</sub>×[R<sub>A3</sub>−E(R<sub>A</sub>)]²<br>
+= 0.30×(15−(−6.5))² + 0.20×(20−(−6.5))² + 0.50×(−30−(−6.5))²<br>
+= 0.30×462.25 + 0.20×702.25 + 0.50×552.25<br>
+= 138.675 + 140.45 + 276.125 = <b>555.25</b><br><br>
+<b>σ²(B)</b><br>
+= P<sub>B1</sub>×[R<sub>B1</sub>−E(R<sub>B</sub>)]² + P<sub>B2</sub>×[R<sub>B2</sub>−E(R<sub>B</sub>)]² + P<sub>B3</sub>×[R<sub>B3</sub>−E(R<sub>B</sub>)]²<br>
+= 0.30×(10−2.5)² + 0.20×(10−2.5)² + 0.50×(−5−2.5)²<br>
+= 0.30×56.25 + 0.20×56.25 + 0.50×56.25<br>
+= 16.875 + 11.25 + 28.125 = <b>56.25</b><br><br>
+<b>σ²(C)</b><br>
+= P<sub>C1</sub>×[R<sub>C1</sub>−E(R<sub>C</sub>)]² + P<sub>C2</sub>×[R<sub>C2</sub>−E(R<sub>C</sub>)]² + P<sub>C3</sub>×[R<sub>C3</sub>−E(R<sub>C</sub>)]²<br>
+= 0.30×(5−10)² + 0.20×(5−10)² + 0.50×(15−10)²<br>
+= 0.30×25 + 0.20×25 + 0.50×25<br>
+= 7.5 + 5.0 + 12.5 = <b>25</b>`
+  },
+  {
+    q: `จากข้อมูลตารางในข้อ 3 ค่าส่วนเบี่ยงเบนมาตรฐาน และค่าความแปรปรวนของหลักทรัพย์ A คือเท่าไหร่?`,
+    choices: [
+      "ความแปรปรวน = 23.56, ส่วนเบี่ยงเบนมาตรฐาน = 555.25",
+      "ความแปรปรวน = 555.25, ส่วนเบี่ยงเบนมาตรฐาน = 23.56",
+      "ความแปรปรวน = 6.25, ส่วนเบี่ยงเบนมาตรฐาน = 2.5",
+      "ความแปรปรวน = 39.0625, ส่วนเบี่ยงเบนมาตรฐาน = 6.25",
+    ],
+    answer: 1,
+    explain: `จากข้อ 5 ความแปรปรวนของ A = <b>555.25</b><br><br>
+<b>ส่วนเบี่ยงเบนมาตรฐาน (SD) = √ความแปรปรวน</b><br>
+= √555.25 ≈ <b>23.56</b><br><br>
+<span style="background:#f8f8ee;border-radius:8px;padding:8px 10px;display:block;font-size:0.82rem;">💡 <b>ทริค:</b> SD คือการเอาความแปรปรวนมาถอดรากที่สอง ดังนั้น <b>SD จะน้อยกว่าความแปรปรวนเสมอ</b> (ยกเว้นกรณีพิเศษที่ความแปรปรวน &lt; 1)<br><br>ดูตัวเลือก — มีแค่ข้อ ข. เดียวที่ SD (23.56) น้อยกว่าความแปรปรวน (555.25) ตัดตัวเลือกได้เลยถ้าไม่แน่ใจ</span>`
   }
 ];
 
@@ -888,8 +931,8 @@ function closeFormulas() {
 function openFormulaDetail(idx) {
   const titles = [
     'Expected Return · E(R)',
-    'Standard Deviation · SD',
     'Variance · σ²',
+    'Standard Deviation · SD',
     'Coefficient of Variation · CV',
     'Portfolio Return',
     'Portfolio Risk',
@@ -901,8 +944,8 @@ function openFormulaDetail(idx) {
       <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">อัตราผลตอบแทนที่คาดหวัง</div>
       <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;">Expected Return</div>
       <div style="background:#f8f8ee;border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:center;">
-        <div style="font-size:0.95rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;line-height:1.6;">E(R) = (P₁×R₁) + (P₂×R₂) + … + (Pₙ×Rₙ)</div>
-        <div style="font-size:0.72rem;color:#888;margin-top:4px;font-family:'Sarabun',sans-serif;">หรือเขียนแบบ Sigma: E(R) = Σ PᵢRᵢ</div>
+        <div style="font-size:0.95rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;line-height:1.6;">E(R) = (P<sub>1</sub>×R<sub>1</sub>) + (P<sub>2</sub>×R<sub>2</sub>) + … + (P<sub>n</sub>×R<sub>n</sub>)</div>
+        <div style="font-size:0.72rem;color:#888;margin-top:4px;font-family:'Sarabun',sans-serif;">หรือเขียนแบบ Sigma: E(R) = Σ P<sub>i</sub>R<sub>i</sub></div>
       </div>
       <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">ตัวแปร</div>
       <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
@@ -923,8 +966,63 @@ function openFormulaDetail(idx) {
       </div>
       <button onclick="openFormulaNote()" style="width:100%;padding:10px;background:#1a2a00;border:none;border-radius:12px;font-family:'Sarabun',sans-serif;font-size:0.78rem;font-weight:700;color:rgb(160,225,45);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;"><span>💬</span> ทำไมไม่หารด้วยจำนวนเหตุการณ์?</button>
     </div>`,
-    // 1-6: ม็อคอัพ
-    ...Array(6).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`)
+    // 1: Variance (พร้อมใช้)
+    `<div style="background:#fff;border-radius:18px;padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">ค่าความแปรปรวน</div>
+      <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;">Variance · σ²</div>
+      <div style="background:#f8f8ee;border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:center;">
+        <div style="font-size:0.95rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;line-height:1.6;">σ² = Σ Pᵢ × (Rᵢ − E(R))²</div>
+        <div style="font-size:0.72rem;color:#888;margin-top:4px;font-family:'Sarabun',sans-serif;">หรือเขียนแบบกระจาย: σ² = P₁(R₁−E(R))² + P₂(R₂−E(R))² + …</div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">ตัวแปร</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">σ²</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ความแปรปรวน (Variance) — วัดว่าผลตอบแทนกระจายห่างจากค่าเฉลี่ยมากแค่ไหน</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">P</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ความน่าจะเป็นของแต่ละเหตุการณ์</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">Rᵢ</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ผลตอบแทนของเหตุการณ์ที่ i</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">E(R)</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">อัตราผลตอบแทนคาดหวัง — คำนวณจากสูตรที่ 1 ก่อน</div></div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;margin-bottom:12px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:5px;">ที่มา</div>
+        <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">• σ (sigma) คือสัญลักษณ์ทางสถิติแทนการกระจาย<br>• σ² จึงหมายถึง "การกระจายยกกำลังสอง" = ความแปรปรวน<br>• อาจารย์แต่ละคนอาจเรียกหรือใช้ต่างกันตอนเรียน IC และ IP แต่ σ² และ Variance — ความหมายเดียวกัน<br>• บางครั้งเขียนเป็น S² — ตัวเดียวกัน</div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">เจอในบทเรียน</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">CFP 2 · บทที่ 2</div>
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">IC Plain</div>
+        </div>
+      </div>
+    </div>`,
+    // 2: SD (พร้อมใช้)
+    `<div style="background:#fff;border-radius:18px;padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">ค่าส่วนเบี่ยงเบนมาตรฐาน</div>
+      <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;">Standard Deviation · SD</div>
+      <div style="background:#f8f8ee;border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:center;">
+        <div style="font-size:0.95rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;line-height:1.6;">SD = √σ²</div>
+        <div style="font-size:0.72rem;color:#888;margin-top:4px;font-family:'Sarabun',sans-serif;">= √ความแปรปรวน — ถอดรากที่สองจากสูตรที่ 2</div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">ตัวแปร</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">SD</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ส่วนเบี่ยงเบนมาตรฐาน — หน่วยเดียวกับผลตอบแทน (%) ต่างจาก σ² ที่หน่วยเป็น %²</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">σ²</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ความแปรปรวน — คำนวณจากสูตรที่ 2 ก่อน</div></div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;margin-bottom:12px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:5px;">ที่มา</div>
+        <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">• IC เรียก "ส่วนเบี่ยงเบนมาตรฐาน"<br>• IP เรียก SD ย่อจาก Standard Deviation<br>• ความหมายเดียวกันทุกอย่าง — ต่างแค่ชื่อที่อาจารย์ใช้</div>
+      </div>
+      <div style="background:#fff3f6;border-radius:10px;padding:10px 12px;border-left:3px solid #F03E68;">
+        <div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.7;"><b>💡 จำง่าย:</b> SD จะ<b>น้อยกว่า</b>ความแปรปรวนเสมอ เพราะเป็นการถอดราก — ใช้ตัดตัวเลือกได้เลยถ้าไม่แน่ใจว่าอันไหนคืออะไร</div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;margin-top:12px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">เจอในบทเรียน</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">CFP 2 · บทที่ 2</div>
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">IC Plain</div>
+        </div>
+      </div>
+    </div>`,
+    // 3-6: ม็อคอัพ
+    ...Array(4).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`)
   ];
   document.getElementById('fml-detail-title').textContent = titles[idx] || '';
   document.getElementById('fml-detail-body').innerHTML = contents[idx] || '';
@@ -1110,7 +1208,7 @@ renderCD();
 <!-- ===== FORMULA SCREEN ===== -->
 <div id="formula-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
   <!-- TOP BAR -->
-  <div style="background:var(--bg);padding:52px 16px 16px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+  <div style="background:var(--bg);padding:36px 16px 16px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeFormulas()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
@@ -1128,12 +1226,12 @@ renderCD();
     </div>
     <div class="fml-folder" style="--fc:var(--yellow);--ft:#1a1a00;" onclick="openFormulaDetail(1)">
       <div class="fml-num">02</div>
-      <div class="fml-name">ค่าส่วนเบี่ยงเบนมาตรฐาน<br><span class="fml-sub">Standard Deviation · SD <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-name">ค่าความแปรปรวน<br><span class="fml-sub">Variance · σ²</span></div>
       <div class="fml-arr">›</div>
     </div>
     <div class="fml-folder" style="--fc:var(--pink);--ft:#fff;" onclick="openFormulaDetail(2)">
       <div class="fml-num">03</div>
-      <div class="fml-name">ค่าความแปรปรวน<br><span class="fml-sub">Variance · σ² <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-name">ค่าส่วนเบี่ยงเบนมาตรฐาน<br><span class="fml-sub">Standard Deviation · SD</span></div>
       <div class="fml-arr">›</div>
     </div>
     <div class="fml-folder" style="--fc:var(--lime);--ft:#1a2a00;" onclick="openFormulaDetail(3)">
@@ -1160,8 +1258,8 @@ renderCD();
 </div>
 
 <!-- ===== FORMULA DETAIL SCREEN ===== -->
-<div id="formula-detail-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
-  <div id="fml-detail-bar" style="padding:52px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+<div id="formula-detail-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:visible;">
+  <div id="fml-detail-bar" style="padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeFormulaDetail()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
@@ -1170,7 +1268,7 @@ renderCD();
       <div id="fml-detail-title" style="font-size:0.85rem;font-weight:700;color:#1a2a00;"></div>
     </div>
   </div>
-  <div id="fml-detail-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 16px 40px;"></div>
+  <div id="fml-detail-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 16px 120px;"></div>
 </div>
 
 <!-- FORMULA NOTE POPUP -->
