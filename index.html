@@ -108,6 +108,13 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 .cb2-gray{background:rgba(255,255,235,0.18);color:var(--ws);}
 .cb2-op{background:rgba(255,225,30,0.18);color:var(--yellow2);}
 .cb2-lime{background:rgba(160,255,45,0.85);color:var(--black);}
+.fml-folder{background:var(--fc);color:var(--ft,#1a2a00);border-radius:16px;padding:16px 18px;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:transform 0.15s, box-shadow 0.15s;box-shadow:0 4px 0 rgba(0,0,0,0.18);}
+.fml-folder:hover,.fml-folder:active{transform:translateY(-3px);box-shadow:0 7px 0 rgba(0,0,0,0.18);}
+.fml-num{font-size:0.65rem;font-weight:800;opacity:0.45;font-family:'Prompt',sans-serif;flex-shrink:0;width:20px;}
+.fml-name{flex:1;font-size:0.88rem;font-weight:700;font-family:'Prompt',sans-serif;line-height:1.4;}
+.fml-sub{font-size:0.72rem;font-weight:500;opacity:0.65;}
+.fml-mock{background:rgba(0,0,0,0.12);border-radius:4px;padding:1px 5px;font-size:0.62rem;}
+.fml-arr{font-size:1.3rem;opacity:0.4;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -249,8 +256,8 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
   <button class="nb pi" aria-label="โจทย์">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/></svg>
   </button>
-  <button class="nb te2" aria-label="เครื่องคิดเลข">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="4" y="2" width="16" height="20" rx="3"/><line x1="8" y1="7" x2="16" y2="7"/><rect x="8" y="11" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="14" y="11" width="2" height="2"/><rect x="8" y="15" width="2" height="2"/><rect x="11" y="15" width="2" height="2"/><rect x="14" y="15" width="5" height="2"/></svg>
+  <button class="nb te2" aria-label="รวมสูตร" onclick="openFormulas()">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10h10M4 14h7M4 18h5"/><path d="M17 14l2 2 4-4"/></svg>
   </button>
   <button class="nb pu2" aria-label="โปรไฟล์">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -789,19 +796,20 @@ function showSolution() {
   qPeeked[qIdx] = true;
   qRevealed[qIdx] = true;
   renderQuestion();
+  document.getElementById('solution-q-num').textContent = qIdx + 1;
+  document.getElementById('solution-body').innerHTML = QUIZ_DATA[qIdx].explain;
+  const m = document.getElementById('solution-modal');
+  m.style.display = 'flex';
+}
+function closeSolution() {
+  document.getElementById('solution-modal').style.display = 'none';
 }
 
 function selectAnswer(origIdx) {
-  if (qRevealed[qIdx]) return; // ถ้าเปิดเฉลยแล้วห้ามเปลี่ยน
+  if (qRevealed[qIdx]) return;
   playSound('select');
-  qAnswers[qIdx] = origIdx; // เปลี่ยนได้เสมอจนกว่าจะ reveal
+  qAnswers[qIdx] = origIdx;
   renderQuestion();
-}
-
-function showSolution() {
-  qPeeked[qIdx] = true;
-  document.getElementById('q-explain').style.display = 'block';
-  document.getElementById('q-explain').innerHTML = QUIZ_DATA[qIdx].explain;
 }
 
 function toggleGoTo() {
@@ -871,6 +879,67 @@ function updateTimerDisplay() {
 }
 
 // CALC
+function openFormulas() {
+  document.getElementById('formula-screen').style.display = 'flex';
+}
+function closeFormulas() {
+  document.getElementById('formula-screen').style.display = 'none';
+}
+function openFormulaDetail(idx) {
+  const titles = [
+    'Expected Return · E(R)',
+    'Standard Deviation · SD',
+    'Variance · σ²',
+    'Coefficient of Variation · CV',
+    'Portfolio Return',
+    'Portfolio Risk',
+    'Beta · β'
+  ];
+  const contents = [
+    // 0: Expected Return (พร้อมใช้)
+    `<div style="background:#fff;border-radius:18px;padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">อัตราผลตอบแทนที่คาดหวัง</div>
+      <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;">Expected Return</div>
+      <div style="background:#f8f8ee;border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:center;">
+        <div style="font-size:0.95rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;line-height:1.6;">E(R) = (P₁×R₁) + (P₂×R₂) + … + (Pₙ×Rₙ)</div>
+        <div style="font-size:0.72rem;color:#888;margin-top:4px;font-family:'Sarabun',sans-serif;">หรือเขียนแบบ Sigma: E(R) = Σ PᵢRᵢ</div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">ตัวแปร</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">E(R)</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">อัตราผลตอบแทนที่คาดหวัง <span style="color:#888;">(เป็น % เช่น ดอกเบี้ย, หุ้นขึ้นลง)</span></div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">P</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ความน่าจะเป็น (Probability) ของแต่ละเหตุการณ์</div></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.75rem;font-weight:700;color:#2a5a00;font-family:'Prompt',sans-serif;flex-shrink:0;">R</div><div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.5;">ผลตอบแทนของแต่ละเหตุการณ์ (Return)</div></div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;margin-bottom:12px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:5px;">ที่มา</div>
+        <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">• E(R) ย่อจาก Expected Return<br>• R หรือ r = Return ใช้แทนผลตอบแทนในวิชาการเงิน<br>• P มาจาก Probability<br>• สูตร Sigma (Σ) หมายถึง "บวกทุกตัว" — ความหมายเดียวกัน</div>
+      </div>
+      <div style="border-top:1px solid #f0f0e0;padding-top:10px;margin-bottom:14px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:6px;">เจอในบทเรียน</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">CFP 2 · บทที่ 1</div>
+          <div style="background:#fff8e0;border:1px solid #f0d060;border-radius:8px;padding:4px 10px;font-size:0.72rem;font-family:'Sarabun',sans-serif;color:#7a5a00;">IC · หมวด 1 บทที่ 4 <span style="color:#aaa;">(P → W)</span></div>
+        </div>
+      </div>
+      <button onclick="openFormulaNote()" style="width:100%;padding:10px;background:#1a2a00;border:none;border-radius:12px;font-family:'Sarabun',sans-serif;font-size:0.78rem;font-weight:700;color:rgb(160,225,45);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;"><span>💬</span> ทำไมไม่หารด้วยจำนวนเหตุการณ์?</button>
+    </div>`,
+    // 1-6: ม็อคอัพ
+    ...Array(6).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`)
+  ];
+  document.getElementById('fml-detail-title').textContent = titles[idx] || '';
+  document.getElementById('fml-detail-body').innerHTML = contents[idx] || '';
+  document.getElementById('formula-detail-screen').style.display = 'flex';
+}
+function closeFormulaDetail() {
+  document.getElementById('formula-detail-screen').style.display = 'none';
+}
+function openFormulaNote() {
+  document.getElementById('formula-note-modal').style.display = 'flex';
+}
+function closeFormulaNote() {
+  document.getElementById('formula-note-modal').style.display = 'none';
+}
+
 function toggleCalc() {
   calcOpen = !calcOpen;
   const sheet = document.getElementById('calc-sheet');
@@ -1038,5 +1107,100 @@ function renderCD(){
 }
 renderCD();
 </script>
+<!-- ===== FORMULA SCREEN ===== -->
+<div id="formula-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <!-- TOP BAR -->
+  <div style="background:var(--bg);padding:52px 16px 16px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeFormulas()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">รวมสูตร</div>
+    </div>
+  </div>
+  <!-- FOLDER LIST -->
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 40px;display:flex;flex-direction:column;gap:0;">
+    <div class="fml-folder" style="--fc:var(--teal);--ft:#1a2a00;" onclick="openFormulaDetail(0)">
+      <div class="fml-num">01</div>
+      <div class="fml-name">อัตราผลตอบแทนที่คาดหวัง<br><span class="fml-sub">Expected Return · E(R)</span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:var(--yellow);--ft:#1a1a00;" onclick="openFormulaDetail(1)">
+      <div class="fml-num">02</div>
+      <div class="fml-name">ค่าส่วนเบี่ยงเบนมาตรฐาน<br><span class="fml-sub">Standard Deviation · SD <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:var(--pink);--ft:#fff;" onclick="openFormulaDetail(2)">
+      <div class="fml-num">03</div>
+      <div class="fml-name">ค่าความแปรปรวน<br><span class="fml-sub">Variance · σ² <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:var(--lime);--ft:#1a2a00;" onclick="openFormulaDetail(3)">
+      <div class="fml-num">04</div>
+      <div class="fml-name">ค่าสัมประสิทธิ์ความแปรผัน<br><span class="fml-sub">CV · Coefficient of Variation <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:var(--purple);--ft:#fff;" onclick="openFormulaDetail(4)">
+      <div class="fml-num">05</div>
+      <div class="fml-name">ผลตอบแทนพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Return <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:#9aaa88;--ft:#1a2a00;" onclick="openFormulaDetail(5)">
+      <div class="fml-num">06</div>
+      <div class="fml-name">ความเสี่ยงพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Risk <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:#c0ccb0;--ft:#1a2a00;" onclick="openFormulaDetail(6)">
+      <div class="fml-num">07</div>
+      <div class="fml-name">ค่าเบต้า<br><span class="fml-sub">Beta · β <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FORMULA DETAIL SCREEN ===== -->
+<div id="formula-detail-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div id="fml-detail-bar" style="padding:52px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeFormulaDetail()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:rgba(26,42,0,0.5);font-family:'Sarabun',sans-serif;">รวมสูตร</div>
+      <div id="fml-detail-title" style="font-size:0.85rem;font-weight:700;color:#1a2a00;"></div>
+    </div>
+  </div>
+  <div id="fml-detail-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 16px 40px;"></div>
+</div>
+
+<!-- FORMULA NOTE POPUP -->
+<div id="formula-note-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:800;align-items:center;justify-content:center;padding:20px;">
+  <div onclick="closeFormulaNote()" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.72);"></div>
+  <div style="position:relative;width:100%;max-width:390px;background:#fff;border-radius:20px;padding:20px 18px 24px;max-height:80vh;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;margin-bottom:14px;flex-shrink:0;">
+      <div style="font-size:0.85rem;font-weight:700;color:#1a1a1a;font-family:'Prompt',sans-serif;">💬 ตอบข้อสงสัย</div>
+      <button onclick="closeFormulaNote()" style="margin-left:auto;width:30px;height:30px;border-radius:50%;background:#f0f0e0;border:none;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#555;">✕</button>
+    </div>
+    <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:'Sarabun',sans-serif;font-size:0.85rem;line-height:1.85;color:#1a1a1a;">
+      <div style="font-weight:700;margin-bottom:8px;">ทำไมไม่หารด้วยจำนวนเหตุการณ์?</div>
+      <p style="margin:0 0 10px;">เพราะสูตรนี้คือ <strong>ค่าเฉลี่ยถ่วงน้ำหนัก (Weighted Average)</strong> โดยใช้ "ความน่าจะเป็น" เป็นตัวถ่วงน้ำหนักอยู่แล้ว</p>
+      <p style="margin:0 0 10px;">สังเกตว่าค่า P ของทุกเหตุการณ์เมื่อรวมกันจะเท่ากับ 1 เสมอ (= 100%) — ตรงนี้แหละที่ทำหน้าที่หารอยู่แล้วในตัวมันเอง</p>
+      <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:0.8rem;">ถ้าหารด้วย 3 (หรือ N) จะกลายเป็น <strong>ค่าเฉลี่ยเลขคณิตธรรมดา</strong> ซึ่งสมมติว่าทุกเหตุการณ์มีโอกาสเกิดเท่ากัน — แต่ในชีวิตจริงโอกาสเกิดไม่เท่ากัน จึงต้องใช้ P ถ่วงน้ำหนักแทน</div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTION MODAL -->
+<div id="solution-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:700;align-items:center;justify-content:center;padding:20px;">
+  <div onclick="closeSolution()" style="position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.72);"></div>
+  <div style="position:relative;width:100%;max-width:390px;background:#fff;border-radius:20px;padding:20px 18px 24px;max-height:80vh;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;margin-bottom:14px;flex-shrink:0;">
+      <div style="font-size:0.85rem;font-weight:700;color:#1a1a1a;font-family:'Prompt',sans-serif;">💡 เฉลยข้อที่ <span id="solution-q-num"></span></div>
+      <button onclick="closeSolution()" style="margin-left:auto;width:30px;height:30px;border-radius:50%;background:#f0f0e0;border:none;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#555;">✕</button>
+    </div>
+    <div id="solution-body" style="overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"></div>
+  </div>
+</div>
+
 </body>
 </html>
