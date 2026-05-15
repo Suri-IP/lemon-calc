@@ -187,14 +187,14 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       <div>
         <div class="mc-title">CPF<br>module1</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น ▶</button>
+        <button class="mc-btn">เริ่มเล่น ▶︎</button>
       </div>
     </div>
     <div class="mc gr" onclick="openComingSoon()">
       <div>
         <div class="mc-title">CPF<br>module3</div>
         <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น ▶</button>
+        <button class="mc-btn">เริ่มเล่น ▶︎</button>
       </div>
     </div>
   </div>
@@ -306,8 +306,8 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 
   <!-- BOTTOM NAV: prev / next / submit -->
   <div id="quiz-bottom-nav" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:#f5f5e0;border-top:1px solid #d8d8c0;padding:10px 16px 28px;z-index:550;display:none;gap:8px;">
-    <button id="btn-prev" onclick="qNav(-1)" style="flex:0 0 auto;padding:13px 18px;background:#fff;color:#1a1a1a;border:1px solid #d0d0b8;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;">◀ ย้อนกลับ</button>
-    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป ▶</button>
+    <button id="btn-prev" onclick="qNav(-1)" style="flex:0 0 auto;padding:13px 18px;background:#fff;color:#1a1a1a;border:1px solid #d0d0b8;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;">◀︎ ย้อนกลับ</button>
+    <button id="btn-next" onclick="qNav(1)" style="flex:1;padding:13px;background:rgb(160,225,45);color:#1a1a1a;border:none;border-radius:13px;font-family:'Prompt',sans-serif;font-size:0.93rem;font-weight:700;cursor:pointer;">ถัดไป ▶︎</button>
   </div>
 
   <!-- GO-TO MODAL -->
@@ -374,6 +374,9 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
     </div>
   </div>
 </div>
+
+<!-- DIM OVERLAY for calc sheet -->
+<div id="calc-overlay" onclick="toggleCalc()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:619;transition:opacity 0.3s ease;"></div>
 
 <!-- CALC SHEET: outside quiz-screen so backdrop-filter works -->
 <div id="calc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.55);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:12px 14px 28px;z-index:620;transition:bottom 0.3s ease;">
@@ -704,12 +707,12 @@ function updateNavBtns() {
       nextBtn.style.background = 'var(--lime)';
       nextBtn.onclick = showResult;
     } else {
-      nextBtn.textContent = 'ถัดไป ▶';
+      nextBtn.textContent = 'ถัดไป ▶︎';
       nextBtn.style.background = 'rgb(160,225,45)';
       nextBtn.onclick = () => qNav(1);
     }
   } else {
-    nextBtn.textContent = 'ถัดไป ▶';
+    nextBtn.textContent = 'ถัดไป ▶︎';
     nextBtn.style.background = 'rgb(160,225,45)';
     nextBtn.onclick = () => qNav(1);
   }
@@ -871,9 +874,10 @@ function updateTimerDisplay() {
 function toggleCalc() {
   calcOpen = !calcOpen;
   const sheet = document.getElementById('calc-sheet');
+  const overlay = document.getElementById('calc-overlay');
   sheet.style.bottom = calcOpen ? '0' : '-100%';
+  overlay.style.display = calcOpen ? 'block' : 'none';
   if (calcOpen) {
-    // แสดงโจทย์ข้อปัจจุบันถ้าอยู่ในหน้า quiz
     const q = QUIZ_DATA[qIdx];
     const qBox = document.getElementById('calc-q-box');
     if (q && document.getElementById('quiz-screen').style.display !== 'none') {
@@ -889,6 +893,7 @@ function toggleCalc() {
 function closeCalcSheet() {
   calcOpen = false;
   document.getElementById('calc-sheet').style.bottom = '-100%';
+  document.getElementById('calc-overlay').style.display = 'none';
 }
 function calcInput(v) {
   if (v === 'C') { calcVal='0'; calcExpr=''; calcPrevOp=null; calcPrevVal=null; calcJustEq=false; }
