@@ -2,13 +2,11 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light only">
-<meta name="supported-color-schemes" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>LemonCalc</title>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700;800;900&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);color-scheme:light only;}
+:root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;min-height:100vh;overflow-x:hidden;}
 .app{max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:104px;}
@@ -135,7 +133,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       </svg>
       <div class="logo">LemonCalc</div>
     </div>
-    <button class="menu-btn" aria-label="เมนู">
+    <button class="menu-btn" aria-label="เมนู" onclick="toggleMenu()"  id="menu-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,235,0.65)" stroke-width="2" stroke-linecap="round">
         <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
       </svg>
@@ -922,6 +920,144 @@ function updateTimerDisplay() {
 }
 
 // CALC
+function toggleMenu() {
+  const m = document.getElementById('dropdown-menu');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+}
+function closeMenu() {
+  document.getElementById('dropdown-menu').style.display = 'none';
+}
+function openNotes() {
+  document.getElementById('notes-screen').style.display = 'flex';
+}
+function closeNotes() {
+  document.getElementById('notes-screen').style.display = 'none';
+}
+
+const NOTE_CONTENT = {
+  'cfp2-ch3': `
+    <div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
+
+      <div style="background:var(--teal);border-radius:12px;padding:12px 14px;margin-bottom:16px;">
+        <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 3</div>
+        <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">ตราสารหนี้</div>
+      </div>
+
+      <!-- 1 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> ภาพรวมและประโยชน์</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;border-left:3px solid var(--teal);">
+          <div style="margin-bottom:6px;">• <b>ผู้ออกตราสาร</b> — ต้นทุนต่ำกว่ากู้ธนาคาร และ<span style="color:#e00;font-weight:700;">ดอกเบี้ยจ่ายหักภาษีได้</span></div>
+          <div style="margin-bottom:6px;">• <b>ผู้ลงทุน</b> — เพิ่มทางเลือกออมและลงทุน</div>
+          <div>• <b>เศรษฐกิจ</b> — ลดพึ่งพาทุนต่างประเทศ ลดความเสี่ยงระบบ</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> ประเภทตราสารหนี้</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;">
+          <div style="font-weight:700;font-size:0.8rem;margin-bottom:6px;color:#1a2a00;">📌 ภาครัฐ</div>
+          <div style="margin-bottom:4px;">• <b>ตั๋วเงินคลัง</b> — ระยะสั้น <span style="color:#e00;font-weight:700;">≤ 12 เดือน</span></div>
+          <div style="margin-bottom:4px;">• <b>พันธบัตรรัฐบาล</b> — <span style="color:#e00;font-weight:700;">≥ 1 ปี (สูงสุด 20 ปี)</span><br>
+            <span style="padding-left:16px;display:block;color:#555;font-size:0.82rem;">IB = ลงทุน · LB = บริหารหนี้ขาดดุล · SB = ออมทรัพย์</span>
+          </div>
+          <div style="margin-bottom:4px;">• <b>พันธบัตรรัฐวิสาหกิจ</b> — กระทรวงการคลังค้ำประกัน</div>
+          <div>• <b>พันธบัตร ธปท.</b> — บริหารนโยบายการเงิน สร้างอัตราดอกเบี้ยอ้างอิง</div>
+        </div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;">
+          <div style="font-weight:700;font-size:0.8rem;margin-bottom:6px;color:#1a2a00;">📌 หุ้นกู้เอกชน (แบ่งตามลักษณะ)</div>
+          <div style="margin-bottom:4px;">• สิทธิเรียกร้อง: ด้อยสิทธิ / ไม่ด้อยสิทธิ</div>
+          <div style="margin-bottom:4px;">• ค้ำประกัน: มีหลักประกัน / ไม่มี</div>
+          <div style="margin-bottom:4px;">• ดอกเบี้ย: คงที่ / ลอยตัว</div>
+          <div style="margin-bottom:2px;">• สิทธิแฝง:</div>
+          <div style="padding-left:14px;color:#555;font-size:0.82rem;line-height:1.7;">
+            Convertible Bond · Amortizing Bond<br>
+            <span style="color:#e00;font-weight:700;">Callable Bond</span> (ผู้ออกไถ่ถอนก่อนกำหนด) ·
+            <span style="color:#e00;font-weight:700;">Puttable Bond</span> (ผู้ถือเรียกคืนก่อนกำหนด)<br>
+            Asset-Backed Securities
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> ตลาดและการซื้อขาย</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;">
+          <div style="margin-bottom:4px;">• ซื้อขายผ่าน <span style="color:#e00;font-weight:700;">BEX</span> (ศูนย์ซื้อขายตราสารหนี้)</div>
+          <div style="margin-bottom:4px;">• ตลาดแรก: <b>PO</b> (ทั่วไป) / <b>PP</b> (จำกัดวง)</div>
+          <div style="margin-bottom:4px;">• ดอกเบี้ยอ้างอิง = พันธบัตรรัฐบาล + Spread</div>
+          <div style="margin-bottom:6px;margin-top:8px;font-weight:700;font-size:0.8rem;">ระบบซื้อขายใน BEX</div>
+          <div style="margin-bottom:4px;">• <b>AOM</b>: <span style="color:#e00;font-weight:700;">100,000–10,000,000 บาท</span> ชำระ T+2 แสดง Yield</div>
+          <div style="margin-bottom:8px;">• <b>Put-Through</b>: <span style="color:#e00;font-weight:700;">≥ 10,000,000 บาท</span></div>
+          <div style="background:#fff8e0;border-radius:8px;padding:8px 10px;font-size:0.82rem;">
+            <b>เครื่องหมาย</b> (แจ้งล่วงหน้า <span style="color:#e00;font-weight:700;">2 วันทำการ</span>)<br>
+            • <b>XI</b> (Ex-Interest) — ผู้ซื้อ<b>ไม่ได้</b>รับดอกเบี้ยงวดนั้น<br>
+            • <b>XP</b> (Ex-Principal) — ผู้ซื้อ<b>ไม่ได้</b>รับเงินต้นงวดนั้น
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ภาษี</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;">
+          <div style="margin-bottom:6px;"><b>บุคคลธรรมดา</b><br>กำไรขาย + ดอกเบี้ย + ส่วนลด (ผู้ถือคนแรก) → <span style="color:#e00;font-weight:700;">หัก ณ ที่จ่าย 15%</span> (เลือก Final Tax ได้)</div>
+          <div><b>นิติบุคคล</b><br>ดอกเบี้ย → <span style="color:#e00;font-weight:700;">หัก ณ ที่จ่าย 1%</span> · กำไรขาย → ไม่หัก แต่นำรวมคำนวณภาษีสิ้นปี</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> ความเสี่ยง</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;">
+          <div style="margin-bottom:8px;"><b>Interest Rate Risk</b><br>ดอกเบี้ย↑ → ราคา↓ · ดอกเบี้ย↓ → ราคา↑<br><span style="color:#e00;font-weight:700;">Duration สูง = ไวต่อดอกเบี้ยมาก</span><br><span style="color:#e00;font-weight:700;">Zero-Coupon Bond ไวสุด</span></div>
+          <div style="margin-bottom:8px;"><b>Reinvestment Risk</b><br>นำเงินลงทุนต่อได้ผลตอบแทนไม่ตามคาด · มักเกิดกับ <span style="color:#e00;font-weight:700;">Amortizing Bond</span></div>
+          <div style="margin-bottom:8px;"><b>Credit Risk</b><br>ผิดนัดชำระ · ถูกลด Rating · Credit Spread เปลี่ยน<br>
+            <span style="display:inline-block;margin-top:4px;background:#f5f5e8;border-radius:8px;padding:6px 10px;font-size:0.8rem;">
+              <b>4C:</b> <span style="color:#e00;font-weight:700;">Character · Capacity · Collateral · Covenants</span>
+            </span>
+          </div>
+          <div style="color:#555;font-size:0.82rem;">ความเสี่ยงอื่น: สิทธิแฝง · อัตราแลกเปลี่ยน · สภาพคล่อง · เงินเฟ้อ · กฎระเบียบ · ขาดความรู้</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:var(--teal);border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span> Credit Rating</div>
+        <div style="background:#fff;border-radius:12px;padding:12px 14px;">
+          <div style="margin-bottom:6px;">ระดับ: <b>Sovereign</b> · <b>Company</b> · <b>Issue</b></div>
+          <div style="margin-bottom:6px;">สถาบัน: S&P · Moody's · Fitch · TRIS · FITCH Thai</div>
+          <div style="margin-bottom:8px;">
+            <span style="background:#e8f5e0;border-radius:6px;padding:2px 8px;font-size:0.8rem;font-weight:700;color:#1a5a00;margin-right:6px;">Investment Grade ≥ BBB−</span>
+            <span style="background:#fff0f0;border-radius:6px;padding:2px 8px;font-size:0.8rem;font-weight:700;color:#c00;">Speculative &lt; BBB−</span>
+          </div>
+          <div style="background:#fff8e0;border-radius:8px;padding:8px 10px;font-size:0.82rem;">
+            <b>Rating Outlook:</b><br>
+            Positive (ดีขึ้น) · Stable (คงที่) · <span style="color:#e00;font-weight:700;">Negative (แย่ลง)</span> · Developing (ไม่แน่ชัด)
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `
+};
+
+function openNoteDetail(id) {
+  const content = NOTE_CONTENT[id];
+  if (!content) return;
+  document.getElementById('note-detail-body').innerHTML = content;
+  document.getElementById('note-detail-screen').style.display = 'flex';
+}
+function closeNoteDetail() {
+  document.getElementById('note-detail-screen').style.display = 'none';
+}
+
+function openTips() { document.getElementById('tips-screen').style.display = 'flex'; }
+function closeTips() { document.getElementById('tips-screen').style.display = 'none'; }
+function openExamTips() { document.getElementById('examtips-screen').style.display = 'flex'; }
+function closeExamTips() { document.getElementById('examtips-screen').style.display = 'none'; }
+
 function openFormulas() {
   document.getElementById('formula-screen').style.display = 'flex';
 }
@@ -1285,6 +1421,142 @@ renderCD();
       <p style="margin:0 0 10px;">สังเกตว่าค่า P ของทุกเหตุการณ์เมื่อรวมกันจะเท่ากับ 1 เสมอ (= 100%) — ตรงนี้แหละที่ทำหน้าที่หารอยู่แล้วในตัวมันเอง</p>
       <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:0.8rem;">ถ้าหารด้วย 3 (หรือ N) จะกลายเป็น <strong>ค่าเฉลี่ยเลขคณิตธรรมดา</strong> ซึ่งสมมติว่าทุกเหตุการณ์มีโอกาสเกิดเท่ากัน — แต่ในชีวิตจริงโอกาสเกิดไม่เท่ากัน จึงต้องใช้ P ถ่วงน้ำหนักแทน</div>
     </div>
+  </div>
+</div>
+
+<!-- DROPDOWN MENU -->
+<div id="dropdown-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;">
+  <div onclick="closeMenu()" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;top:52px;right:18px;background:#fff;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.18);overflow:hidden;min-width:220px;">
+    <div onclick="openNotes(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.9rem;color:#1a1a1a;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      สรุปย่อเนื้อหาอื่นๆ
+    </div>
+    <div onclick="openTips(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.9rem;color:#1a1a1a;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      ทริคอื่นๆ
+    </div>
+    <div onclick="openExamTips(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:0.9rem;color:#1a1a1a;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      การบริหารเวลาสอบ
+    </div>
+  </div>
+</div>
+
+<!-- NOTES SCREEN -->
+<div id="notes-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <!-- TOP BAR -->
+  <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeNotes()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">สรุปย่อเนื้อหาอื่นๆ</div>
+    </div>
+  </div>
+  <!-- SUBJECT LIST -->
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 40px;">
+    <!-- CFP M2 -->
+    <div style="font-size:0.65rem;font-weight:700;color:var(--muted);font-family:'Prompt',sans-serif;letter-spacing:0.5px;margin:8px 0 10px;">CFP MODULE 2</div>
+    <div onclick="openNoteDetail('cfp2-ch3')" style="background:rgba(255,255,235,0.06);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;font-weight:800;color:#1a2a00;">3</div>
+      <div style="flex:1;">
+        <div style="font-size:0.85rem;font-weight:700;color:var(--ws);font-family:'Prompt',sans-serif;">ตราสารหนี้</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-family:'Sarabun',sans-serif;margin-top:2px;">6 หัวข้อ · ภาพรวม ประเภท ตลาด ภาษี ความเสี่ยง Rating</div>
+      </div>
+      <div style="color:var(--muted);font-size:1.2rem;">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTE DETAIL SCREEN -->
+<div id="note-detail-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div id="note-detail-bar" style="background:var(--teal);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeNoteDetail()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · บทที่ 3</div>
+      <div style="font-size:0.85rem;font-weight:700;color:#1a2a00;">ตราสารหนี้</div>
+    </div>
+  </div>
+  <div id="note-detail-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 120px;"></div>
+</div>
+
+<!-- TIPS SCREEN -->
+<div id="tips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">ทริคอื่นๆ</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 120px;font-family:'Sarabun',sans-serif;">
+
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span>
+        เครื่องคิดเลขการเงิน
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;">
+        <div style="margin-bottom:6px;"><span style="color:#e00;font-weight:700;">เงินออก</span> ใส่ <span style="background:#1a2a00;color:var(--lime);border-radius:4px;padding:1px 8px;font-weight:700;">−</span></div>
+        <div style="font-size:0.78rem;color:#555;margin-bottom:12px;">(เงินลงทุน = เงินออกจากกระเป๋า)</div>
+        <div style="margin-bottom:6px;"><span style="color:#1a7a00;font-weight:700;">เงินเข้า</span> ใส่ <span style="background:#e8f5e0;color:#1a5a00;border-radius:4px;padding:1px 8px;font-weight:700;">+</span></div>
+        <div style="font-size:0.78rem;color:#555;">(ผลตอบแทนที่ได้รับ = เงินเข้ากระเป๋า)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EXAM TIPS SCREEN -->
+<div id="examtips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeExamTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">การบริหารเวลาสอบ</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 120px;font-family:'Sarabun',sans-serif;font-size:0.87rem;line-height:1.85;">
+
+    <!-- แชร์ประสบการณ์ -->
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;">💬 แชร์ประสบการณ์</div>
+      <div style="color:#333;margin-bottom:10px;">เวลาสอบ <span style="color:#e00;font-weight:700;">180 นาที</span> สำหรับ <span style="color:#e00;font-weight:700;">85 ข้อ</span> อาจดูเหมือนเยอะ แต่ถ้าเตรียมไม่แน่พอและบริหารเวลาไม่ดี อาจทำไม่ทันได้</div>
+      <div style="background:#fff8e0;border-radius:10px;padding:12px;margin-bottom:10px;color:#333;">
+        หลายคนทำไม่ทันเพราะ<span style="color:#e00;font-weight:700;">ใช้เวลากับข้อที่ทำไม่ได้มากเกินไป</span><br><br>
+        ถ้าตัดสินใจได้เร็ว → ทำได้เลย<br>
+        ถ้าไม่ใช่ → <span style="color:#e00;font-weight:700;">รีบไปข้ออื่น</span> ยังไงก็ 1 คะแนนเท่ากัน<br><br>
+        อย่างน้อย<span style="font-weight:700;">ควรอ่านโจทย์ครบทุกข้อ</span>
+      </div>
+      <div style="background:#f0f8ff;border-radius:10px;padding:12px;color:#333;">
+        ข้อที่ตัดตัวเลือกได้แต่ไม่แน่ใจ →<br>
+        <span style="color:#e00;font-weight:700;">มาร์คเอาไว้</span>แล้วไปทำข้ออื่นก่อน<br>
+        ถ้าไม่มาร์ค บางทีต้องกลับมาอ่านและตัดใหม่ทั้งหมด
+      </div>
+    </div>
+
+    <!-- เซอร์ไพร์ส่วนตัว -->
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;">⚡ เซอร์ไพร์ส่วนตัว (M1)</div>
+      <div style="color:#333;margin-bottom:10px;">อ่านไปแน่นพอสมควร เน้นคำนวณเป็นพิเศษ คิดว่าถ้าทำได้ก็ถูกแน่นอน พอเจอโจทย์คำนวณที่ทำไม่ได้ ก็ยังพยายามวนคิดต่อ เพราะคิดว่าอ่านมาเยอะแล้ว</div>
+      <div style="background:#fff0f0;border-radius:10px;padding:12px;margin-bottom:10px;color:#333;">
+        <span style="color:#e00;font-weight:700;">สุดท้ายเสียเวลาไปมาก</span> แต่ยังชะล่าใจเพราะคิดว่ามีเวลาเหลือเยอะ
+      </div>
+      <div style="color:#333;margin-bottom:10px;">พอทำถึงข้อ 60 กว่า เจอโจทย์เนื้อเรื่องยาว 1 หน้า ตอบหลายข้อ และมีถึง <span style="color:#e00;font-weight:700;">2 เรื่อง</span> ทำจนวินาทีสุดท้าย</div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px;color:#333;">
+        ข้อที่เว้นไว้ก่อน → สุดท้าย<span style="color:#e00;font-weight:700;">ต้องสุ่มตอบ</span><br>
+        โชคดีที่ยังพอมาร์คเอาไว้ว่าตัดตัวเลือกไหนไปบ้างแล้ว
+      </div>
+    </div>
+
   </div>
 </div>
 
