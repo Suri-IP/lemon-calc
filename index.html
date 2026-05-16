@@ -928,6 +928,92 @@ const QUIZ_DATA = [
 </div>
 <span style="background:#fff8e0;border-radius:8px;padding:8px 10px;display:block;font-size:0.82rem;margin-bottom:8px;">💡 <b>ทำไมใช้สูตรนี้?</b> โจทย์บอกว่า "ลงทุนระยะยาว" และเงินปันผล "คงที่" — แปลว่าถือตลอดไปและได้รับเงินปันผลเท่าเดิมทุกปี ซึ่งเป็นกรณี Perpetuity (กระแสเงินสดคงที่ไม่มีสิ้นสุด) จึงใช้สูตร P = D/k แทนสูตรในข้อก่อนหน้าที่มีการขายในปีที่ n</span>
 <span style="background:#fff0f0;border-radius:8px;padding:8px 10px;display:block;font-size:0.82rem;">⚠️ <b>จุดที่ต้องระวัง:</b> k ต้องแปลงเป็นทศนิยมก่อน — 13.4% = 0.134 ถ้าหารด้วย 13.4 โดยตรงจะได้คำตอบผิดทันที</span>`
+  },
+  {
+    q: `จากโจทย์ต่อไปนี้ การใส่ตัวแปรในข้อใดถูกต้อง หากคำนวณด้วยเครื่องคิดเลขการเงิน (Financial Calculator)<br><br>
+<div style="background:#fff;border:1px solid #e0e0d0;border-radius:10px;padding:12px 14px;font-family:'Sarabun',sans-serif;font-size:0.82rem;line-height:1.8;color:#333;">
+นายเก่งต้องการลงทุนในตราสารหนี้ที่จะครบอายุในอีก <b>3 ปี</b> โดยในระหว่างที่ลงทุนจะได้รับเงินเท่าๆ กัน<b>ปีละ 100,000 บาท</b> คาดหวังผลตอบแทน <b>5% ต่อปี</b> อยากทราบว่าจะลงทุนในตราสารหนี้หรือไม่ หากต้องจ่ายเงิน <b>250,000 บาท</b> เพื่อลงทุน
+</div><br>
+การใส่ตัวแปรในข้อใดถูกต้อง?`,
+    choices: [
+      "N=3, I/Y=5, PV=โจทย์ถาม, PMT=100,000, FV=0",
+      "N=3, I/Y=5, PV=0, PMT=100,000, FV=โจทย์ถาม",
+      "N=3, I/Y=5, PV=250,000, PMT=100,000, FV=โจทย์ถาม",
+      "N=3, I/Y=5, PV=-250,000, PMT=100,000, FV=โจทย์ถาม",
+    ],
+    answer: 0,
+    explain: `<b>ตอบ ก.</b> N=3, I/Y=5, <b>PV=โจทย์ถาม</b>, PMT=100,000, FV=0<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px;margin-bottom:12px;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+<b>เหตุผล:</b><br>
+โจทย์ถามว่า "ควรลงทุนไหม ถ้าต้องจ่าย 250,000 บาท" — แปลว่าเราต้องหา <b>มูลค่าปัจจุบันที่เหมาะสม (PV)</b> ว่าควรจ่ายเท่าไหร่ แล้วค่อยเทียบกับ 250,000 บาท<br><br>
+• ตราสารหนี้นี้ <b>ไม่มีเงินต้นคืนปลายงวด</b> (ครบอายุไม่ได้รับ par) → FV = 0<br>
+• PMT = 100,000 (รับปีละเท่าๆ กัน 3 ปี)<br>
+• PV ที่คำนวณได้ = <b>มูลค่าปัจจุบันที่ควรซื้อ</b> → ถ้า PV > 250,000 แปลว่าคุ้ม ควรลงทุน
+</div>
+<div style="background:#fff0f0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+<b>ทำไม ง. ผิด?</b> PV = -250,000 บอกเครื่องว่า "จ่ายไปแล้ว 250,000" ซึ่งจะได้ FV ออกมา แต่โจทย์ถามว่า PV ที่เหมาะสมคือเท่าไหร่ ไม่ใช่ถามว่า FV เป็นเท่าไหร่
+</div>`
+  },
+  {
+    q: `จากโจทย์ต่อไปนี้ การใส่ตัวแปรในข้อใดถูกต้อง หากคำนวณด้วยเครื่องคิดเลขการเงิน (Financial Calculator)<br><br>
+<div style="background:#fff;border:1px solid #e0e0d0;border-radius:10px;padding:12px 14px;font-family:'Sarabun',sans-serif;font-size:0.82rem;line-height:1.8;color:#333;">
+นางฟ้าลงทุนในกองทุนตราสารหนี้เป็นเวลา <b>4 ปี</b> โดยคาดว่าจะได้รับเงินคืน<b>ปีละ 50,000 บาท</b> และต้องการผลตอบแทน <b>6% ต่อปี</b> หากเริ่มลงทุนวันนี้ด้วยเงิน <b>180,000 บาท</b> อยากทราบว่าเมื่อสิ้นปีที่ 4 จะมีมูลค่าเงินสะสมปลายงวด (Future Value) เท่าใด
+</div><br>
+การใส่ตัวแปรในข้อใดถูกต้อง?`,
+    choices: [
+      "N=4, I/Y=6, PV=180,000, PMT=50,000, FV=โจทย์ถาม",
+      "N=4, I/Y=6, PV=-180,000, PMT=50,000, FV=โจทย์ถาม",
+      "N=4, I/Y=6, PV=-180,000, PMT=0, FV=โจทย์ถาม",
+      "N=4, I/Y=6, PV=0, PMT=50,000, FV=-180,000",
+    ],
+    answer: 1,
+    explain: `<b>ตอบ ข.</b> N=4, I/Y=6, <b>PV=-180,000</b>, PMT=50,000, FV=โจทย์ถาม<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px;margin-bottom:12px;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+<b>เหตุผล:</b><br>
+โจทย์ถาม FV ณ ปลายปีที่ 4 — เงินไหลเข้า-ออกมี 2 ส่วน<br><br>
+• <b>PV = -180,000</b> → เงินออกจากกระเป๋าวันนี้ (จ่ายลงทุน) ใส่เป็นลบ<br>
+• <b>PMT = 50,000</b> → รับคืนปีละ 50,000 เป็นเงินเข้า ใส่บวก<br>
+• <b>FV = โจทย์ถาม</b> → มูลค่าสะสมรวมปลายปีที่ 4
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+💡 <b>หลักจำ:</b> เงินออก = ลบ / เงินเข้า = บวก<br>
+PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT บวก ถูกต้อง<br>
+ถ้าใส่ PV บวก (ข้อ ก.) เครื่องจะงง เพราะ PV และ PMT ไปทิศเดียวกัน
+</div>`
+  },
+  {
+    q: `ตราสารหนี้ฉบับหนึ่งราคาหน้าตั๋ว <b>1,000 บาท</b> อายุคงเหลือ <b>4 ปี</b> จ่ายดอกเบี้ย <b>4% ต่อปี</b> โดยจ่ายทุกครึ่งปี ปัจจุบันซื้อขายที่ราคา <b>920 บาท</b> หากผู้ลงทุนต้องการผลตอบแทน <b>6% ต่อปี</b><br><br>ควรซื้อตราสารหนี้ฉบับนี้หรือไม่?`,
+    choices: [
+      "ควร เพราะมูลค่าที่แท้จริงมากกว่าราคาตลาด 9.8 บาท",
+      "ไม่ควร เพราะมูลค่าที่แท้จริงน้อยกว่าราคาตลาด 9.8 บาท",
+      "ควร เพราะมูลค่าตลาดแพงกว่ามูลค่าที่แท้จริง 9.8 บาท",
+      "ควร เพราะมูลค่าที่แท้จริงคือ 1,077.9 บาท",
+    ],
+    answer: 0,
+    explain: `<b>ตอบ ก.</b> ควรซื้อ เพราะมูลค่าที่แท้จริง > ราคาตลาด<br><br>
+
+<b>ใส่ตัวแปรในเครื่องคิดเลข</b>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  <div>• <b>N</b> = 4 ปี × 2 (จ่ายทุกครึ่งปี) = <b>8 งวด</b></div>
+  <div>• <b>I/Y</b> = 6% ÷ 2 = <b>3% ต่องวด</b></div>
+  <div>• <b>PMT</b> = 1,000 × 4% = 40 ÷ 2 = <b>20 บาท</b></div>
+  <div>• <b>FV</b> = <b>1,000 บาท</b> (ราคาหน้าตั๋วรับคืนปลายอายุ)</div>
+  <div>• <b>PV</b> = โจทย์ถาม → คำนวณได้ = <b>929.8 บาท</b></div>
+</div>
+
+929.8 > 920 → มูลค่าที่แท้จริง<b>สูงกว่า</b>ราคาตลาด 9.8 บาท → <b>ราคาตลาดถูกกว่าความเป็นจริง → ควรซื้อ</b><br><br>
+
+<b>ตัดตัวเลือก</b>
+<div style="background:#fff0f0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;margin-bottom:8px;">
+  • <b>ข.</b> ❌ มูลค่าที่แท้จริงน้อยกว่าราคาตลาด — ผิด ตัวเลขสลับกัน<br>
+  • <b>ค.</b> ❌ ตัดได้ตั้งแต่แรกโดยไม่ต้องคำนวณ — ถ้าควรซื้อ แปลว่าราคาตลาดต้องถูกกว่า ไม่ใช่แพงกว่า<br>
+  • <b>ง.</b> ❌ ใส่ตัวแปรผิด (น่าจะไม่ได้หาร I/Y และ PMT ด้วย 2)
+</div>
+
+<div style="background:#f0f8ff;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  📌 <b>โน้ต:</b> ราคาตลาดปัจจุบัน ≠ มูลค่าที่แท้จริงเสมอไป<br>
+  ราคาตลาดขึ้นอยู่กับอุปสงค์-อุปทาน ส่วนมูลค่าที่แท้จริงประเมินได้ด้วยหลักการทางการเงิน (DCF)
+</div>`
   }
 ];
 
@@ -973,6 +1059,7 @@ function closeAllScreens() {
   closeFormulas();
   closeNotes();
   closeTips();
+  closeRote();
   closeExamTips();
   document.querySelector('.bnav').style.display = 'flex';
 }
@@ -1324,6 +1411,8 @@ function closeNoteDetail() {
 
 function openTips() { document.getElementById('tips-screen').style.display = 'flex'; }
 function closeTips() { document.getElementById('tips-screen').style.display = 'none'; }
+function openRote() { document.getElementById('rote-screen').style.display = 'flex'; }
+function closeRote() { document.getElementById('rote-screen').style.display = 'none'; }
 function openExamTips() { document.getElementById('examtips-screen').style.display = 'flex'; }
 function closeExamTips() { document.getElementById('examtips-screen').style.display = 'none'; }
 
@@ -1931,6 +2020,10 @@ renderCD();
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       การบริหารเวลาสอบ
     </div>
+    <div onclick="openRote(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      ท่องจำดื้อๆ
+    </div>
     <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:not-allowed;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#bbb;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       <div>
@@ -2026,8 +2119,96 @@ renderCD();
       </div>
     </div>
 
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span>
+        ทริคการใส่ตัวแปร I/Y และ N
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="margin-bottom:10px;">ถ้าโจทย์ให้คำนวณแล้วต้องหาร I/Y<br>
+        <span style="color:#555;font-size:0.8rem;">เช่น 5% ต่อปี จ่ายดอกเบี้ยทุกครึ่งปี → I/Y = 5÷2 = 2.5</span></div>
+        <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:0.82rem;">
+          <b>I/Y และ N มักมาคู่กันเสมอ</b><br>
+          <div style="margin-top:6px;color:#444;">
+            • I/Y <b>หาร</b> → N ต้อง<b>คูณ</b><br>
+            • I/Y <b>คูณ</b> → N ต้อง<b>หาร</b>
+          </div>
+        </div>
+        <div style="background:#fff0f0;border-radius:8px;padding:8px 10px;font-size:0.8rem;color:#c00;">
+          ⚠️ ถ้าตัวนึงหารหรือคูณ อย่าลืมเช็คว่าอีกตัวต้องทำตรงข้ามด้วยไหม
+        </div>
+        <div style="margin-top:10px;font-size:0.75rem;color:#888;">เจอทั้งใน M1 และ M2</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span>
+        การกดเครื่องคิดเลข END vs BGN
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="margin-bottom:8px;">
+          <b>โหมด END</b> — บางครั้งใส่ +/− ผิด เครื่องยังคำนวณได้ แต่เครื่องหมายคำตอบอาจสลับ
+        </div>
+        <div style="background:#fff0f0;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:0.82rem;">
+          <b style="color:#e00;">โหมด BGN</b> — ควรใส่เครื่องหมายให้ถูกตั้งแต่แรก เพราะผิดได้ง่ายกว่า<br>
+          ยิ่งกว่านั้นถ้าเจอ<b>คำตอบที่ผิดอยู่ในตัวเลือก</b> จะผิดได้ง่ายมาก
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
+<!-- ROTE SCREEN -->
+<div id="rote-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeRote()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
+      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">ท่องจำดื้อๆ</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 120px;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.82rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:4px;">รวมการตีความตัวแปร</div>
+      <div style="font-size:0.72rem;color:#888;font-family:'Sarabun',sans-serif;margin-bottom:10px;">เน้นจำเลย</div>
+      <div style="background:#fff0f0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;">
+        <span style="color:#e00;font-weight:700;">⚠️ คำเตือน:</span> ไม่แนะนำให้ทำแบบนี้ — แต่ถ้าไม่ได้จริงๆ หรือรีบ จัดไปก่อน
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:0.83rem;font-family:'Sarabun',sans-serif;line-height:1.75;">
+        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
+          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">1. ราคาหน้าตั๋ว</div>
+          <div>= <b>FV</b> (ราคาที่ซื้อคืนในอนาคต)</div>
+        </div>
+        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
+          <div style="font-weight:700;color:#1a1a1a;margin-bottom:4px;">2. ราคาที่ตลาดซื้อขายปัจจุบัน ≠ PV</div>
+          <div style="color:#e00;font-size:0.78rem;margin-bottom:4px;">อย่าโดนหลอกด้วยคำว่า "ปัจจุบัน"</div>
+          <div style="color:#555;font-size:0.78rem;">ถ้าเป็นโจทย์ประเมินมูลค่าหุ้น/ตราสารหนี้ — PV คือ<b>มูลค่าที่เหมาะสม</b>ที่โจทย์ให้หามาเทียบกับราคาตลาด</div>
+        </div>
+        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
+          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">3. นำเงินไปลงทุน xxx บาท</div>
+          <div>= <b>(−)PV</b></div>
+        </div>
+        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
+          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">4. นำเงินไปลงทุนงวดละ xxx บาท</div>
+          <div>= <b>(−)PMT</b></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;border-top:1px solid #f0f0e0;padding-top:12px;">
+        <div style="font-size:0.72rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:6px;">💭 มุมมองส่วนตัว</div>
+        <div style="font-size:0.78rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.8;">
+          สิ่งที่มักผิดหรือสลับกันมี 3 ตัว — <b>PV, FV, PMT</b> โดยเฉพาะ <b>PV กับ FV</b> ทำให้สับสนบ่อย<br><br>
+          ส่วน PMT ถ้ามีคำว่า "งวดละ" หรือ "ครั้งละ" มักตีความถูก นอกจากว่าเผลอตีความว่าเป็น 0 ทั้งที่โจทย์บอกไว้แต่บอกอ้อมๆ
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div id="examtips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
   <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeExamTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
