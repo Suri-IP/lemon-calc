@@ -1339,6 +1339,7 @@ function openFormulaDetail(idx) {
     'Expected Return · E(R)',
     'Variance · σ²',
     'Standard Deviation · SD',
+    'DCF · Discounted Cash Flow',
     'การประเมินมูลค่าหุ้นเบื้องต้น',
     'Portfolio Return',
     'Portfolio Risk',
@@ -1427,7 +1428,62 @@ function openFormulaDetail(idx) {
         </div>
       </div>
     </div>`,
-    // 3-6: ม็อคอัพ
+    // 3: DCF (พร้อมใช้)
+    `<div style="background:#fff;border-radius:18px;padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">แนวคิดใหญ่</div>
+      <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:6px;">Discounted Cash Flow · DCF</div>
+      <div style="font-size:0.75rem;color:#e00;font-family:'Sarabun',sans-serif;margin-bottom:14px;font-weight:700;">จริงๆ ไม่ต้องอ่านก็ได้ — แต่รู้แล้วจะเข้าใจบทเรียนได้มากขึ้น</div>
+
+      <!-- แก่น -->
+      <div style="background:#f0fff8;border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:14px;">
+        <div style="font-size:0.8rem;font-weight:800;color:#1a1a1a;margin-bottom:6px;">แก่นของ DCF</div>
+        <div style="font-size:0.88rem;font-weight:700;color:#006640;font-family:'Sarabun',sans-serif;margin-bottom:6px;">มูลค่าวันนี้ = มูลค่าปัจจุบันของเงินสดที่จะได้รับในอนาคต</div>
+        <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">อะไรก็ตามที่สร้างเงินสดในอนาคต เราสามารถเอามา discount กลับเป็นมูลค่าวันนี้ได้ — แก่นมีแค่นี้</div>
+      </div>
+
+      <!-- ตัวแม่-ลูก -->
+      <div style="font-size:0.78rem;font-weight:700;color:#555;font-family:'Prompt',sans-serif;margin-bottom:8px;">DCF คือตัวแม่ — สูตรต่างๆ คือลูก</div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-family:'Sarabun',sans-serif;font-size:0.8rem;line-height:1.9;color:#333;">
+        สูตรหลายตัวใช้ logic เดียวกัน แต่เปลี่ยนชนิด cash flow<br>
+        <div style="margin-top:6px;display:flex;flex-direction:column;gap:4px;">
+          <div>📌 <b>หุ้น</b> → เงินปันผล (D) เช่น P =
+            <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;font-weight:700;font-size:0.82rem;">
+              <span style="border-bottom:2px solid #333;padding-bottom:1px;">D</span>
+              <span style="padding-top:1px;">k</span>
+            </span>
+            หรือ P =
+            <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;font-weight:700;font-size:0.82rem;">
+              <span style="border-bottom:2px solid #333;padding-bottom:1px;">D<sub>1</sub></span>
+              <span style="padding-top:1px;">k − g</span>
+            </span>
+            <span style="font-size:0.72rem;color:#888;display:block;padding-left:20px;">P=D/k = ปันผลคงที่ · P=D₁/k−g = ปันผลโต g% ต่อปี (IC)</span>
+          </div>
+          <div>📌 <b>พันธบัตร</b> → coupon + par
+            <div style="margin-top:4px;text-align:center;font-weight:700;color:#1a1a1a;">
+              <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;font-size:0.78rem;">
+                <span style="border-bottom:2px solid #1a1a1a;padding-bottom:1px;">C<sub>1</sub></span>
+                <span style="padding-top:1px;">(1+YTM)<sup>1</sup></span>
+              </span>+
+              <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;font-size:0.78rem;">
+                <span style="border-bottom:2px solid #1a1a1a;padding-bottom:1px;">C<sub>2</sub></span>
+                <span style="padding-top:1px;">(1+YTM)<sup>2</sup></span>
+              </span>+…+
+              <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;font-size:0.78rem;">
+                <span style="border-bottom:2px solid #1a1a1a;padding-bottom:1px;">C<sub>n</sub>+Par</span>
+                <span style="padding-top:1px;">(1+YTM)<sup>n</sup></span>
+              </span>
+            </div>
+          </div>
+          <div>📌 <b>โครงการ</b> → free cash flow (FCF)</div>
+          <div>📌 <b>FCFE</b> → เงินสดที่เหลือให้ผู้ถือหุ้น</div>
+        </div>
+      </div>
+
+      <div style="background:#fff8e0;border-radius:10px;padding:10px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#444;">
+        💡 พอเข้าใจ DCF แล้ว สูตรใหม่ที่เจอในสอบจะไม่งงอีก เพราะรู้ว่ามันมาจาก logic เดียวกันทั้งหมด — แค่เปลี่ยน cash flow กับ discount rate ตามบริบท
+      </div>
+    </div>`,
+    // 4: Stock Valuation (เลื่อนจาก 3)
     `<div style="background:#fff;border-radius:18px;padding:18px 16px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
       <div style="font-size:0.65rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;margin-bottom:4px;">การประเมินมูลค่าหุ้นเบื้องต้น</div>
       <div style="font-size:1rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:14px;">Stock Valuation</div>
@@ -1437,14 +1493,94 @@ function openFormulaDetail(idx) {
         <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;margin-bottom:4px;">📌 กรณีที่ 1 — กำหนดระยะเวลาถือหุ้น</div>
         <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">ผู้ลงทุนตั้งใจ<b>ขายทำกำไรเมื่อถึงเวลา</b><br>ได้รับ: เงินปันผล + กำไรส่วนต่างราคาหุ้น</div>
       </div>
-      <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:6px;text-align:center;font-size:0.88rem;">
-        P = Σ D<sub>t</sub>/(1+k)<sup>t</sup> + P<sub>n</sub>/(1+k)<sup>n</sup>
+
+      <!-- สูตรกรณี 1 แบบ fraction -->
+      <div style="background:#f8f8ee;border-radius:10px;padding:14px;margin-bottom:6px;text-align:center;color:#1a1a1a;font-weight:700;font-family:'Sarabun',sans-serif;">
+        <span style="font-size:0.9rem;">P = </span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+          <span style="font-size:0.82rem;border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>1</sub></span>
+          <span style="font-size:0.82rem;padding-top:2px;">(1+k)<sup>1</sup></span>
+        </span>
+        <span style="font-size:0.9rem;"> + </span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+          <span style="font-size:0.82rem;border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>2</sub></span>
+          <span style="font-size:0.82rem;padding-top:2px;">(1+k)<sup>2</sup></span>
+        </span>
+        <span style="font-size:0.9rem;"> + … + </span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+          <span style="font-size:0.82rem;border-bottom:2px solid #1a1a1a;padding-bottom:2px;">P<sub>n</sub></span>
+          <span style="font-size:0.82rem;padding-top:2px;">(1+k)<sup>n</sup></span>
+        </span>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:14px;font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;padding:0 4px;">
         <div><b>P</b> = ราคาประเมินหุ้นปัจจุบัน</div>
-        <div><b>D<sub>t</sub></b> = เงินปันผลในปีที่ t (t = 1, 2, ..., n)</div>
-        <div><b>k</b> = อัตราคิดลด / อัตราผลตอบแทนที่ต้องการ</div>
+        <div><b>D<sub>t</sub></b> = เงินปันผลในปีที่ t</div>
+        <div><b>k</b> = อัตราผลตอบแทนที่ต้องการ</div>
         <div><b>P<sub>n</sub></b> = ราคาที่คาดว่าจะขายได้ ณ ปีที่ n</div>
+      </div>
+
+      <!-- หมายเหตุ Sigma -->
+      <div style="background:#f0f0e8;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#444;">
+        ในหนังสืออาจเจอแบบที่มีเครื่องหมาย Σ ซึ่งเขียนแบบนี้<br>
+        <div style="text-align:center;margin:8px 0;font-weight:700;color:#1a1a1a;font-size:0.85rem;">
+          P = Σ
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>t</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>t</sup></span>
+          </span>
+          +
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">P<sub>n</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>n</sup></span>
+          </span>
+        </div>
+        จริงๆ ก็คือสูตรเดียวกัน แค่ใช้ Σ เพื่อให้เขียนได้สั้นลง — ใช้แบบไหนขึ้นอยู่กับว่าถนัดจำแบบไหน
+      </div>
+
+      <!-- ตัวอย่างถือ 1 ปี -->
+      <div style="background:#e8f8f0;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
+        <div style="font-weight:700;margin-bottom:6px;color:#006640;">📝 ตัวอย่าง: ถือ 1 ปี</div>
+        <div style="text-align:center;margin-bottom:4px;">
+          P =
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>1</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>1</sup></span>
+          </span>
+          +
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">P<sub>1</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>1</sup></span>
+          </span>
+        </div>
+        <div style="color:#555;font-size:0.75rem;">มีแค่ปีที่ 1 — เงินปันผลปีแรก + ราคาขายปลายปีที่ 1</div>
+      </div>
+
+      <!-- ตัวอย่างถือ 3 ปี -->
+      <div style="background:#e8f8f0;border-radius:10px;padding:10px 12px;margin-bottom:14px;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
+        <div style="font-weight:700;margin-bottom:6px;color:#006640;">📝 ตัวอย่าง: ถือ 3 ปี</div>
+        <div style="text-align:center;margin-bottom:4px;line-height:2.2;">
+          P =
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>1</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>1</sup></span>
+          </span>
+          +
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>2</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>2</sup></span>
+          </span>
+          +
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D<sub>3</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>3</sup></span>
+          </span>
+          +
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;">
+            <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">P<sub>3</sub></span>
+            <span style="padding-top:2px;">(1+k)<sup>3</sup></span>
+          </span>
+        </div>
+        <div style="color:#555;font-size:0.75rem;">เงินปันผลปีที่ 1, 2, 3 แต่ละปีหาร (1+k) ยกกำลังปีของมัน + ราคาขายปลายปีที่ 3</div>
       </div>
 
       <!-- กรณีที่ 2 -->
@@ -1452,8 +1588,14 @@ function openFormulaDetail(idx) {
         <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;margin-bottom:4px;">📌 กรณีที่ 2 — ถือยาว (ไม่ขาย)</div>
         <div style="font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.7;">ผู้ลงทุนไม่มีแผนขาย ได้รับแค่: <b>เงินปันผล</b></div>
       </div>
-      <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:6px;text-align:center;font-size:0.88rem;">
-        P = D / k
+
+      <!-- สูตรกรณี 2 แบบ fraction -->
+      <div style="background:#f8f8ee;border-radius:10px;padding:14px;margin-bottom:6px;text-align:center;color:#1a1a1a;font-weight:700;font-family:'Sarabun',sans-serif;">
+        <span style="font-size:0.9rem;">P = </span>
+        <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;">
+          <span style="font-size:0.9rem;border-bottom:2px solid #1a1a1a;padding-bottom:2px;">D</span>
+          <span style="font-size:0.9rem;padding-top:2px;">k</span>
+        </span>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:14px;font-size:0.78rem;color:#444;font-family:'Sarabun',sans-serif;padding:0 4px;">
         <div><b>D</b> = เงินปันผลต่อปี (คงที่)</div>
@@ -1463,7 +1605,11 @@ function openFormulaDetail(idx) {
       <!-- ทริคตีความโจทย์ -->
       <div style="background:#fff8e0;border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#444;">
         <b>💡 ทริคตีความโจทย์</b><br>
-        • โจทย์ไม่พูดถึงการขาย → ถือยาว → ใช้ P = D/k<br>
+        • โจทย์ไม่พูดถึงการขาย → ถือยาว → ใช้ P =
+          <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;font-weight:700;">
+            <span style="border-bottom:2px solid #444;padding-bottom:1px;">D</span>
+            <span style="padding-top:1px;">k</span>
+          </span><br>
         • โจทย์พูดว่า "ได้ผลตอบแทน" หรือ "คาดว่าจะได้ผลตอบแทน" → ตีความว่าคือ <b>เงินปันผล</b>
       </div>
 
@@ -1478,6 +1624,23 @@ function openFormulaDetail(idx) {
     </div>`,
     ...Array(3).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`)
   ];
+  const barColors = [
+    {bg:'var(--teal)', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+    {bg:'var(--yellow)', txt:'#1a1a00', sub:'rgba(26,26,0,0.5)'},
+    {bg:'var(--pink)', txt:'#fff', sub:'rgba(255,255,255,0.7)'},
+    {bg:'var(--lime)', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+    {bg:'var(--purple)', txt:'#fff', sub:'rgba(255,255,255,0.7)'},
+    {bg:'#9aaa88', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+    {bg:'#c0ccb0', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+    {bg:'#d4dcc4', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+  ];
+  const bar = document.getElementById('fml-detail-bar');
+  const c = barColors[idx] || barColors[0];
+  bar.style.background = c.bg;
+  bar.querySelector('button').style.color = c.txt;
+  bar.querySelector('button').style.borderColor = 'rgba(0,0,0,0.12)';
+  bar.querySelectorAll('div')[0].style.color = c.sub;
+  bar.querySelectorAll('div')[1].style.color = c.txt;
   document.getElementById('fml-detail-title').textContent = titles[idx] || '';
   document.getElementById('fml-detail-body').innerHTML = contents[idx] || '';
   document.getElementById('formula-detail-screen').style.display = 'flex';
@@ -1695,21 +1858,26 @@ renderCD();
     </div>
     <div class="fml-folder" style="--fc:var(--lime);--ft:#1a2a00;" onclick="openFormulaDetail(3)">
       <div class="fml-num">04</div>
-      <div class="fml-name">การประเมินมูลค่าหุ้นเบื้องต้น<br><span class="fml-sub">Stock Valuation</span></div>
+      <div class="fml-name">วิธีคิดลดกระแสเงินสด<br><span class="fml-sub">DCF · Discounted Cash Flow</span></div>
       <div class="fml-arr">›</div>
     </div>
     <div class="fml-folder" style="--fc:var(--purple);--ft:#fff;" onclick="openFormulaDetail(4)">
       <div class="fml-num">05</div>
-      <div class="fml-name">ผลตอบแทนพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Return <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-name">การประเมินมูลค่าหุ้นเบื้องต้น<br><span class="fml-sub">Stock Valuation</span></div>
       <div class="fml-arr">›</div>
     </div>
     <div class="fml-folder" style="--fc:#9aaa88;--ft:#1a2a00;" onclick="openFormulaDetail(5)">
       <div class="fml-num">06</div>
-      <div class="fml-name">ความเสี่ยงพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Risk <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-name">ผลตอบแทนพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Return <span class="fml-mock">ม็อคอัพ</span></span></div>
       <div class="fml-arr">›</div>
     </div>
     <div class="fml-folder" style="--fc:#c0ccb0;--ft:#1a2a00;" onclick="openFormulaDetail(6)">
       <div class="fml-num">07</div>
+      <div class="fml-name">ความเสี่ยงพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Risk <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-arr">›</div>
+    </div>
+    <div class="fml-folder" style="--fc:#d4dcc4;--ft:#1a2a00;" onclick="openFormulaDetail(7)">
+      <div class="fml-num">08</div>
       <div class="fml-name">ค่าเบต้า<br><span class="fml-sub">Beta · β <span class="fml-mock">ม็อคอัพ</span></span></div>
       <div class="fml-arr">›</div>
     </div>
@@ -1840,10 +2008,26 @@ renderCD();
       </div>
     </div>
 
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span>
+        ทริคจำสูตร
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="font-weight:700;color:#e00;margin-bottom:8px;">อย่าจำแค่ว่าเรื่องไหนใช้สูตรไหน</div>
+        <div style="margin-bottom:10px;">ต้องจำด้วยว่า <b>ใช้ตอนไหน หรือกรณีไหน</b></div>
+        <div style="background:#fff;border-radius:8px;padding:10px 12px;font-size:0.82rem;color:#444;line-height:1.8;">
+          <div style="font-weight:700;margin-bottom:4px;">ตัวอย่าง: ราคาหุ้นที่เหมาะสม</div>
+          <div>• ถือระยะเวลา + มีราคาขาย → ใช้สูตร Σ</div>
+          <div>• ถือยาว ปันผลคงที่ → ใช้ P = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;font-size:0.78rem;"><span style="border-bottom:1.5px solid #444;padding-bottom:1px;">D</span><span style="padding-top:1px;">k</span></span></div>
+          <div>• ถือยาว ปันผลโต → ใช้ P = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;font-size:0.78rem;"><span style="border-bottom:1.5px solid #444;padding-bottom:1px;">D<sub>1</sub></span><span style="padding-top:1px;">k − g</span></span></div>
+        </div>
+        <div style="margin-top:10px;color:#555;font-size:0.8rem;">สูตรเดียวกันตอบโจทย์ต่างกัน — <b>กรณีบอกสูตร</b></div>
+      </div>
+    </div>
+
   </div>
 </div>
-
-<!-- EXAM TIPS SCREEN -->
 <div id="examtips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
   <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeExamTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
