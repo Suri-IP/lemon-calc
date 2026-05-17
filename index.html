@@ -495,7 +495,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <button onclick="tmvNumpad('7')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">7</button>
       <button onclick="tmvNumpad('8')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">8</button>
       <button onclick="tmvNumpad('9')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">9</button>
-      <button onclick="tmvNumpad('DEL')" style="height:40px;border-radius:8px;background:rgba(240,62,104,0.4);border:none;color:var(--pink);font-family:'Prompt',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;">⌫</button>
+      <button onclick="tmvNumpad('DEL')" style="height:40px;border-radius:8px;background:rgba(240,62,104,0.4);border:none;color:var(--pink);font-family:'Prompt',sans-serif;font-size:1.5rem;font-weight:400;cursor:pointer;">⌫</button>
       <button onclick="tmvNumpad('4')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">4</button>
       <button onclick="tmvNumpad('5')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">5</button>
       <button onclick="tmvNumpad('6')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">6</button>
@@ -1210,6 +1210,45 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   • PMT = 0 เสมอ ไม่มีดอกเบี้ยระหว่างทาง<br>
   • N ใช้เป็นปีได้เลย เพราะไม่มีการจ่ายรายงวด<br>
   • ผลตอบแทนมาจากส่วนต่างราคาซื้อ (920) กับราคาหน้าตั๋ว (1,000) เท่านั้น
+</div>`
+  },
+  {
+    q: `นางสาวร่ำรวยซื้อตราสารหนี้ราคา 920 บาท จากราคาหน้าตั๋ว 1,000 บาท อัตราดอกเบี้ยหน้าตั๋ว 3% ต่อปี จ่ายดอกเบี้ยทุกครึ่งปี อายุคงเหลือ 3 ปี นางสาวร่ำรวยนำดอกเบี้ยที่ได้ไปลงทุนต่อได้ผลตอบแทน 6% ต่อปี ผลตอบแทนรวมจากการลงทุนของนางสาวร่ำรวยคือเท่าไหร่`,
+    choices: [
+      "97.0261",
+      "2.8663%",
+      "2.9727%",
+      "5.9454%",
+    ],
+    answer: 3,
+    explain: `<b>ตอบ ง. 5.9454%</b><br><br>
+โจทย์นี้คำนวณ <b>Total Return</b> โดยแบ่งเป็น 2 ขั้นตอน<br><br>
+<b>ขั้นที่ 1 — หามูลค่า coupon ที่นำไป reinvest</b><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>PMT</b> = 1,000 × 3% ÷ 2 = <b>15 บาท</b> (จ่ายทุกครึ่งปี)</div>
+  <div>• <b>N</b> = 3 × 2 = <b>6 งวด</b></div>
+  <div>• <b>I/Y</b> = 6% ÷ 2 = <b>3% ต่องวด</b> (อัตรา reinvest)</div>
+  <div>• <b>PV</b> = <b>0</b></div>
+  <div>• <b>FV</b> = ? → คำนวณได้ <b>97.0261 บาท</b></div>
+</div>
+รวมกับราคาหน้าตั๋วที่ได้ตอนครบกำหนด:<br>
+97.0261 + 1,000 = <b>1,097.0261 บาท</b><br><br>
+<b>ขั้นที่ 2 — หาผลตอบแทนรวม (Total Return)</b><br>
+มองภาพรวมการลงทุนทั้งหมด:<br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>PV</b> = <b>−920 บาท</b> (เงินลงทุนวันนี้)</div>
+  <div>• <b>FV</b> = <b>1,097.0261 บาท</b></div>
+  <div>• <b>N</b> = <b>6 งวด</b></div>
+  <div>• <b>PMT</b> = <b>0</b></div>
+  <div>• <b>I/Y</b> = ? → คำนวณได้ <b>2.9727% ต่องวด</b></div>
+</div>
+เนื่องจากโจทย์จ่ายดอกเบี้ย <b>ทุกครึ่งปี (2 งวดต่อปี)</b> ต้องคูณ 2 เพื่อให้เป็นผลตอบแทนต่อปี:<br>
+2.9727% × 2 = <b>5.9454% ต่อปี</b><br><br>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  💡 <b>จุดสำคัญ Total Return:</b><br>
+  • ขั้นที่ 1 หา FV ของ coupon ทั้งหมดเมื่อ reinvest ด้วยอัตราที่กำหนด<br>
+  • ขั้นที่ 2 มอง PV (ราคาซื้อ) → FV (coupon + par) แล้วหา I/Y<br>
+  • อย่าลืมคูณจำนวนงวดต่อปีเพื่อแปลงเป็น % ต่อปี
 </div>`
   }
 ];
