@@ -8,8 +8,8 @@
 <style>
 :root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;min-height:100vh;overflow-x:hidden;}
-.app{max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding-bottom:104px;}
+html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;height:100%;overflow:hidden;}
+.app{max-width:420px;margin:0 auto;height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;padding-bottom:104px;}
 
 /* HEADER */
 .hdr{padding:36px 20px 16px;display:flex;align-items:flex-start;justify-content:space-between;}
@@ -414,7 +414,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 
 <!-- TMV OVERLAY & SHEET -->
 <div id="tmv-overlay" onclick="toggleTMV()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:619;"></div>
-<div id="tmv-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:14px 16px 32px;z-index:620;transition:bottom 0.3s ease;">
+<div id="tmv-sheet" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(38,58,14,0.97);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.35);padding:14px 16px 24px;z-index:620;transform:translateY(100%);visibility:hidden;transition:transform 0.3s ease,visibility 0.3s;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;">
 
   <!-- โจทย์ -->
   <div id="tmv-q-box" style="display:none;background:rgba(255,255,255,0.95);border-radius:12px;padding:10px 14px;margin-bottom:10px;max-height:100px;overflow-y:auto;">
@@ -428,56 +428,94 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
     <button onclick="toggleTMV()" style="margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,235,0.15);border:none;color:var(--ws);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
   </div>
 
-  <!-- END / BGN toggle -->
-  <div style="display:flex;gap:6px;margin-bottom:14px;">
-    <button id="tmv-end-btn" onclick="tmvSetMode('END')" style="flex:1;padding:7px;border-radius:8px;border:2px solid var(--lime);background:var(--lime);color:#1a2a00;font-family:'Prompt',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;">END (ปลายงวด)</button>
-    <button id="tmv-bgn-btn" onclick="tmvSetMode('BGN')" style="flex:1;padding:7px;border-radius:8px;border:2px solid rgba(160,255,45,0.3);background:transparent;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;">BGN (ต้นงวด)</button>
+  <!-- END / BGN toggle + clear -->
+  <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
+    <button id="tmv-end-btn" onclick="tmvSetMode('END')" style="padding:6px 12px;border-radius:8px;border:2px solid var(--lime);background:var(--lime);color:#1a2a00;font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">END</button>
+    <button id="tmv-bgn-btn" onclick="tmvSetMode('BGN')" style="padding:6px 12px;border-radius:8px;border:2px solid rgba(160,255,45,0.3);background:transparent;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">BGN</button>
+    <button onclick="tmvClear()" style="margin-left:auto;padding:6px 12px;background:transparent;border:1px solid rgba(255,255,235,0.2);border-radius:8px;color:var(--muted);font-family:'Prompt',sans-serif;font-size:0.72rem;cursor:pointer;">ล้างค่า</button>
   </div>
 
-  <!-- inputs -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-    <div>
-      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">N (งวด)</div>
-      <input id="tmv-n" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+  <!-- inputs + solve buttons -->
+  <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+      <div style="display:flex;align-items:stretch;">
+        <div onclick="tmvFocus('N')" id="tmv-field-N" style="flex:1;cursor:pointer;padding:7px 10px;background:rgba(255,255,235,0.14);border:2px solid rgba(160,255,45,0.35);border-radius:9px 0 0 9px;transition:all 0.12s;">
+          <div style="font-size:0.55rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:2px;">N (งวด)</div>
+          <div id="tmv-n-disp" style="font-size:0.95rem;font-weight:700;color:rgba(255,255,235,0.3);font-family:'Prompt',sans-serif;min-height:1.2em;">—</div>
+        </div>
+        <button onclick="tmvSolve('N')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>N</button>
+      </div>
+      <div style="display:flex;align-items:stretch;">
+        <div onclick="tmvFocus('IY')" id="tmv-field-IY" style="flex:1;cursor:pointer;padding:7px 10px;background:rgba(255,255,235,0.14);border:2px solid rgba(160,255,45,0.35);border-radius:9px 0 0 9px;transition:all 0.12s;">
+          <div style="font-size:0.55rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:2px;">I/Y (%)</div>
+          <div id="tmv-iy-disp" style="font-size:0.95rem;font-weight:700;color:rgba(255,255,235,0.3);font-family:'Prompt',sans-serif;min-height:1.2em;">—</div>
+        </div>
+        <button onclick="tmvSolve('IY')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>I/Y</button>
+      </div>
     </div>
-    <div>
-      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">I/Y (%)</div>
-      <input id="tmv-iy" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+      <div style="display:flex;align-items:stretch;">
+        <div onclick="tmvFocus('PV')" id="tmv-field-PV" style="flex:1;cursor:pointer;padding:7px 10px;background:rgba(255,255,235,0.14);border:2px solid rgba(160,255,45,0.35);border-radius:9px 0 0 9px;transition:all 0.12s;">
+          <div style="font-size:0.55rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:2px;">PV</div>
+          <div id="tmv-pv-disp" style="font-size:0.95rem;font-weight:700;color:rgba(255,255,235,0.3);font-family:'Prompt',sans-serif;min-height:1.2em;">—</div>
+        </div>
+        <button onclick="tmvSolve('PV')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>PV</button>
+      </div>
+      <div style="display:flex;align-items:stretch;">
+        <div onclick="tmvFocus('PMT')" id="tmv-field-PMT" style="flex:1;cursor:pointer;padding:7px 10px;background:rgba(255,255,235,0.14);border:2px solid rgba(160,255,45,0.35);border-radius:9px 0 0 9px;transition:all 0.12s;">
+          <div style="font-size:0.55rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:2px;">PMT</div>
+          <div id="tmv-pmt-disp" style="font-size:0.95rem;font-weight:700;color:rgba(255,255,235,0.3);font-family:'Prompt',sans-serif;min-height:1.2em;">—</div>
+        </div>
+        <button onclick="tmvSolve('PMT')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>PMT</button>
+      </div>
     </div>
-    <div>
-      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">PV</div>
-      <input id="tmv-pv" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
-    </div>
-    <div>
-      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">PMT</div>
-      <input id="tmv-pmt" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
-    </div>
-    <div style="grid-column:span 2;">
-      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">FV</div>
-      <input id="tmv-fv" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    <div style="display:flex;align-items:stretch;">
+      <div onclick="tmvFocus('FV')" id="tmv-field-FV" style="flex:1;cursor:pointer;padding:7px 10px;background:rgba(255,255,235,0.14);border:2px solid rgba(160,255,45,0.35);border-radius:9px 0 0 9px;transition:all 0.12s;">
+        <div style="font-size:0.55rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:2px;">FV</div>
+        <div id="tmv-fv-disp" style="font-size:0.95rem;font-weight:700;color:rgba(255,255,235,0.3);font-family:'Prompt',sans-serif;min-height:1.2em;">—</div>
+      </div>
+      <button onclick="tmvSolve('FV')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>FV</button>
     </div>
   </div>
+  <!-- hidden real inputs for tmvSolve() to read -->
+  <input id="tmv-n"   type="hidden" value="">
+  <input id="tmv-iy"  type="hidden" value="">
+  <input id="tmv-pv"  type="hidden" value="">
+  <input id="tmv-pmt" type="hidden" value="">
+  <input id="tmv-fv"  type="hidden" value="">
 
-  <!-- คำนวณ buttons -->
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:10px;">
-    <button onclick="tmvSolve('N')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา N</button>
-    <button onclick="tmvSolve('IY')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา I/Y</button>
-    <button onclick="tmvSolve('PV')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา PV</button>
-    <button onclick="tmvSolve('PMT')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา PMT</button>
-    <button onclick="tmvSolve('FV')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา FV</button>
+  <!-- custom numpad -->
+  <div id="tmv-numpad" style="background:rgba(255,255,235,0.07);border-radius:12px;padding:8px;margin-bottom:10px;">
+    <!-- active field indicator -->
+    <div style="text-align:center;margin-bottom:6px;font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;">
+      แตะช่องเพื่อเลือก → <span id="tmv-active-label" style="color:var(--lime);font-weight:700;">— (ยังไม่ได้เลือก)</span>
+    </div>
+    <!-- numpad grid -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;">
+      <button onclick="tmvNumpad('7')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">7</button>
+      <button onclick="tmvNumpad('8')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">8</button>
+      <button onclick="tmvNumpad('9')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">9</button>
+      <button onclick="tmvNumpad('DEL')" style="height:40px;border-radius:8px;background:rgba(240,62,104,0.4);border:none;color:var(--pink);font-family:'Prompt',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;">⌫</button>
+      <button onclick="tmvNumpad('4')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">4</button>
+      <button onclick="tmvNumpad('5')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">5</button>
+      <button onclick="tmvNumpad('6')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">6</button>
+      <button onclick="tmvNumpad('CLR')" style="height:40px;border-radius:8px;background:rgba(240,62,104,0.28);border:none;color:var(--pink);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">CLR</button>
+      <button onclick="tmvNumpad('1')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">1</button>
+      <button onclick="tmvNumpad('2')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">2</button>
+      <button onclick="tmvNumpad('3')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">3</button>
+      <button onclick="tmvNumpad('+/-')" style="height:40px;border-radius:8px;background:rgba(255,225,30,0.3);border:none;color:var(--yellow);font-family:'Prompt',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;">+/−</button>
+      <button onclick="tmvNumpad('0')" style="height:40px;grid-column:span 2;border-radius:8px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">0</button>
+      <button onclick="tmvNumpad('.')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:700;cursor:pointer;">.</button>
+      <button onclick="tmvNumpad('OK')" style="height:40px;border-radius:8px;background:rgba(160,255,45,0.38);border:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;">✓</button>
+    </div>
   </div>
 
   <!-- ผลลัพธ์ -->
-  <div id="tmv-result" style="background:rgba(160,255,45,0.1);border:1px solid rgba(160,255,45,0.3);border-radius:10px;padding:10px 14px;min-height:38px;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;color:var(--lime);text-align:center;display:flex;align-items:center;justify-content:center;">
-    กรอกค่าแล้วกด "หา..."
-  </div>
-
-  <!-- clear -->
-  <button onclick="tmvClear()" style="width:100%;margin-top:8px;padding:8px;background:transparent;border:1px solid rgba(255,255,235,0.15);border-radius:10px;color:var(--muted);font-family:'Prompt',sans-serif;font-size:0.78rem;cursor:pointer;">ล้างค่าทั้งหมด</button>
+  <div id="tmv-result" style="display:none;background:rgba(160,255,45,0.1);border:1px solid rgba(160,255,45,0.3);border-radius:10px;padding:10px 14px;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;color:var(--lime);text-align:center;"></div>
 </div>
 
 <!-- CALC SHEET: outside quiz-screen so backdrop-filter works -->
-<div id="calc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.55);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:12px 14px 28px;z-index:620;transition:bottom 0.3s ease;">
+<div id="calc-sheet" style="position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.55);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:12px 14px 28px;z-index:620;transform:translateY(100%);visibility:hidden;transition:transform 0.3s ease,visibility 0.3s;">
     <!-- โจทย์ข้อปัจจุบัน -->
     <div id="calc-q-box" style="display:none;background:rgba(255,255,255,0.95);border-radius:12px;padding:10px 14px;margin-bottom:10px;max-height:120px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
       <div style="font-size:0.62rem;font-weight:700;color:#888;margin-bottom:4px;font-family:'Sarabun',sans-serif;">โจทย์ข้อที่ <span id="calc-q-num"></span></div>
@@ -1906,12 +1944,97 @@ function closeFormulaNote() {
 // ===== TMV CALCULATOR =====
 let tmvOpen = false;
 let tmvMode = 'END';
+let tmvActiveField = null;
+let tmvTyping = {};
+const TMV_FIELD_LABELS = {N:'N (งวด)', IY:'I/Y (%)', PV:'PV', PMT:'PMT', FV:'FV'};
+
+function tmvFocus(field) {
+  tmvActiveField = field;
+  ['N','IY','PV','PMT','FV'].forEach(f => {
+    const el = document.getElementById('tmv-field-'+f);
+    if (!el) return;
+    el.style.border = f===field ? '2px solid var(--lime)' : '2px solid rgba(160,255,45,0.25)';
+    el.style.background = f===field ? 'rgba(160,255,45,0.12)' : 'rgba(255,255,235,0.08)';
+  });
+  document.getElementById('tmv-active-label').textContent = TMV_FIELD_LABELS[field];
+  const cur = document.getElementById('tmv-'+field.toLowerCase()).value;
+  tmvTyping[field] = cur || '';
+  tmvRefreshDisp(field);
+}
+
+function tmvRefreshDisp(field) {
+  const buf = tmvTyping[field]||'';
+  const dispEl = document.getElementById('tmv-'+field.toLowerCase()+'-disp');
+  if (!dispEl) return;
+  if (buf===''||buf==='-') {
+    dispEl.textContent = buf==='-' ? '−_' : '—';
+    dispEl.style.color = buf==='-' ? 'var(--yellow)' : 'rgba(255,255,235,0.3)';
+  } else {
+    const num = parseFloat(buf);
+    dispEl.textContent = buf.endsWith('.') ? buf : buf;
+    dispEl.style.color = num<0 ? 'var(--pink)' : 'var(--ws)';
+  }
+}
+
+function tmvCommit(field) {
+  const buf = tmvTyping[field]||'';
+  const hiddenInput = document.getElementById('tmv-'+field.toLowerCase());
+  const dispEl = document.getElementById('tmv-'+field.toLowerCase()+'-disp');
+  if (buf===''||buf==='-') {
+    hiddenInput.value=''; tmvTyping[field]='';
+    if (dispEl){dispEl.textContent='—';dispEl.style.color='rgba(255,255,235,0.3)';}
+  } else {
+    const num = parseFloat(buf);
+    if (!isNaN(num)) {
+      hiddenInput.value=String(num); tmvTyping[field]=String(num);
+      if (dispEl){
+        dispEl.textContent=num.toLocaleString('th-TH',{maximumFractionDigits:6});
+        dispEl.style.color=num<0?'var(--pink)':'var(--ws)';
+      }
+    }
+  }
+}
+
+function tmvNumpad(key) {
+  if (!tmvActiveField) return;
+  const f = tmvActiveField;
+  let buf = tmvTyping[f]||'';
+  if (key==='DEL') {
+    buf = buf.slice(0,-1);
+  } else if (key==='CLR') {
+    buf = '';
+  } else if (key==='+/-') {
+    if (buf.startsWith('-')) buf=buf.slice(1);
+    else if (buf!==''&&buf!=='0') buf='-'+buf;
+    else if (buf==='0') buf='-0';
+  } else if (key==='.') {
+    if (!buf.includes('.')) buf = (buf===''||buf==='-') ? buf+'0.' : buf+'.';
+  } else if (key==='OK') {
+    tmvCommit(f);
+    tmvActiveField=null;
+    ['N','IY','PV','PMT','FV'].forEach(ff=>{
+      const el=document.getElementById('tmv-field-'+ff);
+      if(el){el.style.border='2px solid rgba(160,255,45,0.25)';el.style.background='rgba(255,255,235,0.08)';}
+    });
+    document.getElementById('tmv-active-label').textContent='— (ยังไม่ได้เลือก)';
+    return;
+  } else {
+    if (buf==='0'||buf==='') buf=key;
+    else if (buf==='-0'||buf==='-') buf='-'+key;
+    else buf+=key;
+  }
+  tmvTyping[f]=buf;
+  const num=parseFloat(buf);
+  document.getElementById('tmv-'+f.toLowerCase()).value=(!isNaN(num)&&buf!==''&&buf!=='-')?String(num):'';
+  tmvRefreshDisp(f);
+}
 
 function toggleTMV() {
   tmvOpen = !tmvOpen;
   const sheet = document.getElementById('tmv-sheet');
   const overlay = document.getElementById('tmv-overlay');
-  sheet.style.bottom = tmvOpen ? '0' : '-100%';
+  sheet.style.transform = tmvOpen ? 'translateY(0)' : 'translateY(100%)';
+  sheet.style.visibility = tmvOpen ? 'visible' : 'hidden';
   overlay.style.display = tmvOpen ? 'block' : 'none';
   if (tmvOpen) {
     const q = QUIZ_DATA[qIdx];
@@ -1934,9 +2057,20 @@ function tmvSetMode(mode) {
   document.getElementById('tmv-bgn-btn').style.color = mode==='BGN' ? '#1a2a00' : 'var(--lime)';
 }
 function tmvClear() {
-  ['tmv-n','tmv-iy','tmv-pv','tmv-pmt','tmv-fv'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('tmv-result').textContent = 'กรอกค่าแล้วกด "หา..."';
-  document.getElementById('tmv-result').style.color = 'var(--lime)';
+  ['n','iy','pv','pmt','fv'].forEach(k => {
+    document.getElementById('tmv-'+k).value='';
+    tmvTyping[k.toUpperCase()]=tmvTyping[k]=tmvTyping[k==='iy'?'IY':k.toUpperCase()]='';
+  });
+  tmvTyping={};
+  ['N','IY','PV','PMT','FV'].forEach(f=>{
+    const dispEl=document.getElementById('tmv-'+f.toLowerCase()+'-disp');
+    if(dispEl){dispEl.textContent='—';dispEl.style.color='rgba(255,255,235,0.3)';}
+    const el=document.getElementById('tmv-field-'+f);
+    if(el){el.style.border='2px solid rgba(160,255,45,0.25)';el.style.background='rgba(255,255,235,0.08)';}
+  });
+  tmvActiveField=null;
+  document.getElementById('tmv-active-label').textContent='— (ยังไม่ได้เลือก)';
+  const r=document.getElementById('tmv-result'); r.style.display='none'; r.textContent='';
 }
 function tmvSolve(solve) {
   const g = id => { const v = document.getElementById(id).value.trim(); return v===''?null:parseFloat(v); };
@@ -1990,11 +2124,23 @@ function tmvSolve(solve) {
     }
     if (ans==null||isNaN(ans)||!isFinite(ans)) throw 'คำนวณไม่ได้ ตรวจสอบค่าที่กรอก';
     const label = {N:'N',IY:'I/Y',PV:'PV',PMT:'PMT',FV:'FV'}[solve];
-    res.textContent = label + ' = ' + ans.toFixed(4);
+    const ansFormatted = ans.toFixed(4);
+    res.textContent = label + ' = ' + parseFloat(ansFormatted).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:4});
     res.style.color = 'var(--lime)';
+    res.style.display = 'flex';
+    // update display field with result
+    const fieldKey = {N:'N',IY:'IY',PV:'PV',PMT:'PMT',FV:'FV'}[solve];
+    document.getElementById('tmv-'+fieldKey.toLowerCase()).value = String(ans);
+    tmvTyping[fieldKey] = String(ans);
+    const dispEl = document.getElementById('tmv-'+fieldKey.toLowerCase()+'-disp');
+    if (dispEl) {
+      dispEl.textContent = parseFloat(ansFormatted).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:4});
+      dispEl.style.color = ans<0 ? 'var(--pink)' : 'var(--lime)';
+    }
   } catch(e) {
     res.textContent = typeof e==='string' ? e : 'เกิดข้อผิดพลาด';
     res.style.color = 'var(--pink)';
+    res.style.display = 'flex';
   }
 }
 
@@ -2002,7 +2148,8 @@ function toggleCalc() {
   calcOpen = !calcOpen;
   const sheet = document.getElementById('calc-sheet');
   const overlay = document.getElementById('calc-overlay');
-  sheet.style.bottom = calcOpen ? '0' : '-100%';
+  sheet.style.transform = calcOpen ? 'translateY(0)' : 'translateY(100%)';
+  sheet.style.visibility = calcOpen ? 'visible' : 'hidden';
   overlay.style.display = calcOpen ? 'block' : 'none';
   if (calcOpen) {
     const q = QUIZ_DATA[qIdx];
@@ -2019,7 +2166,8 @@ function toggleCalc() {
 }
 function closeCalcSheet() {
   calcOpen = false;
-  document.getElementById('calc-sheet').style.bottom = '-100%';
+  document.getElementById('calc-sheet').style.transform = 'translateY(100%)';
+  document.getElementById('calc-sheet').style.visibility = 'hidden';
   document.getElementById('calc-overlay').style.display = 'none';
 }
 function calcInput(v) {
