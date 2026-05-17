@@ -304,6 +304,9 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
       <button onclick="toggleCalc()" id="calc-btn" style="width:40px;height:40px;border-radius:12px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <span style="font-size:0.82rem;font-weight:800;line-height:1;">±×÷</span>
       </button>
+      <button onclick="toggleTMV()" id="tmv-btn" style="width:40px;height:40px;border-radius:12px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <span style="font-size:0.72rem;font-weight:800;line-height:1;">TMV</span>
+      </button>
     </div>
   </div>
 
@@ -408,6 +411,70 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;m
 
 <!-- DIM OVERLAY for calc sheet -->
 <div id="calc-overlay" onclick="toggleCalc()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:619;transition:opacity 0.3s ease;"></div>
+
+<!-- TMV OVERLAY & SHEET -->
+<div id="tmv-overlay" onclick="toggleTMV()" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:619;"></div>
+<div id="tmv-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:14px 16px 32px;z-index:620;transition:bottom 0.3s ease;">
+
+  <!-- โจทย์ -->
+  <div id="tmv-q-box" style="display:none;background:rgba(255,255,255,0.95);border-radius:12px;padding:10px 14px;margin-bottom:10px;max-height:100px;overflow-y:auto;">
+    <div style="font-size:0.62rem;font-weight:700;color:#888;margin-bottom:3px;font-family:'Sarabun',sans-serif;">โจทย์ข้อที่ <span id="tmv-q-num"></span></div>
+    <div id="tmv-q-text" style="font-family:'Sarabun',sans-serif;font-size:0.8rem;line-height:1.7;color:#1a1a1a;"></div>
+  </div>
+
+  <!-- header -->
+  <div style="display:flex;align-items:center;margin-bottom:12px;">
+    <div style="font-size:0.78rem;font-weight:700;color:var(--ws);">TMV เครื่องคิดเลขการเงิน</div>
+    <button onclick="toggleTMV()" style="margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,235,0.15);border:none;color:var(--ws);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+  </div>
+
+  <!-- END / BGN toggle -->
+  <div style="display:flex;gap:6px;margin-bottom:14px;">
+    <button id="tmv-end-btn" onclick="tmvSetMode('END')" style="flex:1;padding:7px;border-radius:8px;border:2px solid var(--lime);background:var(--lime);color:#1a2a00;font-family:'Prompt',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;">END (ปลายงวด)</button>
+    <button id="tmv-bgn-btn" onclick="tmvSetMode('BGN')" style="flex:1;padding:7px;border-radius:8px;border:2px solid rgba(160,255,45,0.3);background:transparent;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;">BGN (ต้นงวด)</button>
+  </div>
+
+  <!-- inputs -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+    <div>
+      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">N (งวด)</div>
+      <input id="tmv-n" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    </div>
+    <div>
+      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">I/Y (%)</div>
+      <input id="tmv-iy" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    </div>
+    <div>
+      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">PV</div>
+      <input id="tmv-pv" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    </div>
+    <div>
+      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">PMT</div>
+      <input id="tmv-pmt" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    </div>
+    <div style="grid-column:span 2;">
+      <div style="font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;margin-bottom:3px;">FV</div>
+      <input id="tmv-fv" type="text" inputmode="decimal" placeholder="0" style="width:100%;padding:9px 10px;background:rgba(255,255,235,0.1);border:1px solid rgba(160,255,45,0.25);border-radius:9px;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;outline:none;box-sizing:border-box;">
+    </div>
+  </div>
+
+  <!-- คำนวณ buttons -->
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:10px;">
+    <button onclick="tmvSolve('N')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา N</button>
+    <button onclick="tmvSolve('IY')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา I/Y</button>
+    <button onclick="tmvSolve('PV')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา PV</button>
+    <button onclick="tmvSolve('PMT')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา PMT</button>
+    <button onclick="tmvSolve('FV')" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,235,0.12);border:1px solid rgba(160,255,45,0.2);color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">หา FV</button>
+  </div>
+
+  <!-- ผลลัพธ์ -->
+  <div id="tmv-result" style="background:rgba(160,255,45,0.1);border:1px solid rgba(160,255,45,0.3);border-radius:10px;padding:10px 14px;min-height:38px;font-family:'Prompt',sans-serif;font-size:0.9rem;font-weight:700;color:var(--lime);text-align:center;display:flex;align-items:center;justify-content:center;">
+    กรอกค่าแล้วกด "หา..."
+  </div>
+
+  <!-- clear -->
+  <button onclick="tmvClear()" style="width:100%;margin-top:8px;padding:8px;background:transparent;border:1px solid rgba(255,255,235,0.15);border-radius:10px;color:var(--muted);font-family:'Prompt',sans-serif;font-size:0.78rem;cursor:pointer;">ล้างค่าทั้งหมด</button>
+</div>
 
 <!-- CALC SHEET: outside quiz-screen so backdrop-filter works -->
 <div id="calc-sheet" style="position:fixed;bottom:-100%;left:0;right:0;max-width:420px;margin:0 auto;background:rgba(10,20,2,0.55);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-radius:24px 24px 0 0;border-top:1px solid rgba(160,255,45,0.2);padding:12px 14px 28px;z-index:620;transition:bottom 0.3s ease;">
@@ -1013,6 +1080,98 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
 <div style="background:#f0f8ff;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
   📌 <b>โน้ต:</b> ราคาตลาดปัจจุบัน ≠ มูลค่าที่แท้จริงเสมอไป<br>
   ราคาตลาดขึ้นอยู่กับอุปสงค์-อุปทาน ส่วนมูลค่าที่แท้จริงประเมินได้ด้วยหลักการทางการเงิน (DCF)
+</div>`
+  },
+  {
+    q: `นักลงทุนซื้อตราสารหนี้ฉบับหนึ่งมา <b>980 บาท</b> อายุคงเหลือ 4 ปี จ่ายดอกเบี้ย <b>10% ต่อปี</b> จ่ายปีละ 2 งวด ราคาที่ตราไว้ <b>1,000 บาท</b><br><br>จงคำนวณหาอัตราผลตอบแทนจากดอกเบี้ย`,
+    choices: [
+      "400 บาท",
+      "40%",
+      "10%",
+      "10.2%",
+    ],
+    answer: 3,
+    explain: `<b>ตอบ ง. 10.2%</b><br><br>
+<b>สูตร Current Yield (อัตราผลตอบแทนจากดอกเบี้ย)</b>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;text-align:center;font-size:0.9rem;font-weight:700;color:#1a1a1a;">
+  Current Yield =
+  <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 6px;">
+    <span style="border-bottom:2px solid #1a1a1a;padding-bottom:2px;">ดอกเบี้ยที่ได้รับต่อปี</span>
+    <span style="padding-top:2px;">ราคาตลาด</span>
+  </span>
+  × 100
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:0.85rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  ดอกเบี้ยต่อปี = 1,000 × 10% = <b>100 บาท</b><br>
+  Current Yield =
+  <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;font-size:0.82rem;">
+    <span style="border-bottom:2px solid #1a1a1a;padding-bottom:1px;">100</span>
+    <span style="padding-top:1px;">980</span>
+  </span>
+  × 100 = 0.1020 × 100 = <b>10.2%</b>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 <b>โน้ต:</b><br>
+  • ราคาตลาด = ราคาที่ซื้อมา (980 บาท)<br>
+  • โจทย์ถาม "อัตรา..." → คำตอบต้องเป็น % → ตัด ก. (400 บาท) ออกได้เลย<br>
+  • "จ่ายปีละ 2 งวด" <b>ไม่มีผลต่อ Current Yield</b> เพราะใช้ดอกเบี้ยรวมต่อปี
+</div>`
+  },
+  {
+    q: `นักลงทุนซื้อตราสารหนี้ฉบับหนึ่งมา <b>980 บาท</b> อายุคงเหลือ 3 ปี จ่ายดอกเบี้ย <b>8% ต่อปี</b> จ่ายปีละ 2 งวด ราคาที่ตราไว้ <b>1,000 บาท</b><br><br>จงคำนวณหาอัตราผลตอบแทนจนถึงวันครบกำหนดไถ่ถอน`,
+    choices: [
+      "4.3863%",
+      "8.7726%",
+      "24%",
+      "26%",
+    ],
+    answer: 1,
+    explain: `<b>ตอบ ข. 8.7726%</b><br><br>
+<b>ใส่ตัวแปรในเครื่องคิดเลข</b>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>N</b> = 3 × 2 = <b>6 งวด</b></div>
+  <div>• <b>I/Y</b> = ? (สิ่งที่หาอยู่)</div>
+  <div>• <b>PMT</b> = 1,000 × 8% = 80 ÷ 2 = <b>40 บาท<span style="color:#e00;">ต่องวด</span></b></div>
+  <div>• <b>FV</b> = <b>1,000 บาท</b></div>
+  <div>• <b>PV</b> = <b>−980 บาท</b></div>
+</div>
+คำนวณได้ I/Y = <b>4.3863%</b> — แต่นี่คือผลตอบแทน<span style="color:#e00;font-weight:700;">ต่องวด</span> เพราะ PMT ที่ใส่ไปคือเงิน<span style="color:#e00;font-weight:700;">ต่องวด</span><br><br>
+โจทย์ถามผลตอบแทน<b>ต่อปี</b> → ต้องคูณจำนวนงวดต่อปีอีกรอบ<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:0.88rem;font-weight:700;color:#1a1a1a;text-align:center;">
+  4.3863% × 2 = <b>8.7726%</b>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  💡 <b>PMT คือเงินต่องวด</b> — โจทย์ไม่ได้ให้ตรงๆ แต่คำนวณได้<br>
+  ราคาหน้าตั๋ว × ดอกเบี้ย ÷ จำนวนงวดต่อปี = เงินต่องวด<br>
+  1,000 × 8% ÷ 2 = 40 บาทต่องวด<br><br>
+  เมื่อได้ I/Y จากเครื่องแล้ว อย่าลืมคูณกลับด้วยจำนวนงวดต่อปี เพราะคำตอบที่ต้องการคือรายปี<br><br>
+  <span style="font-size:0.75rem;color:#888;">* เรียน IC Plain แต่ใช้สูตรคำนวณ</span>
+</div>`
+  },
+  {
+    q: `นักลงทุนซื้อตราสารหนี้ Zero-coupon Bond ฉบับหนึ่งมา <b>920 บาท</b> อายุคงเหลือ <b>4 ปี</b> ราคาที่ตราไว้ <b>1,000 บาท</b><br><br>จงคำนวณหาอัตราผลตอบแทนจากการถือ Zero-coupon Bond`,
+    choices: [
+      "8%",
+      "8.89%",
+      "2%",
+      "2.1064%",
+    ],
+    answer: 3,
+    explain: `<b>ตอบ ง. 2.1064%</b><br><br>
+<b>ใส่ตัวแปรในเครื่องคิดเลข</b>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>N</b> = <b>4</b> (ใช้ปีได้เลย ไม่มีจำนวนงวดเข้ามาเกี่ยวข้อง)</div>
+  <div>• <b>I/Y</b> = ? (สิ่งที่หาอยู่)</div>
+  <div>• <b>PMT</b> = <b>0</b> (Zero-coupon ไม่จ่ายดอกเบี้ยรายงวด)</div>
+  <div>• <b>FV</b> = <b>1,000 บาท</b></div>
+  <div>• <b>PV</b> = <b>−920 บาท</b> (เงินออก ใส่ติดลบ)</div>
+</div>
+คำนวณได้ I/Y = <b>2.1064% ต่อปี</b><br><br>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  💡 <b>จุดสำคัญของ Zero-coupon:</b><br>
+  • PMT = 0 เสมอ ไม่มีดอกเบี้ยระหว่างทาง<br>
+  • N ใช้เป็นปีได้เลย เพราะไม่มีการจ่ายรายงวด<br>
+  • ผลตอบแทนมาจากส่วนต่างราคาซื้อ (920) กับราคาหน้าตั๋ว (1,000) เท่านั้น
 </div>`
   }
 ];
@@ -1744,6 +1903,101 @@ function closeFormulaNote() {
   document.getElementById('formula-note-modal').style.display = 'none';
 }
 
+// ===== TMV CALCULATOR =====
+let tmvOpen = false;
+let tmvMode = 'END';
+
+function toggleTMV() {
+  tmvOpen = !tmvOpen;
+  const sheet = document.getElementById('tmv-sheet');
+  const overlay = document.getElementById('tmv-overlay');
+  sheet.style.bottom = tmvOpen ? '0' : '-100%';
+  overlay.style.display = tmvOpen ? 'block' : 'none';
+  if (tmvOpen) {
+    const q = QUIZ_DATA[qIdx];
+    const qBox = document.getElementById('tmv-q-box');
+    if (q && document.getElementById('quiz-screen').style.display !== 'none') {
+      document.getElementById('tmv-q-num').textContent = qIdx + 1;
+      document.getElementById('tmv-q-text').innerHTML = q.q;
+      qBox.style.display = 'block';
+      qBox.scrollTop = 0;
+    } else {
+      qBox.style.display = 'none';
+    }
+  }
+}
+function tmvSetMode(mode) {
+  tmvMode = mode;
+  document.getElementById('tmv-end-btn').style.background = mode==='END' ? 'var(--lime)' : 'transparent';
+  document.getElementById('tmv-end-btn').style.color = mode==='END' ? '#1a2a00' : 'var(--lime)';
+  document.getElementById('tmv-bgn-btn').style.background = mode==='BGN' ? 'var(--lime)' : 'transparent';
+  document.getElementById('tmv-bgn-btn').style.color = mode==='BGN' ? '#1a2a00' : 'var(--lime)';
+}
+function tmvClear() {
+  ['tmv-n','tmv-iy','tmv-pv','tmv-pmt','tmv-fv'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('tmv-result').textContent = 'กรอกค่าแล้วกด "หา..."';
+  document.getElementById('tmv-result').style.color = 'var(--lime)';
+}
+function tmvSolve(solve) {
+  const g = id => { const v = document.getElementById(id).value.trim(); return v===''?null:parseFloat(v); };
+  const n = g('tmv-n'), iy = g('tmv-iy'), pv = g('tmv-pv'), pmt = g('tmv-pmt'), fv = g('tmv-fv');
+  const bgn = tmvMode === 'BGN' ? 1 : 0;
+  const res = document.getElementById('tmv-result');
+  try {
+    let ans;
+    if (solve==='FV') {
+      if (n==null||iy==null||pv==null||pmt==null) throw 'กรอก N, I/Y, PV, PMT';
+      const r = iy/100;
+      ans = -pv*Math.pow(1+r,n) - pmt*(1+r*bgn)*((Math.pow(1+r,n)-1)/r);
+    } else if (solve==='PV') {
+      if (n==null||iy==null||pmt==null||fv==null) throw 'กรอก N, I/Y, PMT, FV';
+      const r = iy/100;
+      ans = -(fv/Math.pow(1+r,n)) - pmt*(1+r*bgn)*((1-Math.pow(1+r,-n))/r);
+    } else if (solve==='N') {
+      if (iy==null||pv==null||pmt==null||fv==null) throw 'กรอก I/Y, PV, PMT, FV';
+      const r = iy/100;
+      if (Math.abs(pmt) < 1e-9) {
+        ans = Math.log(-fv/pv)/Math.log(1+r);
+      } else {
+        const A = pmt*(1+r*bgn)/r;
+        ans = Math.log((-fv+A)/(pv+A))/Math.log(1+r);
+      }
+    } else if (solve==='PMT') {
+      if (n==null||iy==null||pv==null||fv==null) throw 'กรอก N, I/Y, PV, FV';
+      const r = iy/100;
+      ans = -(pv*Math.pow(1+r,n)+fv)/((1+r*bgn)*((Math.pow(1+r,n)-1)/r));
+    } else if (solve==='IY') {
+      if (n==null||pv==null||pmt==null||fv==null) throw 'กรอก N, PV, PMT, FV';
+      // Newton-Raphson
+      let r = 0.05;
+      for (let i=0; i<200; i++) {
+        const pvf = pv*Math.pow(1+r,n);
+        const ann = pmt*(1+r*bgn)*((Math.pow(1+r,n)-1)/r);
+        const f = pvf + ann + fv;
+        const dpvf = n*pv*Math.pow(1+r,n-1);
+        let dann;
+        if (Math.abs(r)<1e-10) {
+          dann = pmt*n*(1+r*bgn);
+        } else {
+          dann = pmt*bgn*((Math.pow(1+r,n)-1)/r) + pmt*(1+r*bgn)*(n*Math.pow(1+r,n-1)*r-(Math.pow(1+r,n)-1))/(r*r);
+        }
+        const df = dpvf + dann;
+        const rNew = r - f/df;
+        if (Math.abs(rNew-r)<1e-10) { r=rNew; break; }
+        r = rNew;
+      }
+      ans = r*100;
+    }
+    if (ans==null||isNaN(ans)||!isFinite(ans)) throw 'คำนวณไม่ได้ ตรวจสอบค่าที่กรอก';
+    const label = {N:'N',IY:'I/Y',PV:'PV',PMT:'PMT',FV:'FV'}[solve];
+    res.textContent = label + ' = ' + ans.toFixed(4);
+    res.style.color = 'var(--lime)';
+  } catch(e) {
+    res.textContent = typeof e==='string' ? e : 'เกิดข้อผิดพลาด';
+    res.style.color = 'var(--pink)';
+  }
+}
+
 function toggleCalc() {
   calcOpen = !calcOpen;
   const sheet = document.getElementById('calc-sheet');
@@ -2153,6 +2407,22 @@ renderCD();
         <div style="background:#fff0f0;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:0.82rem;">
           <b style="color:#e00;">โหมด BGN</b> — ควรใส่เครื่องหมายให้ถูกตั้งแต่แรก เพราะผิดได้ง่ายกว่า<br>
           ยิ่งกว่านั้นถ้าเจอ<b>คำตอบที่ผิดอยู่ในตัวเลือก</b> จะผิดได้ง่ายมาก
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span>
+        การตัดตัวเลือก
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="margin-bottom:10px;">โจทย์ตราสารหนี้มักตั้งตัวเลขตามความเป็นจริงของตลาด เช่น พันธบัตรรัฐบาล หรือ Investment Grade — ดอกเบี้ยเฉลี่ยมักอยู่ที่ <b>2–5%</b></div>
+        <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:0.82rem;color:#444;line-height:1.8;">
+          ถ้าทำไม่ได้จริง การตัดตัวเลือกที่เกิน 5% ในโจทย์ที่ถามผลตอบแทนตราสารหนี้หรือ Zero-coupon เป็นวิธีที่ค่อนข้างมีเหตุผล
+        </div>
+        <div style="background:#fff0f0;border-radius:8px;padding:8px 10px;font-size:0.8rem;color:#c00;font-weight:700;">
+          ⚠️ หมายเหตุ: ใช้เฉพาะเมื่อทำไม่ได้จริงๆ และไม่ใช่ทุกข้อ
         </div>
       </div>
     </div>
