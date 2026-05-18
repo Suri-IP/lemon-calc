@@ -8,8 +8,8 @@
 <style>
 :root{--bg:#1F2D00;--surface:#263510;--card-dark:#2a3a0e;--lime:#A0FF2D;--yellow:#FFFF1E;--yellow2:#FFE51F;--pink:#F03E68;--purple:#9C6CFF;--teal:#33DF93;--teal2:rgb(51,223,147);--ws:#FFFFEB;--black:#1A1A1A;--muted:rgba(255,255,235,0.5);--border:rgba(160,255,45,0.18);}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;height:100%;overflow:hidden;}
-.app{max-width:420px;margin:0 auto;height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;padding-bottom:104px;}
+html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;height:100%;overflow:hidden;max-width:100%;}
+.app{max-width:420px;margin:0 auto;height:100%;min-height:100vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;padding-bottom:120px;overscroll-behavior-y:contain;}
 
 /* HEADER */
 .hdr{padding:36px 20px 16px;display:flex;align-items:flex-start;justify-content:space-between;}
@@ -67,7 +67,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
 .te .sc-title{color:var(--black);}
 
 /* COUNTDOWN */
-.cd-wrap{margin:12px 18px 0;}
+.cd-wrap{margin:12px 18px 20px;}
 .cd-strip{background:var(--pink);border:none;border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.15s;}
 .cd-strip:active{transform:scale(0.98);}
 .cd-left{display:flex;align-items:center;gap:12px;}
@@ -428,14 +428,14 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
     <button onclick="toggleTMV()" style="margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,235,0.15);border:none;color:var(--ws);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
   </div>
 
-  <!-- END / BGN toggle + clear -->
+  <!-- END/BGN + ล้างค่า -->
   <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
     <button id="tmv-end-btn" onclick="tmvSetMode('END')" style="padding:6px 12px;border-radius:8px;border:2px solid var(--lime);background:var(--lime);color:#1a2a00;font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">END</button>
     <button id="tmv-bgn-btn" onclick="tmvSetMode('BGN')" style="padding:6px 12px;border-radius:8px;border:2px solid rgba(160,255,45,0.3);background:transparent;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">BGN</button>
     <button onclick="tmvClear()" style="margin-left:auto;padding:6px 12px;background:transparent;border:1px solid rgba(255,255,235,0.2);border-radius:8px;color:var(--muted);font-family:'Prompt',sans-serif;font-size:0.72rem;cursor:pointer;">ล้างค่า</button>
   </div>
 
-  <!-- inputs + solve buttons -->
+  <!-- fields + solve buttons -->
   <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
       <div style="display:flex;align-items:stretch;">
@@ -477,20 +477,19 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <button onclick="tmvSolve('FV')" style="padding:0 9px;border-radius:0 9px 9px 0;background:rgba(160,255,45,0.25);border:2px solid rgba(160,255,45,0.4);border-left:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.6rem;font-weight:800;cursor:pointer;line-height:1.3;white-space:nowrap;">หา<br>FV</button>
     </div>
   </div>
-  <!-- hidden real inputs for tmvSolve() to read -->
+
+  <!-- hidden inputs -->
   <input id="tmv-n"   type="hidden" value="">
   <input id="tmv-iy"  type="hidden" value="">
   <input id="tmv-pv"  type="hidden" value="">
   <input id="tmv-pmt" type="hidden" value="">
   <input id="tmv-fv"  type="hidden" value="">
 
-  <!-- custom numpad -->
+  <!-- numpad -->
   <div id="tmv-numpad" style="background:rgba(255,255,235,0.07);border-radius:12px;padding:8px;margin-bottom:10px;">
-    <!-- active field indicator -->
     <div style="text-align:center;margin-bottom:6px;font-size:0.65rem;color:var(--muted);font-family:'Prompt',sans-serif;">
       แตะช่องเพื่อเลือก → <span id="tmv-active-label" style="color:var(--lime);font-weight:700;">— (ยังไม่ได้เลือก)</span>
     </div>
-    <!-- numpad grid -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;">
       <button onclick="tmvNumpad('7')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">7</button>
       <button onclick="tmvNumpad('8')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">8</button>
@@ -504,9 +503,9 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <button onclick="tmvNumpad('2')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">2</button>
       <button onclick="tmvNumpad('3')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">3</button>
       <button onclick="tmvNumpad('+/-')" style="height:40px;border-radius:8px;background:rgba(255,225,30,0.3);border:none;color:var(--yellow);font-family:'Prompt',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;">+/−</button>
-      <button onclick="tmvNumpad('0')" style="height:40px;grid-column:span 2;border-radius:8px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">0</button>
+      <button onclick="tmvNumpad('0')" style="height:40px;grid-column:span 2;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;">0</button>
       <button onclick="tmvNumpad('.')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.18);border:none;color:var(--ws);font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:700;cursor:pointer;">.</button>
-      <button onclick="tmvNumpad('OK')" style="height:40px;border-radius:8px;background:rgba(160,255,45,0.38);border:none;color:var(--lime);font-family:'Prompt',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;">✓</button>
+      <button onclick="tmvNumpad('CLR')" style="height:40px;border-radius:8px;background:rgba(255,255,235,0.1);border:none;color:var(--muted);font-family:'Prompt',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;">CLR</button>
     </div>
   </div>
 
@@ -1211,45 +1210,6 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   • N ใช้เป็นปีได้เลย เพราะไม่มีการจ่ายรายงวด<br>
   • ผลตอบแทนมาจากส่วนต่างราคาซื้อ (920) กับราคาหน้าตั๋ว (1,000) เท่านั้น
 </div>`
-  },
-  {
-    q: `นางสาวร่ำรวยซื้อตราสารหนี้ราคา 920 บาท จากราคาหน้าตั๋ว 1,000 บาท อัตราดอกเบี้ยหน้าตั๋ว 3% ต่อปี จ่ายดอกเบี้ยทุกครึ่งปี อายุคงเหลือ 3 ปี นางสาวร่ำรวยนำดอกเบี้ยที่ได้ไปลงทุนต่อได้ผลตอบแทน 6% ต่อปี ผลตอบแทนรวมจากการลงทุนของนางสาวร่ำรวยคือเท่าไหร่`,
-    choices: [
-      "97.0261",
-      "2.8663%",
-      "2.9727%",
-      "5.9454%",
-    ],
-    answer: 3,
-    explain: `<b>ตอบ ง. 5.9454%</b><br><br>
-โจทย์นี้คำนวณ <b>Total Return</b> โดยแบ่งเป็น 2 ขั้นตอน<br><br>
-<b>ขั้นที่ 1 — หามูลค่า coupon ที่นำไป reinvest</b><br>
-<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
-  <div>• <b>PMT</b> = 1,000 × 3% ÷ 2 = <b>15 บาท</b> (จ่ายทุกครึ่งปี)</div>
-  <div>• <b>N</b> = 3 × 2 = <b>6 งวด</b></div>
-  <div>• <b>I/Y</b> = 6% ÷ 2 = <b>3% ต่องวด</b> (อัตรา reinvest)</div>
-  <div>• <b>PV</b> = <b>0</b></div>
-  <div>• <b>FV</b> = ? → คำนวณได้ <b>97.0261 บาท</b></div>
-</div>
-รวมกับราคาหน้าตั๋วที่ได้ตอนครบกำหนด:<br>
-97.0261 + 1,000 = <b>1,097.0261 บาท</b><br><br>
-<b>ขั้นที่ 2 — หาผลตอบแทนรวม (Total Return)</b><br>
-มองภาพรวมการลงทุนทั้งหมด:<br>
-<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
-  <div>• <b>PV</b> = <b>−920 บาท</b> (เงินลงทุนวันนี้)</div>
-  <div>• <b>FV</b> = <b>1,097.0261 บาท</b></div>
-  <div>• <b>N</b> = <b>6 งวด</b></div>
-  <div>• <b>PMT</b> = <b>0</b></div>
-  <div>• <b>I/Y</b> = ? → คำนวณได้ <b>2.9727% ต่องวด</b></div>
-</div>
-เนื่องจากโจทย์จ่ายดอกเบี้ย <b>ทุกครึ่งปี (2 งวดต่อปี)</b> ต้องคูณ 2 เพื่อให้เป็นผลตอบแทนต่อปี:<br>
-2.9727% × 2 = <b>5.9454% ต่อปี</b><br><br>
-<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
-  💡 <b>จุดสำคัญ Total Return:</b><br>
-  • ขั้นที่ 1 หา FV ของ coupon ทั้งหมดเมื่อ reinvest ด้วยอัตราที่กำหนด<br>
-  • ขั้นที่ 2 มอง PV (ราคาซื้อ) → FV (coupon + par) แล้วหา I/Y<br>
-  • อย่าลืมคูณจำนวนงวดต่อปีเพื่อแปลงเป็น % ต่อปี
-</div>`
   }
 ];
 
@@ -1632,13 +1592,151 @@ const NOTE_CONTENT = {
       </div>
 
     </div>
-  `
+  `,
+  'cfp2-ch4': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
+
+<div style="background:#f4c430;border-radius:12px;padding:12px 14px;margin-bottom:16px;">
+<div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 4</div>
+<div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">ตราสารทุน</div></div>
+
+<!-- 1. ตลาดทุน -->
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:#f4c430;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> ตลาดทุน</div>
+<div style="background:#fff;border-radius:12px;padding:12px 14px;">
+<div style="font-weight:800;color:#1a2a00;margin-bottom:8px;font-size:0.82rem;">3 บทบาทหลักของตลาดทุน</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+<div style="background:#fffde8;border-radius:8px;padding:8px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><span style="font-weight:800;color:#b8860b;">1)</span> <b>เคลื่อนย้ายเงินทุน</b> — ส่งต่อเงินจากผู้มีเงินออมไปยังผู้ต้องการทุน</div>
+<div style="background:#fffde8;border-radius:8px;padding:8px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><span style="font-weight:800;color:#b8860b;">2)</span> <b>ก่อให้เกิดสภาพคล่อง</b> — ซื้อขายหลักทรัพย์ได้สะดวก</div>
+<div style="background:#fffde8;border-radius:8px;padding:8px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><span style="font-weight:800;color:#b8860b;">3)</span> <b>ส่งสัญญาณผลการดำเนินงาน</b> — ราคาหุ้นสะท้อนอนาคตของบริษัท</div>
+</div></div></div>
+
+<!-- 2. ประเภทตราสารทุน -->
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:#f4c430;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> ประเภทตราสารทุน</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #43a047;">
+<div style="font-weight:800;font-size:0.82rem;color:#1b5e20;margin-bottom:3px;">หุ้นสามัญ</div>
+<div style="font-size:0.8rem;">มีความเป็น<b>เจ้าของกิจการ</b> · <b style="color:#c62828;">มีสิทธิโหวต</b></div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #1976d2;">
+<div style="font-weight:800;font-size:0.82rem;color:#0d47a1;margin-bottom:3px;">หุ้นบุริมสิทธิ</div>
+<div style="font-size:0.8rem;line-height:1.8;">มีความเป็นเจ้าของ · <b style="color:#c62828;">ไม่มีสิทธิโหวต</b> (หรือน้อยกว่า)<br>ได้เงินปันผล<b>แน่นอนกว่า</b> อาจ fix rate<br>ได้<b>เงินคืนทุนก่อน</b>หุ้นสามัญเมื่อเลิกกิจการ</div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #7b1fa2;">
+<div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:3px;">ใบสำคัญแสดงสิทธิ (Warrant)</div>
+<div style="font-size:0.8rem;">สิทธิ<b>แปลงเป็นหุ้นสามัญ</b>ตามจำนวนและ<b>ราคาใช้สิทธิ</b>ที่กำหนด</div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #e64a19;">
+<div style="font-weight:800;font-size:0.82rem;color:#bf360c;margin-bottom:3px;">หุ้นกู้แปลงสภาพ</div>
+<div style="font-size:0.8rem;">ให้สิทธิ<b>แปลงเป็นหุ้นสามัญ</b> = <b>หุ้นกู้ + Warrant</b></div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #00838f;">
+<div style="font-weight:800;font-size:0.82rem;color:#006064;margin-bottom:3px;">หน่วยลงทุน</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+<div style="background:#e0f7fa;border-radius:8px;padding:7px 10px;font-size:0.78rem;"><b>กองทุนเปิด</b><br>หน่วย<b>เพิ่มเรื่อยๆ</b><br>ราคาอ้างอิง <b style="color:#006064;">NAV</b></div>
+<div style="background:#e0f7fa;border-radius:8px;padding:7px 10px;font-size:0.78rem;"><b>กองทุนปิด</b><br>หน่วย<b>คงที่</b> ไม่ไถ่ถอนก่อนครบ<br>ราคา<b style="color:#c62828;">อาจไม่ตรง NAV</b></div>
+</div></div>
+</div></div>
+
+<!-- 3. ตลาดแรก vs ตลาดรอง -->
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:#f4c430;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> ตลาดแรก vs ตลาดรอง</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;"><div style="background:#1a2a00;border-radius:10px 10px 0 0;padding:8px 12px;text-align:center;font-weight:800;font-size:0.8rem;color:#f4c430;font-family:'Prompt',sans-serif;">ตลาดแรก (Primary)</div><div style="background:#2a3a10;border-radius:10px 10px 0 0;padding:8px 12px;text-align:center;font-weight:800;font-size:0.8rem;color:#c8e67a;font-family:'Prompt',sans-serif;">ตลาดรอง (Secondary)</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+<div style="background:#fffde8;border-radius:8px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.82rem;">ออกหลักทรัพย์ใหม่<br><b>เพื่อระดมทุนจริง</b></div><div style="background:#f0f7e0;border-radius:8px;padding:9px 12px;border-left:3px solid #7cb342;font-size:0.82rem;">ของไทย มี <b>SET</b> กับ <b>mai</b></div>
+<div style="background:#fffde8;border-radius:8px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><b>PP</b> — จำหน่ายบุคคล<br>ในวงจำกัด</div><div style="background:#f0f7e0;border-radius:8px;padding:9px 12px;border-left:3px solid #7cb342;font-size:0.82rem;">ทำให้เกิด<b>สภาพคล่อง</b><br>ในการซื้อขาย</div>
+<div style="background:#fffde8;border-radius:8px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><b>PO</b> — จำหน่าย<br>ประชาชนทั่วไป</div><div style="background:#f0f7e0;border-radius:8px;padding:9px 12px;border-left:3px solid #7cb342;font-size:0.82rem;">ศูนย์กลาง<b>ชำระราคา</b><br>และส่งมอบหลักทรัพย์</div>
+<div style="background:#fffde8;border-radius:8px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><b>ข้อดี:</b> ขยายฐานทุน งบการเงินถูกตรวจสอบ</div><div style="background:#f0f7e0;border-radius:8px;padding:9px 12px;border-left:3px solid #7cb342;font-size:0.82rem;">เผยแพร่<b>ข้อมูล</b> บังคับใช้กฎหมาย</div>
+<div style="background:#fffde8;border-radius:8px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.82rem;"><b style="color:#c62828;">ข้อเสีย:</b> เปิดเผยข้อมูล เสียอำนาจควบคุม รับแรงกดดันผู้ถือหุ้น</div><div style="background:#f0f7e0;border-radius:8px;padding:9px 12px;border-left:3px solid #7cb342;font-size:0.82rem;">ราคาหุ้น<b>สะท้อนผลดำเนินงาน<br>ในอนาคต</b></div>
+</div></div>
+
+<!-- 4. ตลาดรองของตราสารทุน -->
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:#f4c430;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ตลาดรองของตราสารทุน</div>
+<div style="background:#fff;border-radius:12px;padding:12px 14px;">
+<div style="margin-bottom:10px;font-size:0.82rem;line-height:1.9;">
+<b>SET</b> — ตลาดหลักทรัพย์แห่งประเทศไทย (Stock Exchange of Thailand)<br>
+<b>MAI</b> — ตลาดหลักทรัพย์ เอ็ม เอ ไอ (Market for Alternative Investment)
+</div>
+<div style="background:#fffde8;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:0.82rem;">
+<b>SET Index</b> =
+<div style="text-align:center;margin:8px 0;line-height:2;">
+<div style="display:inline-block;text-align:center;">
+<div style="border-bottom:2px solid #1a1a1a;padding-bottom:4px;padding-right:8px;white-space:nowrap;">มูลค่าตลาดรวมหุ้นสามัญทั้งหมด <b>ณ วันปัจจุบัน</b> × 100</div>
+<div style="padding-top:4px;white-space:nowrap;">มูลค่าตลาดรวมหุ้นสามัญทั้งหมด <b>ณ วันฐาน</b></div>
+</div>
+</div>
+<span style="color:#c62828;font-weight:700;font-size:0.78rem;">วันฐาน = 30 เมษายน 2518</span>
+</div>
+<div style="font-weight:800;font-size:0.82rem;margin-bottom:8px;color:#1a2a00;">เกณฑ์เข้าจดทะเบียน SET vs MAI</div>
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+<thead>
+<tr>
+<th style="padding:7px 8px;text-align:left;background:#1a2a00;color:#f4c430;border-radius:0;font-weight:800;width:35%;">เกณฑ์</th>
+<th style="padding:7px 8px;text-align:center;background:#1a2a00;color:#f4d060;font-weight:800;width:32.5%;">SET</th>
+<th style="padding:7px 8px;text-align:center;background:#1a2a00;color:#a5d86a;font-weight:800;width:32.5%;">MAI</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fffef5;">
+<td style="padding:7px 8px;font-weight:700;color:#555;border-bottom:1px solid #eee;">ทุนจดทะเบียน</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;"><b>≥ 300</b> ล้าน</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;"><b>≥ 50</b> ล้าน</td>
+</tr>
+<tr style="background:#f5fbf0;">
+<td style="padding:7px 8px;font-weight:700;color:#555;border-bottom:1px solid #eee;">กำไรสุทธิ</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;">2-3 ปีรวม <b>&gt;50 ล้าน</b><br>ปีล่าสุด <b>&gt;30 ล้าน</b></td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;">ปีล่าสุด<br><b>&gt;10 ล้าน</b></td>
+</tr>
+<tr style="background:#fffef5;">
+<td style="padding:7px 8px;font-weight:700;color:#555;border-bottom:1px solid #eee;">ผลดำเนินงาน</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;"><b>&gt;3 ปี</b></td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;"><b>&gt;2 ปี</b></td>
+</tr>
+<tr style="background:#f5fbf0;">
+<td style="padding:7px 8px;font-weight:700;color:#555;border-bottom:1px solid #eee;">ผู้ถือหุ้นรายย่อย</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;">หลัง IPO <b>&gt;1,000</b> ราย</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #eee;">หลัง IPO <b>&gt;300</b> ราย</td>
+</tr>
+<tr style="background:#fffef5;">
+<td style="padding:7px 8px;font-weight:700;color:#555;">มูลค่าตลาด</td>
+<td style="padding:7px 8px;text-align:center;"><b>&gt;7,500</b> ล้าน</td>
+<td style="padding:7px 8px;text-align:center;"><b>&gt;1,000</b> ล้าน</td>
+</tr>
+</tbody>
+</table></div></div>
+
+<!-- 5. ผู้มีส่วนเกี่ยวข้อง -->
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a2a00;color:#f4c430;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> ผู้มีส่วนเกี่ยวข้องในตลาดทุน</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #1976d2;font-size:0.82rem;"><b style="color:#0d47a1;">บริษัทหลักทรัพย์ (บล.)</b><br>รับอนุญาตจาก <b>รมต.กระทรวงการคลัง</b> → เป็นตัวกลาง <b>นายหน้าซื้อขาย</b></div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #7b1fa2;font-size:0.82rem;"><b style="color:#4a148c;">บริษัทหลักทรัพย์จัดการกองทุน (บลจ.)</b><br>รับอนุมัติจาก <b>กลต.</b> → <b>ออกกองทุน</b> บริหารกองทุน</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #43a047;font-size:0.82rem;"><b style="color:#1b5e20;">บริษัทจดทะเบียน</b><br>บริษัทที่ต้องการ<b>ระดมทุน</b>จากตลาดตราสารทุน</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #e64a19;font-size:0.82rem;"><b style="color:#bf360c;">ศูนย์ฝากหลักทรัพย์ (TSD)</b><br>บริษัทย่อยของตลาดหลักทรัพย์ → <b>ฝาก ชำระราคา ส่งมอบ</b>หลักทรัพย์</div>
+<div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #00838f;font-size:0.82rem;"><b style="color:#006064;">ผู้ลงทุน</b><br>บุคคล และสถาบัน ที่ต้องการลงทุน</div>
+</div></div>
+
+
+</div>`,
+  'cfp2-ch5': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#e3f2fd;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(13,71,161,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · ตราสารทุน (เสริม)</div><div style="font-size:1rem;font-weight:800;color:#0d47a1;font-family:'Prompt',sans-serif;">การซื้อขายตราสารทุน</div></div><div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">3 วิธีการส่งคำสั่งซื้อขาย</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">1)</span><span><b>ส่งที่ห้องค้า</b> — กรอกใบคำสั่ง + ลงชื่อ</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">2)</span><span><b>โทรศัพท์</b> — โทรหาการตลาดที่ดูแลบัญชี</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">3)</span><span><b>ระบบ Electronic</b> — ระบบออนไลน์</span></div></div></div><div style="background:#e8f5e9;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.82rem;"><b style="color:#1b5e20;">ระบบการชำระราคา</b><br>หักลบค่าซื้อขายสุทธิ · ระยะเวลา <b style="color:#c62828;">T+2</b></div><div style="background:#fff;border-radius:12px;padding:12px 14px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">ระบบการซื้อขาย 3 ระบบ</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#f0f7ff;border-radius:10px;padding:10px 12px;border-left:4px solid #1976d2;"><div style="font-weight:800;font-size:0.82rem;color:#0d47a1;margin-bottom:4px;">1. Auction System (ระบบการประมูล)</div><div style="font-size:0.8rem;line-height:1.8;color:#333;">จับคู่ซื้อขายระหว่าง <b>ราคาเสนอซื้อสูงสุด + ราคาเสนอขายต่ำสุด</b> ตามลำดับเวลา <b>(Price Time Priority)</b><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;"><div style="font-size:0.78rem;color:#555;">1) การเจรจาด้วยวาจา</div><div style="font-size:0.78rem;color:#555;">2) Post-on Board <span style="color:#888;">(30 เม.ย. 2518 – 30 พ.ค. 2534)</span></div><div style="font-size:0.78rem;background:#1976d2;color:#fff;display:inline-block;border-radius:5px;padding:2px 8px;margin-top:2px;">3) AOM — Automatic Order Matching ★ ปัจจุบัน</div></div></div></div><div style="background:#f3f0ff;border-radius:10px;padding:10px 12px;border-left:4px solid #7b1fa2;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:4px;">2. Dealer System (ซื้อขายกับผู้ค้าหลักทรัพย์)</div><div style="font-size:0.8rem;color:#333;">ผู้ค้าหลักทรัพย์เป็นผู้<b>สร้างสภาพคล่อง</b>ในการซื้อขาย</div></div><div style="background:#fff3e0;border-radius:10px;padding:10px 12px;border-left:4px solid #e64a19;"><div style="font-weight:800;font-size:0.82rem;color:#bf360c;margin-bottom:4px;">3. Put-Through (เจรจาระหว่างผู้ซื้อกับผู้ขาย)</div><div style="font-size:0.8rem;color:#333;line-height:1.8;">ใช้กับ: ซื้อขาย<b>ปริมาณมาก</b> · ผู้ถือหุ้น<b>ต่างชาติ</b> · ช่วง <b>Off-Hour Trading</b></div></div></div></div></div>`
 };
 
 function openNoteDetail(id) {
-  const content = NOTE_CONTENT[id];
-  if (!content) return;
-  document.getElementById('note-detail-body').innerHTML = content;
+  const c = NOTE_CONTENT[id];
+  if (!c) return;
+  document.getElementById('note-detail-body').innerHTML = c;
+  const meta = {
+    'cfp2-ch3': {sub:'CFP M2 · บทที่ 3', title:'ตราสารหนี้',           bg:'var(--teal)', color:'#1a2a00'},
+    'cfp2-ch4': {sub:'CFP M2 · บทที่ 4', title:'ตราสารทุน',            bg:'#f4c430',    color:'#1a2a00'},
+    'cfp2-ch5': {sub:'CFP M2 · ตราสารทุน (เสริม)', title:'การซื้อขายตราสารทุน', bg:'#90caf9', color:'#0d47a1'}
+  };
+  const m = meta[id];
+  if (m) {
+    document.getElementById('note-detail-sub').textContent = m.sub;
+    document.getElementById('note-detail-title').textContent = m.title;
+    document.getElementById('note-detail-bar').style.background = m.bg;
+  }
   document.getElementById('note-detail-screen').style.display = 'flex';
 }
 function closeNoteDetail() {
@@ -1983,90 +2081,6 @@ function closeFormulaNote() {
 // ===== TMV CALCULATOR =====
 let tmvOpen = false;
 let tmvMode = 'END';
-let tmvActiveField = null;
-let tmvTyping = {};
-const TMV_FIELD_LABELS = {N:'N (งวด)', IY:'I/Y (%)', PV:'PV', PMT:'PMT', FV:'FV'};
-
-function tmvFocus(field) {
-  tmvActiveField = field;
-  ['N','IY','PV','PMT','FV'].forEach(f => {
-    const el = document.getElementById('tmv-field-'+f);
-    if (!el) return;
-    el.style.border = f===field ? '2px solid var(--lime)' : '2px solid rgba(160,255,45,0.25)';
-    el.style.background = f===field ? 'rgba(160,255,45,0.12)' : 'rgba(255,255,235,0.08)';
-  });
-  document.getElementById('tmv-active-label').textContent = TMV_FIELD_LABELS[field];
-  const cur = document.getElementById('tmv-'+field.toLowerCase()).value;
-  tmvTyping[field] = cur || '';
-  tmvRefreshDisp(field);
-}
-
-function tmvRefreshDisp(field) {
-  const buf = tmvTyping[field]||'';
-  const dispEl = document.getElementById('tmv-'+field.toLowerCase()+'-disp');
-  if (!dispEl) return;
-  if (buf===''||buf==='-') {
-    dispEl.textContent = buf==='-' ? '−_' : '—';
-    dispEl.style.color = buf==='-' ? 'var(--yellow)' : 'rgba(255,255,235,0.3)';
-  } else {
-    const num = parseFloat(buf);
-    dispEl.textContent = buf.endsWith('.') ? buf : buf;
-    dispEl.style.color = num<0 ? 'var(--pink)' : 'var(--ws)';
-  }
-}
-
-function tmvCommit(field) {
-  const buf = tmvTyping[field]||'';
-  const hiddenInput = document.getElementById('tmv-'+field.toLowerCase());
-  const dispEl = document.getElementById('tmv-'+field.toLowerCase()+'-disp');
-  if (buf===''||buf==='-') {
-    hiddenInput.value=''; tmvTyping[field]='';
-    if (dispEl){dispEl.textContent='—';dispEl.style.color='rgba(255,255,235,0.3)';}
-  } else {
-    const num = parseFloat(buf);
-    if (!isNaN(num)) {
-      hiddenInput.value=String(num); tmvTyping[field]=String(num);
-      if (dispEl){
-        dispEl.textContent=num.toLocaleString('th-TH',{maximumFractionDigits:6});
-        dispEl.style.color=num<0?'var(--pink)':'var(--ws)';
-      }
-    }
-  }
-}
-
-function tmvNumpad(key) {
-  if (!tmvActiveField) return;
-  const f = tmvActiveField;
-  let buf = tmvTyping[f]||'';
-  if (key==='DEL') {
-    buf = buf.slice(0,-1);
-  } else if (key==='CLR') {
-    buf = '';
-  } else if (key==='+/-') {
-    if (buf.startsWith('-')) buf=buf.slice(1);
-    else if (buf!==''&&buf!=='0') buf='-'+buf;
-    else if (buf==='0') buf='-0';
-  } else if (key==='.') {
-    if (!buf.includes('.')) buf = (buf===''||buf==='-') ? buf+'0.' : buf+'.';
-  } else if (key==='OK') {
-    tmvCommit(f);
-    tmvActiveField=null;
-    ['N','IY','PV','PMT','FV'].forEach(ff=>{
-      const el=document.getElementById('tmv-field-'+ff);
-      if(el){el.style.border='2px solid rgba(160,255,45,0.25)';el.style.background='rgba(255,255,235,0.08)';}
-    });
-    document.getElementById('tmv-active-label').textContent='— (ยังไม่ได้เลือก)';
-    return;
-  } else {
-    if (buf==='0'||buf==='') buf=key;
-    else if (buf==='-0'||buf==='-') buf='-'+key;
-    else buf+=key;
-  }
-  tmvTyping[f]=buf;
-  const num=parseFloat(buf);
-  document.getElementById('tmv-'+f.toLowerCase()).value=(!isNaN(num)&&buf!==''&&buf!=='-')?String(num):'';
-  tmvRefreshDisp(f);
-}
 
 function toggleTMV() {
   tmvOpen = !tmvOpen;
@@ -2096,20 +2110,9 @@ function tmvSetMode(mode) {
   document.getElementById('tmv-bgn-btn').style.color = mode==='BGN' ? '#1a2a00' : 'var(--lime)';
 }
 function tmvClear() {
-  ['n','iy','pv','pmt','fv'].forEach(k => {
-    document.getElementById('tmv-'+k).value='';
-    tmvTyping[k.toUpperCase()]=tmvTyping[k]=tmvTyping[k==='iy'?'IY':k.toUpperCase()]='';
-  });
-  tmvTyping={};
-  ['N','IY','PV','PMT','FV'].forEach(f=>{
-    const dispEl=document.getElementById('tmv-'+f.toLowerCase()+'-disp');
-    if(dispEl){dispEl.textContent='—';dispEl.style.color='rgba(255,255,235,0.3)';}
-    const el=document.getElementById('tmv-field-'+f);
-    if(el){el.style.border='2px solid rgba(160,255,45,0.25)';el.style.background='rgba(255,255,235,0.08)';}
-  });
-  tmvActiveField=null;
-  document.getElementById('tmv-active-label').textContent='— (ยังไม่ได้เลือก)';
-  const r=document.getElementById('tmv-result'); r.style.display='none'; r.textContent='';
+  ['tmv-n','tmv-iy','tmv-pv','tmv-pmt','tmv-fv'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('tmv-result').textContent = 'กรอกค่าแล้วกด "หา..."';
+  document.getElementById('tmv-result').style.color = 'var(--lime)';
 }
 function tmvSolve(solve) {
   const g = id => { const v = document.getElementById(id).value.trim(); return v===''?null:parseFloat(v); };
@@ -2163,23 +2166,11 @@ function tmvSolve(solve) {
     }
     if (ans==null||isNaN(ans)||!isFinite(ans)) throw 'คำนวณไม่ได้ ตรวจสอบค่าที่กรอก';
     const label = {N:'N',IY:'I/Y',PV:'PV',PMT:'PMT',FV:'FV'}[solve];
-    const ansFormatted = ans.toFixed(4);
-    res.textContent = label + ' = ' + parseFloat(ansFormatted).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:4});
+    res.textContent = label + ' = ' + ans.toFixed(4);
     res.style.color = 'var(--lime)';
-    res.style.display = 'flex';
-    // update display field with result
-    const fieldKey = {N:'N',IY:'IY',PV:'PV',PMT:'PMT',FV:'FV'}[solve];
-    document.getElementById('tmv-'+fieldKey.toLowerCase()).value = String(ans);
-    tmvTyping[fieldKey] = String(ans);
-    const dispEl = document.getElementById('tmv-'+fieldKey.toLowerCase()+'-disp');
-    if (dispEl) {
-      dispEl.textContent = parseFloat(ansFormatted).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:4});
-      dispEl.style.color = ans<0 ? 'var(--pink)' : 'var(--lime)';
-    }
   } catch(e) {
     res.textContent = typeof e==='string' ? e : 'เกิดข้อผิดพลาด';
     res.style.color = 'var(--pink)';
-    res.style.display = 'flex';
   }
 }
 
@@ -2499,18 +2490,34 @@ renderCD();
       </div>
       <div style="color:var(--muted);font-size:1.2rem;">›</div>
     </div>
+    <div onclick="openNoteDetail('cfp2-ch4')" style="background:rgba(255,255,235,0.06);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:#f4c430;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;font-weight:800;color:#1a2a00;">4</div>
+      <div style="flex:1;">
+        <div style="font-size:0.85rem;font-weight:700;color:var(--ws);font-family:'Prompt',sans-serif;">ตราสารทุน</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-family:'Sarabun',sans-serif;margin-top:2px;">5 หัวข้อ · ตลาดทุน ประเภท ตลาด SET/MAI ผู้เกี่ยวข้อง</div>
+      </div>
+      <div style="color:var(--muted);font-size:1.2rem;">›</div>
+    </div>
+    <div onclick="openNoteDetail('cfp2-ch5')" style="background:rgba(255,255,235,0.06);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:#90caf9;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;font-weight:800;color:#0d47a1;">4+</div>
+      <div style="flex:1;">
+        <div style="font-size:0.85rem;font-weight:700;color:var(--ws);font-family:'Prompt',sans-serif;">การซื้อขายตราสารทุน</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-family:'Sarabun',sans-serif;margin-top:2px;">เสริม · วิธีส่งคำสั่ง ชำระราคา ระบบซื้อขาย</div>
+      </div>
+      <div style="color:var(--muted);font-size:1.2rem;">›</div>
+    </div>
   </div>
 </div>
 
 <!-- NOTE DETAIL SCREEN -->
 <div id="note-detail-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
-  <div id="note-detail-bar" style="background:var(--teal);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+  <div id="note-detail-bar" style="background:var(--teal);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;transition:background 0.2s;">
     <button onclick="closeNoteDetail()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.12);border:none;color:#1a2a00;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <div>
-      <div style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · บทที่ 3</div>
-      <div style="font-size:0.85rem;font-weight:700;color:#1a2a00;">ตราสารหนี้</div>
+      <div id="note-detail-sub" style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · บทที่ 3</div>
+      <div id="note-detail-title" style="font-size:0.85rem;font-weight:700;color:#1a2a00;">ตราสารหนี้</div>
     </div>
   </div>
   <div id="note-detail-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 120px;"></div>
