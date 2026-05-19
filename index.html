@@ -171,7 +171,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <div style="background:var(--lime);position:absolute;inset:0;border-radius:24px;z-index:0;"></div>
       <div class="hero-text">
         <div class="hero-title">CPF<br>modu-<br>le2</div>
-        <div class="hero-sub">1 บทเรียน · 1 ด่าน</div>
+        <div class="hero-sub" id="quiz-count-lbl">— โจทย์</div>
         <button class="hero-btn">เริ่มเล่น <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:2px;"><polygon points="5,3 19,12 5,21"/></svg></button>
       </div>
     </div>
@@ -1210,12 +1210,108 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   • N ใช้เป็นปีได้เลย เพราะไม่มีการจ่ายรายงวด<br>
   • ผลตอบแทนมาจากส่วนต่างราคาซื้อ (920) กับราคาหน้าตั๋ว (1,000) เท่านั้น
 </div>`
+  },
+  {
+    q: `บริษัท CPMALL จ่ายเงินปันผลทุกปี หุ้นละ 0.8 บาท หากนางสาวลำไยต้องการผลตอบแทนจากการลงทุน 12% ต่อปี ราคาหุ้นที่เหมาะสมของบริษัท CPMALL คือเท่าไหร่`,
+    choices: ["มากกว่า 0.8 บาท", "9.6 บาท", "6.67 บาท", "15 บาท"],
+    answer: 2,
+    explain: `<b>ตอบ ค. 6.67 บาท</b><br><br>
+เงินปันผล<b>ไม่มีการเติบโต</b> (Constant Dividend) ใช้สูตร:<br>
+<div style="text-align:center;margin:10px 0;">
+  <div style="display:inline-block;">
+    <div style="border-bottom:2px solid #1a1a1a;padding:2px 16px;text-align:center;font-size:1rem;font-weight:700;">D<sub>t+1</sub></div>
+    <div style="padding:2px 16px;text-align:center;font-size:1rem;font-weight:700;">R</div>
+  </div>
+  <span style="font-size:1rem;font-weight:700;margin-left:6px;">= P</span>
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>D<sub>t+1</sub></b> = 0.8 บาท (เงินปันผลปีที่จะถึง)</div>
+  <div>• <b>R</b> = 12% = 0.12 (ผลตอบแทนที่ต้องการ)</div>
+  <div>• <b>P</b> = 0.8 ÷ 0.12 = <b style="color:#c62828;">6.67 บาท</b></div>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  💡 <b>D<sub>t+1</sub></b> คืออะไร?<br>
+  D = Dividend (เงินปันผล) · t+1 = ปีที่จะถึง (ไม่ใช่ปีที่ผ่านมา)<br>
+  ในโจทย์นี้ไม่ต้องแทนค่า t เพราะบอกปันผลมาตรงๆ แล้ว
+</div>`
+  },
+  {
+    q: `ปีที่ผ่านมาบริษัท AAA จ่ายเงินปันผลหุ้นละ 0.5 บาท และมีการจ่ายเงินปันผลเพิ่มขึ้นปีละ 2% หากนักลงทุนต้องการผลตอบแทน 10% ต่อปี ราคาหุ้นที่เหมาะสมจะลงทุนของบริษัท AAA ควรเป็นเท่าไหร่`,
+    choices: ["3.675 บาท", "5.673 บาท", "6.375 บาท", "7.365 บาท"],
+    answer: 2,
+    explain: `<b>ตอบ ค. 6.375 บาท</b><br><br>
+เงินปันผล<b>เติบโตคงที่ทุกปี</b> (Gordon Growth Model) ใช้สูตร:<br>
+<div style="text-align:center;margin:10px 0;">
+  <div style="display:inline-block;">
+    <div style="border-bottom:2px solid #1a1a1a;padding:2px 16px;text-align:center;font-size:1rem;font-weight:700;">D(1+g)</div>
+    <div style="padding:2px 16px;text-align:center;font-size:1rem;font-weight:700;">R − g</div>
+  </div>
+  <span style="font-size:1rem;font-weight:700;margin-left:6px;">= P</span>
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>• <b>D</b> = 0.5 บาท (เงินปันผลปีที่ผ่านมา)</div>
+  <div>• <b>g</b> = 2% = 0.02 (อัตราการเติบโต)</div>
+  <div>• <b>R</b> = 10% = 0.10 (ผลตอบแทนที่ต้องการ)</div>
+  <div>• <b>P</b> = 0.5 × (1+0.02) ÷ (0.10−0.02)</div>
+  <div>• <b>P</b> = 0.51 ÷ 0.08 = <b style="color:#c62828;">6.375 บาท</b></div>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  💡 ทำไมต้องคูณ (1+g)?<br>
+  เพราะ D = 0.5 คือ<b>ปันผลปีที่ผ่านมา</b> ต้องคูณ (1+g) เพื่อให้ได้<b>ปันผลปีที่จะถึง</b> ก่อนนำไปคำนวณ
+</div>`
+  },
+  {
+    q: `นายชาวีต้องการผลตอบแทนจากการลงทุน 10% ต่อปี หุ้นบริษัท Chiwa จ่ายเงินปันผลปีที่ผ่านมาหุ้นละ 0.4 บาท คาดการณ์ว่าในอีก 2 ปีข้างหน้าจะมีการจ่ายเงินปันผลเพิ่มขึ้น 10% และ 12% ตามลำดับ และหลังจากนั้นจะมีการจ่ายเงินปันผลเพิ่มขึ้นปีละ 3% ราคาหุ้นที่เหมาะสมจะลงทุนของบริษัท Chiwa สำหรับนายชาวีเป็นเท่าไหร่`,
+    choices: ["6.7636 บาท", "6.80 บาท", "7.1636 บาท", "5.9927 บาท"],
+    answer: 1,
+    explain: `<b>ตอบ ข. 6.80 บาท</b><br><br>
+โจทย์นี้มีเงินปันผล <b>3 ช่วง</b> คำนวณ 3 ขั้นตอน<br><br>
+
+<b>ขั้นที่ 1 — หาค่าเงินปันผลแต่ละปี</b><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>D0 = 0.4 บาท <span style="color:#888;">(ปันผลปีที่ผ่านมา)</span></div>
+  <div>D1 = 0.4 × (1+0.10) = <b>0.44</b></div>
+  <div>D2 = 0.44 × (1+0.12) = <b>0.4928</b></div>
+  <div>D3 = 0.4928 × (1+0.03) = <b>0.507584</b></div>
+</div>
+
+<b>ขั้นที่ 2 — หาราคาหุ้น ณ สิ้นปีที่ 2 (P2)</b><br>
+ตั้งแต่ปีที่ 3 เป็นต้นไปโตคงที่ 3% ใช้ Gordon Growth Model:<br>
+<div style="text-align:center;margin:8px 0;">
+  <div style="display:inline-block;">
+    <div style="border-bottom:2px solid #1a1a1a;padding:2px 16px;font-weight:700;">D3</div>
+    <div style="padding:2px 16px;font-weight:700;">r − g</div>
+  </div>
+  <span style="font-weight:700;margin-left:6px;">= P2</span>
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.82rem;font-family:'Sarabun',sans-serif;">
+  P2 = 0.507584 ÷ (0.10 − 0.03) = 0.507584 ÷ 0.07 = <b>7.2512</b><br>
+  <span style="color:#888;font-size:0.78rem;">P2 คือมูลค่าหุ้น ณ สิ้นปีที่ 2 ยังไม่ใช่ PV</span>
+</div>
+
+<b>ขั้นที่ 3 — คิด DCF ทุก Cash Flow แล้วรวมกัน</b><br>
+สูตร PV = FV ÷ (1+r)<sup>t</sup><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <div>PV(D1) = 0.44 ÷ (1.1)<sup>1</sup> = <b>0.4000</b></div>
+  <div>PV(D2) = 0.4928 ÷ (1.1)<sup>2</sup> = <b>0.4073</b></div>
+  <div>PV(P2) = 7.2512 ÷ (1.1)<sup>2</sup> = <b>5.9927</b></div>
+  <div style="border-top:1px solid #ddd;margin-top:4px;padding-top:4px;">รวม = 0.4000 + 0.4073 + 5.9927 = <b style="color:#c62828;font-size:0.9rem;">6.80 บาท</b></div>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+  ⚠️ <b>กับดัก ก. 6.7636</b> — เกิดจากคำนวณ PV(D1) = 0.4/1.1 = 0.3636 ซึ่งใช้ D0 แทน D1 ผิด<br>
+  t ในสูตร PV = FV/(1+r)<sup>t</sup> <b>ต้องแทนค่า</b> ต่างจาก t+1 ในสูตร Gordon ที่เป็นแค่สัญลักษณ์
+</div>`
   }
 ];
 
 // ============================================================
 // QUIZ STATE
 // ============================================================
+// อัพเดตจำนวนโจทย์ใน hero
+(function(){ 
+  const el = document.getElementById('quiz-count-lbl');
+  if(el) el.textContent = QUIZ_DATA.length + ' โจทย์';
+})();
 let qIdx = 0;
 let qAnswers = [];
 let qPeeked = [];
@@ -2854,12 +2950,20 @@ function fixAppPadding() {
   const bnav = document.querySelector('.bnav');
   const app = document.querySelector('.app');
   if (bnav && app) {
-    const h = bnav.getBoundingClientRect().height;
-    app.style.paddingBottom = (h + 20) + 'px';
+    const navH = bnav.getBoundingClientRect().height;
+    // window.innerHeight vs document height ไม่เกี่ยว
+    // วัด bottom ของ bnav จาก viewport จริง
+    const navBottom = bnav.getBoundingClientRect().bottom;
+    const viewportH = window.innerHeight;
+    // พื้นที่ใต้ bnav (Safari toolbar, home indicator ฯลฯ)
+    const belowNav = Math.max(0, viewportH - navBottom);
+    app.style.paddingBottom = (navH + belowNav + 24) + 'px';
   }
 }
 fixAppPadding();
 window.addEventListener('resize', fixAppPadding);
+// Safari จะเปลี่ยน innerHeight เมื่อ toolbar ซ่อน/แสดง
+window.addEventListener('scroll', fixAppPadding, {passive: true});
 </script>
 </body>
 </html>
