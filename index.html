@@ -1293,6 +1293,212 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   ⚠️ <b>กับดัก ง. 144</b> = สลับสูตร เอา 25,000×12÷3,000,000 แล้วปัดเกิน<br>
   <span style="color:#888;font-size:0.78rem;">* M2 ไม่เน้นคำนวณเรื่องนี้ แต่ดูไว้เผื่อออก</span>
 </div>`
+  },
+  {
+    q: `จากตารางการซื้อขาย Futures ต่อไปนี้ Volume และ Open Interest ณ วันที่ 4 คือเท่าไหร่<br><br>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:8px;overflow:hidden;">
+<thead>
+<tr style="background:#1a2a00;color:#f4c430;">
+<th style="padding:6px 8px;text-align:center;">วันที่</th>
+<th style="padding:6px 8px;text-align:center;">นักลงทุน</th>
+<th style="padding:6px 8px;text-align:center;">สถานะ</th>
+<th style="padding:6px 8px;text-align:center;">จำนวน</th>
+<th style="padding:6px 8px;text-align:center;">Volume</th>
+<th style="padding:6px 8px;text-align:center;">OI</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">1</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข</span></td>
+<td style="padding:6px 8px;text-align:center;">Long<br>Short</td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;"></td>
+<td style="padding:6px 8px;text-align:center;"></td>
+</tr>
+<tr style="background:#f5f5f5;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ค</span></td>
+<td style="padding:6px 8px;text-align:center;">Long<br>Short</td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;"></td>
+<td style="padding:6px 8px;text-align:center;"></td>
+</tr>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">3</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ง</span></td>
+<td style="padding:6px 8px;text-align:center;">Short<br>Long</td>
+<td style="padding:6px 8px;text-align:center;">1<br>1</td>
+<td style="padding:6px 8px;text-align:center;"></td>
+<td style="padding:6px 8px;text-align:center;"></td>
+</tr>
+<tr style="background:#fff3e0;border:2px solid #f57c00;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;color:#e65100;">4</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข<br>นาย ค</span></td>
+<td style="padding:6px 8px;text-align:center;">Short<br>Long<br>Long</td>
+<td style="padding:6px 8px;text-align:center;">2<br>1<br>1</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;font-size:1rem;">?</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;font-size:1rem;">?</td>
+</tr>
+</tbody>
+</table>
+</div>`,
+    choices: ["Volume=1, OI=2", "Volume=2, OI=2", "Volume=2, OI=3", "Volume=3, OI=2"],
+    answer: 1,
+    explain: `<b>ตอบ ข. Volume = 2, OI = 2</b><br><br>
+<b>นิยาม:</b><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+• <b>Volume</b> = คู่สัญญาที่ซื้อขายในวันนั้น (Long+Short = 1 คู่)<br>
+• <b>Open Interest</b> = คู่สัญญาที่ยังเปิดอยู่ นับเฉพาะ Long <b>ใหม่</b> ไม่นับ Long ที่เปิดเพื่อปิด Short ตัวเอง
+</div>
+<b>วิเคราะห์ทีละวัน:</b><br>
+<div style="overflow-x:auto;margin:8px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:8px;overflow:hidden;">
+<thead>
+<tr style="background:#1a2a00;color:#f4c430;">
+<th style="padding:6px 8px;text-align:center;">วันที่</th>
+<th style="padding:6px 8px;text-align:center;">นักลงทุน</th>
+<th style="padding:6px 8px;text-align:center;">สถานะ</th>
+<th style="padding:6px 8px;text-align:center;">จำนวน</th>
+<th style="padding:6px 8px;text-align:center;">Volume</th>
+<th style="padding:6px 8px;text-align:center;">OI</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">1</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#1b5e20;font-weight:700;">Long ใหม่</span><br><span style="color:#c62828;font-weight:700;">Short ใหม่</span></td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+</tr>
+<tr style="background:#f5f5f5;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ค</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#1b5e20;font-weight:700;">Long ใหม่</span><br><span style="color:#c62828;font-weight:700;">Short ใหม่</span></td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">4</td>
+</tr>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">3</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ง</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#c62828;font-weight:700;">ปิด Long</span><br><span style="color:#1b5e20;font-weight:700;">Long ใหม่</span></td>
+<td style="padding:6px 8px;text-align:center;">1<br>1</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">1</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">4</td>
+</tr>
+<tr style="background:#fff3e0;border:2px solid #f57c00;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;color:#e65100;">4</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข<br>นาย ค</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#c62828;font-weight:700;">ปิด Long</span><br><span style="color:#888;font-size:0.72rem;">ปิด Short<br>ปิด Short</span></td>
+<td style="padding:6px 8px;text-align:center;">2<br>1<br>1</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;color:#e65100;">2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;color:#e65100;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+💡 <b>วันที่ 4:</b> ข และ ค เปิด Long มาเพื่อปิด Short เดิม จึงไม่นับเป็น OI
+</div>`
+  },
+  {
+    q: `จากตารางการซื้อขาย Futures ต่อไปนี้ Volume และ Open Interest ณ วันที่ 3 คือเท่าไหร่<br><br>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:8px;overflow:hidden;">
+<thead>
+<tr style="background:#1a2a00;color:#f4c430;">
+<th style="padding:6px 8px;text-align:center;">วันที่</th>
+<th style="padding:6px 8px;text-align:center;">นักลงทุน</th>
+<th style="padding:6px 8px;text-align:center;">สถานะ</th>
+<th style="padding:6px 8px;text-align:center;">จำนวน</th>
+<th style="padding:6px 8px;text-align:center;">Volume</th>
+<th style="padding:6px 8px;text-align:center;">OI</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">1</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข</span></td>
+<td style="padding:6px 8px;text-align:center;">Long<br>Short</td>
+<td style="padding:6px 8px;text-align:center;">3<br>3</td>
+<td style="padding:6px 8px;text-align:center;"></td>
+<td style="padding:6px 8px;text-align:center;"></td>
+</tr>
+<tr style="background:#f5f5f5;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;">นาย ค<br><span style="color:#888;font-size:0.72rem;">นาย ก</span></td>
+<td style="padding:6px 8px;text-align:center;">Long<br>Short</td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;"></td>
+<td style="padding:6px 8px;text-align:center;"></td>
+</tr>
+<tr style="background:#fff3e0;border:2px solid #f57c00;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;color:#e65100;">3</td>
+<td style="padding:6px 8px;">นาย ข<br><span style="color:#888;font-size:0.72rem;">นาย ง</span></td>
+<td style="padding:6px 8px;text-align:center;">Long<br>Short</td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;font-size:1rem;">?</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;font-size:1rem;">?</td>
+</tr>
+</tbody>
+</table>
+</div>`,
+    choices: ["Volume=2, OI=2", "Volume=2, OI=3", "Volume=3, OI=3", "Volume=2, OI=5"],
+    answer: 1,
+    explain: `<b>ตอบ ข. Volume = 2, OI = 3</b><br><br>
+<b>นิยาม:</b><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+• <b>Volume</b> = คู่สัญญาที่ซื้อขายในวันนั้น (Long+Short = 1 คู่)<br>
+• <b>Open Interest</b> = คู่สัญญาที่ยังเปิดอยู่ นับเฉพาะ Long <b>ใหม่</b> ไม่นับ Long ที่เปิดเพื่อปิด Short ตัวเอง
+</div>
+<div style="overflow-x:auto;margin:8px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:8px;overflow:hidden;">
+<thead>
+<tr style="background:#1a2a00;color:#f4c430;">
+<th style="padding:6px 8px;text-align:center;">วันที่</th>
+<th style="padding:6px 8px;text-align:center;">นักลงทุน</th>
+<th style="padding:6px 8px;text-align:center;">สถานะ</th>
+<th style="padding:6px 8px;text-align:center;">จำนวน</th>
+<th style="padding:6px 8px;text-align:center;">Volume</th>
+<th style="padding:6px 8px;text-align:center;">OI</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fffde8;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">1</td>
+<td style="padding:6px 8px;">นาย ก<br><span style="color:#888;font-size:0.72rem;">นาย ข</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#1b5e20;font-weight:700;">Long ใหม่</span><br><span style="color:#c62828;font-weight:700;">Short ใหม่</span></td>
+<td style="padding:6px 8px;text-align:center;">3<br>3</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">3</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">3</td>
+</tr>
+<tr style="background:#f5f5f5;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;">นาย ค<br><span style="color:#888;font-size:0.72rem;">นาย ก</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#1b5e20;font-weight:700;">Long ใหม่</span><br><span style="color:#888;">ปิด Long</span></td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:700;">3</td>
+</tr>
+<tr style="background:#fff3e0;border:2px solid #f57c00;">
+<td style="padding:6px 8px;text-align:center;font-weight:700;color:#e65100;">3</td>
+<td style="padding:6px 8px;">นาย ข<br><span style="color:#888;font-size:0.72rem;">นาย ง</span></td>
+<td style="padding:6px 8px;text-align:center;"><span style="color:#888;">ปิด Short</span><br><span style="color:#c62828;font-weight:700;">Short ใหม่</span></td>
+<td style="padding:6px 8px;text-align:center;">2<br>2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;color:#e65100;">2</td>
+<td style="padding:6px 8px;text-align:center;font-weight:800;color:#e65100;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:10px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;line-height:1.9;">
+💡 <b>วันที่ 2:</b> ก Short มาเพื่อปิด Long ตัวเอง (OI−2) · ค Long ใหม่ (OI+2) → OI คงที่ที่ 3<br>
+💡 <b>วันที่ 3:</b> ข Long มาเพื่อปิด Short เดิม (OI−2) · ง Short ใหม่ (OI+2) → OI คงที่ที่ 3
+</div>`
   }
 ];
 
@@ -1579,7 +1785,7 @@ const NOTE_CONTENT = {
     <div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
 
       <div style="background:var(--teal);border-radius:12px;padding:12px 14px;margin-bottom:16px;">
-        <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 3</div>
+        <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div>
         <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">ตราสารหนี้</div>
       </div>
 
@@ -1684,7 +1890,7 @@ const NOTE_CONTENT = {
   'cfp2-ch4': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
 
 <div style="background:#f4c430;border-radius:12px;padding:12px 14px;margin-bottom:16px;">
-<div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 4</div>
+<div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div>
 <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">ตราสารทุน</div></div>
 
 <!-- 1. ตลาดทุน -->
@@ -1807,7 +2013,61 @@ const NOTE_CONTENT = {
 
 
 </div>`,
-  'cfp2-ch9': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#546e7a;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(236,239,241,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 8</div><div style="font-size:1rem;font-weight:800;color:#eceff1;font-family:'Prompt',sans-serif;">การลงทุนใน Hedge Fund</div></div>
+  'cfp2-ch10': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#80cbc4;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(0,77,64,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#004d40;font-family:'Prompt',sans-serif;">ตราสารอนุพันธ์</div></div>
+
+<div style="margin-bottom:20px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#004d40;color:#80cbc4;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> Futures vs Forward</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border-radius:10px;overflow:hidden;">
+<thead>
+<tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:8px 10px;text-align:left;border-right:1px solid #00695c;width:32%;">ลักษณะ</th>
+<th style="padding:8px 10px;text-align:center;border-right:1px solid #00695c;width:34%;">Futures</th>
+<th style="padding:8px 10px;text-align:center;width:34%;">Forward</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#e0f2f1;">
+<td style="padding:8px 10px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">ข้อกำหนดสัญญา</td>
+<td style="padding:8px 10px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;"><b>มาตรฐาน</b><br><span style="font-size:0.75rem;color:#555;">โดยศูนย์ซื้อขาย</span></td>
+<td style="padding:8px 10px;text-align:center;border-bottom:1px solid #b2dfdb;"><b>ตกลงกันเอง</b><br><span style="font-size:0.75rem;color:#555;">ยืดหยุ่น</span></td>
+</tr>
+<tr style="background:#fff;">
+<td style="padding:8px 10px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">ตลาดซื้อขาย</td>
+<td style="padding:8px 10px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;"><b>เป็นทางการ</b><br><span style="font-size:0.75rem;color:#555;">Futures Exchange</span></td>
+<td style="padding:8px 10px;text-align:center;border-bottom:1px solid #b2dfdb;"><b>นอกตลาด</b><br><span style="font-size:0.75rem;color:#555;">OTC</span></td>
+</tr>
+<tr style="background:#e0f2f1;">
+<td style="padding:8px 10px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">ความเสี่ยงคู่สัญญา</td>
+<td style="padding:8px 10px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;"><b style="color:#1b5e20;">ต่ำ</b><br><span style="font-size:0.75rem;color:#555;">มี TCH เป็นตัวกลาง<br>ประกันการชำระ</span></td>
+<td style="padding:8px 10px;text-align:center;border-bottom:1px solid #b2dfdb;"><b style="color:#c62828;">สูง</b><br><span style="font-size:0.75rem;color:#555;">ไม่มีตัวกลาง<br>เสี่ยงผิดนัดชำระ</span></td>
+</tr>
+<tr style="background:#fff;">
+<td style="padding:8px 10px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;">ยกเลิกฐานะ</td>
+<td style="padding:8px 10px;text-align:center;border-right:1px solid #b2dfdb;"><b style="color:#1b5e20;">ง่าย</b><br><span style="font-size:0.75rem;color:#555;">ทำธุรกรรมตรงข้าม<br>(Offset Transaction)</span></td>
+<td style="padding:8px 10px;text-align:center;"><b style="color:#c62828;">ยาก</b><br><span style="font-size:0.75rem;color:#555;">ต้องได้รับความยินยอม<br>จากคู่สัญญาเดิมก่อน</span></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<div style="margin-bottom:16px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#004d40;color:#80cbc4;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> วิธีนับ Open Interest</div>
+<div style="background:#fce4e4;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+<b style="color:#c62828;">★ จำแค่นี้พอ:</b><br>
+นับเฉพาะ <b>Long ใหม่</b> ที่เปิดขึ้นมา<b>เพื่อเปิดสัญญาใหม่</b><br>
+<b>ไม่นับ</b> Long ที่เปิดขึ้นมาเพื่อ<b>ปิด Short</b>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 14px;font-size:0.8rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
+<b>หลักการจริงๆ:</b><br>
+OI คือจำนวนสัญญาที่ <b>"ค้างอยู่"</b> ทั้งหมด<br>
+Futures 1 สัญญา = คน Long 1 + คน Short 1 → นับเป็น <b>OI = 1</b><br><br>
+<div style="background:#e0f2f1;border-radius:8px;padding:8px 12px;font-size:0.8rem;">
+OI นับเฉพาะ<b>สัญญาใหม่ที่ยังค้างอยู่</b><br>
+ถ้าเปิดเพื่อ<b>ปิดสถานะเดิม</b> → OI <b>ไม่เพิ่ม</b>
+</div>
+</div></div>
+
+</div>`,
+  'cfp2-ch9': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#546e7a;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(236,239,241,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#eceff1;font-family:'Prompt',sans-serif;">การลงทุนใน Hedge Fund</div></div>
 
 <div style="margin-bottom:20px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#263238;color:#b0bec5;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> โครงสร้างของ Hedge Fund</div>
 <div style="display:flex;flex-direction:column;gap:8px;">
@@ -1831,7 +2091,7 @@ const NOTE_CONTENT = {
 </div></div>
 
 </div>`,
-  'cfp2-ch8': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ffd54f;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(245,127,23,0.7);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 7</div><div style="font-size:1rem;font-weight:800;color:#f57f17;font-family:'Prompt',sans-serif;">การลงทุนในทองคำ</div></div>
+  'cfp2-ch8': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ffd54f;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(245,127,23,0.7);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#f57f17;font-family:'Prompt',sans-serif;">การลงทุนในทองคำ</div></div>
 
 <div style="margin-bottom:18px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#f57f17;color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> ปัจจัยที่กำหนดราคาทองคำ (สกุลเงิน $)</div>
 <div style="display:flex;flex-direction:column;gap:5px;">
@@ -1866,7 +2126,7 @@ const NOTE_CONTENT = {
 <div style="background:#fff3e0;border-radius:10px;padding:10px 12px;"><div style="font-weight:800;font-size:0.8rem;color:#e65100;margin-bottom:4px;">⚠️ ความเสี่ยง</div><div style="font-size:0.8rem;">ความเสี่ยงจาก<b>ราคาทองคำในตลาดโลก</b></div></div>
 
 </div>`,
-  'cfp2-ch7': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ffe0b2;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(230,81,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 6</div><div style="font-size:1rem;font-weight:800;color:#e65100;font-family:'Prompt',sans-serif;">อสังหาริมทรัพย์</div></div>
+  'cfp2-ch7': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ffe0b2;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(230,81,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#e65100;font-family:'Prompt',sans-serif;">อสังหาริมทรัพย์</div></div>
 
 <div style="margin-bottom:20px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#e65100;color:#ffe0b2;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> ปัจจัยวิเคราะห์อสังหาฯ เพื่อการลงทุน</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
@@ -1926,7 +2186,7 @@ const NOTE_CONTENT = {
 </div></div>
 
 </div>`,
-  'cfp2-ch6': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ce93d8;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(74,21,140,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · บทที่ 5</div><div style="font-size:1rem;font-weight:800;color:#4a148c;font-family:'Prompt',sans-serif;">กองทุนรวม</div></div>
+  'cfp2-ch6': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#ce93d8;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(74,21,140,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#4a148c;font-family:'Prompt',sans-serif;">กองทุนรวม</div></div>
 
 <div style="margin-bottom:20px;"><div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#4a148c;color:#ce93d8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> ทำไมคนถึงลงทุนในกองทุนรวมมากขึ้น</div>
 <div style="display:flex;flex-direction:column;gap:6px;">
@@ -1944,7 +2204,7 @@ const NOTE_CONTENT = {
 </div></div>
 
 </div>`,
-  'cfp2-ch5': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#e3f2fd;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(13,71,161,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · ตราสารทุน (เสริม)</div><div style="font-size:1rem;font-weight:800;color:#0d47a1;font-family:'Prompt',sans-serif;">การซื้อขายตราสารทุน</div></div><div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">3 วิธีการส่งคำสั่งซื้อขาย</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">1)</span><span><b>ส่งที่ห้องค้า</b> — กรอกใบคำสั่ง + ลงชื่อ</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">2)</span><span><b>โทรศัพท์</b> — โทรหาการตลาดที่ดูแลบัญชี</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">3)</span><span><b>ระบบ Electronic</b> — ระบบออนไลน์</span></div></div></div><div style="background:#e8f5e9;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.82rem;"><b style="color:#1b5e20;">ระบบการชำระราคา</b><br>หักลบค่าซื้อขายสุทธิ · ระยะเวลา <b style="color:#c62828;">T+2</b></div><div style="background:#fff;border-radius:12px;padding:12px 14px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">ระบบการซื้อขาย 3 ระบบ</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#f0f7ff;border-radius:10px;padding:10px 12px;border-left:4px solid #1976d2;"><div style="font-weight:800;font-size:0.82rem;color:#0d47a1;margin-bottom:4px;">1. Auction System (ระบบการประมูล)</div><div style="font-size:0.8rem;line-height:1.8;color:#333;">จับคู่ซื้อขายระหว่าง <b>ราคาเสนอซื้อสูงสุด + ราคาเสนอขายต่ำสุด</b> ตามลำดับเวลา <b>(Price Time Priority)</b><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;"><div style="font-size:0.78rem;color:#555;">1) การเจรจาด้วยวาจา</div><div style="font-size:0.78rem;color:#555;">2) Post-on Board <span style="color:#888;">(30 เม.ย. 2518 – 30 พ.ค. 2534)</span></div><div style="font-size:0.78rem;background:#1976d2;color:#fff;display:inline-block;border-radius:5px;padding:2px 8px;margin-top:2px;">3) AOM — Automatic Order Matching ★ ปัจจุบัน</div></div></div></div><div style="background:#f3f0ff;border-radius:10px;padding:10px 12px;border-left:4px solid #7b1fa2;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:4px;">2. Dealer System (ซื้อขายกับผู้ค้าหลักทรัพย์)</div><div style="font-size:0.8rem;color:#333;">ผู้ค้าหลักทรัพย์เป็นผู้<b>สร้างสภาพคล่อง</b>ในการซื้อขาย</div></div><div style="background:#fff3e0;border-radius:10px;padding:10px 12px;border-left:4px solid #e64a19;"><div style="font-weight:800;font-size:0.82rem;color:#bf360c;margin-bottom:4px;">3. Put-Through (เจรจาระหว่างผู้ซื้อกับผู้ขาย)</div><div style="font-size:0.8rem;color:#333;line-height:1.8;">ใช้กับ: ซื้อขาย<b>ปริมาณมาก</b> · ผู้ถือหุ้น<b>ต่างชาติ</b> · ช่วง <b>Off-Hour Trading</b></div></div></div></div></div>`
+  'cfp2-ch5': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#e3f2fd;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(13,71,161,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#0d47a1;font-family:'Prompt',sans-serif;">การซื้อขายตราสารทุน</div></div><div style="background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">3 วิธีการส่งคำสั่งซื้อขาย</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">1)</span><span><b>ส่งที่ห้องค้า</b> — กรอกใบคำสั่ง + ลงชื่อ</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">2)</span><span><b>โทรศัพท์</b> — โทรหาการตลาดที่ดูแลบัญชี</span></div><div style="background:#e3f2fd;border-radius:8px;padding:8px 12px;border-left:3px solid #1976d2;font-size:0.82rem;display:flex;gap:8px;align-items:baseline;"><span style="font-weight:800;color:#0d47a1;flex-shrink:0;">3)</span><span><b>ระบบ Electronic</b> — ระบบออนไลน์</span></div></div></div><div style="background:#e8f5e9;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.82rem;"><b style="color:#1b5e20;">ระบบการชำระราคา</b><br>หักลบค่าซื้อขายสุทธิ · ระยะเวลา <b style="color:#c62828;">T+2</b></div><div style="background:#fff;border-radius:12px;padding:12px 14px;"><div style="font-weight:800;font-size:0.82rem;color:#1a2a00;margin-bottom:8px;">ระบบการซื้อขาย 3 ระบบ</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#f0f7ff;border-radius:10px;padding:10px 12px;border-left:4px solid #1976d2;"><div style="font-weight:800;font-size:0.82rem;color:#0d47a1;margin-bottom:4px;">1. Auction System (ระบบการประมูล)</div><div style="font-size:0.8rem;line-height:1.8;color:#333;">จับคู่ซื้อขายระหว่าง <b>ราคาเสนอซื้อสูงสุด + ราคาเสนอขายต่ำสุด</b> ตามลำดับเวลา <b>(Price Time Priority)</b><div style="margin-top:6px;display:flex;flex-direction:column;gap:3px;"><div style="font-size:0.78rem;color:#555;">1) การเจรจาด้วยวาจา</div><div style="font-size:0.78rem;color:#555;">2) Post-on Board <span style="color:#888;">(30 เม.ย. 2518 – 30 พ.ค. 2534)</span></div><div style="font-size:0.78rem;background:#1976d2;color:#fff;display:inline-block;border-radius:5px;padding:2px 8px;margin-top:2px;">3) AOM — Automatic Order Matching ★ ปัจจุบัน</div></div></div></div><div style="background:#f3f0ff;border-radius:10px;padding:10px 12px;border-left:4px solid #7b1fa2;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:4px;">2. Dealer System (ซื้อขายกับผู้ค้าหลักทรัพย์)</div><div style="font-size:0.8rem;color:#333;">ผู้ค้าหลักทรัพย์เป็นผู้<b>สร้างสภาพคล่อง</b>ในการซื้อขาย</div></div><div style="background:#fff3e0;border-radius:10px;padding:10px 12px;border-left:4px solid #e64a19;"><div style="font-weight:800;font-size:0.82rem;color:#bf360c;margin-bottom:4px;">3. Put-Through (เจรจาระหว่างผู้ซื้อกับผู้ขาย)</div><div style="font-size:0.8rem;color:#333;line-height:1.8;">ใช้กับ: ซื้อขาย<b>ปริมาณมาก</b> · ผู้ถือหุ้น<b>ต่างชาติ</b> · ช่วง <b>Off-Hour Trading</b></div></div></div></div></div>`
 };
 
 function openNoteDetail(id) {
@@ -1952,13 +2212,14 @@ function openNoteDetail(id) {
   if (!c) return;
   document.getElementById('note-detail-body').innerHTML = c;
   const meta = {
-    'cfp2-ch3': {sub:'CFP M2 · บทที่ 3', title:'ตราสารหนี้',           bg:'var(--teal)', color:'#1a2a00'},
-    'cfp2-ch4': {sub:'CFP M2 · บทที่ 4', title:'ตราสารทุน',            bg:'#f4c430',    color:'#1a2a00'},
-    'cfp2-ch5': {sub:'CFP M2 · ตราสารทุน (เสริม)', title:'การซื้อขายตราสารทุน', bg:'#90caf9', color:'#0d47a1'},
-    'cfp2-ch6': {sub:'CFP M2 · บทที่ 5', title:'กองทุนรวม',          bg:'#ce93d8', color:'#4a148c'},
-    'cfp2-ch7': {sub:'CFP M2 · บทที่ 6', title:'อสังหาริมทรัพย์',   bg:'#ffb74d', color:'#e65100'},
-    'cfp2-ch8': {sub:'CFP M2 · บทที่ 7', title:'การลงทุนในทองคำ', bg:'#ffd54f', color:'#f57f17'},
-    'cfp2-ch9': {sub:'CFP M2 · บทที่ 8', title:'Hedge Fund',          bg:'#546e7a', color:'#eceff1'}
+    'cfp2-ch3': {sub:'CFP M2', title:'ตราสารหนี้',           bg:'var(--teal)', color:'#1a2a00'},
+    'cfp2-ch4': {sub:'CFP M2', title:'ตราสารทุน',            bg:'#f4c430',    color:'#1a2a00'},
+    'cfp2-ch5': {sub:'CFP M2', title:'การซื้อขายตราสารทุน', bg:'#90caf9', color:'#0d47a1'},
+    'cfp2-ch6': {sub:'CFP M2', title:'กองทุนรวม',          bg:'#ce93d8', color:'#4a148c'},
+    'cfp2-ch7': {sub:'CFP M2', title:'อสังหาริมทรัพย์',   bg:'#ffb74d', color:'#e65100'},
+    'cfp2-ch8': {sub:'CFP M2', title:'การลงทุนในทองคำ', bg:'#ffd54f', color:'#f57f17'},
+    'cfp2-ch9':  {sub:'CFP M2', title:'Hedge Fund',        bg:'#546e7a', color:'#eceff1'},
+    'cfp2-ch10': {sub:'CFP M2', title:'ตราสารอนุพันธ์',    bg:'#80cbc4', color:'#004d40'}
   };
   const m = meta[id];
   if (m) {
@@ -2767,6 +3028,14 @@ renderCD();
       </div>
       <div style="color:var(--muted);font-size:1.2rem;">›</div>
     </div>
+    <div onclick="openNoteDetail('cfp2-ch10')" style="background:rgba(255,255,235,0.06);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:#80cbc4;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;font-weight:800;color:#004d40;">9</div>
+      <div style="flex:1;">
+        <div style="font-size:0.85rem;font-weight:700;color:var(--ws);font-family:'Prompt',sans-serif;">ตราสารอนุพันธ์</div>
+        <div style="font-size:0.72rem;color:var(--muted);font-family:'Sarabun',sans-serif;margin-top:2px;">2 หัวข้อ · Futures vs Forward · Open Interest</div>
+      </div>
+      <div style="color:var(--muted);font-size:1.2rem;">›</div>
+    </div>
   </div>
 </div>
 
@@ -2777,7 +3046,7 @@ renderCD();
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <div>
-      <div id="note-detail-sub" style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · บทที่ 3</div>
+      <div id="note-detail-sub" style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2</div>
       <div id="note-detail-title" style="font-size:0.85rem;font-weight:700;color:#1a2a00;">ตราสารหนี้</div>
     </div>
   </div>
