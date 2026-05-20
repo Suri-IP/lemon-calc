@@ -1499,6 +1499,52 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
 💡 <b>วันที่ 2:</b> ก Short มาเพื่อปิด Long ตัวเอง (OI−2) · ค Long ใหม่ (OI+2) → OI คงที่ที่ 3<br>
 💡 <b>วันที่ 3:</b> ข Long มาเพื่อปิด Short เดิม (OI−2) · ง Short ใหม่ (OI+2) → OI คงที่ที่ 3
 </div>`
+  },
+  {
+    q: `นางสาวเอ เปิดสถานะซื้อ (Long) SET50 Index Futures ที่ราคา 950 จุด จำนวน 10 สัญญา โดยมีขนาดสัญญา 200 บาทต่อจุด มูลค่าของสัญญาทั้งหมดคือเท่าไหร่`,
+    choices: ["38,000 บาท", "19,000 บาท", "1,900,000 บาท", "ไม่มีคำตอบที่ถูกต้อง"],
+    answer: 2,
+    explain: `<b>ตอบ ค. 1,900,000 บาท</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  <div><b>มูลค่าสัญญา</b> = ราคา Futures × Contract Size × จำนวนสัญญา</div>
+  <div style="border-top:1px solid #ddd;margin-top:4px;padding-top:4px;">= 950 × 200 × 10</div>
+  <div>= <b style="color:#c62828;">1,900,000 บาท</b></div>
+</div>`
+  },
+  {
+    q: `กองทุนหุ้นไทยมีพอร์ตลงทุนมูลค่า 80 ล้านบาท ผู้จัดการกองทุนคาดว่าตลาดหุ้นไทยอาจปรับตัวลดลง จึงต้องการใช้ SET50 Index Futures ป้องกันความเสี่ยง ปัจจุบัน SET50 Futures ซื้อขายที่ 920 จุด ขนาดสัญญา 200 บาทต่อจุด ควร Long หรือ Short และใช้กี่สัญญา`,
+    choices: ["Short SET50 Futures 343 สัญญา", "Long SET50 Futures 433 สัญญา", "Long SET50 Futures 435 สัญญา", "Short SET50 Futures 434 สัญญา"],
+    answer: 3,
+    explain: `<b>ตอบ ง. Short SET50 Futures 434 สัญญา</b><br><br>
+<b>ทิศทาง:</b> คาดตลาดลง → <b style="color:#c62828;">Short</b> (ขาย) เพื่อป้องกัน<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  <div><b>สูตร:</b> มูลค่าพอร์ต = ราคา Futures × Contract Size × จำนวนสัญญา</div>
+  <div style="border-top:1px solid #ddd;margin-top:4px;padding-top:4px;"><b>สลับหาจำนวนสัญญา:</b></div>
+  <div>จำนวนสัญญา = มูลค่าพอร์ต ÷ (ราคา Futures × Contract Size)</div>
+  <div style="border-top:1px solid #ddd;margin-top:4px;padding-top:4px;">= 80,000,000 ÷ (920 × 200)</div>
+  <div>= 80,000,000 ÷ 184,000</div>
+  <div>= 434.78 → ปัดขึ้น = <b style="color:#c62828;">434 สัญญา</b></div>
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:8px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;">
+💡 ปัดขึ้นเสมอ เพื่อไม่ให้ <b>Under Hedge</b> (ป้องกันความเสี่ยงได้ไม่ครบ)
+</div>`
+  },
+  {
+    q: `กองทุนทองคำมีมูลค่าพอร์ต 24 ล้านบาท กังวลว่าราคาทองคำอาจปรับตัวลดลงในระยะสั้น จึงต้องการใช้ Gold Online Futures (GO) ป้องกันความเสี่ยง ปัจจุบัน GO ซื้อขายที่ 3,200 USD/ทรอยออนซ์ ขนาดสัญญา 10 ทรอยออนซ์ อัตราแลกเปลี่ยน 36 บาท/USD ควรทำสัญญาแบบใดและกี่สัญญา`,
+    choices: ["Short Gold Futures 21 สัญญา", "Long Gold Futures 21 สัญญา", "Short Gold Futures 20.83 สัญญา", "Long Gold Futures 20.83 สัญญา"],
+    answer: 0,
+    explain: `<b>ตอบ ก. Short Gold Futures 21 สัญญา</b><br><br>
+<b>ทิศทาง:</b> กังวลราคาทองลง → <b style="color:#c62828;">Short</b> (ขาย) เพื่อป้องกัน<br><br>
+<div style="background:#fff8e0;border-radius:8px;padding:8px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;margin-bottom:8px;">
+💡 รู้ทิศทางแล้ว ตัดตัวเลือก Long ออก → เหลือ ก. กับ ค.<br>
+จำนวนสัญญาต้องเป็น<b>จำนวนเต็ม</b> → ตัด 20.83 ออก → <b>ตอบ ก. ได้เลย</b>
+</div>
+<b>คำนวณ:</b><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  <div>มูลค่า 1 สัญญา = 3,200 × 10 × 36 = 1,152,000 บาท</div>
+  <div>จำนวนสัญญา = 24,000,000 ÷ 1,152,000 = 20.83</div>
+  <div>ปัดขึ้น → <b style="color:#c62828;">21 สัญญา</b></div>
+</div>`
   }
 ];
 
