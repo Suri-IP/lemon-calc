@@ -1546,6 +1546,56 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   <div>ปัดขึ้น → <b style="color:#c62828;">21 สัญญา</b></div>
 </div>`
   }
+,
+  {
+    q: `นายเจลงทุนซื้อพุทออปชันแบบยุโรปของหุ้น DEF อายุ 6 เดือน ราคาใช้สิทธิ 100 บาท จำนวน 1 สิทธิ ค่าพรีเมียม 700 บาทต่อ 1 ออปชัน (มีสิทธิขายได้ 100 หุ้นต่อ 1 ออปชัน) เมื่อครบกำหนด ราคาหุ้น DEF อยู่ที่ 100 บาท นายเจจะได้กำไร/ขาดทุนเท่าไหร่`,
+    choices: ["กำไร 700 บาท", "ขาดทุน 700 บาท", "ขาดทุน 70,000 บาท", "เท่าทุน"],
+    answer: 1,
+    explain: `<b>ตอบ ข. ขาดทุน 700 บาท</b><br><br>
+ซื้อพุทออปชัน = <b>Long Put Option</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  Premium/หุ้น = 700 ÷ 100 = <b>7 บาท/หุ้น</b><br>
+  P/L = Max(0, X−S) − Premium<br>
+  = Max(0, 100−100) − 7<br>
+  = 0 − 7 = <b style="color:#c62828;">−7 บาท/หุ้น</b><br>
+  รวม 100 หุ้น = −7 × 100 = <b style="color:#c62828;">−700 บาท</b>
+</div>
+<div style="font-size:0.75rem;color:#888;font-family:'Sarabun',sans-serif;margin-top:6px;">* X = Strike Price (ราคาใช้สิทธิ), S = Spot Price (ราคาตลาด)</div>
+เมื่อ S = X → Intrinsic Value = 0 → ไม่คุ้มใช้สิทธิ → ขาดทุนเท่าพรีเมียมที่จ่ายไป`
+  },
+  {
+    q: `จากโจทย์ข้อ 25 ถ้าหากราคาหุ้น DEF เท่ากับ 80 บาท นายเจจะได้กำไรหรือขาดทุนเท่าไหร่`,
+    choices: ["กำไร 700 บาท", "ขาดทุน 700 บาท", "กำไร 1,300 บาท", "ขาดทุน 1,300 บาท"],
+    answer: 2,
+    explain: `<b>ตอบ ค. กำไร 1,300 บาท</b><br><br>
+Long Put — ได้กำไรเมื่อ X &gt; S มากกว่า Premium<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  P/L = Max(0, X−S) − Premium<br>
+  = Max(0, 100−80) − 7<br>
+  = 20 − 7 = <b style="color:#2e7d32;">+13 บาท/หุ้น</b><br>
+  รวม 100 หุ้น = 13 × 100 = <b style="color:#2e7d32;">+1,300 บาท</b>
+</div>
+<div style="font-size:0.75rem;color:#888;font-family:'Sarabun',sans-serif;margin-top:6px;">* X = Strike Price (ราคาใช้สิทธิ), S = Spot Price (ราคาตลาด)</div>`
+  },
+  {
+    q: `นายบันดิษลงทุนในลักษณะ Short Call Option ของหุ้น ABC ราคาใช้สิทธิ 100 บาท ค่าพรีเมียม 1,000 บาทต่อ 1 Option (100 หุ้นต่อ 1 Option) จงคำนวณกำไร/ขาดทุนต่อ 1 หุ้น ถ้าราคาหุ้น ณ วันครบกำหนดคือ 90, 100, 110, 120 ตามลำดับ`,
+    choices: ["10, 10, 0, −10", "20, 10, 0, −10", "−20, −10, 0, 10", "−10, −10, 0, 10"],
+    answer: 0,
+    explain: `<b>ตอบ ก. 10, 10, 0, −10</b><br><br>
+Premium/หุ้น = 1,000 ÷ 100 = <b>10 บาท/หุ้น</b><br>
+สูตร Short Call: Min(0, X−S) + Premium<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  S=90 → Min(0, 100−90)+10 = 0+10 = <b style="color:#2e7d32;">+10</b><br>
+  S=100 → Min(0, 100−100)+10 = 0+10 = <b style="color:#2e7d32;">+10</b><br>
+  S=110 → Min(0, 100−110)+10 = −10+10 = <b>0</b><br>
+  S=120 → Min(0, 100−120)+10 = −20+10 = <b style="color:#c62828;">−10</b>
+</div>
+<div style="font-size:0.75rem;color:#888;font-family:'Sarabun',sans-serif;margin-top:6px;">* X = Strike Price (ราคาใช้สิทธิ), S = Spot Price (ราคาตลาด)</div>
+<div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;">
+💡 เมื่อ S=100 → Long จะใช้หรือไม่ใช้สิทธิก็ได้ ผลเท่ากัน (Intrinsic Value = 0)<br>
+Breakeven ของฝั่ง Long อยู่ที่ราคา 110 บาท (X + Premium = 100+10)
+</div>`
+  }
 ];
 
 // ============================================================
@@ -2174,6 +2224,103 @@ OI นับเฉพาะ<b>สัญญาใหม่ที่ยังค�
 ถ้าเปิดเพื่อ<b>ปิดสถานะเดิม</b> → OI <b>ไม่เพิ่ม</b>
 </div>
 </div></div>
+<div style="margin-bottom:20px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#004d40;color:#80cbc4;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> การส่งมอบและการวางเงินประกัน</div>
+
+<!-- การส่งมอบ -->
+<div style="background:#e0f2f1;border-radius:10px;padding:10px 14px;margin-bottom:10px;">
+<div style="font-size:0.8rem;font-weight:700;color:#004d40;font-family:'Prompt',sans-serif;margin-bottom:6px;">การส่งมอบ (Delivery)</div>
+<div style="font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;color:#1a1a1a;">
+<b>1. Physical Delivery</b> — ส่งมอบสินค้าจริง<br>
+<b>2. Cash Settlement</b> — คำนวณส่วนต่างกำไรขาดทุนแล้วจ่ายเป็นเงินสด
+</div>
+</div>
+
+<!-- เงินประกัน 3 ประเภท -->
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;color:#1a1a1a;">
+<div style="font-size:0.8rem;font-weight:700;color:#004d40;font-family:'Prompt',sans-serif;margin-bottom:6px;">เงินประกัน (Margin) 3 ประเภท</div>
+<b>1. Initial Margin (IM)</b> — เงินประกันชั้นต้น<br>
+<span style="font-size:0.78rem;color:#555;">เงินที่ต้องวางไว้ตอนเริ่มต้นเพื่อเตรียมการซื้อขาย</span><br><br>
+<b>2. Maintenance Margin (MM)</b> — เงินประกันขั้นต่ำ<br>
+<span style="font-size:0.78rem;color:#555;">ระดับต่ำสุดที่นักลงทุนต้องมียอดคงเหลือไว้ในบัญชี</span><br><br>
+<b>3. Variation Margin (VM)</b> — เงินประกันผันแปร<br>
+<span style="font-size:0.78rem;color:#555;">เงินที่ถูกเรียก (Margin Call) ให้นำมาวางเพิ่มกลับสู่ระดับ IM เมื่อยอดต่ำกว่า MM</span>
+</div>
+
+<!-- สรุป -->
+<div style="background:#fce4e4;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
+<b style="color:#c62828;">★ สรุป:</b> ใส่เงินไปเป็น <b>IM</b> → รักษาระดับให้อยู่ที่ <b>MM</b> → ถ้าต่ำกว่านั้นจะโดน <b>VM (Margin Call)</b> ต้องเติมกลับให้ถึง IM
+</div>
+
+<!-- ตัวอย่างตาราง -->
+<div style="font-size:0.8rem;font-weight:700;color:#004d40;font-family:'Prompt',sans-serif;margin-bottom:6px;">ตัวอย่าง: SET Index Futures (มีนาคม 2548)</div>
+<div style="font-size:0.78rem;color:#555;font-family:'Sarabun',sans-serif;margin-bottom:8px;line-height:1.6;">
+ขนาดสัญญา 1,000 บาท/จุด &nbsp;·&nbsp; IM = 30,000 บาท/สัญญา &nbsp;·&nbsp; MM = 20,000 บาท/สัญญา
+</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:10px;overflow:hidden;font-family:'Sarabun',sans-serif;">
+<thead>
+<tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border-right:1px solid #00695c;">วันที่</th>
+<th style="padding:7px 8px;text-align:center;border-right:1px solid #00695c;">ราคา Futures</th>
+<th style="padding:7px 8px;text-align:center;border-right:1px solid #00695c;">P/L รายวัน</th>
+<th style="padding:7px 8px;text-align:center;border-right:1px solid #00695c;">P/L สะสม</th>
+<th style="padding:7px 8px;text-align:center;border-right:1px solid #00695c;">บัญชีประกัน</th>
+<th style="padding:7px 8px;text-align:center;">Margin Call</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#e0f2f1;">
+<td style="padding:7px 8px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">ซื้อ (วันที่ 1)</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">600.00</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">—</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">—</td>
+<td style="padding:7px 8px;text-align:center;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">30,000</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">—</td>
+</tr>
+<tr style="background:#fff;">
+<td style="padding:7px 8px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">สิ้นวันที่ 1</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">603.00</td>
+<td style="padding:7px 8px;text-align:center;color:#2e7d32;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">+3,000</td>
+<td style="padding:7px 8px;text-align:center;color:#2e7d32;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">+3,000</td>
+<td style="padding:7px 8px;text-align:center;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">33,000</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">—</td>
+</tr>
+<tr style="background:#e0f2f1;">
+<td style="padding:7px 8px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">สิ้นวันที่ 2</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">598.40</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">−4,600</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">−1,600</td>
+<td style="padding:7px 8px;text-align:center;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">28,400</td>
+<td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">—</td>
+</tr>
+<tr style="background:#fff8e0;border-left:3px solid #f9a825;">
+<td style="padding:7px 8px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">สิ้นวันที่ 3</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">589.90</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">−8,500</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">−10,100</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;font-weight:700;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">19,900</td>
+<td style="padding:7px 8px;text-align:center;font-weight:700;color:#e65100;border-bottom:1px solid #b2dfdb;">+10,100 ⚠️</td>
+</tr>
+<tr style="background:#e0f2f1;">
+<td style="padding:7px 8px;font-weight:700;color:#004d40;border-right:1px solid #b2dfdb;">สิ้นวันที่ 4</td>
+<td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;">593.20</td>
+<td style="padding:7px 8px;text-align:center;color:#2e7d32;font-weight:700;border-right:1px solid #b2dfdb;">+3,300</td>
+<td style="padding:7px 8px;text-align:center;color:#c62828;border-right:1px solid #b2dfdb;">−6,800</td>
+<td style="padding:7px 8px;text-align:center;font-weight:700;border-right:1px solid #b2dfdb;">33,300</td>
+<td style="padding:7px 8px;text-align:center;">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="font-size:0.72rem;color:#777;font-family:'Sarabun',sans-serif;margin-top:6px;line-height:1.6;">
+⚠️ วันที่ 3: บัญชี 19,900 &lt; MM 20,000 → โดน Margin Call ต้องเติมเงิน 10,100 บาทกลับสู่ IM (30,000)<br>
+วันที่ 4: บัญชีหลังเติมเงิน = 30,000 + 3,300 = 33,300 บาท
+</div>
+
+</div>
+</div>
+
 
 </div>`,
   'cfp2-ch9': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#546e7a;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(236,239,241,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#eceff1;font-family:'Prompt',sans-serif;">การลงทุนใน Hedge Fund</div></div>
