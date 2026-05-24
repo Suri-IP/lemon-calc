@@ -1669,6 +1669,49 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 💡 ตัวลวง ค. ถูกครึ่งเดียว — ถ้าเป็นโภคภัณฑ์ w เพิ่ม F จริง แต่สินทรัพย์ทางการเงินไม่มี w ในสูตรเลย
 </div>`
   }
+,
+  {
+    q: `บริษัท MVP จำกัด มีลูกหนี้ 9,500,000 บาท และมีค่าเผื่อหนี้สงสัยจะสูญ 1,000,000 บาท บริษัท MVP จำกัด จะมีลูกหนี้การค้าสุทธิเท่าไหร่`,
+    choices: ["−8.5 ล้านบาท", "8.5 ล้านบาท", "9.5 ล้านบาท", "10.5 ล้านบาท"],
+    answer: 1,
+    explain: `<b>ลูกหนี้การค้า = ลูกหนี้สุทธิ</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  ลูกหนี้สุทธิ = ลูกหนี้ − ค่าเผื่อหนี้สงสัยจะสูญ<br>
+  = 9,500,000 − 1,000,000<br>
+  = <b style="color:#2e7d32;">8,500,000 บาท (8.5 ล้าน)</b>
+</div>
+<div style="background:#fff3f6;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
+💡 <b>ค่าเผื่อหนี้สงสัยจะสูญ</b> คือมูลค่าที่ถูกประเมินว่าอาจไม่ได้รับชำระ เช่น เคยเบี้ยว, มีปัญหาการเงิน, เลยกำหนดมานานแล้ว — ตั้งไว้ก่อนเพื่อไม่ให้งบการเงินดูดีเกินจริง
+</div>`
+  }
+,
+  {
+    q: `บริษัท ABC จำกัด ซื้อสินค้าเพื่อขาย ดังนี้<br>
+วันที่ 3 มกราคม ซื้อสินค้าราคาเครื่องละ 800,000 บาท จำนวน 12 เครื่อง<br>
+วันที่ 25 มกราคม ซื้อสินค้าราคาเครื่องละ 1,000,000 บาท จำนวน 8 เครื่อง<br>
+ในระหว่างปี บริษัทขายสินค้าได้รวม 15 เครื่อง ต้นทุนขายตามวิธี FIFO เท่ากับเท่าใด`,
+    choices: ["12,600,000 บาท", "13,400,000 บาท", "14,000,000 บาท", "15,200,000 บาท"],
+    answer: 0,
+    explain: `<b>FIFO — เอาของเก่าออกก่อน</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  ขายได้ 15 เครื่อง<br>
+  รอบแรก (3 ม.ค.) มี 12 เครื่อง → 12 × 800,000 = <b>9,600,000</b><br>
+  ขาดอีก 3 เครื่อง → ดึงจากรอบ 25 ม.ค. → 3 × 1,000,000 = <b>3,000,000</b><br>
+  รวม = 9,600,000 + 3,000,000 = <b style="color:#2e7d32;">12,600,000 บาท</b>
+</div>`
+  },
+  {
+    q: `บริษัท XYZ จำกัด ซื้อสินค้าเพื่อขาย วันที่ 8 กุมภาพันธ์ ซื้อสินค้าราคาเครื่องละ 500,000 บาท จำนวน 20 เครื่อง และวันที่ 20 กุมภาพันธ์ ซื้อสินค้าราคาเครื่องละ 650,000 บาท จำนวน 10 เครื่อง ในระหว่างปี บริษัทขายสินค้าได้รวม 18 เครื่อง หากคิดต้นทุนขายตามวิธี LIFO จะเท่ากับเท่าไหร่`,
+    choices: ["9,900,000 บาท", "10,500,000 บาท", "10,700,000 บาท", "11,000,000 บาท"],
+    answer: 1,
+    explain: `<b>LIFO — เอาของใหม่ออกก่อน</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  ขายได้ 18 เครื่อง<br>
+  รอบท้าย (20 ก.พ.) มี 10 เครื่อง → 10 × 650,000 = <b>6,500,000</b><br>
+  ขาดอีก 8 เครื่อง → ดึงจากรอบ 8 ก.พ. → 8 × 500,000 = <b>4,000,000</b><br>
+  รวม = 6,500,000 + 4,000,000 = <b style="color:#2e7d32;">10,500,000 บาท</b>
+</div>`
+  }
 ];
 
 // ============================================================
@@ -2626,6 +2669,331 @@ OI นับเฉพาะ<b>สัญญาใหม่ที่ยังค�
 </div></div>`,
   'cfp2-p2-ch2e': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#5e35b1;border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">อัตราแลกเปลี่ยน</div></div><div style="display:flex;flex-direction:column;gap:8px;"><div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #7e57c2;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:4px;">1 · ระบบผูกค่ากับเงินสกุลอื่น (Fixed Rate)</div><div style="font-size:0.79rem;line-height:1.8;">• <b>Fixed</b> — ผูกกับ<b>สกุลเดียว</b> เช่น HKD กับ USD<br>• <b>Basket System</b> — ผูกกับ<b>กลุ่มเงินตราหลายสกุล</b><br><span style="color:#888;">ไทยเคยใช้ระบบนี้ก่อนปรับมาใช้ลอยตัว</span></div></div><div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #9575cd;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:4px;">2 · ระบบที่มีความยืดหยุ่นจำกัด</div><div style="font-size:0.79rem;line-height:1.8;">คล้ายระบบผูกค่า แต่อัตราแลกเปลี่ยนเคลื่อนไหวได้ใน<b>ช่วงกว้างกว่า</b></div></div><div style="background:#fff;border-radius:10px;padding:10px 12px;border-left:4px solid #b39ddb;"><div style="font-weight:800;font-size:0.82rem;color:#4a148c;margin-bottom:6px;">3 · ระบบที่มีความยืดหยุ่นสูง</div><div style="font-size:0.79rem;line-height:1.8;margin-bottom:8px;">ขึ้นอยู่กับ <b>Demand / Supply</b> ผันผวนมากกว่า 2 ระบบแรก</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#ede7f6;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b style="color:#4a148c;">3.1 Managed Float (Dirty Float) ★</b><br>ปล่อย rate เคลื่อนไหวตามตลาด ถ้าผิดปกติ<b>ธนาคารกลางเข้าแทรกแซง</b><br><span style="background:#d1c4e9;border-radius:4px;padding:1px 6px;font-size:0.74rem;color:#4a148c;font-weight:700;">ไทยปัจจุบันใช้ระบบนี้</span></div><div style="background:#ede7f6;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b style="color:#4a148c;">3.2 Free Float (Independent Float)</b><br>ค่าเงินลอยตัวตาม<b>กลไกตลาดมากที่สุด</b><br><span style="background:#fce4ec;border-radius:4px;padding:1px 6px;font-size:0.74rem;color:#c62828;font-weight:700;">★ ไม่มีประเทศไหนใช้จริง</span></div></div></div></div></div>`,
   'cfp2-p2-ch2f': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#4527a0;border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">นโยบายการเงินและการคลัง</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;"><div style="background:#e8eaf6;border-radius:10px;padding:10px 12px;border-top:3px solid #5c6bc0;text-align:center;"><div style="font-weight:800;font-size:0.82rem;color:#3949ab;margin-bottom:3px;">Monetary Policy</div><div style="font-size:0.75rem;color:#555;">นโยบายการเงิน</div><div style="margin-top:6px;background:#3949ab;color:#fff;border-radius:6px;padding:3px 0;font-size:0.74rem;font-weight:700;">ธนาคารกลาง (ธปท.)</div><div style="margin-top:5px;font-size:0.75rem;background:#fff;border-radius:5px;padding:3px 6px;color:#c62828;font-weight:700;">⚡ ผลกระทบเร็ว</div></div><div style="background:#fce4ec;border-radius:10px;padding:10px 12px;border-top:3px solid #e91e63;text-align:center;"><div style="font-weight:800;font-size:0.82rem;color:#880e4f;margin-bottom:3px;">Fiscal Policy</div><div style="font-size:0.75rem;color:#555;">นโยบายการคลัง</div><div style="margin-top:6px;background:#880e4f;color:#fff;border-radius:6px;padding:3px 0;font-size:0.74rem;font-weight:700;">กระทรวงการคลัง</div><div style="margin-top:5px;font-size:0.75rem;background:#fff;border-radius:5px;padding:3px 6px;color:#888;font-weight:700;">🐢 ผลกระทบช้า</div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#3949ab;margin-bottom:6px;">นโยบายการเงิน — เครื่องมือ</div><div style="font-size:0.79rem;line-height:1.8;margin-bottom:6px;">ควบคุม<b>ปริมาณเงินและเครดิต</b>ในระบบเศรษฐกิจ<br>เช่น Liquidity Asset Ratio · Loan to Deposit Ratio</div><div style="display:flex;flex-direction:column;gap:4px;"><div style="background:#e8eaf6;border-radius:7px;padding:6px 10px;font-size:0.79rem;"><b>1)</b> การควบคุม<b>อัตราดอกเบี้ย</b> (RP)</div><div style="background:#e8eaf6;border-radius:7px;padding:6px 10px;font-size:0.79rem;"><b>2)</b> <b>อัตราสำรองเงินธนาคาร</b> (Reserve Ratio)</div><div style="background:#e8eaf6;border-radius:7px;padding:6px 10px;font-size:0.79rem;"><b>3)</b> การ<b>ซื้อขายพันธบัตร</b></div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;"><div style="font-weight:800;font-size:0.82rem;color:#880e4f;margin-bottom:5px;">นโยบายการคลัง</div><div style="font-size:0.79rem;line-height:1.8;">เกี่ยวกับ<b>การใช้จ่ายภาครัฐ</b> (กว่าจะเสร็จ) และ<b>การจัดเก็บภาษี</b></div></div></div>`,
+  'cfp2-p2-ind': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:var(--lime);border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">ข้อมูลระดับอุตสาหกรรม</div></div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--lime);color:#1a2a00;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> การเปลี่ยนแปลงที่มีผลกระทบต่ออุตสาหกรรม</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+<div style="background:#f5ffe0;border-radius:8px;padding:8px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:0.82rem;font-weight:700;color:#1a2a00;flex-shrink:0;">1.</span><span><b>ประชากรศาสตร์</b></span></div>
+<div style="background:#f5ffe0;border-radius:8px;padding:8px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:0.82rem;font-weight:700;color:#1a2a00;flex-shrink:0;">2.</span><span><b>รูปแบบการดำเนินชีวิต</b></span></div>
+<div style="background:#f5ffe0;border-radius:8px;padding:8px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:0.82rem;font-weight:700;color:#1a2a00;flex-shrink:0;">3.</span><span><b>เทคโนโลยี</b></span></div>
+<div style="background:#f5ffe0;border-radius:8px;padding:8px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;display:flex;gap:10px;align-items:flex-start;"><span style="font-size:0.82rem;font-weight:700;color:#1a2a00;flex-shrink:0;">4.</span><span><b>การเมืองและกฎระเบียบ</b></span></div>
+</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--lime);color:#1a2a00;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> วัฏจักรของเศรษฐกิจ 4 แบบ</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px;">
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.8rem;font-weight:800;color:#2e7d32;font-family:'Prompt',sans-serif;margin-bottom:4px;">1. รุ่งเรือง (Peak)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">
+<span style="color:#2e7d32;">✓</span> จุดสูงสุดของวัฏจักร ทั้งการผลิตและการบริโภค<br>
+<span style="color:#c62828;">✗</span> เริ่มขาดแคลนแรงงานและวัตถุดิบ → ต้นทุนสูงขึ้น ราคาสินค้าสูง<br>
+<span style="color:#2e7d32;">✓</span> ธุรกิจมีกำไรสูง
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #c62828;">
+<div style="font-size:0.8rem;font-weight:800;color:#c62828;font-family:'Prompt',sans-serif;margin-bottom:4px;">2. หดตัว (Contraction)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">
+<span style="color:#c62828;">✗</span> กิจกรรมทางเศรษฐกิจลดลง, GDP ที่แท้จริงลดลง<br>
+<span style="color:#c62828;">✗</span> การผลิตและการจ้างงานลดลง<br>
+<span style="color:#c62828;">✗</span> รายได้ครัวเรือนลดลง, กำไรธุรกิจลดลง<br>
+<span style="color:#888;font-size:0.76rem;">หากหดตัวนานๆ เรียกว่า ภาวะเศรษฐกิจตกต่ำ (Depression)</span>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #b71c1c;">
+<div style="font-size:0.8rem;font-weight:800;color:#b71c1c;font-family:'Prompt',sans-serif;margin-bottom:4px;">3. ต่ำสุด (Recession / Trough)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">
+<span style="color:#c62828;">✗</span> การว่างงานสูง<br>
+<span style="color:#c62828;">✗</span> ความต้องการมวลรวมลดลง สินค้าขายไม่ออก<br>
+<span style="color:#c62828;">✗</span> การขยายตัวทางธุรกิจต่ำเนื่อง
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #1565c0;">
+<div style="font-size:0.8rem;font-weight:800;color:#1565c0;font-family:'Prompt',sans-serif;margin-bottom:4px;">4. ขยายตัว (Recovery / Expansion)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">
+<span style="color:#2e7d32;">✓</span> การผลิตและการจ้างงานเพิ่มขึ้น<br>
+<span style="color:#2e7d32;">✓</span> รายได้และรายจ่ายครัวเรือนสูงขึ้น<br>
+<span style="color:#2e7d32;">✓</span> การลงทุนเพิ่มขึ้น, GDP ที่แท้จริงสูงขึ้น
+</div>
+</div>
+</div>
+
+<div style="background:#f5ffe0;border-radius:10px;padding:10px 14px;margin-bottom:4px;font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+<b>💡 วิธีจำลำดับไม่ให้สลับ (จำเป็นคู่)</b><br>
+<b>ขยายตัว → รุ่งเรือง</b> — ก่อนจะรุ่งต้องขยายก่อน<br>
+<b>หดตัว → ต่ำสุด</b> — ก่อนจะต่ำสุดต้องค่อยๆ หดก่อน
+</div>
+<div style="font-size:0.74rem;color:#888;font-family:'Sarabun',sans-serif;padding:0 2px;line-height:1.6;">* แต่ละตำราอาจใช้คำแตกต่างกัน ถ้าอ่านเพื่อสอบให้ยึดตามตำราที่เรียนเพื่อไม่ให้สับสน</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--lime);color:#1a2a00;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> วัฏจักรชีวิตอุตสาหกรรม</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px;">
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #888;">
+<div style="font-size:0.8rem;font-weight:800;color:#555;font-family:'Prompt',sans-serif;margin-bottom:4px;">1. เริ่มต้น (Introduction)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">คนรู้จักน้อย · กำไรต่ำ/ขาดทุน · ค่า R&amp;D และการตลาดสูง<br><b style="color:#c62828;">ความเสี่ยงสูง — ไม่น่าลงทุน</b></div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.8rem;font-weight:800;color:#2e7d32;font-family:'Prompt',sans-serif;margin-bottom:4px;">2. เติบโต (Growth)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">ลูกค้าเริ่มยอมรับ · ยอดขายโตเร็ว · คู่แข่งเริ่มเข้า · บริษัทเริ่มแข็งแรง<br><b style="color:#2e7d32;">น่าลงทุน</b></div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #f57f17;">
+<div style="font-size:0.8rem;font-weight:800;color:#f57f17;font-family:'Prompt',sans-serif;margin-bottom:4px;">3. อิ่มตัว (Maturity)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">ตลาดเริ่มอิ่มตัว · ยอดขายโตช้าลง · แข่งรุนแรง · ต้นทุนการตลาดสูง<br><b style="color:#f57f17;">หุ้นอาจเริ่มลง</b></div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #c62828;">
+<div style="font-size:0.8rem;font-weight:800;color:#c62828;font-family:'Prompt',sans-serif;margin-bottom:4px;">4. เสื่อมถอย (Decline)</div>
+<div style="font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;color:#333;">ยอดขายลด · มีสินค้าทดแทน · คู่แข่งทยอยออก<br><b style="color:#c62828;">ไม่น่าลงทุน</b></div>
+</div>
+</div>
+</div>
+
+<div style="background:#e8f5e9;border-radius:10px;padding:10px 14px;margin-bottom:4px;font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+<b style="color:#1b5e20;">วัฏจักรเศรษฐกิจ VS วัฏจักรชีวิตอุตสาหกรรม</b><br>
+วัฏจักรเศรษฐกิจ = <b>ภาพใหญ่</b> ของทั้งระบบ<br>
+วัฏจักรชีวิตอุตสาหกรรม = <b>ภาพย่อย</b> ของแต่ละอุตสาหกรรม<br>
+ทั้งสองไม่จำเป็นต้องอยู่ในเฟสเดียวกัน เช่น ช่วงเศรษฐกิจถดถอย อุตสาหกรรม AI อาจยังอยู่ในช่วงเติบโตได้
+</div>
+
+
+
+</div>`,
+  'cfp2-p2-comp': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:var(--purple);border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม</div></div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--purple);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> โครงสร้างตลาด</div>
+
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:4px;">
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.82rem;font-weight:800;color:#1b5e20;font-family:'Sarabun',sans-serif;margin-bottom:4px;">ตลาดแข่งขันสมบูรณ์</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· ผู้ซื้อและผู้ขายมีจำนวนมาก<br>
+· สินค้าใกล้เคียงกันมาก<br>
+· รายใหม่เข้าสู่ตลาดได้ง่าย<br>
+· ทุกฝ่ายเข้าถึงข้อมูลได้เสมอกัน<br>
+<span style="color:#888;font-size:0.76rem;">เช่น ตลาดผลผลิตทางการเกษตร</span>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #c62828;">
+<div style="font-size:0.82rem;font-weight:800;color:#b71c1c;font-family:'Sarabun',sans-serif;margin-bottom:4px;">ตลาดผูกขาดแท้จริง</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· มีผู้ขายเจ้าเดียว สินค้ามีลักษณะพิเศษไม่มีของแทน<br>
+· รายเก่ากีดกันรายใหม่ได้<br>
+<span style="color:#888;font-size:0.76rem;">เช่น อุตสาหกรรมไฟฟ้า รถไฟใต้ดิน</span>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #f57f17;">
+<div style="font-size:0.82rem;font-weight:800;color:#e65100;font-family:'Sarabun',sans-serif;margin-bottom:4px;">ตลาดกึ่งแข่งขันกึ่งผูกขาด</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· คล้ายตลาดแข่งขันสมบูรณ์ แต่สินค้าแต่ละรายมีความแตกต่างกัน<br>
+<span style="color:#888;font-size:0.76rem;">เช่น ผงซักฟอก ยาสีฟัน ยาสระผม</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div style="margin-bottom:14px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--purple);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> 5 Forces Model</div>
+<div style="font-size:0.78rem;color:#555;font-family:'Sarabun',sans-serif;margin-bottom:8px;">ใช้วิเคราะห์ "ความน่าสนใจของอุตสาหกรรม" และแรงกดดันการแข่งขัน</div>
+
+<div style="display:flex;flex-direction:column;gap:6px;">
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #9C6CFF;">
+<div style="font-size:0.82rem;font-weight:800;color:#4a148c;font-family:'Sarabun',sans-serif;margin-bottom:4px;">1) การแข่งขันในอุตสาหกรรม</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· คู่แข่งเยอะ / ตลาดโตช้า → แย่งลูกค้า<br>
+· ต้นทุนคงที่สูง → ตัดราคา<br>
+· มีคู่แข่งต่างประเทศ → แข่งเพิ่ม
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #c62828;">
+<div style="font-size:0.82rem;font-weight:800;color:#b71c1c;font-family:'Sarabun',sans-serif;margin-bottom:4px;">2) ภัยจากผู้เล่นรายใหม่</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+เข้าง่าย → กำไรอุตสาหกรรมลด<br>
+<b style="color:#555;">สิ่งกีดกัน:</b> เงินลงทุนสูง · Economy of Scale · ช่องทางขายเข้ายาก · ลูกค้าเปลี่ยนแบรนด์ยาก · กฎหมาย/สัมปทาน
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #f57f17;">
+<div style="font-size:0.82rem;font-weight:800;color:#e65100;font-family:'Sarabun',sans-serif;margin-bottom:4px;">3) สินค้าทดแทน</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+มีของแทนมาก → ตั้งราคาแพงยาก → กำไรลด
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #1565c0;">
+<div style="font-size:0.82rem;font-weight:800;color:#0d47a1;font-family:'Sarabun',sans-serif;margin-bottom:4px;">4) อำนาจต่อรองของผู้ซื้อ → กดราคาได้</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+มีอำนาจมากเมื่อ: ซื้อปริมาณมาก · รู้ต้นทุนผู้ขาย
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.82rem;font-weight:800;color:#1b5e20;font-family:'Sarabun',sans-serif;margin-bottom:4px;">5) อำนาจต่อรองของผู้ขายปัจจัยการผลิต → ขึ้นราคาได้</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+มีอำนาจมากเมื่อ: มีผู้ขายน้อยราย · รวมตัวกัน · ไม่มีสินค้าทดแทน
+</div>
+</div>
+
+</div>
+</div>
+
+</div>`,
+  'cfp2-p2-biz': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:var(--pink);border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">การวิเคราะห์ข้อมูลบริษัท</div></div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> การวิเคราะห์ SWOT</div>
+
+<div style="font-size:0.77rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:6px;">ปัจจัยภายใน</div>
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.82rem;font-weight:800;color:#1a1a1a;font-family:'Sarabun',sans-serif;margin-bottom:3px;"><span style="color:#2e7d32;font-size:1rem;">S</span>trength — จุดแข็ง</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.7;">ใช้จุดเด่น จุดแข็ง ให้เกิดประโยชน์ (สร้างโอกาส)</div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #c62828;">
+<div style="font-size:0.82rem;font-weight:800;color:#1a1a1a;font-family:'Sarabun',sans-serif;margin-bottom:3px;"><span style="color:#c62828;font-size:1rem;">W</span>eakness — จุดอ่อน</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.7;">ข้อด้อย ต้องหาวิธีปรับปรุง (มีโอกาสสร้างความเสียหาย)</div>
+</div>
+</div>
+
+<div style="font-size:0.77rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:6px;">ปัจจัยภายนอก</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #1565c0;">
+<div style="font-size:0.82rem;font-weight:800;color:#1a1a1a;font-family:'Sarabun',sans-serif;margin-bottom:3px;"><span style="color:#1565c0;font-size:1rem;">O</span>pportunity — โอกาส</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.7;">สถานการณ์ที่เป็นประโยชน์กับบริษัท (สร้างโอกาส)</div>
+</div>
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #f57f17;">
+<div style="font-size:0.82rem;font-weight:800;color:#1a1a1a;font-family:'Sarabun',sans-serif;margin-bottom:3px;"><span style="color:#f57f17;font-size:1rem;">T</span>hreats — อุปสรรค</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.7;">สถานการณ์ที่เป็นโทษกับบริษัท (มีโอกาสสร้างความเสียหาย)</div>
+</div>
+</div>
+</div>
+
+<div style="margin-bottom:14px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> กลยุทธ์การแข่งขัน</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #7986cb;">
+<div style="font-size:0.82rem;font-weight:800;color:#3949ab;font-family:'Sarabun',sans-serif;margin-bottom:4px;">เชิงรับ (Defensive)</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· สร้างความสามารถในการแข่งขัน<br>
+· ใช้การป้องกัน หรือลดผลกระทบจากการแข่งขัน
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #e53935;">
+<div style="font-size:0.82rem;font-weight:800;color:#b71c1c;font-family:'Sarabun',sans-serif;margin-bottom:4px;">เชิงรุก (Offensive)</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· ใช้ความรู้ความสามารถ จุดแข็งของบริษัท<br>
+· เพื่อให้เกิดการเปลี่ยนแปลง 5 Forces
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #2e7d32;">
+<div style="font-size:0.82rem;font-weight:800;color:#1b5e20;font-family:'Sarabun',sans-serif;margin-bottom:4px;">ต้นทุนต่ำ (Low Cost)</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· เป็นผู้นำด้านต้นทุนต่ำ · ประหยัดต้นทุน<br>
+· ใช้ Economy of Scale หรือเทคโนโลยี
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;border-left:4px solid #f06292;">
+<div style="font-size:0.82rem;font-weight:800;color:#880e4f;font-family:'Sarabun',sans-serif;margin-bottom:4px;">สร้างความแตกต่าง (Differentiation)</div>
+<div style="font-size:0.79rem;color:#333;line-height:1.8;">
+· สร้างความแตกต่างในสินค้า หรือบริการ
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> การวิเคราะห์งบการเงิน</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;">
+<div style="font-size:0.8rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:6px;">งบการเงิน 6 ส่วน</div>
+<div style="font-size:0.79rem;color:#333;font-family:'Sarabun',sans-serif;line-height:2;">
+1. รายงานผู้สอบบัญชี<br>
+2. งบดุล<br>
+3. งบกำไรขาดทุน<br>
+4. งบกระแสเงินสด<br>
+5. งบแสดงการเปลี่ยนแปลงของส่วนผู้ถือหุ้น<br>
+6. หมายเหตุประกอบงบ
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;">
+<div style="font-size:0.8rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:6px;">รายงานผู้สอบบัญชี 4 แบบ</div>
+<div style="display:flex;flex-direction:column;gap:5px;font-size:0.79rem;font-family:'Sarabun',sans-serif;">
+<div style="display:flex;gap:8px;line-height:1.7;"><span style="font-weight:700;flex-shrink:0;color:#2e7d32;">1.</span><span><b>ไม่มีเงื่อนไข</b> — ถูกต้องตามมาตรฐาน</span></div>
+<div style="display:flex;gap:8px;line-height:1.7;"><span style="font-weight:700;flex-shrink:0;color:#f57f17;">2.</span><span><b>มีเงื่อนไข</b> — ไม่มีแน่นอน <b style="color:#c62828;">มีสาระสำคัญ</b></span></div>
+<div style="display:flex;gap:8px;line-height:1.7;"><span style="font-weight:700;flex-shrink:0;color:#e65100;">3.</span><span><b>ไม่ได้ระบุไว้</b> — มีเงื่อนไขอย่าง <b style="color:#c62828;">มีสาระสำคัญมาก</b></span></div>
+<div style="display:flex;gap:8px;line-height:1.7;"><span style="font-weight:700;flex-shrink:0;color:#c62828;">4.</span><span><b>เป็นเรื่อง</b> — เห็นว่า <b style="color:#c62828;">ไม่ถูกต้อง</b></span></div>
+</div>
+</div>
+</div>
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:var(--pink);color:#fff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ลูกหนี้การค้าและสินค้าคงเหลือ</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
+<div style="font-size:0.8rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:4px;">ลูกหนี้การค้า</div>
+<b>ลูกหนี้สุทธิ</b> = ลูกหนี้ − ค่าเผื่อหนี้สงสัยจะสูญ
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
+<div style="font-size:0.8rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:4px;">สินค้าคงเหลือ</div>
+<b>สินค้าคงเหลือ</b> = สินค้าสำเร็จรูป + สินค้าอยู่ระหว่างผลิต + วัตถุดิบ<br>
+<div style="margin-top:4px;font-size:0.78rem;color:#333;">แสดงในราคาทุน หรือมูลค่าสุทธิที่คาดว่าจะได้รับ <b style="color:#c62828;">แล้วแต่ว่าราคาไหนจะต่ำกว่า</b></div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;">
+<div style="font-size:0.8rem;font-weight:700;color:#880e4f;font-family:'Prompt',sans-serif;margin-bottom:8px;">การคำนวณต้นทุนสินค้าคงเหลือ</div>
+<div style="font-size:0.77rem;color:#555;font-family:'Sarabun',sans-serif;margin-bottom:8px;line-height:1.6;">ใช้เมื่อบริษัทซื้อของเข้ามาหลายรอบในราคาต่างกัน แล้วต้องคิดว่า "ของที่ขายออกไป" ใช้ต้นทุนเท่าไร</div>
+
+<div style="display:flex;flex-direction:column;gap:7px;">
+
+<div style="background:#f0fff8;border-radius:9px;padding:9px 12px;border-left:3px solid #2e7d32;">
+<div style="font-size:0.8rem;font-weight:800;color:#1b5e20;font-family:'Sarabun',sans-serif;margin-bottom:3px;">1. FIFO — First In, First Out</div>
+<div style="font-size:0.78rem;color:#333;line-height:1.75;">ของเข้าก่อน → ออกก่อน เช่น นมในร้านสะดวกซื้อ<br>
+ซื้อ <b>10 บาท</b> → ซื้อ <b>15 บาท</b> → ขาย 1 ชิ้น ใช้ต้นทุน <b>10 บาท</b><br>
+<span style="color:#c62828;">ช่วงเงินเฟ้อ → กำไรสูงกว่า เพราะต้นทุนเก่าถูกกว่า</span></div>
+</div>
+
+<div style="background:#fff5f5;border-radius:9px;padding:9px 12px;border-left:3px solid #c62828;">
+<div style="font-size:0.8rem;font-weight:800;color:#b71c1c;font-family:'Sarabun',sans-serif;margin-bottom:3px;">2. LIFO — Last In, First Out</div>
+<div style="font-size:0.78rem;color:#333;line-height:1.75;">ของเข้าหลัง → ออกก่อน<br>
+ซื้อ <b>10 บาท</b> → ซื้อ <b>15 บาท</b> → ขาย 1 ชิ้น ใช้ต้นทุน <b>15 บาท</b><br>
+<span style="color:#c62828;">ช่วงเงินเฟ้อ → กำไรต่ำลง เพราะใช้ต้นทุนใหม่ที่แพงกว่า</span></div>
+</div>
+
+<div style="background:#f8f8ee;border-radius:9px;padding:9px 12px;border-left:3px solid #f57f17;">
+<div style="font-size:0.8rem;font-weight:800;color:#e65100;font-family:'Sarabun',sans-serif;margin-bottom:3px;">3. Weighted Average Cost</div>
+<div style="font-size:0.78rem;color:#333;line-height:1.75;">เฉลี่ยต้นทุนทั้งหมด<br>
+ซื้อ 10 บาท 1 ชิ้น + ซื้อ 15 บาท 1 ชิ้น → ต้นทุนเฉลี่ย = (10+15)÷2 = <b>12.5 บาท</b><br>
+ขายออกเมื่อไร → ใช้ <b>12.5</b> เป็นต้นทุน<br>
+<span style="color:#555;">ตัวเลขไม่เหวี่ยง — เป็นค่ากลางระหว่าง FIFO กับ LIFO</span></div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>`,
   'cfp2-p2-ch3a': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#1a7fa8;border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">การวิเคราะห์ข้อมูลเชิงปริมาณ (1)</div></div><div style="background:#e0f4ff;border-radius:10px;padding:8px 12px;margin-bottom:10px;font-size:0.79rem;font-weight:700;color:#1a7fa8;display:flex;gap:10px;justify-content:center;"><span>Common-Size = แนว<b>ดิ่ง</b> ↕</span><span>|</span><span>Trend = แนว<b>ราบ</b> ↔</span></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.83rem;color:#1a7fa8;margin-bottom:6px;">1 · Common-Size Analysis ↕ แนวดิ่ง</div><div style="font-size:0.79rem;line-height:1.8;margin-bottom:6px;">แปลงตัวเลข<b>ทั้งงบ</b>ให้อยู่ในรูป <b>%</b> เพื่อเปรียบเทียบองค์ประกอบงวดต่องวด</div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>งบดุล</b> — เทียบสัดส่วนสินทรัพย์กับหนี้สินและทุน<br>ดูโครงสร้างสินทรัพย์หลัก หนี้สินหลัก</div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>งบกำไรขาดทุน</b> — เทียบรายการต่างๆ (ขาย ค่าใช้จ่าย กำไร) กับ<b>ยอดขาย</b><br>โครงสร้างต้นทุนคงที่ vs ผันแปร</div></div><div style="background:#fff8e0;border-radius:7px;padding:6px 10px;margin-top:6px;font-size:0.77rem;color:#f57f17;">ต้องทำทั้งงบดุล และงบกำไรขาดทุน ให้ครบ</div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.83rem;color:#1a7fa8;margin-bottom:6px;">2 · Trend Analysis ↔ แนวราบ</div><div style="font-size:0.79rem;line-height:1.8;margin-bottom:6px;">ดูแนวโน้ม<b>การเติบโต/หดตัว</b> ทำเฉพาะรายการที่<b>สนใจ</b></div><div style="display:flex;flex-direction:column;gap:5px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>งบดุล</b> — ลูกหนี้การค้า สินค้าคงเหลือ เจ้าหนี้การค้า เงินกู้ยืม</div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>งบกำไรขาดทุน</b> — รายได้ กำไรแต่ละขั้น โครงสร้างต้นทุน</div></div><div style="background:#fff8e0;border-radius:7px;padding:6px 10px;margin-top:6px;font-size:0.77rem;color:#f57f17;">ทำหลัง Common-Size · เลือกเฉพาะส่วนที่น่าสนใจ ไม่ต้องทำทั้งหมด</div></div><div style="background:#e0f4ff;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:0.79rem;line-height:2;"><b style="color:#1a7fa8;">สรุป:</b><br><b>Common-Size (↕)</b> = แปลง <b>"ทั้งงบ"</b> เป็น %<br><b>Trend Analysis (↔)</b> = เลือก <b>"ตัวสำคัญ"</b> มาดูแนวโน้มหลายปี</div><div style="background:#fff;border-radius:12px;padding:10px 14px;"><div style="font-weight:800;font-size:0.83rem;color:#1a7fa8;margin-bottom:4px;">3 · Fund Flow Analysis</div><div style="font-size:0.77rem;color:#888;margin-bottom:8px;">หรือเรียกว่า "งบกระแสเงินสด" — ดูว่าเงินทุน<b>มาจากไหน</b> และ<b>ใช้ถูกประเภทไหม</b></div><div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>สินทรัพย์ถาวร</b> → ใช้เงินจาก<b>แหล่งระยะยาว</b> + กำไรบางส่วน<br><span style="color:#888;font-size:0.75rem;">ถ้าเงินกู้ยาวไม่พอ ต้องดึงกำไรมาช่วย</span></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b>สินทรัพย์หมุนเวียน</b> → ใช้เงิน<b>หมุนเวียนระยะสั้น</b><br><span style="color:#c62828;font-size:0.75rem;">ถ้าดึงกำไรมาช่วยสินทรัพย์ถาวรมากเกิน → กระทบสภาพคล่อง</span></div></div><div style="background:#e8f5e9;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:0.78rem;"><b style="color:#1b5e20;">สมการแหล่งเงินหมุนเวียน</b><br><div style="margin-top:5px;line-height:2;font-size:0.77rem;">การ<b>เพิ่มขึ้น</b>ในสินทรัพย์หมุนเวียน =<br>&nbsp;&nbsp;+ การ<b>ลด</b>สินทรัพย์หมุนเวียน (เช่น เก็บเงินจากลูกหนี้)<br>&nbsp;&nbsp;+ การ<b>ลด</b>หนี้สินหมุนเวียน (จ่ายคืน)<br>&nbsp;&nbsp;+ การ<b>เพิ่ม</b>หนี้สินหมุนเวียน (กู้ระยะสั้นเพิ่ม)<br>&nbsp;&nbsp;+ กำไรบางส่วนจากการดำเนินงาน</div><div style="margin-top:5px;font-size:0.75rem;color:#555;">= Accounting Identity — ทุก baht ที่เข้าออกต้องสมดุล</div></div><div style="background:#fce4e4;border-radius:8px;padding:8px 10px;font-size:0.78rem;"><b style="color:#c62828;">⚠️ สัญญาณอันตราย</b><br>เงินหมุนเวียนถูกใช้ไปกับสินทรัพย์ถาวร + <b>หนี้ระยะสั้นโตเร็วกว่าทุนระยะสั้น</b> → ลำบากชำระหนี้ระยะสั้น<br><span style="color:#888;font-size:0.75rem;">เช่น งานยาว กู้สั้น งานยังไม่เสร็จต้องหาเงินมาใช้หนี้</span></div></div></div>`,
   'cfp2-p2-ch3b': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#0d5c7a;border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">การวิเคราะห์ข้อมูลเชิงปริมาณ (2)</div></div><div style="font-size:0.79rem;line-height:1.8;margin-bottom:10px;">ใช้ตอบคำถาม เช่น สภาพคล่อง ประสิทธิภาพสินทรัพย์ ภาระหนี้ — ต้องทำ Common-Size และ Trend มาก่อน</div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#0d5c7a;margin-bottom:8px;">1 · Liquidity — สภาพคล่อง / ชำระหนี้ระยะสั้น</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราส่วนเงินทุนหมุนเวียน (Current Ratio)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">สินทรัพย์หมุนเวียน</div><div style="padding:1px 8px;">หนี้สินหมุนเวียน</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราส่วนสินทรัพย์คล่องตัว (Quick Ratio)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">สินทรัพย์หมุนเวียน − สินค้าคงเหลือ</div><div style="padding:1px 8px;">หนี้สินหมุนเวียน</div></div><span></span></div></div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#0d5c7a;margin-bottom:8px;">2 · Asset Management — ประสิทธิภาพบริหารสินทรัพย์</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราหมุนเวียนสินทรัพย์ถาวร (Fixed Asset Turnover)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">ยอดขาย</div><div style="padding:1px 8px;">สินทรัพย์ถาวร</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราหมุนเวียนสินทรัพย์รวม (Total Asset Turnover)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">ยอดขาย</div><div style="padding:1px 8px;">สินทรัพย์รวม</div></div><span></span></div></div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#0d5c7a;margin-bottom:8px;">3 · Cash Conversion Cycle — วงจรกระแสเงินสด</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราส่วนหมุนเวียนลูกหนี้การค้า (Receivable Turnover)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">ยอดขาย</div><div style="padding:1px 8px;">ลูกหนี้เฉลี่ย</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>ระยะเวลาเก็บหนี้ (Collection Period)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">365</div><div style="padding:1px 8px;">Receivable Turnover</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราส่วนหมุนเวียนสินค้าคงเหลือ (Inventory Turnover)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">ต้นทุนขาย</div><div style="padding:1px 8px;">สินค้าคงเหลือเฉลี่ย</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>ระยะเวลาขายสินค้า (Inventory Days)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">365</div><div style="padding:1px 8px;">Inventory Turnover</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราส่วนหมุนเวียนเจ้าหนี้การค้า (Payable Turnover)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">ต้นทุนขาย</div><div style="padding:1px 8px;">เจ้าหนี้การค้าเฉลี่ย</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>ระยะเวลาจ่ายหนี้ (Payable Days)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">365</div><div style="padding:1px 8px;">Payable Turnover</div></div><span></span></div></div><div style="background:#c8e6ff;border-radius:8px;padding:8px 10px;border:2px solid #0d5c7a;font-size:0.79rem;"><b>วงจรกระแสเงินสด (Cash Conversion Cycle)</b><br>= ระยะเวลาขายสินค้า + ระยะเวลาเก็บหนี้ − ระยะเวลาจ่ายหนี้</div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#0d5c7a;margin-bottom:8px;">4 · Leverage — ภาระหนี้สิน</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>หนี้สินต่อสินทรัพย์ (Debt Ratio)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">หนี้สินรวม</div><div style="padding:1px 8px;">สินทรัพย์รวม</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>หนี้สินต่อส่วนของเจ้าของ (Debt to Equity Ratio)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">หนี้สินรวม</div><div style="padding:1px 8px;">ส่วนผู้ถือหุ้น</div></div><span></span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>ความสามารถในการจ่ายดอกเบี้ย (Interest Coverage Ratio)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรจากการดำเนินงาน</div><div style="padding:1px 8px;">ดอกเบี้ยจ่าย</div></div><span></span></div></div></div></div><div style="background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;"><div style="font-weight:800;font-size:0.82rem;color:#0d5c7a;margin-bottom:8px;">5 · Profitability — ความสามารถทำกำไร</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตรากำไรขั้นต้น (Gross Margin)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรขั้นต้น</div><div style="padding:1px 8px;">ยอดขาย</div></div><span> × 100</span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตรากำไรจากการดำเนินงาน (Operating Income Margin)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรจากการดำเนินงาน</div><div style="padding:1px 8px;">ยอดขาย</div></div><span> × 100</span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตรากำไรสุทธิ (Net Profit Margin)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรสุทธิ</div><div style="padding:1px 8px;">ยอดขาย</div></div><span> × 100</span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราผลตอบแทนจากสินทรัพย์ (ROA)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรสุทธิ</div><div style="padding:1px 8px;">สินทรัพย์รวม</div></div><span> × 100</span></div></div><div style="background:#e0f4ff;border-radius:8px;padding:8px 10px;font-size:0.79rem;"><b>อัตราผลตอบแทนจากส่วนผู้ถือหุ้น (ROE)</b><br><div style="display:flex;align-items:center;gap:6px;margin-top:4px;"><span>=</span><div style="display:inline-block;text-align:center;"><div style="border-bottom:2px solid #0d5c7a;padding:1px 8px;">กำไรสุทธิ</div><div style="padding:1px 8px;">ส่วนผู้ถือหุ้น</div></div><span> × 100</span></div></div></div></div><div style="background:#e0f4ff;border-radius:10px;padding:9px 12px;font-size:0.79rem;">💡 <span onclick="openTips()" style="color:#0d5c7a;font-weight:700;cursor:pointer;text-decoration:underline;">ทริคอื่นๆ</span> ช่วยจำสูตรได้</div></div>`,
   'cfp2-ch12': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#f06292;border-radius:12px;padding:12px 14px;margin-bottom:16px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">สัญญาออปชัน (2)</div></div>
@@ -2675,7 +3043,7 @@ const PART1_CARDS = [
 const PART2_CARDS = [
   {id:'cfp2-p2-ch1', num:'1', bg:'#7986cb', color:'#1a237e', title:'ข้อมูลและการวิเคราะห์เพื่อลงทุน', sub:'3 หัวข้อ · 4 คำถามคัดเลือก · Fundamental · ข้อมูลมหภาค', type:'note'},
   {id:'cfp2-p2-ch2', num:'2', bg:'#5c6bc0', color:'#fff',    title:'ข้อมูลที่ยังไม่ผ่านการวิเคราะห์',  sub:'6 เรื่อง · GDP เงินเฟ้อ ดอกเบี้ย ดุล อัตราแลกเปลี่ยน นโยบาย', type:'sub'},
-  {id:'cfp2-p2-ch3', num:'3', bg:'#1a7fa8', color:'#fff',    title:'ข้อมูลที่ผ่านการวิเคราะห์แล้ว',   sub:'2 card · การวิเคราะห์เชิงปริมาณ (1) · (2)', type:'sub'},
+  {id:'cfp2-p2-ch3', num:'3', bg:'var(--lime)', color:'#1a2a00', title:'ข้อมูลที่ผ่านการวิเคราะห์แล้ว',   sub:'2 card · การวิเคราะห์เชิงปริมาณ (1) · (2)', type:'sub'},
 ];
 
 const SUB_CARDS = {
@@ -2688,6 +3056,9 @@ const SUB_CARDS = {
     {id:'cfp2-p2-ch2f', bg:'#4527a0', color:'#fff', title:'นโยบายการเงินและการคลัง',           sub:'Monetary vs Fiscal · ธปท. vs กระทรวงการคลัง'},
   ],
   'cfp2-p2-ch3': [
+    {id:'cfp2-p2-ind',  bg:'var(--lime)', color:'#1a2a00', title:'ข้อมูลระดับอุตสาหกรรม', sub:'วัฏจักรเศรษฐกิจ · วัฏจักรอุตสาหกรรม'},
+    {id:'cfp2-p2-comp', bg:'var(--purple)', color:'#fff', title:'การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม', sub:'โครงสร้างตลาด · 5 Forces Model'},
+    {id:'cfp2-p2-biz',  bg:'var(--pink)', color:'#fff', title:'การวิเคราะห์ข้อมูลบริษัท', sub:'SWOT · กลยุทธ์การแข่งขัน · งบการเงิน'},
     {id:'cfp2-p2-ch3a', bg:'#1a7fa8', color:'#fff', title:'การวิเคราะห์ข้อมูลเชิงปริมาณ (1)', sub:'Common-Size · Trend Analysis · Fund Flow'},
     {id:'cfp2-p2-ch3b', bg:'#0d5c7a', color:'#fff', title:'การวิเคราะห์ข้อมูลเชิงปริมาณ (2)', sub:'เน้นสูตร · อัตราส่วนทางการเงิน'},
   ],
@@ -2728,6 +3099,15 @@ function openNotesSub(subId) {
   // หา title จาก PART2_CARDS
   const parent = [...PART2_CARDS].find(c => c.id === subId);
   title.textContent = parent ? parent.title : '';
+  // dynamic bar color
+  const bg = parent ? (parent.bg || 'var(--lime)') : 'var(--lime)';
+  const col = parent ? (parent.color || '#1a2a00') : '#1a2a00';
+  const isLight = col === '#1a2a00' || col === '#000';
+  document.getElementById('notes-sub-bar').style.background = bg;
+  document.getElementById('notes-sub-title').style.color = col;
+  document.getElementById('notes-sub-back').style.color = col;
+  document.getElementById('notes-sub-back').style.background = isLight ? 'rgba(26,42,0,0.15)' : 'rgba(255,255,255,0.2)';
+  document.getElementById('notes-sub-sub').style.color = isLight ? 'rgba(26,42,0,0.6)' : 'rgba(255,255,255,0.6)';
   body.innerHTML = cards.map(c =>
     '<div onclick="openNoteDetail(\'' + c.id + '\')" style="background:rgba(255,255,235,0.06);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;">'
     + '<div style="width:10px;height:10px;border-radius:50%;background:' + c.bg + ';flex-shrink:0;margin-left:4px;"></div>'
@@ -2764,7 +3144,10 @@ function openNoteDetail(id) {
     'cfp2-p2-ch2d':  {sub:'CFP M2 · Part 2', title:'ดุลงบประมาณ และดุลการชำระเงิน',  bg:'#7e57c2', color:'#fff'},
     'cfp2-p2-ch2e':  {sub:'CFP M2 · Part 2', title:'อัตราแลกเปลี่ยน',                bg:'#5e35b1', color:'#fff'},
     'cfp2-p2-ch2f':  {sub:'CFP M2 · Part 2', title:'นโยบายการเงินและการคลัง',        bg:'#4527a0', color:'#fff'},
-    'cfp2-p2-ch3':   {sub:'CFP M2 · Part 2', title:'ข้อมูลที่ผ่านการวิเคราะห์แล้ว',   bg:'#1a7fa8', color:'#fff'},
+    'cfp2-p2-ind':   {sub:'CFP M2 · Part 2', title:'ข้อมูลระดับอุตสาหกรรม',           bg:'var(--lime)', color:'#1a2a00'},
+    'cfp2-p2-comp':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม', bg:'var(--purple)', color:'#fff'},
+    'cfp2-p2-biz':   {sub:'CFP M2 · Part 2', title:'การวิเคราะห์ข้อมูลบริษัท',        bg:'var(--pink)', color:'#fff'},
+    'cfp2-p2-ch3':   {sub:'CFP M2 · Part 2', title:'ข้อมูลที่ผ่านการวิเคราะห์แล้ว',   bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p2-ch3a':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์เชิงปริมาณ (1)',       bg:'#1a7fa8', color:'#fff'},
     'cfp2-p2-ch3b':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์เชิงปริมาณ (2)',       bg:'#0d5c7a', color:'#fff'}
   };
@@ -3626,11 +4009,11 @@ renderCD();
 
 <!-- NOTES SUB SCREEN -->
 <div id="notes-sub-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:510;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
-  <div style="background:#5c6bc0;padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
-    <button onclick="closeNotesSub()" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+  <div id="notes-sub-bar" style="background:var(--lime);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button id="notes-sub-back" onclick="closeNotesSub()" style="width:32px;height:32px;border-radius:50%;background:rgba(26,42,0,0.15);border:none;color:#1a2a00;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
     <div>
-      <div style="font-size:0.6rem;color:rgba(255,255,255,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · Part 2</div>
-      <div id="notes-sub-title" style="font-size:0.85rem;font-weight:700;color:#fff;"></div>
+      <div id="notes-sub-sub" style="font-size:0.6rem;color:rgba(26,42,0,0.6);font-family:'Sarabun',sans-serif;">CFP M2 · Part 2</div>
+      <div id="notes-sub-title" style="font-size:0.85rem;font-weight:700;color:#1a2a00;"></div>
     </div>
   </div>
   <div id="notes-sub-body" style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 100px;" class="scroll-pad-target"></div>
