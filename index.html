@@ -1668,6 +1668,34 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:8px;">
 💡 ตัวลวง ค. ถูกครึ่งเดียว — ถ้าเป็นโภคภัณฑ์ w เพิ่ม F จริง แต่สินทรัพย์ทางการเงินไม่มี w ในสูตรเลย
 </div>`
+  },
+  {
+    q: `นักลงทุนขายสัญญาฟิวเจอร์สยาง (Short Futures) จำนวน 1 สัญญา ที่ราคา 80 บาทต่อกิโลกรัม โดยสัญญา 1 สัญญามีขนาด 5,000 กิโลกรัม บริษัทหลักทรัพย์กำหนดเงินประกันเริ่มต้น 10,000 บาท และเงินประกันขั้นต่ำ 7,000 บาท หากสิ้นวันราคาปิดที่ 81 บาท นักลงทุนต้องวางเงินประกันเพิ่มเท่าใด`,
+    choices: ["2,000 บาท", "3,000 บาท", "5,000 บาท", "ไม่ต้องวางเพิ่ม เนื่องจากมีเพียงพอ"],
+    answer: 2,
+    explain: `<b>Short Futures — ราคาขึ้น → ขาดทุน</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  P/L = (ราคาขาย − ราคาปิด) × ขนาดสัญญา<br>
+  = (80 − 81) × 5,000 = <b style="color:#c62828;">−5,000 บาท</b><br><br>
+  บัญชีหลัง Mark-to-Market = 10,000 − 5,000 = <b style="color:#c62828;">5,000 บาท</b><br>
+  5,000 &lt; MM 7,000 → โดน Margin Call<br><br>
+  ต้องเติมกลับสู่ IM: 10,000 − 5,000 = <b style="color:#2e7d32;">5,000 บาท</b>
+</div>
+<div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
+💡 MM ไม่ใช่ต้นทุนขั้นต่ำของพอร์ต — เป็นแค่ระดับที่กำหนดว่าถ้าบัญชีต่ำกว่านี้จะโดนเรียกเงินเพิ่ม และต้องเติมกลับถึง IM เสมอ ไม่ใช่แค่ถึง MM
+</div>`
+  },
+  {
+    q: `ปัจจุบัน SET50 Index อยู่ที่ 1,000 จุด อัตราดอกเบี้ย 8% ต่อปี หุ้นใน SET50 มีการจ่ายเงินปันผลที่อัตรา 4% ต่อปี จงหาราคาที่เหมาะสมของสัญญาฟิวเจอร์สอายุ 6 เดือน`,
+    choices: ["1,000 จุด", "1,010 จุด", "1,020 จุด", "1,040 จุด"],
+    answer: 2,
+    explain: `<b>สูตร Futures ทางการเงิน: F = S + SrT − SdT</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  S = 1,000, r = 0.08, d = 0.04, T = 0.5<br>
+  F = 1,000 + (1,000 × 0.08 × 0.5) − (1,000 × 0.04 × 0.5)<br>
+  = 1,000 + 40 − 20<br>
+  = <b style="color:#2e7d32;">1,020 จุด</b>
+</div>`
   }
 ,
   {
@@ -1683,8 +1711,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <div style="background:#fff3f6;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
 💡 <b>ค่าเผื่อหนี้สงสัยจะสูญ</b> คือมูลค่าที่ถูกประเมินว่าอาจไม่ได้รับชำระ เช่น เคยเบี้ยว, มีปัญหาการเงิน, เลยกำหนดมานานแล้ว — ตั้งไว้ก่อนเพื่อไม่ให้งบการเงินดูดีเกินจริง
 </div>`
-  }
-,
+  },
   {
     q: `บริษัท ABC จำกัด ซื้อสินค้าเพื่อขาย ดังนี้<br>
 วันที่ 3 มกราคม ซื้อสินค้าราคาเครื่องละ 800,000 บาท จำนวน 12 เครื่อง<br>
@@ -1710,6 +1737,213 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   รอบท้าย (20 ก.พ.) มี 10 เครื่อง → 10 × 650,000 = <b>6,500,000</b><br>
   ขาดอีก 8 เครื่อง → ดึงจากรอบ 8 ก.พ. → 8 × 500,000 = <b>4,000,000</b><br>
   รวม = 6,500,000 + 4,000,000 = <b style="color:#2e7d32;">10,500,000 บาท</b>
+</div>`
+  }
+,
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 38: ค่า Expected Return ของหลักทรัพย์ C เท่ากับเท่าใด<br><br><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div>`,
+    choices: ["5.5%", "6.5%", "7.0%", "8.5%"],
+    answer: 1,
+    explain: `<b>E(R) = Σ P<sub>i</sub> × R<sub>i</sub></b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  = (0.25 × 18%) + (0.50 × 6%) + (0.25 × −4%)<br>
+  = 4.5% + 3.0% + (−1.0%)<br>
+  = <b style="color:#2e7d32;">6.5%</b>
+</div>`
+  },
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 39: ค่า Expected Return ของหลักทรัพย์ D เท่ากับเท่าใด<br><br><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div>`,
+    choices: ["3.25%", "4.85%", "5.25%", "6.40%"],
+    answer: 1,
+    explain: `<b>E(R) = Σ P<sub>i</sub> × R<sub>i</sub></b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  = (0.40 × 14%) + (0.35 × 5%) + (0.25 × −10%)<br>
+  = 5.6% + 1.75% + (−2.5%)<br>
+  = <b style="color:#2e7d32;">4.85%</b>
+</div>`
+  },
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 40: ค่าความแปรปรวน (Variance) ของหลักทรัพย์ C เท่ากับเท่าใด<br><br><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div>`,
+    choices: ["42.25", "60.75", "72.50", "88.63"],
+    answer: 1,
+    explain: `<b>σ² = Σ P<sub>i</sub> × [R<sub>i</sub> − E(R)]²</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  <b>หลักทรัพย์ C</b> — E(R<sub>C</sub>) = 6.5%<br>
+  = 0.25 × (18−6.5)² + 0.50 × (6−6.5)² + 0.25 × (−4−6.5)²<br>
+  = 0.25 × 132.25 + 0.50 × 0.25 + 0.25 × 110.25<br>
+  = 33.0625 + 0.125 + 27.5625 = <b style="color:#2e7d32;">60.75</b>
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  <b>หลักทรัพย์ D</b> — E(R<sub>D</sub>) = 4.85%<br>
+  = 0.40 × (14−4.85)² + 0.35 × (5−4.85)² + 0.25 × (−10−4.85)²<br>
+  = 0.40 × 83.7225 + 0.35 × 0.0225 + 0.25 × 220.5225<br>
+  = 33.489 + 0.008 + 55.131 = <b style="color:#2e7d32;">88.6275</b>
+</div>`
+  },
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 41: ส่วนเบี่ยงเบนมาตรฐาน (Standard Deviation) ของหลักทรัพย์ C และ D คือข้อใด<br><br><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div><div style="margin-bottom:10px;">
+<div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+<thead><tr style="background:#004d40;color:#80cbc4;">
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th>
+<th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th>
+</tr></thead>
+<tbody>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr>
+<tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr>
+<tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
+</tbody></table></div></div>`,
+    choices: ["<span style='font-size:1.05rem;'>σ²</span>ของ C = 7.79, <span style='font-size:1.05rem;'>σ²</span>ของ D = 9.41", "<span style='font-size:1.05rem;'>σ</span>ของ C = 7.79, <span style='font-size:1.05rem;'>σ</span>ของ D = 9.41", "<span style='font-size:1.05rem;'>σ²</span>ของ C = 60.75, <span style='font-size:1.05rem;'>σ²</span>ของ D = 88.63", "ไม่สามารถคำนวณได้เนื่องจากข้อมูลไม่เพียงพอ"],
+    answer: 1,
+    explain: `<b>σ = √σ²</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  σC = √60.75 = <b style="color:#2e7d32;">7.79%</b><br>
+  σD = √88.6275 = <b style="color:#2e7d32;">9.41%</b>
+</div>
+<div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
+💡 ตัวลวง ก. ใช้ σ² แทน σ — ตัวเล็กซิกม่า (σ) คือ SD ส่วน σ² คือ Variance ซึ่งเป็นคนละตัวกัน
+</div>`
+  }
+,
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 42: ค่าสัมประสิทธิ์ความแปรปรวน (CV) ของหลักทรัพย์ C และ D คือเท่าไหร่<br><br><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div>`,
+    choices: ["CV ของ C = 1.19, CV ของ D = 1.94", "CV ของ C = 0.83, CV ของ D = 0.51", "CV ของ C = 7.79, CV ของ D = 9.41", "CV ของ C และ D = 17.2"],
+    answer: 0,
+    explain: `<b>CV = σ / E(R)</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  σ ของ C = 7.79, E(R<sub>C</sub>) = 6.5%<br>
+  CV ของ C = 7.79 ÷ 6.5 = <b style="color:#2e7d32;">1.1985 ≈ 1.19</b><br><br>
+  σ ของ D = 9.41, E(R<sub>D</sub>) = 4.85%<br>
+  CV ของ D = 9.41 ÷ 4.85 = <b style="color:#2e7d32;">1.9402 ≈ 1.94</b>
+</div>`
+  },
+  {
+    q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 43: ข้อใดถูกต้องเกี่ยวกับการเปรียบเทียบหลักทรัพย์ C และ D<br><br><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div>`,
+    choices: ["หลักทรัพย์ C น่าลงทุนมากกว่า D เนื่องจากมีค่า CV สูงกว่า", "หลักทรัพย์ C น่าลงทุนมากกว่า D เนื่องจากมีค่า CV ต่ำกว่า", "หลักทรัพย์ D น่าลงทุนมากกว่า C เนื่องจากมีค่า CV สูงกว่า", "หลักทรัพย์ D น่าลงทุนมากกว่า C เนื่องจากมีค่า CV ต่ำกว่า"],
+    answer: 1,
+    explain: `CV ของ C = 1.19 &nbsp;·&nbsp; CV ของ D = 1.94<br><br>
+<div style="background:#fff3f6;border-radius:10px;padding:10px 14px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
+  CV วัดความเสี่ยงต่อผลตอบแทน 1 หน่วย<br>
+  <b style="color:#c62828;">CV ยิ่งต่ำ ยิ่งดี</b> — หมายถึงใช้ความเสี่ยงน้อยกว่าในการสร้างผลตอบแทนระดับเดียวกัน<br><br>
+  CV ของ C (1.19) &lt; CV ของ D (1.94)<br>
+  ∴ <b>หลักทรัพย์ C น่าลงทุนมากกว่า D</b>
+</div>`
+  }
+,
+  {
+    q: `นักลงทุนกำลังเปรียบเทียบหลักทรัพย์ 2 ตัว<br>หลักทรัพย์ X มี E(R) = 10% และ σ = 8%<br>หลักทรัพย์ Y มี E(R) = 10% และ σ = 12%<br>นักลงทุนที่มีเหตุผลควรเลือกหลักทรัพย์ใด`,
+    choices: ["ควรเลือก X เพราะ CV = 1.25 ต่ำกว่า Y", "ควรเลือก Y เพราะ CV = 1.2", "ควรเลือก X เพราะความเสี่ยงต่ำกว่าในระดับผลตอบแทนเดียวกัน", "ควรเลือก X เพราะผลตอบแทนสุทธิสูงกว่า"],
+    answer: 1,
+    explain: `<b>E(R) เท่ากัน → ดูที่ SD เพียงอย่างเดียว</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  X: E(R) = 10%, σ = <b style="color:#2e7d32;">8%</b> &nbsp;·&nbsp; CV = 8÷10 = 0.80<br>
+  Y: E(R) = 10%, σ = <b style="color:#c62828;">12%</b> &nbsp;·&nbsp; CV = 12÷10 = 1.20<br>
+  ผลตอบแทนเท่ากัน → เลือก SD ต่ำกว่า → <b>X ดีกว่า</b><br><br>
+  <span style="color:#c62828;font-size:0.78rem;">ตัวลวง: CV ของ X = 8÷10 = 0.80 ไม่ใช่ 1.25 (คำนวณผิด)</span><br>
+  <span style="color:#c62828;font-size:0.78rem;">ตัวลวง: CV ของ Y = 1.20 ถูก แต่ CV สูงกว่าไม่ได้แปลว่าดีกว่า</span>
+</div>
+<div style="background:#e8f5e9;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.79rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
+  <b>σ หรือ SD</b> วัด "ความผันผวน" หรือ "ความเสี่ยง" ของผลตอบแทน — ผลตอบแทนแกว่งออกจากค่าเฉลี่ยมากแค่ไหน<br>
+  <b>SD สูง</b> = แกว่งแรง = เสี่ยงสูง &nbsp;·&nbsp; <b>SD ต่ำ</b> = แกว่งน้อย = เสี่ยงต่ำ<br><br>
+  กรณีที่ผลตอบแทนเท่ากัน → <b>SD ต่ำย่อมดีกว่า</b> ไม่ต้องคำนวณ CV เพิ่ม
+</div>
+<div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
+  💡 ความต่าง SD กับ CV<br>
+  <b>SD</b> = ดู "ความเสี่ยงล้วนๆ" &nbsp;·&nbsp; <b>CV</b> = ดู "ความเสี่ยงเทียบกับผลตอบแทน"<br>
+  ถ้าผลตอบแทนเท่ากัน ใช้ SD เปรียบเทียบได้เลย — CV จำเป็นเมื่อผลตอบแทนต่างกัน
 </div>`
   }
 ];
