@@ -3584,6 +3584,146 @@ E(R<sub>p</sub>) = [W<sub>1</sub> E(R<sub>1</sub>)] + [W<sub>2</sub> E(R<sub>2</
 <div style="background:#fff8e0;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:0.78rem;line-height:1.8;"><b>SD ↑ → ทั้ง Call และ Put เพิ่ม:</b> ยิ่งผันผวนมาก โอกาสราคาสูง/ต่ำมากยิ่งมาก<br><b>d ↑ → Call −, Put +:</b> จ่ายปันผล → S ปรับลง (มูลค่าบริษัทลด ไม่เกี่ยวการเทขาย) → ผลเหมือน S ↓ ซึ่งตรงข้ามกับข้อ 1</div></div>
 
 </div>`
+,
+  'cfp2-p3-cov': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;"><div style="background:#1a6b55;border-radius:12px;padding:12px 14px;margin-bottom:14px;"><div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3</div><div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">ความรู้พื้นฐานการบริหารกลุ่มหลักทรัพย์ (3)</div></div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> การวัดความเสี่ยงจากการลงทุนใน "กลุ่มหลักทรัพย์"</div>
+
+<div style="background:#e8f5f0;border-radius:10px;padding:10px 14px;margin-bottom:8px;">
+<div style="font-size:0.8rem;font-weight:700;color:#1a4a3a;font-family:'Prompt',sans-serif;margin-bottom:6px;">ค่าความแปรปรวนร่วม (Covariance)</div>
+<div style="font-size:0.77rem;color:#333;line-height:1.7;margin-bottom:8px;">วัดระดับความเคลื่อนไหวร่วมกันของอัตราผลตอบแทนที่คาดหวังของหลักทรัพย์คู่ใดคู่หนึ่ง → เทียบเป็นคู่ๆ</div>
+<div style="font-size:0.95rem;font-weight:800;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;padding:6px 0;">σ₁₂ = Σ P[R₁ − E(R₁)][R₂ − E(R₂)]</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.78rem;line-height:1.85;border-left:4px solid #1a6b55;">
+<b>อธิบายสูตรให้ไม่งง:</b><br>
+① คำนวณ <b>P × [R₁ − E(R₁)]</b> ก่อน<br>
+② เอาผลลัพธ์ไปคูณกับ <b>[R₂ − E(R₂)]</b><br>
+③ รวมทุกสถานการณ์ด้วย Σ<br>
+<span style="color:#888;font-size:0.75rem;">📌 สูตรคล้าย Variance มาก — แค่เปลี่ยนจากยกกำลัง 2 มาเป็นคูณกันแทน</span>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.77rem;line-height:1.75;">
+<b>ความหมายตัวแปร:</b><br>
+<b>σ₁₂</b> = ค่าความแปรปรวนร่วมของอัตราผลตอบแทนของหลักทรัพย์ 1 และ 2<br>
+<b>P</b> = ความเป็นไปได้ที่จะเกิดเหตุการณ์นั้นใน n สถานการณ์<br>
+<b>R₁, R₂</b> = อัตราผลตอบแทนในสถานการณ์นั้นของหลักทรัพย์ 1 และ 2<br>
+<b>E(R₁), E(R₂)</b> = อัตราผลตอบแทนที่คาดหวังของหลักทรัพย์ 1 และ 2
+</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> Variance vs Covariance</div>
+
+<div style="display:flex;gap:8px;margin-bottom:10px;">
+<div style="flex:1;background:#fff;border-radius:10px;padding:10px 12px;border-top:3px solid #2a8a6a;font-size:0.77rem;line-height:1.7;">
+<div style="font-weight:800;color:#1a4a3a;margin-bottom:4px;">Variance</div>
+วัดว่า "ตัวมันเองแกว่งแค่ไหน"
+</div>
+<div style="flex:1;background:#fff;border-radius:10px;padding:10px 12px;border-top:3px solid #1a6b55;font-size:0.77rem;line-height:1.7;">
+<div style="font-weight:800;color:#1a4a3a;margin-bottom:4px;">Covariance</div>
+วัดว่า "2 ตัวแกว่งไปทางเดียวกันไหม"
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #1b5e20;font-size:0.78rem;line-height:1.7;">
+<b style="color:#1b5e20;">Covariance &gt; 0</b> → เคลื่อนไหว <b>ทิศเดียวกัน</b><br>
+<span style="color:#888;">หุ้น A ขึ้น → หุ้น B ขึ้น / หุ้น A ลง → หุ้น B ลง</span><br>
+<span style="font-size:0.74rem;color:#555;">เช่น หุ้นในอุตสาหกรรมเดียวกัน</span>
+</div>
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #c62828;font-size:0.78rem;line-height:1.7;">
+<b style="color:#c62828;">Covariance &lt; 0</b> → เคลื่อนไหว <b>สวนทางกัน</b><br>
+<span style="color:#888;">หุ้น A ขึ้น → หุ้น B ลง</span><br>
+<span style="font-size:0.74rem;color:#555;">เช่น หุ้นกับทองคำในบางช่วง</span>
+</div>
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #888;font-size:0.78rem;line-height:1.7;">
+<b style="color:#555;">Covariance ≈ 0</b> → แทบ <b>ไม่เกี่ยวกัน</b>
+</div>
+</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> จุดที่มักสับสน</div>
+
+<div style="background:#fff8e0;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.78rem;line-height:1.85;">
+<b>⚠️ Covariance "มากกว่า 1 ได้"</b> ไม่มีกรอบตายตัว จะเป็น 5, 20, 100 ก็ได้<br>
+แต่ <b>Correlation (ρ) จะอยู่ระหว่าง −1 ≤ ρ ≤ 1 เสมอ</b>
+</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ตัวอย่าง</div>
+
+<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:10px;overflow:hidden;">
+<thead><tr style="background:#1a6b55;color:#fff;"><th style="padding:7px 10px;text-align:left;border-right:1px solid rgba(255,255,255,0.2);">สถานการณ์</th><th style="padding:7px 8px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);width:22%;">หุ้น A</th><th style="padding:7px 8px;text-align:center;width:22%;">หุ้น B</th></tr></thead>
+<tbody>
+<tr style="background:#e8f5f0;"><td style="padding:7px 10px;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">เศรษฐกิจดี</td><td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;font-weight:800;color:#1b5e20;">+10%</td><td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;font-weight:800;color:#1b5e20;">+8%</td></tr>
+<tr style="background:#fff;"><td style="padding:7px 10px;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">ปกติ</td><td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;font-weight:800;color:#555;">+5%</td><td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;font-weight:800;color:#555;">+4%</td></tr>
+<tr style="background:#e8f5f0;"><td style="padding:7px 10px;border-right:1px solid #b2dfdb;">แย่</td><td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;font-weight:800;color:#c62828;">−6%</td><td style="padding:7px 8px;text-align:center;font-weight:800;color:#c62828;">−5%</td></tr>
+</tbody></table></div>
+<div style="font-size:0.75rem;color:#555;font-family:'Sarabun',sans-serif;margin-top:8px;background:#fff;border-radius:8px;padding:7px 10px;line-height:1.7;">
+A และ B ไปทางเดียวกันตลอด ไม่ว่าจะขึ้นหรือลง → <b>Covariance เป็นบวก (+)</b>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> ทำไม Covariance ถึงสำคัญ?</div>
+
+<div style="background:#1a4a3a;border-radius:10px;padding:12px 14px;color:#fff;font-size:0.82rem;line-height:1.85;">
+<b style="color:#7fd4b8;">Covariance คือหัวใจของ Diversification</b> (การกระจายความเสี่ยง)<br><br>
+ถ้าสินทรัพย์เคลื่อนไหว<b>สวนกัน</b> → Covariance ต่ำหรือติดลบ → พอนำมารวมพอร์ต → <b>ความเสี่ยงพอร์ตจะลดลง</b><br><br>
+<span style="font-size:0.8rem;color:#a8e6cf;">นี่คือเหตุผลว่าทำไม<br>"อย่าถือสินทรัพย์ที่วิ่งเหมือนกันหมด"</span>
+</div>
+</div>
+
+<div style="margin-bottom:18px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span> ค่าสัมประสิทธิ์สหสัมพันธ์ (Coefficient of Correlation)</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.78rem;line-height:1.85;border-left:4px solid #888;">
+การตีความว่า Covariance <b>สูงหรือต่ำ</b>ทำได้ยาก เพราะไม่มีขอบเขตตายตัว<br>
+จึงนำ <b>ค่าสัมประสิทธิ์สหสัมพันธ์</b> มาใช้แทน เพื่อหาความสัมพันธ์และทิศทางการเคลื่อนไหว → <b>บีบค่าให้อยู่ระหว่าง −1 ถึง 1</b>
+</div>
+
+<div style="background:#e8f5f0;border-radius:10px;padding:10px 14px;margin-bottom:8px;">
+<div style="font-size:0.8rem;font-weight:700;color:#1a4a3a;font-family:'Prompt',sans-serif;margin-bottom:8px;"><span style="font-size:1.05rem;">ρ</span>₁₂ — อ่านว่า "Rho"</div>
+<div style="font-size:0.85rem;font-weight:800;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;padding:6px 4px;line-height:2.2;">
+<span style="font-size:1.05rem;">σ</span>₁₂ = <span style="font-size:1.05rem;">ρ</span>₁₂<span style="font-size:1.05rem;">σ</span>₁<span style="font-size:1.05rem;">σ</span>₂
+</div>
+<div style="font-size:0.75rem;color:#555;font-family:'Sarabun',sans-serif;text-align:center;margin-bottom:6px;">หรือ</div>
+<div style="font-size:0.85rem;font-weight:800;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;padding:2px 4px;display:flex;align-items:center;justify-content:center;gap:6px;">
+<span style="font-size:1.05rem;">ρ</span>₁₂ = 
+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.4;margin:0 2px;">
+  <span><span style="font-size:1.05rem;">σ</span>₁₂</span>
+  <span style="border-top:2px solid #1a2a00;padding-top:3px;"><span style="font-size:1.05rem;">σ</span>₁<span style="font-size:1.05rem;">σ</span>₂</span>
+</span>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.77rem;line-height:1.85;">
+<b>ความหมายตัวแปร:</b><br>
+<span style="font-size:1.0rem;font-weight:700;">ρ</span>₁₂ = ค่าสัมประสิทธิ์สหสัมพันธ์ของอัตราผลตอบแทนของหลักทรัพย์ 1 และ 2<br>
+<span style="font-size:1.0rem;font-weight:700;">σ</span>₁₂ = ค่าความแปรปรวนร่วมของหลักทรัพย์ 1 และ 2<br>
+<span style="font-size:1.0rem;font-weight:700;">σ</span>₁ และ <span style="font-size:1.0rem;font-weight:700;">σ</span>₂ = ส่วนเบี่ยงเบนมาตรฐานของหลักทรัพย์ 1 และ 2 ตามลำดับ
+</div>
+
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:4px;">
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #1b5e20;font-size:0.78rem;line-height:1.7;">
+<b style="color:#1b5e20;"><span style="font-size:1.0rem;">ρ</span> = +1</b> → ไปทางเดียวกัน<b>อย่างสมบูรณ์</b><br>
+<span style="color:#888;font-size:0.75rem;">เช่น A +5% → B +5% เสมอ</span>
+</div>
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #c62828;font-size:0.78rem;line-height:1.7;">
+<b style="color:#c62828;"><span style="font-size:1.0rem;">ρ</span> = −1</b> → ไปคนละทาง<b>อย่างสมบูรณ์</b><br>
+<span style="color:#888;font-size:0.75rem;">เช่น A −10% → B +10% เสมอ</span>
+</div>
+<div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #888;font-size:0.78rem;line-height:1.7;">
+<b style="color:#555;"><span style="font-size:1.0rem;">ρ</span> = 0</b> → <b>ไม่สัมพันธ์กัน</b> A และ B เคลื่อนไหวอิสระต่อกัน
+</div>
+</div>
+</div>
+
+</div>`,
 };
 
 // ===== NOTES PART =====
@@ -3628,6 +3768,7 @@ const SUB_CARDS = {
 const PART3_CARDS = [
   {id:'cfp2-p3-port', num:'1', bg:'var(--teal)', color:'#1a2a00', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (1)', sub:'Portfolio · ผลตอบแทน · E(R) · E(Rp)', type:'note'},
   {id:'cfp2-p3-risk', num:'2', bg:'#2a8a6a', color:'#fff',    title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (2)', sub:'ความเสี่ยง · Variance · SD · CV', type:'note'},
+  {id:'cfp2-p3-cov',  num:'3', bg:'#1a6b55', color:'#fff',    title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (3)', sub:'ความเสี่ยงพอร์ต · Covariance · Diversification', type:'note'},
 ];
 
 function openNotesPart(part) {
@@ -3715,6 +3856,7 @@ function openNoteDetail(id) {
     'cfp2-p2-ch2f':  {sub:'CFP M2 · Part 2', title:'นโยบายการเงินและการคลัง',        bg:'#4527a0', color:'#fff'},
     'cfp2-p3-port':  {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (1)',  bg:'var(--teal)', color:'#1a2a00'},
     'cfp2-p3-risk':  {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (2)',          bg:'#2a8a6a', color:'#fff'},
+    'cfp2-p3-cov':   {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (3)',          bg:'#1a6b55', color:'#fff'},
     'cfp2-p2-ind':   {sub:'CFP M2 · Part 2', title:'ข้อมูลระดับอุตสาหกรรม',           bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p2-comp':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม', bg:'var(--purple)', color:'#fff'},
     'cfp2-p2-biz':   {sub:'CFP M2 · Part 2', title:'การวิเคราะห์ข้อมูลบริษัท',        bg:'var(--pink)', color:'#fff'},
