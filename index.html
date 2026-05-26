@@ -4079,7 +4079,8 @@ function openFormulaDetail(idx) {
     'Option P/L · ผลตอบแทน Option',
     'Portfolio Return',
     'Portfolio Risk',
-    'Beta · β'
+    'Beta · β',
+    'รวมตัวแปร ความแปรปรวน · Covariance · Correlation · σp'
   ];
   const contents = [
     // 0: Expected Return (พร้อมใช้)
@@ -4435,7 +4436,124 @@ function openFormulaDetail(idx) {
         </div>
       </div>
     </div>`,
-    ...Array(4).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`)
+    ...Array(3).fill(`<div style="background:#fff;border-radius:18px;padding:32px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);"><div style="font-size:2rem;margin-bottom:12px;">🚧</div><div style="font-size:0.85rem;font-weight:700;color:#aaa;font-family:'Prompt',sans-serif;">ม็อคอัพ — ยังไม่มีเนื้อหา</div></div>`),
+    // 9: รวมตัวแปร ความแปรปรวน (ตารางอ่านออกเสียง)
+    `<div style="padding-bottom:8px;">
+
+      <!-- ตารางที่ 1: ตัวแปรพื้นฐาน -->
+      <div style="background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:0.72rem;font-weight:700;color:#1a6b55;font-family:'Prompt',sans-serif;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #d0eae4;">ตัวแปรพื้นฐาน — ความเสี่ยงรายหลักทรัพย์</div>
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;">
+          <thead>
+            <tr style="background:#d0eae4;">
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:center;border-radius:6px 0 0 0;width:22%;">สัญลักษณ์</th>
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:left;width:30%;">อ่านว่า</th>
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:left;border-radius:0 6px 0 0;">ความหมาย</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σ²</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า-สแควร์</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">ความแปรปรวน (Variance) ของหลักทรัพย์รายตัว</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σ</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">ส่วนเบี่ยงเบนมาตรฐาน (SD) ของหลักทรัพย์รายตัว</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">Rᵢ</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">อาร์-ไอ</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">อัตราผลตอบแทนในสถานการณ์ที่ i</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">E(R)</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">อี-ของ-อาร์</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">อัตราผลตอบแทนที่คาดหวัง</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">Pᵢ</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">พี-ไอ</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">ความน่าจะเป็นของสถานการณ์ที่ i</td>
+            </tr>
+            <tr style="background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">CV</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซี-วี</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">สัมประสิทธิ์ความแปรปรวน (Coefficient of Variation)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ตารางที่ 2: ตัวแปร Part 3 -->
+      <div style="background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:0.72rem;font-weight:700;color:#1a6b55;font-family:'Prompt',sans-serif;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #d0eae4;">ตัวแปร Part 3 — กลุ่มหลักทรัพย์</div>
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;">
+          <thead>
+            <tr style="background:#d0eae4;">
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:center;border-radius:6px 0 0 0;width:22%;">สัญลักษณ์</th>
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:left;width:30%;">อ่านว่า</th>
+              <th style="padding:7px 10px;font-size:0.72rem;font-weight:700;color:#1a6b55;text-align:left;border-radius:0 6px 0 0;">ความหมาย</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σ₁₂</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า-หนึ่ง-สอง</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">Covariance ระหว่างหลักทรัพย์ 1 กับ 2</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">ρ₁₂</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">โร-หนึ่ง-สอง</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">Correlation ค่าสัมประสิทธิ์สหสัมพันธ์ (−1 ถึง +1)</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">W₁, W₂</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ดับเบิ้ลยู-หนึ่ง, สอง</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">น้ำหนักการลงทุน (Weight) รวมกัน = 1 เสมอ</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σ₁, σ₂</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า-หนึ่ง, สอง</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">SD ของหลักทรัพย์ 1 และ 2 แยกกัน</td>
+            </tr>
+            <tr style="border-bottom:1px solid #eef4f2;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σ₁², σ₂²</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า-หนึ่ง-สแควร์, สอง-สแควร์</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">Variance ของหลักทรัพย์ 1 และ 2 แยกกัน</td>
+            </tr>
+            <tr style="background:#f9fdf9;">
+              <td style="padding:8px 10px;text-align:center;font-size:1rem;font-weight:800;color:#1a2a00;">σp</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#555;">ซิกม่า-พี</td>
+              <td style="padding:8px 10px;font-size:0.78rem;color:#333;">SD ของพอร์ต (Portfolio) — ความเสี่ยงรวม</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- สูตร 3 สูตร -->
+      <div style="background:#fff;border-radius:18px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div style="font-size:0.72rem;font-weight:700;color:#1a6b55;font-family:'Prompt',sans-serif;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #d0eae4;">สูตร Part 3 ทั้ง 3 สูตร</div>
+
+        <div style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:4px;">① Covariance</div>
+          <div style="background:#f0f8f5;border-radius:10px;padding:10px 12px;font-size:0.88rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;">σ₁₂ = Σ Pᵢ × [R₁ᵢ − E(R₁)] × [R₂ᵢ − E(R₂)]</div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:4px;">② Correlation</div>
+          <div style="background:#f0f8f5;border-radius:10px;padding:10px 12px;font-size:0.88rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;">ρ₁₂ = σ₁₂ ÷ (σ₁ × σ₂)</div>
+        </div>
+
+        <div>
+          <div style="font-size:0.68rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:4px;">③ SD ของพอร์ต (σp)</div>
+          <div style="background:#f0f8f5;border-radius:10px;padding:10px 12px;font-size:0.82rem;font-weight:700;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;line-height:1.7;">σp = √[ W₁²σ₁² + W₂²σ₂² + 2·W₁·W₂·ρ₁₂·σ₁·σ₂ ]</div>
+          <div style="font-size:0.7rem;color:#888;font-family:'Sarabun',sans-serif;text-align:center;margin-top:4px;">ถอดรากทั้งก้อน — ไม่ใช่ทีละ term</div>
+        </div>
+      </div>
+
+    </div>`
   ];
   const barColors = [
     {bg:'var(--teal)', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
@@ -4447,6 +4565,7 @@ function openFormulaDetail(idx) {
     {bg:'#9aaa88', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
     {bg:'#c0ccb0', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
     {bg:'#d4dcc4', txt:'#1a2a00', sub:'rgba(26,42,0,0.5)'},
+    {bg:'#1a6b55', txt:'#fff', sub:'rgba(255,255,255,0.7)'},
   ];
   const bar = document.getElementById('fml-detail-bar');
   const c = barColors[idx] || barColors[0];
@@ -4752,7 +4871,7 @@ renderCD();
     </div>
   </div>
   <!-- FOLDER LIST -->
-  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 40px;display:flex;flex-direction:column;gap:0;">
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 120px;display:flex;flex-direction:column;gap:0;">
     <div class="fml-folder" style="--fc:var(--teal);--ft:#1a2a00;" onclick="openFormulaDetail(0)">
       <div class="fml-num">01</div>
       <div class="fml-name">อัตราผลตอบแทนที่คาดหวัง<br><span class="fml-sub">Expected Return · E(R)</span></div>
@@ -4783,19 +4902,9 @@ renderCD();
       <div class="fml-name">ผลตอบแทน Option<br><span class="fml-sub">Option P/L · Long / Short · ⭐⭐⭐</span></div>
       <div class="fml-arr">›</div>
     </div>
-    <div class="fml-folder" style="--fc:#9aaa88;--ft:#1a2a00;" onclick="openFormulaDetail(6)">
+    <div class="fml-folder" style="--fc:#1a6b55;--ft:#fff;" onclick="openFormulaDetail(9)">
       <div class="fml-num">07</div>
-      <div class="fml-name">ผลตอบแทนพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Return <span class="fml-mock">ม็อคอัพ</span></span></div>
-      <div class="fml-arr">›</div>
-    </div>
-    <div class="fml-folder" style="--fc:#c0ccb0;--ft:#1a2a00;" onclick="openFormulaDetail(7)">
-      <div class="fml-num">08</div>
-      <div class="fml-name">ความเสี่ยงพอร์ตโฟลิโอ<br><span class="fml-sub">Portfolio Risk <span class="fml-mock">ม็อคอัพ</span></span></div>
-      <div class="fml-arr">›</div>
-    </div>
-    <div class="fml-folder" style="--fc:#d4dcc4;--ft:#1a2a00;" onclick="openFormulaDetail(8)">
-      <div class="fml-num">09</div>
-      <div class="fml-name">ค่าเบต้า<br><span class="fml-sub">Beta · β <span class="fml-mock">ม็อคอัพ</span></span></div>
+      <div class="fml-name">รวมตัวแปร ความแปรปรวน<br><span class="fml-sub">Covariance · Correlation · σp · CFP M2</span></div>
       <div class="fml-arr">›</div>
     </div>
   </div>
