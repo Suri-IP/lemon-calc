@@ -2030,6 +2030,150 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <div style="background:#fff3e0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;margin-top:6px;">
   💡 W<sub>j</sub> รวมต้องได้ 1.00 เสมอ — ถ้าไม่เท่ากับ 1.00 แปลว่าโจทย์หรือการตั้งสัดส่วนผิดพลาด
 </div>`
+  },
+  {
+    q: `จากข้อมูลในตารางด้านล่าง จงหาค่าสัมประสิทธิ์สหสัมพันธ์ของหลักทรัพย์ ABC และ XYZ<br>กำหนดให้ σ<sub>ABC</sub> = 3.80 และ σ<sub>XYZ</sub> = 6.25<br><br>
+<div style="overflow-x:auto;margin:4px 0 2px;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:10px;overflow:hidden;font-family:'Sarabun',sans-serif;">
+<thead>
+  <tr style="background:#1a6b55;color:#fff;">
+    <th style="padding:7px 8px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);">P<sub>i</sub></th>
+    <th style="padding:7px 8px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);">R<sub>1i</sub> – E(R<sub>1</sub>)</th>
+    <th style="padding:7px 8px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);">R<sub>2i</sub> – E(R<sub>2</sub>)</th>
+    <th style="padding:7px 8px;text-align:center;">[R<sub>1i</sub>–E(R<sub>1</sub>)][R<sub>2i</sub>–E(R<sub>2</sub>)]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr style="background:#e8f5f0;">
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.15</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">-5%</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">-8%</td>
+    <td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">40</td>
+  </tr>
+  <tr style="background:#fff;">
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.35</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">-2%</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">-3%</td>
+    <td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">6</td>
+  </tr>
+  <tr style="background:#e8f5f0;">
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.35</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">3%</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">4%</td>
+    <td style="padding:7px 8px;text-align:center;border-bottom:1px solid #b2dfdb;">12</td>
+  </tr>
+  <tr style="background:#fff;">
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;">0.15</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;">8%</td>
+    <td style="padding:7px 8px;text-align:center;border-right:1px solid #b2dfdb;">12%</td>
+    <td style="padding:7px 8px;text-align:center;">96</td>
+  </tr>
+</tbody>
+</table>
+</div>`,
+    choices: [
+      "ρ₁₂ ≈ 0.78",
+      "ρ₁₂ ≈ 0.85",
+      "ρ₁₂ ≈ 0.93",
+      "ρ₁₂ ≈ 1.00"
+    ],
+    answer: 2,
+    explain: `<b>สูตร: ρ₁₂ = σ₁₂ ÷ (σ₁ × σ₂)</b><br><br>
+<b>ขั้นที่ 1 — หา σ₁₂ (Covariance)</b><br>
+σ₁₂ = Σ P<sub>i</sub> × [R<sub>1i</sub>−E(R<sub>1</sub>)] × [R<sub>2i</sub>−E(R<sub>2</sub>)]<br><br>
+ในตารางโจทย์ให้ค่า [R<sub>1i</sub>−E(R<sub>1</sub>)] × [R<sub>2i</sub>−E(R<sub>2</sub>)] มาแล้ว เหลือแค่คูณกับ P<sub>i</sub> แต่ละแถว<br><br>
+<div style="overflow-x:auto;margin:6px 0 10px;">
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;background:#fff;border-radius:10px;overflow:hidden;font-family:'Sarabun',sans-serif;">
+<thead>
+  <tr style="background:#1a6b55;color:#fff;">
+    <th style="padding:6px 8px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);">P<sub>i</sub></th>
+    <th style="padding:6px 6px;text-align:center;border-right:1px solid rgba(255,255,255,0.2);font-size:0.72rem;">[R<sub>1i</sub>–E(R<sub>1</sub>)][R<sub>2i</sub>–E(R<sub>2</sub>)]</th>
+    <th style="padding:6px 6px;text-align:center;font-size:0.72rem;">P<sub>i</sub> × [R<sub>1i</sub>–E(R<sub>1</sub>)][R<sub>2i</sub>–E(R<sub>2</sub>)]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr style="background:#e8f5f0;">
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.15</td>
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">40</td>
+    <td style="padding:6px 8px;text-align:center;border-bottom:1px solid #b2dfdb;font-weight:700;">6.00</td>
+  </tr>
+  <tr style="background:#fff;">
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.35</td>
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">6</td>
+    <td style="padding:6px 8px;text-align:center;border-bottom:1px solid #b2dfdb;font-weight:700;">2.10</td>
+  </tr>
+  <tr style="background:#e8f5f0;">
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">0.35</td>
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;border-bottom:1px solid #b2dfdb;">12</td>
+    <td style="padding:6px 8px;text-align:center;border-bottom:1px solid #b2dfdb;font-weight:700;">4.20</td>
+  </tr>
+  <tr style="background:#fff;">
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;">0.15</td>
+    <td style="padding:6px 8px;text-align:center;border-right:1px solid #b2dfdb;">96</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:700;">14.40</td>
+  </tr>
+  <tr style="background:#1a4a3a;">
+    <td colspan="2" style="padding:6px 8px;text-align:right;color:rgba(255,255,255,0.8);font-size:0.75rem;">σ₁₂ รวม =</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:800;color:#7fd4b8;font-size:0.88rem;">26.70</td>
+  </tr>
+</tbody>
+</table>
+</div>
+<b>ขั้นที่ 2 — แทนค่าในสูตร ρ₁₂</b><br><br>
+<div style="background:#fff3e0;border-radius:8px;padding:7px 10px;margin-bottom:8px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 โจทย์ให้ σ<sub>ABC</sub> = 3.80 และ σ<sub>XYZ</sub> = 6.25 มาแล้ว — จะแทนตัวไหนเป็น σ₁ หรือ σ₂ ก็ได้ ผลลัพธ์เหมือนกัน
+</div>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
+  ρ₁₂ = σ₁₂ ÷ (σ<sub>ABC</sub> × σ<sub>XYZ</sub>)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 26.70 ÷ (3.80 × 6.25)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 26.70 ÷ 23.75<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#1a6b55;">0.93</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 ρ₁₂ ≈ 0.93 → ใกล้ +1 มาก แสดงว่า ABC และ XYZ เคลื่อนไหว<b>ไปทิศทางเดียวกันสูง</b><br>
+  การนำมารวมพอร์ตจะ<b>ลดความเสี่ยงได้น้อย</b> เพราะสหสัมพันธ์สูง
+</div>`
+  },
+  {
+    q: `นักลงทุนสร้างกลุ่มหลักทรัพย์โดยลงทุนในหลักทรัพย์ 1 และ 2 คิดเป็น <b>40%</b> และ <b>60%</b> ตามลำดับ กำหนดให้ส่วนเบี่ยงเบนมาตรฐานของหลักทรัพย์ 1 เท่ากับ <b>5%</b> และหลักทรัพย์ 2 เท่ากับ <b>8%</b> และค่าสัมประสิทธิ์สหสัมพันธ์ระหว่างหลักทรัพย์ทั้งสอง = <b>0.60</b><br><br>ส่วนเบี่ยงเบนมาตรฐานของกลุ่มหลักทรัพย์มีค่าเท่าใด`,
+    choices: [
+      "σ<sub>p</sub> ≈ 4.50%",
+      "σ<sub>p</sub> ≈ 5.20%",
+      "σ<sub>p</sub> ≈ 5.80%",
+      "σ<sub>p</sub> ≈ 6.21%"
+    ],
+    answer: 3,
+    explain: `<div style="background:#e8f0ff;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  📌 <b>"กลุ่มหลักทรัพย์"</b> คือ <b>พอร์ตการลงทุน (Portfolio)</b> นั่นเอง — อาจารย์บางท่านเรียกแบบแรก บางท่านเรียกแบบหลัง ความหมายเดียวกัน
+</div>
+<b>สูตร: σ<sub>p</sub> = [W₁²σ₁² + W₂²σ₂² + 2W₁W₂ρ₁₂σ₁σ₂]<sup>1/2</sup></b><br><br>
+<div style="background:#fff;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:0.77rem;font-family:'Sarabun',sans-serif;line-height:1.85;border-left:4px solid #1a6b55;">
+  <b>ความหมายตัวแปร:</b><br>
+  <b>σ<sub>p</sub></b> = ส่วนเบี่ยงเบนมาตรฐานของกลุ่มหลักทรัพย์ (พอร์ตฯ)<br>
+  <b>W₁, W₂</b> = สัดส่วนเงินลงทุนในหลักทรัพย์ 1 และ 2 (รวมกันต้องได้ 1.00)<br>
+  <b>σ₁, σ₂</b> = ส่วนเบี่ยงเบนมาตรฐานของหลักทรัพย์ 1 และ 2<br>
+  <b>ρ₁₂</b> = ค่าสัมประสิทธิ์สหสัมพันธ์ระหว่างหลักทรัพย์ทั้งสอง
+</div>
+<div style="background:#fff8e0;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  📌 <b>กำลัง 1/2 = รากที่ 2 = สแควร์รูท (√)</b><br>
+  ตำราบางเล่มเขียน <b>[…]<sup>1/2</sup></b> บางเล่มเขียน <b>√[…]</b> — ความหมายเดียวกันทุกอย่าง
+</div>
+<b>แทนค่า:</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  σ<sub>p</sub> = [W₁²σ₁² + W₂²σ₂² + 2W₁W₂ρ₁₂σ₁σ₂]<sup>1/2</sup><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {[(0.40)² × 25] + [(0.60)² × 64] + [2 × (0.40) × (0.60) × (0.60) × 5 × 8]}<sup>1/2</sup><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {[0.16 × 25] + [0.36 × 64] + [11.52]}<sup>1/2</sup><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {4.00 + 23.04 + 11.52}<sup>1/2</sup><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {38.56}<sup>1/2</sup><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#1a6b55;">6.21%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 <b>เช็กตัวเลขให้ไม่ผิด:</b><br>
+  · W₁² = (0.40)² = 0.16 &nbsp;·&nbsp; σ₁² = 5² = 25<br>
+  · W₂² = (0.60)² = 0.36 &nbsp;·&nbsp; σ₂² = 8² = 64<br>
+  · term สุดท้าย = 2 × 0.40 × 0.60 × 0.60 × 5 × 8 = 11.52<br>
+  แล้วค่อยถอดรากของผลรวมทั้งก้อน ไม่ใช่ถอดรากทีละ term
+</div>`
   }
 ];
 
@@ -3720,6 +3864,41 @@ A และ B ไปทางเดียวกันตลอด ไม่ว�
 <div style="background:#fff;border-radius:10px;padding:9px 14px;border-left:4px solid #888;font-size:0.78rem;line-height:1.7;">
 <b style="color:#555;"><span style="font-size:1.0rem;">ρ</span> = 0</b> → <b>ไม่สัมพันธ์กัน</b> A และ B เคลื่อนไหวอิสระต่อกัน
 </div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a4a3a;color:#7fd4b8;border-radius:6px;padding:2px 8px;font-size:0.68rem;">7</span> ส่วนเบี่ยงเบนมาตรฐานของกลุ่มหลักทรัพย์ (<span style="font-size:1.0rem;">σ</span><sub>p</sub>)</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.78rem;line-height:1.85;border-left:4px solid #888;">
+เมื่อหาค่าสัมประสิทธิ์สหสัมพันธ์ได้แล้ว ก็สามารถนำไปคำนวณหา <b>ส่วนเบี่ยงเบนมาตรฐานของกลุ่มหลักทรัพย์</b> (<span style="font-size:1.0rem;">σ</span><sub>p</sub>) ได้ — ซึ่งก็คือ <b>ความเสี่ยงรวมของพอร์ตการลงทุน</b> นั่นเอง
+</div>
+
+<div style="background:#fff8e0;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:0.77rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  📌 <b><span style="font-size:1.0rem;">σ</span> (ซิกม่า) หรือ SD</b> ที่เคยเรียนมาคือ SD <b>เฉพาะของหลักทรัพย์รายตัว</b><br>
+  แต่ <b><span style="font-size:1.0rem;">σ</span><sub>p</sub></b> คือ SD <b>ของกลุ่มหลักทรัพย์ทั้งพอร์ต</b> — คนละตัวกัน
+</div>
+
+<div style="background:#e8f5f0;border-radius:10px;padding:10px 14px;margin-bottom:8px;">
+<div style="font-size:0.8rem;font-weight:700;color:#1a4a3a;font-family:'Prompt',sans-serif;margin-bottom:8px;">สูตร (กรณี 2 หลักทรัพย์)</div>
+<div style="font-size:0.88rem;font-weight:800;color:#1a2a00;font-family:'Sarabun',sans-serif;text-align:center;padding:6px 4px;line-height:2;">
+<span style="font-size:1.0rem;">σ</span><sub>p</sub> = [W₁²<span style="font-size:1.0rem;">σ</span>₁² + W₂²<span style="font-size:1.0rem;">σ</span>₂² + 2W₁W₂<span style="font-size:1.0rem;">ρ</span>₁₂<span style="font-size:1.0rem;">σ</span>₁<span style="font-size:1.0rem;">σ</span>₂]<sup style="font-size:0.7rem;">1/2</sup>
+</div>
+</div>
+
+<div style="background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.77rem;line-height:1.85;border-left:4px solid #1a6b55;">
+<b>ความหมายตัวแปร:</b><br>
+<b><span style="font-size:1.0rem;">σ</span><sub>p</sub></b> = SD ของกลุ่มหลักทรัพย์ (พอร์ตฯ)<br>
+<b>W₁, W₂</b> = สัดส่วนเงินลงทุนในหลักทรัพย์ 1 และ 2 (รวมกันต้องได้ 1.00)<br>
+<b><span style="font-size:1.0rem;">σ</span>₁, <span style="font-size:1.0rem;">σ</span>₂</b> = SD ของหลักทรัพย์ 1 และ 2 (รายตัว)<br>
+<b><span style="font-size:1.0rem;">ρ</span>₁₂</b> = ค่าสัมประสิทธิ์สหสัมพันธ์ระหว่างหลักทรัพย์ทั้งสอง<br>
+<b>กำลัง 1/2</b> = รากที่ 2 = สแควร์รูท (√) — ตำราบางเล่มเขียนเป็น √[…] แทน
+</div>
+
+<div style="background:#1a4a3a;border-radius:10px;padding:10px 14px;color:#fff;font-size:0.78rem;line-height:1.85;">
+<b style="color:#7fd4b8;">ยิ่ง ρ₁₂ ต่ำ → σ<sub>p</sub> ยิ่งลด</b><br>
+เพราะ term สุดท้าย 2W₁W₂<span style="font-size:1.0rem;">ρ</span>₁₂<span style="font-size:1.0rem;">σ</span>₁<span style="font-size:1.0rem;">σ</span>₂ จะเล็กลงหรือติดลบ<br>
+<span style="color:#a8e6cf;font-size:0.75rem;">→ นี่คือหลักการของ Diversification ที่ทำให้พอร์ตเสี่ยงน้อยกว่าถือหลักทรัพย์เดี่ยวๆ</span>
 </div>
 </div>
 
