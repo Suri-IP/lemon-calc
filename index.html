@@ -2174,6 +2174,65 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   · term สุดท้าย = 2 × 0.40 × 0.60 × 0.60 × 5 × 8 = 11.52<br>
   แล้วค่อยถอดรากของผลรวมทั้งก้อน ไม่ใช่ถอดรากทีละ term
 </div>`
+  },
+  {
+    q: `กำหนดอัตราผลตอบแทนคาดหวังของตลาด <b>20%</b> ส่วนเบี่ยงเบนมาตรฐานตลาด <b>7%</b> ผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยง <b>4%</b> ถ้านักลงทุนแบ่งสัดส่วนลงทุน <b>50:50</b><br><br>จงหาผลตอบแทนคาดหวังและส่วนเบี่ยงเบนมาตรฐานของกลุ่มหลักทรัพย์`,
+    choices: [
+      "E(R<sub>p</sub>) = 10%, σ<sub>p</sub> = 3.5%",
+      "E(R<sub>p</sub>) = 12%, σ<sub>p</sub> = 3.5%",
+      "E(R<sub>p</sub>) = 12%, σ<sub>p</sub> = 5.0%",
+      "E(R<sub>p</sub>) = 14%, σ<sub>p</sub> = 3.5%"
+    ],
+    answer: 1,
+    explain: `<div style="background:#fff0f4;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  📌 โจทย์นี้มี <b>หลักทรัพย์ปราศจากความเสี่ยง (R<sub>f</sub>)</b> รวมอยู่ในพอร์ต → Covariance = 0 → ใช้สูตรลัด
+</div>
+<b>ขั้นที่ 1: คำนวณ σ<sub>p</sub></b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  σ<sub>p</sub> = √W<sub>A</sub>²σ<sub>A</sub>² = W<sub>A</sub>σ<sub>A</sub><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 50% × 7%<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#c0185a;">3.5%</b>
+</div>
+<b>ขั้นที่ 2: คำนวณ E(R<sub>p</sub>) — วิธีที่ 1 (สูตร CML)</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  E(R<sub>p</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / σ<sub>m</sub>] × σ<sub>p</sub><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + [(20% − 4%) / 7%] × 3.5%<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + [16% / 7%] × 3.5%<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + 8%<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#c0185a;">12%</b>
+</div>
+<b>ขั้นที่ 2: คำนวณ E(R<sub>p</sub>) — วิธีที่ 2 (สูตรพื้นฐาน)</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  E(R<sub>p</sub>) = (W<sub>rf</sub> × R<sub>rf</sub>) + (W<sub>A</sub> × E(R<sub>A</sub>))<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (50% × 4%) + (50% × 20%)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 2% + 10%<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#c0185a;">12%</b>
+</div>
+<div style="background:#fce8ef;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 ทั้งสองวิธีได้คำตอบเหมือนกัน — วิธีที่ 2 คำนวณเร็วกว่าในโจทย์ที่รู้ W และ R โดยตรง<br>
+  วิธีที่ 1 (CML) ใช้เมื่อรู้แค่ σ<sub>p</sub> แต่ไม่รู้สัดส่วนการลงทุน
+</div>`
+  },
+  {
+    q: `กำหนดผลตอบแทนคาดหวังของตลาด <b>20%</b> ผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยง <b>4%</b> ความแปรปรวนของตลาด <b>16</b> และความแปรปรวนร่วมของตลาดกับหลักทรัพย์ A เท่ากับ <b>24</b><br><br>จงหาผลตอบแทนคาดหวังของหลักทรัพย์ A`,
+    choices: [
+      "E(R<sub>A</sub>) = 20%",
+      "E(R<sub>A</sub>) = 24%",
+      "E(R<sub>A</sub>) = 28%",
+      "E(R<sub>A</sub>) = 32%"
+    ],
+    answer: 2,
+    explain: `<b>กำหนด:</b> E(R<sub>m</sub>) = 20%, R<sub>f</sub> = 4%, σ²<sub>M</sub> = 16, σ²<sub>iM</sub> = 24<br><br>
+<b>สูตร SML: E(R<sub>A</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / σ²<sub>M</sub>] × σ²<sub>iM</sub></b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  E(R<sub>A</sub>) = 4% + [(20% − 4%) / 16] × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + [16 / 16] × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + 1 × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#1a6b55;">28%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 σ² มีหน่วยเป็น %² แต่นิยมเขียนเป็นตัวเลขล้วน — หน่วยหักล้างกันในการคำนวณ ผลลัพธ์จึงออกมาเป็น % ได้ถูกต้อง
+</div>`
   }
 ];
 
@@ -3902,6 +3961,253 @@ A และ B ไปทางเดียวกันตลอด ไม่ว�
 </div>
 </div>
 
+</div>
+
+<div style="background:var(--pink);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">การกระจายการลงทุน · ทฤษฎีตลาดทุน · EMT</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> การกระจายการลงทุน (Diversification)</div>
+<div style="background:#fff0f4;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--pink);">
+  <div style="font-size:0.79rem;color:#333;line-height:1.8;">นักลงทุนต้องการลด<b>ความเสี่ยงที่ไม่เป็นระบบ</b> ให้เหลือเฉพาะ<b>ความเสี่ยงที่เป็นระบบ</b>เท่านั้น</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.8rem;"><b style="color:#c0185a;">ความเสี่ยงที่ไม่เป็นระบบ</b><br><span style="font-size:0.76rem;color:#555;">ความเสี่ยงเฉพาะตัวของหลักทรัพย์ — กระจายลงทุนได้</span></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.8rem;"><b style="color:#c0185a;">ความเสี่ยงที่เป็นระบบ</b><br><span style="font-size:0.76rem;color:#555;">ความเสี่ยงที่ส่งผลกับทุกหลักทรัพย์ — ลดได้ด้วยการหาระบบอื่นมาผสม เช่น เพิ่มหุ้นต่างประเทศ ให้ค่า Correlation ต่ำ</span></div>
+</div>
+<div style="background:#fce8ef;border-radius:8px;padding:8px 12px;font-size:0.77rem;color:#555;"><b>ความสำคัญ:</b> เพื่อให้ได้รับผลตอบแทนตามที่คาดหวัง และลดความเสี่ยงจากการลงทุน</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> กระบวนการบริหารกลุ่มหลักทรัพย์ <span style="font-size:0.75rem;">★★★</span></div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;display:flex;gap:8px;"><span style="font-weight:800;color:#1a1a1a;flex-shrink:0;">1.</span><div style="color:#1a1a1a;"><b>ประเมินเป้าหมายลงทุน</b><br><span style="font-size:0.76rem;color:#555;">คำนวณผลตอบแทนที่ต้องการ + ความสามารถในการรับความเสี่ยง</span></div></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;display:flex;gap:8px;"><span style="font-weight:800;color:#1a1a1a;flex-shrink:0;">2.</span><div style="color:#1a1a1a;"><b>สร้างกลุ่มหลักทรัพย์</b><br><span style="font-size:0.76rem;color:#555;">คำนวณผลตอบแทนคาดหวัง + ความเสี่ยงพอร์ต</span></div></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;display:flex;gap:8px;"><span style="font-weight:800;color:#1a1a1a;flex-shrink:0;">3.</span><div style="color:#1a1a1a;"><b>จัดทำ IPS</b></div></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;display:flex;gap:8px;"><span style="font-weight:800;color:#1a1a1a;flex-shrink:0;">4.</span><div style="color:#1a1a1a;"><b>เลือกลงทุนตามสัดส่วน</b><br><span style="font-size:0.76rem;color:#555;">ให้สอดคล้องกับ IPS</span></div></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;display:flex;gap:8px;"><span style="font-weight:800;color:#1a1a1a;flex-shrink:0;">5.</span><div style="color:#1a1a1a;"><b>ติดตามและวัดผลการดำเนินงาน</b></div></div>
+</div>
+<div style="background:#fce8ef;border-radius:8px;padding:7px 12px;margin-top:6px;font-size:0.76rem;color:#c0185a;font-weight:700;">⚠️ ต้องเรียงลำดับให้ถูกต้อง</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span> ทฤษฎีตลาดทุน (Capital Market Theory)</div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:6px;font-family:'Sarabun',sans-serif;">ต่อยอดจาก Markowitz — เลือกลงทุนในกลุ่มหลักทรัพย์มีประสิทธิภาพตามอรรถประโยชน์แต่ละคน</div>
+<div style="display:flex;flex-direction:column;gap:4px;">
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;">นักลงทุนสามารถ<b>กู้หรือให้กู้ได้ไม่จำกัด</b> ตามอัตราผลตอบแทน Risk Free</div>
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;">นักลงทุนทุกคน<b>คาดการณ์สิ่งต่างๆ ได้เหมือนกัน</b> เช่น อัตราผลตอบแทนที่ต้องการ</div>
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;">นักลงทุนมี<b>ช่วงเวลาลงทุน 1 ช่วงเวลาเท่ากัน</b></div>
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;"><b>แบ่งเงินลงทุนได้ไม่จำกัด</b> ซื้อขายเท่าไร เมื่อไรก็ได้</div>
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;"><b>ไม่มีการเปลี่ยนแปลง</b>เงินเฟ้อและอัตราดอกเบี้ย</div>
+  <div style="background:#fff0f4;border-radius:8px;padding:7px 12px;font-size:0.78rem;color:#333;border-left:3px solid #f48fb1;">ตลาดทุนเป็น<b>ตลาดที่มีประสิทธิภาพและอยู่ในดุลยภาพ</b></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">7</span> ทฤษฎีประสิทธิภาพของตลาด (EMT) <span style="font-size:0.75rem;">★★★</span></div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:8px;font-family:'Sarabun',sans-serif;">Maurice Kendall พบว่าราคาเคลื่อนไหวแบบสุ่ม (Random) เพราะราคาเปลี่ยนเมื่อมีข้อมูลใหม่ และข้อมูลใหม่ไม่มีใครเดาทิศทางได้</div>
+<div style="background:#fce8ef;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.78rem;color:#333;line-height:1.7;">
+  ข้อมูลใหม่เกิดขึ้น → ถูกซึมซับในรูปของราคา → ราคาปรับตัวเข้าสู่สมดุลใหม่ตลอดเวลา
+</div>
+<div style="font-size:0.75rem;font-weight:700;color:#c0185a;margin-bottom:6px;">3 ระดับความมีประสิทธิภาพของตลาด</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #f48fb1;font-size:0.8rem;"><b style="color:#c0185a;">Weak Form</b> — ระดับต่ำ<br><span style="font-size:0.76rem;color:#555;">สะท้อนข้อมูลราคาและปริมาณในอดีต</span></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #e91e8c;font-size:0.8rem;"><b style="color:#c0185a;">Semi-strong Form</b> — ระดับกลาง<br><span style="font-size:0.76rem;color:#555;">สะท้อนข้อมูลอดีต + ปัจจุบัน + ข้อมูลสาธารณะทั้งหมด</span></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.8rem;"><b style="color:#c0185a;">Strong Form</b> — ระดับสูง<br><span style="font-size:0.76rem;color:#555;">สะท้อนข้อมูลทุกประเภท = ข้อมูลสาธารณะ + ข้อมูลภายใน</span></div>
+</div>
+<div style="background:#fce8ef;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:0.77rem;color:#555;">💡 ไม่ว่าจะรู้ข้อมูลแบบไหน ก็เดาทิศทางตลาดไม่ได้ เพราะตลาดซึมซับข้อมูลในรูปแบบราคาเรียบร้อยแล้ว</div>
+</div>
+
+</div>`,
+  'cfp2-p3-rf': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
+<div style="background:var(--pink);border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">พื้นฐานการบริหารกลุ่มหลักทรัพย์ (4)</div>
+  <div style="font-size:0.75rem;color:rgba(255,255,255,0.8);font-family:'Sarabun',sans-serif;margin-top:2px;">หลักทรัพย์ปราศจากความเสี่ยง · Risk-Free Asset (Rf)</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> แนวคิดหลักทรัพย์ปราศจากความเสี่ยง</div>
+<div style="background:#fff0f4;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--pink);">
+  <div style="font-size:0.8rem;font-weight:700;color:#c0185a;margin-bottom:4px;">คำนิยาม</div>
+  <div style="font-size:0.79rem;color:#333;line-height:1.8;">สามารถระบุอัตราผลตอบแทนที่คาดว่าจะได้อย่าง<b>แน่นอน</b><br>ดังนั้น ค่าความแปรปรวน และ ส่วนเบี่ยงเบนมาตรฐาน = <b>0</b></div>
+</div>
+<div style="background:#fff0f4;border-radius:10px;padding:10px 14px;border-left:3px solid var(--pink);">
+  <div style="font-size:0.8rem;font-weight:700;color:#c0185a;margin-bottom:4px;">ผลต่อ Covariance</div>
+  <div style="font-size:0.79rem;color:#333;line-height:1.8;">จากสูตร &nbsp;<b>ρ₁₂ = σ₁₂ ÷ (σ₁ × σ₂)</b><br>หากมีหลักทรัพย์ปราศจากความเสี่ยง → σ = 0 → <b>σ₁₂ (Covariance) = 0</b></div>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> สูตรผลตอบแทนพอร์ตที่มี Rf</div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:6px;">มาจากสูตรเดิม E(Rp) = Σ WⱼE(Rⱼ) = [W₁E(R₁)] + [W₂E(R₂)]<br>แค่เปลี่ยนให้ชัดว่า ตัวที่ 1 = Rf, ตัวที่ 2 = หลักทรัพย์ A</div>
+<div style="background:#fce8ef;border-radius:10px;padding:12px 14px;text-align:center;border:2px solid var(--pink);">
+  <div style="font-size:0.95rem;font-weight:800;color:#c0185a;font-family:'Sarabun',sans-serif;">E(Rp) = (W<sub>rf</sub> × R<sub>rf</sub>) + (W<sub>A</sub> × E(R<sub>A</sub>))</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;">
+  <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#fce8ef;border-radius:5px;padding:1px 7px;font-size:0.73rem;font-weight:700;color:#c0185a;flex-shrink:0;">W<sub>rf</sub></div><div style="font-size:0.77rem;color:#333;">สัดส่วนการลงทุนในหลักทรัพย์ปราศจากความเสี่ยง</div></div>
+  <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#fce8ef;border-radius:5px;padding:1px 7px;font-size:0.73rem;font-weight:700;color:#c0185a;flex-shrink:0;">R<sub>rf</sub></div><div style="font-size:0.77rem;color:#333;">อัตราผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยง</div></div>
+  <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#fce8ef;border-radius:5px;padding:1px 7px;font-size:0.73rem;font-weight:700;color:#c0185a;flex-shrink:0;">W<sub>A</sub></div><div style="font-size:0.77rem;color:#333;">สัดส่วนการลงทุนในหลักทรัพย์ A (ทั่วไป)</div></div>
+  <div style="display:flex;gap:8px;align-items:flex-start;"><div style="background:#fce8ef;border-radius:5px;padding:1px 7px;font-size:0.73rem;font-weight:700;color:#c0185a;flex-shrink:0;">E(R<sub>A</sub>)</div><div style="font-size:0.77rem;color:#333;">อัตราผลตอบแทนที่คาดหวังของหลักทรัพย์ A</div></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> สูตรความเสี่ยงพอร์ตที่มี Rf</div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:6px;">มาจากสูตรเดิม σp = √[W<sub>rf</sub>²σ<sub>rf</sub>² + W<sub>A</sub>²σ<sub>A</sub>² + 2·W<sub>rf</sub>·W<sub>A</sub>·ρ<sub>rfA</sub>·σ<sub>rf</sub>·σ<sub>A</sub>]<br>แต่เนื่องจาก σ<sub>rf</sub> = 0 และ Covariance = 0 → ตัดค่าออกทั้งหมด เหลือแค่</div>
+<div style="background:#fce8ef;border-radius:10px;padding:12px 14px;text-align:center;border:2px solid var(--pink);">
+  <div style="font-size:0.95rem;font-weight:800;color:#c0185a;font-family:'Sarabun',sans-serif;"><span style="font-size:1.15rem;">σ</span>p = √W<sub>A</sub>²<span style="font-size:1.15rem;">σ</span><sub>A</sub>² = W<sub>A</sub><span style="font-size:1.15rem;">σ</span><sub>A</sub></div>
+</div>
+<div style="background:#fff8e1;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:0.77rem;color:#555;line-height:1.7;">
+  <b>💡 เหตุผล:</b> เมื่อ 0 คูณกับอะไรก็ได้ 0 ดังนั้นทุก term ที่มี σ<sub>rf</sub> หรือ Covariance จึงถูกตัดออก เหลือแค่ term ของหลักทรัพย์ A ตัวเดียว
+</div>
+</div>
+
+<div style="background:var(--purple);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">Efficient Frontier · CML · Two-Fund Separation</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> Efficient Frontier</div>
+<div style="background:#f3eeff;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--purple);font-size:0.79rem;color:#333;line-height:1.8;">
+  เส้นของพอร์ตลงทุนที่ดีที่สุด — ให้ผลตอบแทนสูงสุด ณ ระดับความเสี่ยงนั้นๆ<br>หรือ ใช้ความเสี่ยงต่ำสุด ณ ระดับผลตอบแทนนั้นๆ<br><span style="font-size:0.75rem;color:#888;">แนวคิดของ Markowitz Portfolio Theory — เดิมเป็นเส้นโค้ง</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--purple);font-size:0.8rem;color:#1a1a1a;"><b>Lending Portfolio</b><br><span style="font-size:0.76rem;color:#555;">ให้กู้ → ได้ Rf เป็นผลตอบแทนขั้นต่ำโดยไม่รับความเสี่ยง → เกิด Efficient Frontier ใหม่ที่ดีกว่าเดิมบางส่วน<br>เหมาะกับคนรับความเสี่ยงได้ต่ำ เช่น ลงทุนในพันธบัตร</span></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--purple);font-size:0.8rem;color:#1a1a1a;"><b>Borrowing Portfolio</b><br><span style="font-size:0.76rem;color:#555;">กู้ยืม → ผลตอบแทนคาดหวังต้องมากกว่าดอกเบี้ยเงินกู้เสมอ → Efficient Frontier ใหม่ที่สูงขึ้น<br>เหมาะกับคนรับความเสี่ยงได้สูง เช่น short futures</span></div>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> Capital Market Line (CML)</div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:8px;">เมื่อผสม Risk-free asset เข้ากับสินทรัพย์เสี่ยง Efficient Frontier เดิม (เส้นโค้ง) จะกลายเป็นเส้นตรงใหม่ชื่อ CML</div>
+<div style="background:#f3eeff;border-radius:10px;padding:12px 14px;text-align:center;border:2px solid var(--purple);margin-bottom:8px;">
+  <div style="font-size:0.92rem;font-weight:800;color:#6c3fcf;font-family:'Sarabun',sans-serif;">E(R<sub>p</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / <span style="font-size:1.15rem;">σ</span><sub>m</sub>] × <span style="font-size:1.15rem;">σ</span><sub>p</sub></div>
+</div>
+<div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:3px solid #b39ddb;font-size:0.77rem;color:#333;line-height:1.75;">
+  <b style="color:#6c3fcf;">E(R<sub>m</sub>) − R<sub>f</sub></b> = ส่วนชดเชยความเสี่ยงตลาด (Market Risk Premium)<br>
+  <b style="color:#6c3fcf;"><span style="font-size:1.1rem;">σ</span><sub>m</sub></b> = ส่วนเบี่ยงเบนมาตรฐานของตลาด<br>
+  <b style="color:#6c3fcf;"><span style="font-size:1.1rem;">σ</span><sub>p</sub></b> = ความเสี่ยงพอร์ต = W<sub>A</sub><span style="font-size:1.1rem;">σ</span><sub>A</sub> (สูตรลัดเมื่อมี R<sub>f</sub>)
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span> Two-Fund Separation</div>
+<div style="background:#f3eeff;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--purple);font-size:0.79rem;color:#333;line-height:1.8;">
+  นักลงทุนจัดสรรเงินใน 2 ส่วนเสมอ คือ <b>หลักทรัพย์ปราศจากความเสี่ยง</b> + <b>หลักทรัพย์ที่มีความเสี่ยง</b><br>
+  โดยตัดสินใจอยู่บนเส้น Efficient Frontier — ไม่มีเรื่องเส้นอรรถประโยชน์
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:8px 12px;border-left:4px solid #b39ddb;font-size:0.79rem;color:#1a1a1a;">นักลงทุนต้องการ<b>อรรถประโยชน์ต่างกัน</b> และมี<b>ความสามารถในการหาเงินทุนต่างกัน</b></div>
+  <div style="background:#fff;border-radius:9px;padding:8px 12px;border-left:4px solid #7e57c2;font-size:0.79rem;color:#1a1a1a;">รับความเสี่ยงต่ำ → <b>Lending Portfolio</b> (เช่น พันธบัตร)</div>
+  <div style="background:#fff;border-radius:9px;padding:8px 12px;border-left:4px solid #6c3fcf;font-size:0.79rem;color:#1a1a1a;">รับความเสี่ยงสูง → <b>Borrowing Portfolio</b> (เช่น short futures)</div>
+</div>
+</div>
+
+</div>
+
+<div style="background:var(--lime);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">Security Market Line (SML)</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">7</span> แนวคิด SML</div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+  ความเสี่ยงของการลงทุนในกลุ่มหลักทรัพย์ คือ ความเสี่ยงที่เกิดจากความเคลื่อนไหวของหลักทรัพย์แต่ละตัวเมื่อเทียบกับตลาด<br>
+  วัดจาก <b>ความแปรปรวนร่วม (σ<sub>iM</sub>)</b> ของหลักทรัพย์แต่ละตัว (i) กับกลุ่มหลักทรัพย์ตลาด (M)
+</div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.9;">
+  <b>ความแปรปรวนร่วมของตลาดกับตลาด:</b><br>
+  <span style="font-size:1.05rem;">σ</span><sub>MM</sub> = ρ<sub>MM</sub><span style="font-size:1.05rem;">σ</span><sub>M</sub><span style="font-size:1.05rem;">σ</span><sub>M</sub> = <span style="font-size:1.05rem;">σ</span>²<sub>M</sub>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">8</span> สูตร SML</div>
+<div style="background:#eaff99;border-radius:10px;padding:12px 14px;text-align:center;border:2px solid #a0cc00;margin-bottom:8px;">
+  <div style="font-size:0.92rem;font-weight:800;color:#3a5a00;font-family:'Sarabun',sans-serif;">E(R<sub>p</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / <span style="font-size:1.15rem;">σ</span>²<sub>M</sub>] × <span style="font-size:1.15rem;">σ</span>²<sub>iM</sub></div>
+</div>
+<div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;line-height:1.75;">
+  <b style="color:#3a5a00;"><span style="font-size:1.05rem;">σ</span>²<sub>M</sub></b> = ความแปรปรวนของตลาด (ตัวหาร)<br>
+  <b style="color:#3a5a00;"><span style="font-size:1.05rem;">σ</span>²<sub>iM</sub></b> = ความแปรปรวนร่วมของหลักทรัพย์ i กับตลาด (ตัวคูณ)
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">ตย.</span> ตัวอย่าง</div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:0.79rem;color:#1a1a1a;line-height:1.85;border-left:3px solid var(--lime);">
+  กำหนดผลตอบแทนคาดหวังของตลาด <b>20%</b> ผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยง <b>4%</b> ความแปรปรวนของตลาด <b>16</b> และความแปรปรวนร่วมของตลาดกับหลักทรัพย์ A เท่ากับ <b>24</b> จงหาผลตอบแทนคาดหวังของหลักทรัพย์ A
+</div>
+<div style="background:#eaff99;border-radius:10px;padding:10px 14px;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+  <b>กำหนด:</b> E(R<sub>m</sub>) = 20%, R<sub>f</sub> = 4%, <span style="font-size:1.05rem;">σ</span>²<sub>M</sub> = 16, <span style="font-size:1.05rem;">σ</span>²<sub>iM</sub> = 24<br><br>
+  E(R<sub>A</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / <span style="font-size:1.05rem;">σ</span>²<sub>M</sub>] × <span style="font-size:1.05rem;">σ</span>²<sub>iM</sub><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + [(20% − 4%) / 16] × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + [16/16] × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 4% + 1 × 24<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <b style="color:#3a5a00;">28%</b>
+</div>
+</div>
+
+</div>`,
+  'cfp2-p3-sml': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
+<div style="background:var(--lime);border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3</div>
+  <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">SML + CAPM</div>
+  <div style="font-size:0.75rem;color:rgba(26,42,0,0.7);font-family:'Sarabun',sans-serif;margin-top:2px;">การเปลี่ยนแปลงเส้น SML · เทียบผลตอบแทน · Under/Overpriced</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">1</span> การเปลี่ยนแปลงของเส้น SML</div>
+<div style="background:#f4ffcc;border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid #c8e870;">
+  <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+    <rect width="320" height="200" fill="#f4ffcc"/>
+    <text x="10" y="18" font-size="11" fill="#3a5a00" font-family="sans-serif" font-weight="700">E(R<tspan baseline-shift="sub" font-size="8">p</tspan>)</text>
+    <line x1="28" y1="10" x2="28" y2="175" stroke="#3a5a00" stroke-width="1.5"/>
+    <line x1="28" y1="175" x2="310" y2="175" stroke="#3a5a00" stroke-width="1.5"/>
+    <text x="295" y="188" font-size="10" fill="#3a5a00" font-family="sans-serif">σ<tspan baseline-shift="sub" font-size="8">i,M</tspan></text>
+    <!-- Rf marker -->
+    <line x1="24" y1="148" x2="32" y2="148" stroke="#3a5a00" stroke-width="1.5"/>
+    <text x="4" y="152" font-size="10" fill="#3a5a00" font-family="sans-serif">R<tspan baseline-shift="sub" font-size="8">f</tspan></text>
+    <!-- SML เดิม (เส้นทึบ) -->
+    <line x1="28" y1="148" x2="300" y2="30" stroke="#3a5a00" stroke-width="2"/>
+    <!-- SML ใหม่ ความเสี่ยงเพิ่ม (ชันขึ้น เส้นประ) -->
+    <line x1="28" y1="148" x2="300" y2="15" stroke="#5a7a00" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- label -->
+    <text x="155" y="55" font-size="9" fill="#5a7a00" font-family="sans-serif" font-weight="700">ความเสี่ยงเพิ่ม → ชันขึ้น</text>
+    <text x="155" y="67" font-size="9" fill="#888" font-family="sans-serif">(เส้นประ)</text>
+    <text x="42" y="125" font-size="9" fill="#3a5a00" font-family="sans-serif">เส้นเดิม</text>
+  </svg>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--lime);font-size:0.8rem;color:#1a1a1a;"><b>ความเสี่ยงในตลาดเพิ่ม</b> → เส้น SML <b>เอียงชันขึ้น</b><br><span style="font-size:0.76rem;color:#555;">นักลงทุนยอมรับความเสี่ยงได้น้อยลง ต้องการผลตอบแทนมากขึ้นต่อความเสี่ยงเดิม</span></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--lime);font-size:0.8rem;color:#1a1a1a;"><b>เงินเฟ้อเพิ่ม</b> → R<sub>f</sub> สูงขึ้น → เส้น SML <b>ลอยขึ้นทั้งเส้น</b> (Parallel shift)<br><span style="font-size:0.76rem;color:#555;">ความชันเท่าเดิม แต่จุดเริ่มต้นที่แกน Y สูงขึ้น</span></div>
+</div>
+<div style="background:#eaff99;border-radius:8px;padding:7px 12px;margin-top:6px;font-size:0.76rem;color:#5a7a00;">ในทางกลับกันก็ตรงข้าม — ไม่ต้องท่องแยก จำหลักการแล้วกลับทิศได้เลย</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">2</span> เทียบผลตอบแทน CAPM / SML <span style="font-size:0.8rem;">★★★</span></div>
+<div style="font-size:0.75rem;color:#888;margin-bottom:8px;">ประมาณการ / พยากรณ์ / คำนวณ = ความหมายเดียวกัน</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+  <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid #7ab800;font-size:0.8rem;color:#1a1a1a;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;"><span style="background:#d4ff6e;color:#3a5a00;border-radius:5px;padding:1px 8px;font-size:0.72rem;font-weight:700;">ประมาณการ &lt; คาดหวัง</span></div>
+    <b>ราคาถูก (Underpriced)</b> → <b style="color:#1a6b55;">ซื้อ</b>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid #c0185a;font-size:0.8rem;color:#1a1a1a;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;"><span style="background:#fce8ef;color:#c0185a;border-radius:5px;padding:1px 8px;font-size:0.72rem;font-weight:700;">ประมาณการ &gt; คาดหวัง</span></div>
+    <b>ราคาแพง (Overpriced)</b> → <b style="color:#c0185a;">ไม่ซื้อ</b>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid #888;font-size:0.8rem;color:#1a1a1a;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;"><span style="background:#f0f0f0;color:#555;border-radius:5px;padding:1px 8px;font-size:0.72rem;font-weight:700;">ประมาณการ = คาดหวัง</span></div>
+    <b>ราคาเหมาะสม (Fair Value)</b>
+  </div>
+</div>
+</div>
+
 </div>`,
 };
 
@@ -3948,6 +4254,8 @@ const PART3_CARDS = [
   {id:'cfp2-p3-port', num:'1', bg:'var(--teal)', color:'#1a2a00', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (1)', sub:'Portfolio · ผลตอบแทน · E(R) · E(Rp)', type:'note'},
   {id:'cfp2-p3-risk', num:'2', bg:'#2a8a6a', color:'#fff',    title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (2)', sub:'ความเสี่ยง · Variance · SD · CV', type:'note'},
   {id:'cfp2-p3-cov',  num:'3', bg:'#1a6b55', color:'#fff',    title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (3)', sub:'ความเสี่ยงพอร์ต · Covariance · Diversification', type:'note'},
+  {id:'cfp2-p3-rf',   num:'4', bg:'var(--pink)', color:'#fff', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (4)', sub:'หลักทรัพย์ปราศจากความเสี่ยง · Rf', type:'note'},
+  {id:'cfp2-p3-sml',  num:'5', bg:'var(--lime)', color:'#1a2a00', title:'SML + CAPM', sub:'การเปลี่ยนแปลงเส้น SML · เทียบผลตอบแทน · Under/Overpriced', type:'note'},
 ];
 
 function openNotesPart(part) {
@@ -4036,6 +4344,8 @@ function openNoteDetail(id) {
     'cfp2-p3-port':  {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (1)',  bg:'var(--teal)', color:'#1a2a00'},
     'cfp2-p3-risk':  {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (2)',          bg:'#2a8a6a', color:'#fff'},
     'cfp2-p3-cov':   {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (3)',          bg:'#1a6b55', color:'#fff'},
+    'cfp2-p3-rf':    {sub:'CFP M2 · Part 3', title:'พื้นฐานการบริหารกลุ่มหลักทรัพย์ (4)',          bg:'var(--pink)', color:'#fff'},
+    'cfp2-p3-sml':   {sub:'CFP M2 · Part 3', title:'SML + CAPM',                                   bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p2-ind':   {sub:'CFP M2 · Part 2', title:'ข้อมูลระดับอุตสาหกรรม',           bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p2-comp':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม', bg:'var(--purple)', color:'#fff'},
     'cfp2-p2-biz':   {sub:'CFP M2 · Part 2', title:'การวิเคราะห์ข้อมูลบริษัท',        bg:'var(--pink)', color:'#fff'},
