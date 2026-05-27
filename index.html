@@ -2233,6 +2233,84 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
   💡 σ² มีหน่วยเป็น %² แต่นิยมเขียนเป็นตัวเลขล้วน — หน่วยหักล้างกันในการคำนวณ ผลลัพธ์จึงออกมาเป็น % ได้ถูกต้อง
 </div>`
+  },
+  {
+    q: `กำหนดให้อัตราผลตอบแทนของหลักทรัพย์ที่ปราศจากความเสี่ยงมีค่าเท่ากับ <b>4%</b> และอัตราผลตอบแทนที่คาดหวังของกลุ่มหลักทรัพย์ตลาดเท่ากับ <b>8%</b> หากนักลงทุนทราบค่า Beta ของหลักทรัพย์แต่ละชนิด ดังต่อไปนี้<br><br>
+หลักทรัพย์ A มีค่า Beta เท่ากับ <b>−0.50</b><br>
+หลักทรัพย์ B มีค่า Beta เท่ากับ <b>0.50</b><br>
+หลักทรัพย์ C มีค่า Beta เท่ากับ <b>1.00</b><br>
+หลักทรัพย์ D มีค่า Beta เท่ากับ <b>1.50</b><br><br>
+จงคำนวณหาอัตราผลตอบแทนคาดหวังของแต่ละหลักทรัพย์`,
+    choices: [
+      "A = 2%, B = 6%, C = 8%, D = 10%",
+      "A = 6%, B = 6%, C = 8%, D = 10%",
+      "A = 2%, B = 4%, C = 8%, D = 12%",
+      "A = 2%, B = 6%, C = 10%, D = 12%"
+    ],
+    answer: 0,
+    explain: `<b>กำหนด:</b> R<sub>f</sub> = 4%, E(R<sub>m</sub>) = 8%, R<sub>m</sub> − R<sub>f</sub> = 4%<br><br>
+<b>สูตร: E(R<sub>i</sub>) = R<sub>f</sub> + β<sub>i</sub>(R<sub>m</sub> − R<sub>f</sub>)</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
+  E(R<sub>A</sub>) = 4% + [−0.5 × (8% − 4%)] = 4% + (−2%) = <b style="color:#c0185a;">2%</b><br>
+  E(R<sub>B</sub>) = 4% + [0.5 × (8% − 4%)] = 4% + 2% = <b style="color:#1a6b55;">6%</b><br>
+  E(R<sub>C</sub>) = 4% + [1.0 × (8% − 4%)] = 4% + 4% = <b style="color:#1a6b55;">8%</b><br>
+  E(R<sub>D</sub>) = 4% + [1.5 × (8% − 4%)] = 4% + 6% = <b style="color:#1a6b55;">10%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 คำนวณในรูปทศนิยมก็ได้ เช่น 0.04 + [−0.5 × (0.08 − 0.04)] = 0.02 แต่ต้อง ×100 กลับมาเป็น % เสมอ<br>
+  สังเกต A มี β ติดลบ → ผลตอบแทนต่ำกว่า R<sub>f</sub> = ทิศทางตรงข้ามตลาด
+</div>`
+  },
+  {
+    q: `จากตารางต่อไปนี้ นักลงทุนควรลงทุนในหลักทรัพย์ใด<br><br>
+<table style="width:100%;border-collapse:collapse;font-size:0.8rem;font-family:'Sarabun',sans-serif;">
+  <thead>
+    <tr style="background:#d4ff6e;">
+      <th style="padding:6px 10px;text-align:center;border-right:1px solid #b0cc50;font-weight:700;color:#3a5a00;">หลักทรัพย์</th>
+      <th style="padding:6px 10px;text-align:center;border-right:1px solid #b0cc50;font-weight:700;color:#3a5a00;">อัตราผลตอบแทนที่พยากรณ์ไว้</th>
+      <th style="padding:6px 10px;text-align:center;font-weight:700;color:#3a5a00;">อัตราผลตอบแทนที่คาดหวัง</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #e8f5c0;">
+      <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">A</td>
+      <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">1.50%</td>
+      <td style="padding:7px 10px;text-align:center;">2%</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8f5c0;background:#f9ffe6;">
+      <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">B</td>
+      <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">6%</td>
+      <td style="padding:7px 10px;text-align:center;">6%</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8f5c0;">
+      <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">C</td>
+      <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">9%</td>
+      <td style="padding:7px 10px;text-align:center;">8%</td>
+    </tr>
+    <tr style="background:#f9ffe6;">
+      <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">D</td>
+      <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">12%</td>
+      <td style="padding:7px 10px;text-align:center;">10%</td>
+    </tr>
+  </tbody>
+</table>`,
+    choices: [
+      "A เพราะราคา Overpriced",
+      "A เพราะราคา Underpriced",
+      "C และ D เพราะราคา Overpriced",
+      "C และ D เพราะราคา Underpriced"
+    ],
+    answer: 3,
+    explain: `เปรียบเทียบ K<sub>i</sub> กับ E(R) ของแต่ละหลักทรัพย์<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  A: K<sub>i</sub> 1.5% &lt; E(R) 2% → <b style="color:#c0185a;">Overpriced → ไม่ซื้อ</b><br>
+  B: K<sub>i</sub> 6% = E(R) 6% → <b style="color:#555;">Fair Price → เฉยๆ</b><br>
+  C: K<sub>i</sub> 9% &gt; E(R) 8% → <b style="color:#1a6b55;">Underpriced → ซื้อ ✓</b><br>
+  D: K<sub>i</sub> 12% &gt; E(R) 10% → <b style="color:#1a6b55;">Underpriced → ซื้อ ✓</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 K<sub>i</sub> &gt; E(R) = พยากรณ์ได้มากกว่าที่ตลาดคาด → ราคาหุ้นยังต่ำอยู่ → <b>Underpriced → ซื้อ</b>
+</div>`
   }
 ];
 
@@ -4205,6 +4283,199 @@ A และ B ไปทางเดียวกันตลอด ไม่ว�
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;"><span style="background:#f0f0f0;color:#555;border-radius:5px;padding:1px 8px;font-size:0.72rem;font-weight:700;">ประมาณการ = คาดหวัง</span></div>
     <b>ราคาเหมาะสม (Fair Value)</b>
   </div>
+</div>
+</div>
+
+<div style="background:var(--lime);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">CAPM · ค่าเบต้า (β)</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> CAPM</div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;margin-bottom:10px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+  แบบจำลองประเมินผลตอบแทนคาดหวังของสินทรัพย์ โดยใช้อัตราการเปลี่ยนแปลงผลตอบแทนของหลักทรัพย์ (E) เทียบกับอัตราการเปลี่ยนแปลงผลตอบแทนของตลาด (β)
+</div>
+<div style="background:#f4ffcc;border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid #c8e870;">
+  <svg viewBox="0 0 437.5 385.6" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#f4ffcc;">
+    <polyline points="62,76.6 62,348.8 374.5,348.8" fill="none" stroke="#160000" stroke-width="3" stroke-miterlimit="10"/>
+    <g><line x1="62" y1="212.7" x2="64" y2="212.7" fill="none" stroke="#3a8a00" stroke-width="2" stroke-miterlimit="10"/>
+    <line x1="67.9" y1="212.7" x2="191.7" y2="212.7" fill="none" stroke="#3a8a00" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="3.93,3.93"/>
+    <polyline points="193.7,212.7 195.7,212.7 195.7,214.7" fill="none" stroke="#3a8a00" stroke-width="2" stroke-miterlimit="10"/>
+    <line x1="195.7" y1="218.7" x2="195.7" y2="344.8" fill="none" stroke="#3a8a00" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="4,4"/>
+    <line x1="195.7" y1="346.8" x2="195.7" y2="348.8" fill="none" stroke="#3a8a00" stroke-width="2" stroke-miterlimit="10"/></g>
+    <line x1="62" y1="280.8" x2="350.5" y2="134.7" fill="none" stroke="#160000" stroke-width="3" stroke-miterlimit="10"/>
+    <circle cx="195.7" cy="212.7" r="6" fill="#3a8a00"/>
+    <text x="54.1" y="38.7" font-size="22" fill="#160000" font-family="sans-serif" font-weight="700">E</text>
+    <text x="17" y="68" font-size="13" fill="#160000" font-family="sans-serif">(R<tspan dy="4" font-size="10">p</tspan><tspan dy="-4">)</tspan></text>
+    <text x="20" y="222" font-size="13" fill="#160000" font-family="sans-serif">R<tspan dy="4" font-size="10">f</tspan></text>
+    <text x="185" y="200" font-size="13" fill="#160000" font-family="sans-serif" font-weight="700">M</text>
+    <text x="360" y="128" font-size="16" fill="#160000" font-family="sans-serif" font-weight="700">SML</text>
+    <text x="370" y="362" font-size="13" fill="#160000" font-family="sans-serif">σ<tspan dy="4" font-size="10">i,M</tspan></text>
+    <polygon points="62,72.1 55.9,84.2 68.1,84.2" fill="#160000"/>
+    <polygon points="380.1,348.8 367.9,342.8 367.9,354.9" fill="#160000"/>
+  </svg>
+</div>
+<div style="background:#eaff99;border-radius:10px;padding:12px 14px;text-align:center;border:2px solid #a0cc00;margin-bottom:8px;">
+  <div style="font-size:0.95rem;font-weight:800;color:#3a5a00;font-family:'Sarabun',sans-serif;">E(R<sub>i</sub>) = R<sub>f</sub> + β(R<sub>m</sub> − R<sub>f</sub>)</div>
+</div>
+<div style="background:#f4ffcc;border-radius:8px;padding:7px 12px;font-size:0.76rem;color:#555;line-height:1.7;">
+  💡 m หรือ M ในสูตร — CFP หนังสือใช้ M ใหญ่ แต่ IC ใช้ m เล็ก ความหมายเดียวกันครับ จำตามถนัด
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ค่าเบต้า (β) <span style="font-size:0.8rem;color:var(--pink);">★★★</span></div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+  β คือ ดัชนีวัด <b>ความเสี่ยงที่เป็นระบบ</b> (Systematic Risk)<br>
+  วัดความเคลื่อนไหวของผลตอบแทนหลักทรัพย์ เทียบกับตลาด<br>
+  <span style="font-size:0.76rem;color:#555;">β (+) → ทิศทางเดียวกับตลาด &nbsp;|&nbsp; β (−) → ตรงข้ามกับตลาด</span>
+</div>
+<div style="display:flex;gap:6px;margin-bottom:8px;font-size:0.75rem;">
+  <div style="background:#fff;border-radius:7px;padding:6px 10px;border-left:3px solid #888;flex:1;color:#555;">β ตลาด = <b>1</b></div>
+  <div style="background:#fff;border-radius:7px;padding:6px 10px;border-left:3px solid #888;flex:1;color:#555;">β Rf = <b>0</b></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #888;font-size:0.79rem;color:#1a1a1a;">
+    <b>β &lt; 1</b> — ผลตอบแทนเปลี่ยนแปลง<b>น้อยกว่า</b>ตลาด<br>
+    <span style="font-size:0.74rem;color:#888;">β ตลาด = 1 จึงเป็นเกณฑ์เปรียบเทียบ</span>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #5a7a00;font-size:0.79rem;color:#1a1a1a;">
+    <b>β = 1</b> — ผลตอบแทนเปลี่ยนแปลง<b>เท่ากับ</b>ตลาด
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #3a8a00;font-size:0.79rem;color:#1a1a1a;">
+    <b>β &gt; 1</b> — ผลตอบแทนเปลี่ยนแปลง<b>มากกว่า</b>ตลาด<br>
+    <span style="font-size:0.74rem;color:#3a8a00;">★ เหมาะลงทุนช่วงขาขึ้น (Bullish market)</span>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">
+    <b>β = 0 หรือติดลบ</b> — ผลตอบแทนเปลี่ยนแปลง<b>ตรงข้าม</b>กับตลาด
+  </div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">ทริค</span></div>
+<div style="background:#eaff99;border-radius:10px;padding:10px 14px;font-size:0.79rem;color:#1a1a1a;line-height:1.85;border-left:3px solid var(--lime);">
+  ท่องได้เลย แต่ถ้านึกไม่ออก ให้ตั้งผลตอบแทนตลาด = 10% แล้วแทนค่า β ที่อยากรู้<br><br>
+  <b>เช่น β &lt; 1 → แทน β = 0.5</b><br>
+  ตลาด +10%<br>
+  หุ้น = 10% × 0.5 = <b>5%</b> → เปลี่ยนแปลงน้อยกว่าตลาด ✓
+</div>
+</div>
+
+<div style="background:var(--lime);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">การนำ CAPM มาประยุกต์ใช้</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> แนวคิด</div>
+<div style="background:#f4ffcc;border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.85;">
+  นักลงทุนเปรียบเทียบ <b>อัตราผลตอบแทนที่คาดหวัง E(R)</b> กับ <b>อัตราผลตอบแทนที่พยากรณ์ไว้ K<sub>i</sub></b> แล้วนำมาตัดสินใจลงทุน<br>
+  <span style="font-size:0.75rem;color:#555;">เมื่อตลาดอยู่ในดุลยภาพ หลักทรัพย์แต่ละชนิดควรแสดงผลตอบแทนบนเส้น SML และ E(R) ควรเท่ากับ K<sub>i</sub></span>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span> สูตรพยากรณ์ K<sub>i</sub></div>
+<div style="background:#eaff99;border-radius:10px;padding:12px 14px;border:2px solid #a0cc00;margin-bottom:8px;text-align:center;">
+  <div style="font-size:0.88rem;font-weight:800;color:#3a5a00;font-family:'Sarabun',sans-serif;line-height:2;">
+    K<sub>i</sub> = [D<sub>0</sub>(1 + g) / P<sub>i</sub>] + g<br>
+    K<sub>i</sub> = (D<sub>i</sub> / P<sub>i</sub>) + g
+  </div>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;">
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;display:flex;gap:8px;"><b style="color:#3a5a00;flex-shrink:0;width:28px;">K<sub>i</sub></b><span>อัตราผลตอบแทนที่พยากรณ์ได้ของหลักทรัพย์ i</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;display:flex;gap:8px;"><b style="color:#3a5a00;flex-shrink:0;width:28px;">D<sub>0</sub></b><span>เงินปันผลต่อหุ้นที่จ่ายในปัจจุบัน</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;display:flex;gap:8px;"><b style="color:#3a5a00;flex-shrink:0;width:28px;">D<sub>i</sub></b><span>เงินปันผลต่อหุ้นที่คาดว่าจะจ่ายในปีถัดไป (มีอัตราการเติบโต)</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;display:flex;gap:8px;"><b style="color:#3a5a00;flex-shrink:0;width:28px;">P<sub>i</sub></b><span>ราคาของหลักทรัพย์ i ในปัจจุบัน</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid #a0cc00;font-size:0.77rem;color:#333;display:flex;gap:8px;"><b style="color:#3a5a00;flex-shrink:0;width:28px;">g</b><span>อัตราการเติบโตของเงินปันผลจ่าย</span></div>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#5a7a00;color:#d4ff6e;border-radius:6px;padding:2px 8px;font-size:0.68rem;">7</span> เปรียบเทียบและตัดสินใจ</div>
+<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+  <div style="background:#fce8ef;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.8rem;color:#1a1a1a;">
+    <b>K<sub>i</sub> &lt; E(R)</b> — ราคาสูงกว่ามูลค่าที่ควรเป็น<br>
+    <span style="color:#c0185a;font-weight:700;">Overpriced / Overvalue → ไม่ควรซื้อ</span>
+  </div>
+  <div style="background:#e8f5f0;border-radius:9px;padding:9px 12px;border-left:4px solid #1a6b55;font-size:0.8rem;color:#1a1a1a;">
+    <b>K<sub>i</sub> &gt; E(R)</b> — ราคาต่ำกว่ามูลค่าที่ควรเป็น<br>
+    <span style="color:#1a6b55;font-weight:700;">Underpriced / Undervalue → ซื้อ / ถือไว้</span>
+  </div>
+  <div style="background:#f0f0f0;border-radius:9px;padding:9px 12px;border-left:4px solid #888;font-size:0.8rem;color:#1a1a1a;">
+    <b>K<sub>i</sub> = E(R)</b> — ราคาเหมาะสม<br>
+    <span style="color:#555;font-weight:700;">Fair Price</span>
+  </div>
+</div>
+<table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.78rem;">
+  <thead>
+    <tr style="background:#d4ff6e;">
+      <th style="padding:7px 10px;font-weight:700;color:#3a5a00;text-align:center;border-radius:6px 0 0 0;border-right:1px solid #b0cc50;">หลักทรัพย์</th>
+      <th style="padding:7px 10px;font-weight:700;color:#3a5a00;text-align:center;border-right:1px solid #b0cc50;">อัตราผลตอบแทนที่พยากรณ์ไว้ (K<sub>i</sub>)</th>
+      <th style="padding:7px 10px;font-weight:700;color:#3a5a00;text-align:center;border-right:1px solid #b0cc50;">อัตราผลตอบแทนที่คาดหวัง E(R)</th>
+      <th style="padding:7px 10px;font-weight:700;color:#3a5a00;text-align:center;border-radius:0 6px 0 0;">ราคาหลักทรัพย์</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #e8f5c0;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">A</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">1.50%</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">2%</td>
+      <td style="padding:8px 10px;text-align:center;color:#c0185a;font-weight:700;">Overpriced</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8f5c0;background:#f9ffe6;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">B</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">6%</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">6%</td>
+      <td style="padding:8px 10px;text-align:center;color:#555;font-weight:700;">Fair Price</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8f5c0;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">C</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">9%</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">8%</td>
+      <td style="padding:8px 10px;text-align:center;color:#1a6b55;font-weight:700;">Underpriced</td>
+    </tr>
+    <tr style="background:#f9ffe6;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">D</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">12%</td>
+      <td style="padding:8px 10px;text-align:center;border-right:1px solid #e8f5c0;">10%</td>
+      <td style="padding:8px 10px;text-align:center;color:#1a6b55;font-weight:700;">Underpriced</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+<div style="background:var(--pink);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 3 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">Arbitrage Pricing Theory (APT)</div>
+  <div style="font-size:0.75rem;color:rgba(255,255,255,0.8);font-family:'Sarabun',sans-serif;margin-top:2px;">ทฤษฎีการทำกำไรโดยปราศจากความเสี่ยง</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">8</span> สมมติฐาน APT</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff0f4;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;color:#1a1a1a;">1. นักลงทุนทุกคนสามารถ<b>คาดการณ์สิ่งต่างๆ ได้เหมือนกัน</b></div>
+  <div style="background:#fff0f4;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;color:#1a1a1a;">2. นักลงทุนเป็นผู้ที่<b>พยายามหลีกเลี่ยงความเสี่ยง</b></div>
+  <div style="background:#fff0f4;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;color:#1a1a1a;">3. <b>ตลาดทุนอยู่ในดุลยภาพ</b></div>
+  <div style="background:#fff0f4;border-radius:9px;padding:9px 12px;border-left:4px solid var(--pink);font-size:0.8rem;color:#1a1a1a;">4. อัตราผลตอบแทนคาดหวังมี<b>ความสัมพันธ์เป็นเส้นตรง</b>กับปัจจัยอื่น</div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#c0185a;color:#ffd6e7;border-radius:6px;padding:2px 8px;font-size:0.68rem;">9</span> เปรียบเทียบ CAPM vs APT</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #f48fb1;font-size:0.79rem;color:#1a1a1a;">1. ทั้งคู่แสดงความสัมพันธ์<b style="color:#c0185a;">เส้นตรง</b>ระหว่าง<b style="color:#c0185a;">ความเสี่ยงที่เป็นระบบ</b>กับผลตอบแทนคาดหวัง</div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #f48fb1;font-size:0.79rem;color:#1a1a1a;">2. เป็นแบบจำลองประเมินราคาเมื่อ<b style="color:#c0185a;">ตลาดอยู่ในดุลยภาพ</b></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #f48fb1;font-size:0.79rem;color:#1a1a1a;">3. นักลงทุนต้องการ<b style="color:#c0185a;">ส่วนชดเชยความเสี่ยงที่เป็นระบบเท่านั้น</b></div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #f48fb1;font-size:0.79rem;color:#1a1a1a;">4. ถ้ามี<b style="color:#c0185a;">ปัจจัยมหภาคเพียงตัวเดียว</b> → ผลตอบแทนคาดหวังจะเท่ากัน</div>
+  <div style="background:#fce8ef;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">5. <b>APT</b> มี<b style="color:#c0185a;">ปัจจัยมหภาคอื่นๆ</b> ที่ส่งผลกับผลตอบแทน (CAPM มีแค่ตลาด)</div>
+  <div style="background:#fce8ef;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">6. <b>CAPM</b> นักลงทุน<b style="color:#c0185a;">กู้ยืมได้</b> — <b>APT</b> <b style="color:#888;">ไม่มีข้อกำหนดนี้</b></div>
+  <div style="background:#fce8ef;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">7. <b>CAPM</b> ตัดสินใจด้วย<b style="color:#c0185a;">ผลตอบแทน + SD</b> — <b>APT</b> <b style="color:#888;">ไม่มีข้อกำหนดนี้</b></div>
+  <div style="background:#fce8ef;border-radius:9px;padding:9px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">8. <b>APT มีความยืดหยุ่นในการใช้งานมากกว่า</b> CAPM</div>
 </div>
 </div>
 
