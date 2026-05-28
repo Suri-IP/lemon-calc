@@ -1028,7 +1028,7 @@ const QUIZ_DATA = [
   {
     q: `จากโจทย์ต่อไปนี้ การใส่ตัวแปรในข้อใดถูกต้อง หากคำนวณด้วยเครื่องคิดเลขการเงิน (Financial Calculator)<br><br>
 <div style="background:#fff;border:1px solid #e0e0d0;border-radius:10px;padding:12px 14px;font-family:'Sarabun',sans-serif;font-size:0.82rem;line-height:1.8;color:#333;">
-นางฟ้าลงทุนในกองทุนตราสารหนี้เป็นเวลา <b>4 ปี</b> โดยคาดว่าจะได้รับเงินคืน<b>ปีละ 50,000 บาท</b> และต้องการผลตอบแทน <b>6% ต่อปี</b> หากเริ่มลงทุนวันนี้ด้วยเงิน <b>180,000 บาท</b> อยากทราบว่าเมื่อสิ้นปีที่ 4 จะมีมูลค่าเงินสะสมปลายงวด (Future Value) เท่าใด
+นางฟ้าลงทุนในกองทุนตราสารหนี้เป็นเวลา <b>4 ปี</b> โดยคาดว่าจะได้รับเงินคืน<b>ปีละ 50,000 บาท</b> และต้องการผลตอบแทน <b>6% ต่อปี</b> หากเริ่มลงทุนวันนี้ด้วยเงิน <b>180,000 บาท</b> อยากทราบว่าเมื่อสิ้นปีที่ 4 จะมีมูลค่าเงินสะสมปลายงวดเท่าใด
 </div><br>
 การใส่ตัวแปรในข้อใดถูกต้อง?`,
     choices: [
@@ -1076,9 +1076,9 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
 
 <b>ตัดตัวเลือก</b>
 <div style="background:#fff0f0;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.9;margin-bottom:8px;">
-  • <b>ข.</b> ❌ มูลค่าที่แท้จริงน้อยกว่าราคาตลาด — ผิด ตัวเลขสลับกัน<br>
-  • <b>ค.</b> ❌ ตัดได้ตั้งแต่แรกโดยไม่ต้องคำนวณ — ถ้าควรซื้อ แปลว่าราคาตลาดต้องถูกกว่า ไม่ใช่แพงกว่า<br>
-  • <b>ง.</b> ❌ ใส่ตัวแปรผิด (น่าจะไม่ได้หาร I/Y และ PMT ด้วย 2)
+  ❌ ไม่ควร เพราะมูลค่าที่แท้จริงน้อยกว่าราคาตลาด 9.8 บาท — ตัวเลขสลับกัน<br>
+  ❌ ใส่ตัวแปรผิด (น่าจะไม่ได้หาร I/Y และ PMT ด้วย 2)<br>
+  ❌ ควร เพราะมูลค่าตลาดแพงกว่ามูลค่าที่แท้จริง 9.8 บาท — ตัดได้ตั้งแต่แรกโดยไม่ต้องคำนวณ ถ้าควรซื้อ แปลว่าราคาตลาดต้องถูกกว่า ไม่ใช่แพงกว่า
 </div>
 
 <div style="background:#f0f8ff;border-radius:8px;padding:10px 12px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
@@ -1513,9 +1513,9 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   },
   {
     q: `กองทุนหุ้นไทยมีพอร์ตลงทุนมูลค่า 80 ล้านบาท ผู้จัดการกองทุนคาดว่าตลาดหุ้นไทยอาจปรับตัวลดลง จึงต้องการใช้ SET50 Index Futures ป้องกันความเสี่ยง ปัจจุบัน SET50 Futures ซื้อขายที่ 920 จุด ขนาดสัญญา 200 บาทต่อจุด ควร Long หรือ Short และใช้กี่สัญญา`,
-    choices: ["Short SET50 Futures 343 สัญญา", "Long SET50 Futures 433 สัญญา", "Long SET50 Futures 435 สัญญา", "Short SET50 Futures 434 สัญญา"],
-    answer: 3,
-    explain: `<b>ตอบ Short SET50 Futures 434 สัญญา</b><br><br>
+    choices: ["Long SET50 Futures 435 สัญญา", "Short SET50 Futures 435 สัญญา", "Long SET50 Futures 434 สัญญา", "Short SET50 Futures 434 สัญญา"],
+    answer: 1,
+    explain: `<b>ตอบ Short SET50 Futures 435 สัญญา</b><br><br>
 <b>ทิศทาง:</b> คาดตลาดลง → <b style="color:#c62828;">Short</b> (ขาย) เพื่อป้องกัน<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   <div><b>สูตร:</b> มูลค่าพอร์ต = ราคา Futures × Contract Size × จำนวนสัญญา</div>
@@ -1523,7 +1523,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   <div>จำนวนสัญญา = มูลค่าพอร์ต ÷ (ราคา Futures × Contract Size)</div>
   <div style="border-top:1px solid #ddd;margin-top:4px;padding-top:4px;">= 80,000,000 ÷ (920 × 200)</div>
   <div>= 80,000,000 ÷ 184,000</div>
-  <div>= 434.78 → ปัดขึ้น = <b style="color:#c62828;">434 สัญญา</b></div>
+  <div>= 434.78 → ปัดขึ้น = <b style="color:#c62828;">435 สัญญา</b></div>
 </div>
 <div style="background:#fff8e0;border-radius:8px;padding:8px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;">
 💡 ปัดขึ้นเสมอ เพื่อไม่ให้ <b>Under Hedge</b> (ป้องกันความเสี่ยงได้ไม่ครบ)
