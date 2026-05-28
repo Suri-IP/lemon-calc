@@ -488,7 +488,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <div id="calc-q-text" style="font-family:'Sarabun',sans-serif;font-size:0.82rem;line-height:1.75;color:#1a1a1a;"></div>
     </div>
     <div style="display:flex;align-items:center;margin-bottom:8px;">
-      <div style="font-size:0.78rem;font-weight:700;color:var(--ws);">±×÷ เครื่องคิดเลข</div>
+      <div style="font-size:0.78rem;font-weight:700;color:var(--ws);">เครื่องคิดเลข</div>
       <button onclick="toggleCalc()" style="margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(255,255,235,0.15);border:none;color:var(--ws);font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
     </div>
     <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,235,0.12);border-radius:10px;padding:8px 12px;text-align:right;margin-bottom:10px;">
@@ -497,23 +497,23 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
       <button class="cb2 cb2-gray" onclick="calcInput('C')">C</button>
-      <button class="cb2 cb2-gray" onclick="calcInput('±')">±</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('±')"><span style="font-size:1.7rem;">±</span></button>
       <button class="cb2 cb2-gray" onclick="calcInput('%')">%</button>
-      <button class="cb2 cb2-op" onclick="calcInput('÷')">÷</button>
+      <button class="cb2 cb2-op" onclick="calcInput('÷')"><span style="font-size:1.8rem;">÷</span></button>
       <button class="cb2 cb2-dark" onclick="calcInput('7')">7</button>
       <button class="cb2 cb2-dark" onclick="calcInput('8')">8</button>
       <button class="cb2 cb2-dark" onclick="calcInput('9')">9</button>
-      <button class="cb2 cb2-op" onclick="calcInput('×')">×</button>
+      <button class="cb2 cb2-op" onclick="calcInput('×')"><span style="font-size:1.8rem;">×</span></button>
       <button class="cb2 cb2-dark" onclick="calcInput('4')">4</button>
       <button class="cb2 cb2-dark" onclick="calcInput('5')">5</button>
       <button class="cb2 cb2-dark" onclick="calcInput('6')">6</button>
-      <button class="cb2 cb2-op" onclick="calcInput('−')">−</button>
+      <button class="cb2 cb2-op" onclick="calcInput('−')"><span style="font-size:1.9rem;">−</span></button>
       <button class="cb2 cb2-dark" onclick="calcInput('1')">1</button>
       <button class="cb2 cb2-dark" onclick="calcInput('2')">2</button>
       <button class="cb2 cb2-dark" onclick="calcInput('3')">3</button>
-      <button class="cb2 cb2-op" onclick="calcInput('+')">+</button>
+      <button class="cb2 cb2-op" onclick="calcInput('+')"><span style="font-size:1.9rem;">+</span></button>
       <button class="cb2 cb2-dark" onclick="calcInput('0')" style="grid-column:span 2;">0</button>
-      <button class="cb2 cb2-dark" onclick="calcInput('.')">.</button>
+      <button class="cb2 cb2-dark" onclick="calcInput('.')"><span style="font-size:1.9rem;line-height:1;">·</span></button>
       <button class="cb2 cb2-lime" onclick="calcInput('=')">=</button>
     </div>
 </div>
