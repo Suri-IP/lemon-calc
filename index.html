@@ -2333,6 +2333,118 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   💡 Duration ยิ่งยาว → ราคาเปลี่ยนแปลงมากขึ้นตามดอกเบี้ย<br>
   ถ้าดอกเบี้ยเพิ่ม 1% แทน → ราคาจะลดลง 5% เหลือ 950 บาท
 </div>`
+  },
+  {
+    q: `กองทุนรวมแห่งหนึ่งมีอัตราผลตอบแทนเฉลี่ยรายเดือนเท่ากับ <b>3.6%</b> หากต้องการคำนวณอัตราผลตอบแทนต่อปี จะได้เท่ากับเท่าใด`,
+    choices: [
+      "43.20%",
+      "47.15%",
+      "52.29%",
+      "56.44%"
+    ],
+    answer: 2,
+    explain: `<b>กำหนด:</b> อัตราผลตอบแทนเฉลี่ยรายเดือน = 3.6% = 0.036<br><br>
+<b>สูตร:</b> อัตราผลตอบแทนต่อปี = (1 + ผลตอบแทนต่อเดือน)<sup>12</sup> − 1<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
+  = (1 + 0.036)<sup>12</sup> − 1<br>
+  = (1.036)<sup>12</sup> − 1<br>
+  = 1.52869... − 1<br>
+  = 0.52869 × 100 = <b style="color:#1a6b55;">52.29%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  💡 ตัวเลือก 43.20% คือคำตอบที่คำนวณแบบผิด (3.6% × 12 = 43.2%) ซึ่งเป็นการคูณธรรมดา ไม่ได้รวม<b>ดอกเบี้ยทบต้น</b> — ต้องใช้สูตร (1+r)<sup>n</sup>−1 เท่านั้น
+</div>`
+  },
+  {
+    q: `กำหนดอัตราผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยงเท่ากับ <b>5%</b> กลุ่มหลักทรัพย์มีผลตอบแทนและส่วนเบี่ยงเบนมาตรฐานดังนี้<br><br>
+A: ผลตอบแทน 10%, SD 15% &nbsp;|&nbsp; B: ผลตอบแทน 20%, SD 21%<br>
+C: ผลตอบแทน 22%, SD 25% &nbsp;|&nbsp; ตลาด: ผลตอบแทน 15%, SD 20%<br><br>
+โดยใช้ <b>Sharpe Ratio</b> ควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด`,
+    choices: ["กลุ่ม A", "กลุ่ม B", "กลุ่ม C", "กลุ่ม A และ C เท่ากัน"],
+    answer: 1,
+    explain: `<b>สูตร Sharpe:</b> S<sub>p</sub> = (R<sub>p</sub> − R<sub>f</sub>) / σ<sub>p</sub><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  A: (10−5)/15 = <b>0.33</b><br>
+  B: (20−5)/21 = <b style="color:#1a6b55;">0.71</b> ← สูงสุด<br>
+  C: (22−5)/25 = <b>0.68</b><br>
+  ตลาด: (15−5)/20 = <b>0.50</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  B และ C ดีกว่าตลาด (Sharpe > 0.50) — <b>เลือก B</b> เพราะ Sharpe สูงสุด = ผลตอบแทนส่วนเพิ่มต่อความเสี่ยงสูงสุด
+</div>`
+  },
+  {
+    q: `กำหนดอัตราผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยงเท่ากับ <b>5%</b> กลุ่มหลักทรัพย์มีผลตอบแทนและค่า Beta ดังนี้<br><br>
+D: ผลตอบแทน 11%, Beta 0.6 &nbsp;|&nbsp; E: ผลตอบแทน 29%, Beta 1.2<br>
+F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผลตอบแทน 15%, Beta 1<br><br>
+โดยใช้ <b>Treynor Ratio</b> ควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด`,
+    choices: ["กลุ่ม D", "กลุ่ม E", "กลุ่ม F เพราะ Treynor สูงสุด", "กลุ่ม D เพราะเท่ากับตลาด"],
+    answer: 1,
+    explain: `<b>สูตร Treynor:</b> T<sub>p</sub> = (R<sub>p</sub> − R<sub>f</sub>) / β<sub>p</sub><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
+  D: (11−5)/0.6 = <b>0.10</b> = ตลาด<br>
+  E: (29−5)/1.2 = <b style="color:#1a6b55;">0.20</b> ← สูงสุดจากผลตอบแทนที่ดีจริง<br>
+  F: (−10−5)/−0.5 = <b style="color:#c0185a;">0.30</b> ⚠️ เกิดจากติดลบ÷ติดลบ<br>
+  ตลาด: (15−5)/1 = <b>0.10</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  F มี Treynor = 0.3 แต่เกิดจากผลตอบแทน<b>ติดลบ</b>หาร Beta<b>ติดลบ</b> — ไม่ควรเลือก<br>
+  <b>เลือก E</b> เพราะ Treynor สูงสุดจากผลตอบแทนที่ดีจริง
+</div>`
+  },
+  {
+    q: `กลุ่มหลักทรัพย์ G และ H มีอัตราผลตอบแทนเท่ากับ <b>20%</b> และ <b>15%</b> ตามลำดับ โดยมีค่า Beta <b>1.5</b> และ <b>0.8</b> ตามลำดับ กำหนดให้ผลตอบแทนปราศจากความเสี่ยง <b>5%</b> และผลตอบแทนตลาด <b>16%</b><br><br>
+โดยใช้ <b>Jensen Model (Alpha)</b> ควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด`,
+    choices: [
+      "G เพราะ Alpha = +1.5%",
+      "H เพราะ Alpha = +1.2%",
+      "G เพราะผลตอบแทนสูงกว่า",
+      "H เพราะ Beta ต่ำกว่า"
+    ],
+    answer: 1,
+    explain: `<b>สูตร CAPM:</b> E(R<sub>i</sub>) = R<sub>f</sub> + β(E(R<sub>m</sub>) − R<sub>f</sub>)<br>
+<b>Alpha:</b> α = ผลตอบแทนจริง − CAPM<br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
+  G: CAPM = 5%+1.5(16%−5%) = 21.5% → α = 20%−21.5% = <b style="color:#c0185a;">−1.5%</b><br>
+  H: CAPM = 5%+0.8(16%−5%) = 13.8% → α = 15%−13.8% = <b style="color:#1a6b55;">+1.2%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
+  <b>เลือก H</b> เพราะ Alpha เป็น + = สร้างผลตอบแทนสูงกว่าที่ CAPM คาดไว้
+</div>`
+  },
+  {
+    q: `กองทุนมีข้อมูลดังนี้<br><br>
+<table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;margin:6px 0;border:1px solid #000;">
+  <thead><tr style="background:var(--teal);"><th style="padding:5px 8px;color:#1a2a00;text-align:center;border-right:1px solid #000;">หลักทรัพย์</th><th style="padding:5px 8px;color:#1a2a00;text-align:center;border-right:1px solid #000;" colspan="2">Weight</th><th style="padding:5px 8px;color:#1a2a00;text-align:center;" colspan="2">Return</th></tr>
+  <tr style="background:var(--teal);border-top:1px solid #000;"><th style="padding:4px 8px;color:#1a2a00;border-right:1px solid #000;">-</th><th style="padding:4px 8px;color:#1a2a00;text-align:center;border-right:1px solid #000;">Actual</th><th style="padding:4px 8px;color:#1a2a00;text-align:center;border-right:1px solid #000;">Benchmark</th><th style="padding:4px 8px;color:#1a2a00;text-align:center;border-right:1px solid #000;">Actual</th><th style="padding:4px 8px;color:#1a2a00;text-align:center;">Benchmark</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #000;"><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;font-weight:700;">ตราสารทุน</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">50%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">60%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">20%</td><td style="padding:5px 8px;text-align:center;color:#1a1a1a;">16%</td></tr>
+    <tr style="border-bottom:1px solid #000;"><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;font-weight:700;">ตราสารหนี้</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">40%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">32%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">9%</td><td style="padding:5px 8px;text-align:center;color:#1a1a1a;">10%</td></tr>
+    <tr><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;font-weight:700;">ตลาดเงิน</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">10%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">8%</td><td style="padding:5px 8px;text-align:center;border-right:1px solid #000;color:#1a1a1a;">6%</td><td style="padding:5px 8px;text-align:center;color:#1a1a1a;">5%</td></tr>
+  </tbody>
+</table>
+ค่า <b>Stock Selection</b> และ <b>Market Timing</b> มีค่าเท่าใด`,
+    choices: [
+      "Stock Selection = 1.7%, Market Timing = −0.7%",
+      "Stock Selection = −0.7%, Market Timing = 1.7%",
+      "Stock Selection = 1%, Market Timing = 0%",
+      "Stock Selection = 1.2%, Market Timing = −0.2%"
+    ],
+    answer: 0,
+    explain: `<b>ส่วนต่างผลตอบแทน</b> = ผลตอบแทนจริง − Benchmark<br>
+= (0.5×20%+0.4×9%+0.1×6%) − (0.6×16%+0.32×10%+0.08×5%)<br>
+= 14.2% − 13.2% = <b>1%</b><br><br>
+<div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.81rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
+  <b>Stock Selection</b> = Wa(Ra−Rb)<br>
+  = 0.5(20−16)% + 0.4(9−10)% + 0.1(6−5)%<br>
+  = 2% − 0.4% + 0.1% = <b style="color:#1a6b55;">1.7%</b><br><br>
+  <b>Market Timing</b> = (Wa−Wb)×Rb<br>
+  = (0.5−0.6)×16% + (0.4−0.32)×10% + (0.1−0.08)×5%<br>
+  = −1.6% + 0.8% + 0.1% = <b style="color:#c0185a;">−0.7%</b>
+</div>
+<div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
+  ✓ 1.7% + (−0.7%) = 1% ตรงกับส่วนต่างผลตอบแทน
+</div>`
   }
 ];
 
@@ -6365,6 +6477,475 @@ A และ B ไปทางเดียวกันตลอด ไม่ว�
 </div>
 </div>
 
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#1a6b55;color:#d0eae4;border-radius:6px;padding:2px 8px;font-size:0.68rem;">3</span> การคำนวณอัตราผลตอบแทนรายปี</div>
+<div style="background:#d0eae4;border-radius:9px;padding:8px 12px;border-left:3px solid var(--teal);font-size:0.78rem;color:#1a1a1a;margin-bottom:8px;">
+  เพื่อเปลี่ยนให้<b>ระยะเวลาในแต่ละงวดเท่ากัน</b> ก่อนนำมาเปรียบเทียบ
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;display:flex;gap:8px;"><span style="color:#1a6b55;font-weight:700;flex-shrink:0;width:56px;">รายวัน</span><span>(1 + ผลตอบแทนเฉลี่ยต่อวัน)<sup>365</sup> − 1</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;display:flex;gap:8px;"><span style="color:#1a6b55;font-weight:700;flex-shrink:0;width:56px;">รายสัปดาห์</span><span>(1 + ผลตอบแทนเฉลี่ยต่อสัปดาห์)<sup>52</sup> − 1</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;display:flex;gap:8px;"><span style="color:#1a6b55;font-weight:700;flex-shrink:0;width:56px;">รายเดือน</span><span>(1 + ผลตอบแทนเฉลี่ยต่อเดือน)<sup>12</sup> − 1</span></div>
+  <div style="background:#fff;border-radius:8px;padding:7px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;display:flex;gap:8px;"><span style="color:#1a6b55;font-weight:700;flex-shrink:0;width:56px;">รายไตรมาส</span><span>(1 + ผลตอบแทนเฉลี่ยต่อไตรมาส)<sup>4</sup> − 1</span></div>
+</div>
+<div style="background:#fff8e1;border-radius:9px;padding:9px 12px;border-left:3px solid #f4c430;font-size:0.78rem;color:#1a1a1a;margin-bottom:6px;line-height:1.8;">
+  ⚠️ สูตรนี้<b>สมมติว่าช่วงที่เหลือของปีจะได้ผลตอบแทนเท่ากับค่าเฉลี่ยที่คำนวณ</b> → อาจทำให้<b style="color:#c0185a;">เข้าใจผิดเกี่ยวกับผลตอบแทนรายปีที่แท้จริง</b>ได้<br>
+  <span style="font-size:0.75rem;color:#888;">เช่น เดือนแรกกำไร 10% → (1.10)<sup>12</sup>−1 = 213.8% ซึ่งไม่ได้หมายความว่าทุกเดือนจะได้ 10%</span>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span style="background:#1a6b55;color:#d0eae4;border-radius:6px;padding:2px 8px;font-size:0.68rem;">ตย.</span> ตัวอย่าง</div>
+<div style="background:#d0eae4;border-radius:9px;padding:9px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;margin-bottom:6px;line-height:1.8;">
+  ช่วงวัดผล <b>2 ปี</b> แบ่งเป็นงวดรายเดือน คำนวณได้อัตราผลตอบแทนเฉลี่ยต่อเดือน = <b>1.2%</b><br>จงหาอัตราผลตอบแทนต่อปี
+</div>
+<div style="background:#fff;border-radius:9px;padding:10px 14px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;color:#1a1a1a;margin-bottom:8px;">
+  อัตราผลตอบแทนต่อปี = (1 + 0.012)<sup>12</sup> − 1<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (1.012)<sup>12</sup> − 1<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 0.1539 × 100 = <b style="color:#1a6b55;">15.39%</b>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="background:#eef8f4;border-radius:10px;padding:10px 14px;border:2px solid var(--teal);">
+  <div style="font-size:0.77rem;font-weight:800;color:#1a6b55;margin-bottom:5px;">⭐ เกร็งข้อคำถาม: เหตุใดจึงต้องแปลงผลตอบแทนเป็นรายปี?</div>
+  <div style="font-size:0.78rem;color:#1a1a1a;line-height:1.8;">1. เพื่อ<b>เปรียบเทียบผลตอบแทนที่มีช่วงเวลาต่างกัน</b>ได้<br>2. เพื่อ<b>ลดความเข้าใจผิด</b>เรื่องผลตอบแทน</div>
+</div>
+</div>
+
+<div style="background:var(--purple);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 4 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">อัตราผลตอบแทนเฉลี่ย</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">4</span> ค่าเฉลี่ยถ่วงน้ำหนักด้วยงวดเวลา (Time-Weighted Average)</div>
+<div style="display:flex;flex-direction:column;gap:6px;">
+
+  <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid var(--purple);font-size:0.79rem;color:#1a1a1a;">
+    <b>ค่าเฉลี่ยเลขคณิต (Arithmetic Average : AA)</b><br>
+    <div style="background:#f3eeff;border-radius:8px;padding:8px 12px;margin-top:6px;text-align:center;">
+      <span style="font-size:0.88rem;font-weight:800;color:#6c3fcf;">AA = </span>
+      <span style="font-size:0.88rem;font-weight:800;color:#6c3fcf;display:inline-block;vertical-align:middle;text-align:center;">
+        <span style="display:block;border-bottom:2px solid #6c3fcf;padding-bottom:2px;">r<sub>1</sub> + r<sub>2</sub> + r<sub>3</sub> + … + r<sub>n</sub></span>
+        <span style="display:block;padding-top:2px;">n</span>
+      </span>
+    </div>
+  </div>
+
+  <div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid #9c71fc;font-size:0.79rem;color:#1a1a1a;">
+    <b>ค่าเฉลี่ยเรขาคณิต (Geometric Average : GA)</b><br>
+    <div style="background:#f3eeff;border-radius:8px;padding:8px 12px;margin-top:6px;text-align:center;font-size:0.88rem;font-weight:800;color:#6c3fcf;">
+      GA = <sup>n</sup>√[(1+r<sub>1</sub>)(1+r<sub>2</sub>)…(1+r<sub>n</sub>)] − 1
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="background:#ede7ff;border-radius:10px;padding:10px 14px;border:2px solid var(--purple);display:flex;flex-direction:column;gap:5px;">
+  <div style="font-size:0.79rem;color:#1a1a1a;"><b style="color:#6c3fcf;">AA &gt; GA</b> เสมอ</div>
+  <div style="font-size:0.79rem;color:#1a1a1a;">ถ้าความแปรปรวนไม่มาก → <b style="color:#6c3fcf;">GA ≈ AA − ½ × ค่าความแปรปรวน</b></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">5</span> ค่าเฉลี่ยถ่วงน้ำหนักด้วย<b style="color:#c0185a;">มูลค่า</b> (Dollar-Weighted Average)</div>
+<div style="display:flex;flex-direction:column;gap:5px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--purple);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+    ค่าเฉลี่ยที่คำนวณโดย<b style="color:#c0185a;">คำนึงถึงมูลค่ากระแสเงินสดจ่ายและรับในแต่ละงวด</b><br>
+    <span style="font-size:0.76rem;color:#555;">โดยกระแสเงินสดมีการนำไปลงทุนต่อ</span>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #9c71fc;font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+    ค่าเฉลี่ยที่ได้ คือ <b>อัตราคิดลด</b>ที่ทำให้<br>
+    <span style="font-size:0.76rem;color:#555;">มูลค่าปัจจุบัน (PV) ของกระแสเงินสด<b>รับ</b> = มูลค่าปัจจุบัน (PV) ของกระแสเงินสด<b>จ่าย</b></span><br>
+    <span style="font-size:0.76rem;color:#6c3fcf;font-weight:700;">→ นั่นคือ IRR</span>
+  </div>
+</div>
+</div>
+
+</div>`,
+  'cfp2-p4-ratio': `<div style="font-family:'Sarabun',sans-serif;font-size:0.88rem;line-height:1.85;color:#1a1a1a;">
+<div style="background:var(--teal);border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(26,42,0,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 4</div>
+  <div style="font-size:1rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">การวัดผลตอบแทนของกลุ่มหลักทรัพย์ (2)</div>
+  <div style="font-size:0.75rem;color:rgba(26,42,0,0.7);font-family:'Sarabun',sans-serif;margin-top:2px;">Sharpe · Treynor · Jensen</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;">
+
+  <div style="background:var(--teal);border-radius:10px;padding:10px 14px;">
+    <div style="font-size:0.85rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">Sharpe Ratio</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:4px;">
+    <div style="background:#d0eae4;border-radius:9px;padding:9px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+      ใช้วัดอัตราผลตอบแทน โดยเทียบกับ <b><u style="text-decoration-color:#c0185a;text-decoration-thickness:2px;">ความเสี่ยงรวม</u></b><br>
+      <span style="font-size:0.75rem;color:#555;">= ความเสี่ยงที่เป็นระบบ + ไม่เป็นระบบ</span>
+    </div>
+    <div style="background:#d0eae4;border-radius:9px;padding:9px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+      เป็นการวัดความเสี่ยงรวมของกลุ่มหลักทรัพย์ที่<b>ยังไม่ได้กระจายความเสี่ยงมากพอ</b><br>
+      <span style="font-size:0.75rem;color:#555;">ถือว่ายังมีความเสี่ยงไม่เป็นระบบหลงเหลืออยู่</span>
+    </div>
+    <div style="background:#d0eae4;border-radius:9px;padding:9px 12px;border-left:3px solid var(--teal);font-size:0.79rem;color:#1a1a1a;">
+      Sharpe ใช้สมการ <b>Capital Market Line (CML)</b> ในการประเมิน<br>
+      <span style="font-size:0.75rem;color:#1a6b55;font-weight:700;">S<sub>p</sub> &gt; S<sub>m</sub> → พอร์ตอยู่เหนือเส้น CML → ผลการดำเนินงาน<b>ดีกว่าตลาด</b></span>
+    </div>
+    <div style="background:#eef8f4;border-radius:10px;padding:10px 14px;border:2px solid var(--teal);margin-top:2px;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:0.88rem;font-weight:800;color:#1a6b55;text-align:center;">
+          S<sub>p</sub> = <span style="display:inline-block;vertical-align:middle;text-align:center;"><span style="display:block;border-bottom:2px solid #1a6b55;padding-bottom:2px;">R<sub>p</sub> − R<sub>f</sub></span><span style="display:block;padding-top:2px;"><span style="font-size:1.1rem;">σ</span><sub>p</sub></span></span>
+        </div>
+        <div style="font-size:0.88rem;font-weight:800;color:#1a6b55;text-align:center;">
+          S<sub>m</sub> = <span style="display:inline-block;vertical-align:middle;text-align:center;"><span style="display:block;border-bottom:2px solid #1a6b55;padding-bottom:2px;">R<sub>m</sub> − R<sub>f</sub></span><span style="display:block;padding-top:2px;"><span style="font-size:1.1rem;">σ</span><sub>m</sub></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:0.77rem;font-weight:700;color:#1a6b55;margin-bottom:6px;margin-top:4px;">ตัวอย่าง Sharpe Ratio</div>
+  <div style="background:#f3fdf8;border-radius:9px;padding:8px 12px;border-left:3px solid var(--teal);font-size:0.78rem;color:#1a1a1a;margin-bottom:8px;line-height:1.8;">
+    กำหนดอัตราผลตอบแทนของหลักทรัพย์ปราศจากความเสี่ยง = <b>5%</b> กลุ่มหลักทรัพย์มีผลตอบแทนและส่วนเบี่ยงเบนมาตรฐานดังตาราง อยากทราบว่าควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.77rem;margin-bottom:8px;">
+    <thead>
+      <tr style="background:var(--teal);">
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #90cfc0;">กลุ่มหลักทรัพย์</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #90cfc0;">ผลตอบแทน</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #90cfc0;">SD</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;">Sharpe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #d0eae4;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #d0eae4;">A</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">10%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">15%</td>
+        <td style="padding:7px 10px;text-align:center;">(10−5)/15 = <b>0.33</b></td>
+      </tr>
+      <tr style="border-bottom:1px solid #d0eae4;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #d0eae4;">B</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">20%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">21%</td>
+        <td style="padding:7px 10px;text-align:center;">(20−5)/21 = <b style="color:#1a6b55;">0.71</b></td>
+      </tr>
+      <tr style="border-bottom:1px solid #d0eae4;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #d0eae4;">C</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">22%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">25%</td>
+        <td style="padding:7px 10px;text-align:center;">(22−5)/25 = <b>0.68</b></td>
+      </tr>
+      <tr style="background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #d0eae4;">ตลาด</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">15%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #d0eae4;">20%</td>
+        <td style="padding:7px 10px;text-align:center;">(15−5)/20 = <b>0.50</b></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#d0eae4;border-radius:9px;padding:8px 12px;font-size:0.78rem;color:#1a1a1a;line-height:1.85;margin-bottom:8px;">
+    Sharpe ตลาด = 0.50 — A ต่ำกว่าตลาด, B และ C ดีกว่าตลาดทั้งคู่<br>
+    <b style="color:#1a6b55;">เลือก B</b> เพราะมีค่า Sharpe <b>สูงสุด</b> = ผลตอบแทนส่วนเพิ่มต่อความเสี่ยงสูงสุด
+  </div>
+
+  <div style="background:var(--pink);border-radius:10px;padding:10px 14px;">
+    <div style="font-size:0.85rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">Treynor Ratio</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:4px;">
+    <div style="background:#fff0f4;border-radius:9px;padding:9px 12px;border-left:3px solid var(--pink);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+      วัดผลตอบแทน เทียบกับ <b><u style="text-decoration-color:#c0185a;text-decoration-thickness:2px;">ความเสี่ยงเป็นระบบ</u></b><br>
+      <span style="font-size:0.75rem;color:#c0185a;font-weight:700;">* เฉพาะความเสี่ยงเป็นระบบเท่านั้น (ไม่รวมไม่เป็นระบบ)</span>
+    </div>
+    <div style="background:#fce8ef;border-radius:10px;padding:10px 14px;border:2px solid var(--pink);text-align:center;">
+      <div style="font-size:0.88rem;font-weight:800;color:#c0185a;">
+        T<sub>p</sub> = <span style="display:inline-block;vertical-align:middle;text-align:center;"><span style="display:block;border-bottom:2px solid #c0185a;padding-bottom:2px;">R<sub>p</sub> − R<sub>f</sub></span><span style="display:block;padding-top:2px;">β<sub>p</sub></span></span>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:0.77rem;font-weight:700;color:#c0185a;margin-bottom:6px;margin-top:4px;">ตัวอย่าง Treynor Ratio</div>
+  <div style="background:#fff0f4;border-radius:9px;padding:8px 12px;border-left:3px solid var(--pink);font-size:0.78rem;color:#1a1a1a;margin-bottom:8px;line-height:1.8;">
+    กำหนด R<sub>f</sub> = <b>5%</b> กลุ่มหลักทรัพย์มีผลตอบแทนและค่า Beta ดังตาราง อยากทราบว่าควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด
+  </div>
+  <div style="background:#fce8ef;border-radius:9px;padding:8px 12px;border-left:3px solid var(--pink);font-size:0.78rem;color:#1a1a1a;margin-bottom:8px;">
+    <b>สูตร:</b> T<sub>p</sub> = (R<sub>p</sub> − R<sub>f</sub>) / β<sub>p</sub>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.77rem;margin-bottom:8px;">
+    <thead>
+      <tr style="background:var(--pink);">
+        <th style="padding:6px 10px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #f48fb1;">กลุ่มหลักทรัพย์</th>
+        <th style="padding:6px 10px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #f48fb1;">ผลตอบแทน</th>
+        <th style="padding:6px 10px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #f48fb1;">Beta</th>
+        <th style="padding:6px 10px;font-weight:700;color:#fff;text-align:center;">Treynor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #fce8ef;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #fce8ef;">D</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">11%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">0.6</td>
+        <td style="padding:7px 10px;text-align:center;">(11%−5%)/0.6 = <b>0.1</b></td>
+      </tr>
+      <tr style="border-bottom:1px solid #fce8ef;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #fce8ef;">E</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">29%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">1.2</td>
+        <td style="padding:7px 10px;text-align:center;">(29%−5%)/1.2 = <b style="color:#1a6b55;">0.2</b></td>
+      </tr>
+      <tr style="border-bottom:1px solid #fce8ef;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #fce8ef;">F</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">−10%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">−0.5</td>
+        <td style="padding:7px 10px;text-align:center;color:#c0185a;">(−10%−5%)/−0.5 = <b>0.3</b></td>
+      </tr>
+      <tr style="background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #fce8ef;">ตลาด</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">15%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #fce8ef;">1</td>
+        <td style="padding:7px 10px;text-align:center;">(15%−5%)/1 = <b>0.1</b></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#fff0f4;border-radius:9px;padding:8px 12px;font-size:0.78rem;color:#1a1a1a;line-height:1.85;margin-bottom:8px;">
+    Treynor ตลาด = 0.1, D เท่ากับตลาด, E และ F ดีกว่าตลาดทั้งคู่<br>
+    <span style="font-size:0.76rem;color:#c0185a;">⚠️ F มี Treynor = 0.3 แต่เกิดจากผลตอบแทน<b>ติดลบ</b> หาร β<b>ติดลบ</b> — ไม่ควรเลือก</span><br>
+    <b style="color:#1a6b55;">เลือก E</b> เพราะ Treynor สูงสุดจากผลตอบแทนที่ดีจริง = ผลตอบแทนส่วนเพิ่มต่อ Beta สูงสุด
+  </div>
+
+  <div style="background:var(--lime);border-radius:10px;padding:10px 14px;">
+    <div style="font-size:0.85rem;font-weight:800;color:#1a2a00;font-family:'Prompt',sans-serif;">Jensen Model (Alpha)</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:5px;">
+    <div style="background:#f4ffcc;border-radius:9px;padding:9px 12px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+      ใช้วัดผลตอบแทนที่ <b><u style="text-decoration-color:#c0185a;text-decoration-thickness:2px;">เกิดขึ้นจริง</u></b> เทียบกับผลตอบแทนที่ควรจะเป็นตามการคำนวณ <b>CAPM</b>
+    </div>
+    <div style="background:#eaff99;border-radius:10px;padding:10px 14px;border:2px solid #a0cc00;text-align:center;">
+      <div style="font-size:0.88rem;font-weight:800;color:#3a5a00;">
+        <span style="font-size:1.15rem;">α</span> = ผลการดำเนินงานจริง − ผลการดำเนินงานที่ควรจะเป็น
+      </div>
+    </div>
+    <div style="background:#f4ffcc;border-radius:9px;padding:9px 12px;border-left:3px solid var(--lime);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+      ถ้าผู้บริหารกองทุนสามารถหาหลักทรัพย์ที่ <b>ราคาต่ำกว่าที่ควรจะเป็นได้อยู่เสมอ</b><br>
+      → ค่า α จะเป็น <b style="color:#1a6b55;">+</b>
+    </div>
+    <div style="background:#f4ffcc;border-radius:9px;padding:9px 12px;border-left:3px solid #a0cc00;font-size:0.79rem;color:#1a1a1a;">
+      <b>Alpha</b> = วัด<b>ความสามารถของผู้บริหารกองทุน</b>
+    </div>
+  </div>
+  <div style="font-size:0.77rem;font-weight:700;color:#3a5a00;margin-bottom:6px;margin-top:4px;">ตัวอย่าง Jensen Model</div>
+  <div style="background:#f4ffcc;border-radius:9px;padding:8px 12px;border-left:3px solid var(--lime);font-size:0.78rem;color:#1a1a1a;margin-bottom:8px;line-height:1.85;">
+    กลุ่มหลักทรัพย์ G และ H มีผลตอบแทน <b>20%</b> และ <b>15%</b> ค่า Beta <b>1.5</b> และ <b>0.8</b> ตามลำดับ<br>
+    R<sub>f</sub> = 5%, E(R<sub>m</sub>) = 16% จงหาค่า Alpha และเลือกลงทุนในกลุ่มใด
+  </div>
+  <div style="background:#eaff99;border-radius:9px;padding:8px 12px;border-left:3px solid #a0cc00;font-size:0.78rem;color:#3a5a00;margin-bottom:8px;">
+    <b>CAPM:</b> E(R<sub>i</sub>) = R<sub>f</sub> + β(E(R<sub>m</sub>) − R<sub>f</sub>)<br>
+    <b>Alpha:</b> <span style="font-size:1.05rem;">α</span> = ผลตอบแทนจริง − CAPM
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.77rem;margin-bottom:8px;">
+    <thead>
+      <tr style="background:var(--lime);">
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #b0cc50;">หลักทรัพย์</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #b0cc50;">ผลตอบแทนจริง</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;border-right:1px solid #b0cc50;">CAPM</th>
+        <th style="padding:6px 10px;font-weight:700;color:#1a2a00;text-align:center;">Alpha (<span style="font-size:1.0rem;">α</span>)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e8f5c0;background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">G</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">20%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;font-size:0.75rem;">5%+1.5(16%−5%) = 21.5%</td>
+        <td style="padding:7px 10px;text-align:center;color:#c0185a;font-weight:700;">−1.5%</td>
+      </tr>
+      <tr style="background:#fff;">
+        <td style="padding:7px 10px;text-align:center;font-weight:700;border-right:1px solid #e8f5c0;">H</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;">15%</td>
+        <td style="padding:7px 10px;text-align:center;border-right:1px solid #e8f5c0;font-size:0.75rem;">5%+0.8(16%−5%) = 13.8%</td>
+        <td style="padding:7px 10px;text-align:center;color:#1a6b55;font-weight:700;">+1.2%</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#f4ffcc;border-radius:9px;padding:8px 12px;font-size:0.78rem;color:#1a1a1a;line-height:1.85;">
+    H มี <span style="font-size:1.05rem;">α</span> = <b style="color:#1a6b55;">+1.2%</b> = สร้างผลตอบแทนสูงกว่าที่ CAPM คาดไว้<br>
+    G มี <span style="font-size:1.05rem;">α</span> = <b style="color:#c0185a;">−1.5%</b> = ทำได้ต่ำกว่า CAPM<br>
+    <b style="color:#1a6b55;">เลือก H</b> เพราะ Alpha เป็นบวก
+  </div>
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+<div style="background:var(--purple);border-radius:12px;padding:12px 14px;margin-bottom:14px;margin-top:4px;">
+  <div style="font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);font-family:'Prompt',sans-serif;margin-bottom:2px;">CFP M2 · Part 4 · ต่อ</div>
+  <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">Treynor-Black / Appraisal Ratio / Information Ratio</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="background:#ede7ff;border-radius:10px;padding:12px 14px;border:2px solid var(--purple);text-align:center;margin-bottom:10px;">
+  <div style="font-size:0.82rem;font-weight:800;color:#4a148c;margin-bottom:6px;">Appraisal Ratio = <span style="display:inline-block;vertical-align:middle;text-align:center;"><span style="display:block;border-bottom:2px solid #6c3fcf;padding-bottom:2px;"><span style="font-size:1.05rem;">α</span><sub>p</sub></span><span style="display:block;padding-top:2px;"><span style="font-size:1.1rem;">σ</span><sub>e<sub>p</sub></sub></span></span> = <span style="display:inline-block;vertical-align:middle;text-align:center;"><span style="display:block;border-bottom:2px solid #6c3fcf;padding-bottom:2px;">R<sub>p</sub> − R<sub>CAPM</sub></span><span style="display:block;padding-top:2px;"><span style="font-size:1.1rem;">σ</span><sub>e<sub>p</sub></sub></span></span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;margin-bottom:10px;">
+  <div style="background:#e8f5f0;border-radius:8px;padding:8px 12px;border-left:4px solid #1a6b55;font-size:0.79rem;color:#1a1a1a;">Appraisal Ratio เป็น <b style="color:#1a6b55;">+</b> = ผลตอบแทนจริง<b>ดีกว่า</b>ที่ควรจะเป็น อย่างสม่ำเสมอ</div>
+  <div style="background:#fce8ef;border-radius:8px;padding:8px 12px;border-left:4px solid #c0185a;font-size:0.79rem;color:#1a1a1a;">Appraisal Ratio เป็น <b style="color:#c0185a;">−</b> = ผลตอบแทนจริง<b style="color:#c0185a;">น้อยกว่า</b>ที่ควรจะเป็น อย่างสม่ำเสมอ</div>
+</div>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.77rem;font-weight:700;color:#6c3fcf;margin-bottom:6px;">ตารางการวัดค่าความเสี่ยงของกลุ่มหลักทรัพย์</div>
+<table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.77rem;margin-bottom:10px;">
+  <thead>
+    <tr style="background:#7c4dff;">
+      <th style="padding:7px 10px;font-weight:700;color:#fff;text-align:left;border-right:1px solid #9c71fc;width:38%;">ความเสี่ยงของกลุ่มหลักทรัพย์</th>
+      <th style="padding:7px 10px;font-weight:700;color:#fff;text-align:left;">การวัดและแสดงค่าความเสี่ยง</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:8px 10px;font-weight:700;color:#1a1a1a;border-right:1px solid #e8d5ff;vertical-align:top;">ความเสี่ยงรวม</td>
+      <td style="padding:8px 10px;color:#333;">วัดค่า<b style="color:#c0185a;">ความแปรปรวน</b>ของผลตอบแทนของกลุ่มหลักทรัพย์ <b><span style="font-size:1.05rem;">σ</span><sub>p</sub>²</b></td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:8px 10px;font-weight:700;color:#1a1a1a;border-right:1px solid #e8d5ff;vertical-align:top;">ความเสี่ยงที่เป็นระบบ</td>
+      <td style="padding:8px 10px;color:#333;">ค่า<b style="color:#c0185a;">เบต้า</b> ของกลุ่มหลักทรัพย์ <b>β<sub>p</sub></b> หรือ <b>β<sub>p</sub>²<span style="font-size:1.05rem;">σ</span><sub>m</sub>²</b></td>
+    </tr>
+    <tr style="background:#fff;">
+      <td style="padding:8px 10px;font-weight:700;color:#1a1a1a;border-right:1px solid #e8d5ff;vertical-align:top;">ความเสี่ยงที่ไม่เป็นระบบ</td>
+      <td style="padding:8px 10px;color:#333;">ผลต่างระหว่าง ความเสี่ยงรวม กับ ความเสี่ยงที่เป็นระบบ <b><span style="font-size:1.05rem;">σ</span><sub>p</sub>² − β<sub>p</sub>²<span style="font-size:1.05rem;">σ</span><sub>m</sub>²</b></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.77rem;font-weight:700;color:#6c3fcf;margin-bottom:6px;">การประยุกต์ใช้และการเลือกมาตรวัด</div>
+<table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.77rem;">
+  <thead>
+    <tr style="background:#7c4dff;">
+      <th style="padding:7px 10px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #9c71fc;width:22%;">มาตรวัด</th>
+      <th style="padding:7px 10px;font-weight:700;color:#fff;text-align:left;">การนำไปใช้</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1a6b55;border-right:1px solid #e8d5ff;">Sharpe</td>
+      <td style="padding:8px 10px;color:#333;">วัดความเสี่ยงรวม เหมาะกับกลุ่มหลักทรัพย์ที่มีการ<b style="color:#c0185a;">กระจายความเสี่ยงไม่มาก</b></td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;color:#c0185a;border-right:1px solid #e8d5ff;">Treynor</td>
+      <td style="padding:8px 10px;color:#333;">วัดความเสี่ยงที่เป็นระบบ เหมาะกับกลุ่มหลักทรัพย์ที่มีการ<b style="color:#1a6b55;">กระจายความเสี่ยงดี</b></td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;color:#5a7a00;border-right:1px solid #e8d5ff;">Alpha</td>
+      <td style="padding:8px 10px;color:#333;">กำหนดค่าตอบแทนของผู้บริหารกลุ่มหลักทรัพย์ เหมาะกับกลุ่มที่มีการ<b style="color:#1a6b55;">กระจายความเสี่ยงดี</b></td>
+    </tr>
+    <tr style="background:#fff;">
+      <td style="padding:8px 10px;text-align:center;font-weight:700;color:#6c3fcf;border-right:1px solid #e8d5ff;">Appraisal</td>
+      <td style="padding:8px 10px;color:#333;">วัดความเสี่ยงไม่เป็นระบบ <b style="color:#6c3fcf;">วัดเปรียบเทียบผลของ Active Fund</b></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="margin-bottom:16px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">สูตร</span> การวิเคราะห์องค์ประกอบของผลตอบแทน</div>
+<div style="background:#f3eeff;border-radius:9px;padding:9px 12px;border-left:3px solid var(--purple);font-size:0.79rem;color:#1a1a1a;margin-bottom:8px;line-height:1.8;">
+  ผลการดำเนินงานมาจากไหน ระหว่าง <b>Stock Selection</b> และ <b>Market Timing</b>
+</div>
+<div style="background:#ede7ff;border-radius:10px;padding:10px 14px;border:2px solid var(--purple);margin-bottom:8px;font-size:0.82rem;color:#1a1a1a;line-height:2.0;">
+  <b>ส่วนต่างผลตอบแทน</b> = ผลตอบแทนจริง − ผลตอบแทน Benchmark<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= W<sub>a</sub> × R<sub>a</sub> − W<sub>b</sub> × R<sub>b</sub>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px;">
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid var(--purple);font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+    <b>1. Stock Selection</b> = W<sub>a</sub> × (R<sub>a</sub> − R<sub>b</sub>)<br>
+    <span style="font-size:0.76rem;color:#555;">เกิดจากส่วนต่างของผลตอบแทน กับ น้ำหนักลงทุนจริง</span>
+  </div>
+  <div style="background:#fff;border-radius:9px;padding:9px 12px;border-left:4px solid #9c71fc;font-size:0.79rem;color:#1a1a1a;line-height:1.8;">
+    <b>2. Market Timing</b> = (W<sub>a</sub> − W<sub>b</sub>) × R<sub>b</sub><br>
+    <span style="font-size:0.76rem;color:#555;">เกิดจากส่วนต่างน้ำหนักลงทุน กับ ผลตอบแทน Benchmark</span>
+  </div>
+</div>
+<div style="background:#f3eeff;border-radius:9px;padding:8px 12px;border-left:3px solid var(--purple);font-size:0.78rem;color:#1a1a1a;line-height:1.8;margin-bottom:8px;">
+  เมื่อนำ 1+2 รวมกัน:<br>
+  ส่วนต่าง = W<sub>a</sub>R<sub>a</sub> − <span style="color:#c0185a;">W<sub>a</sub>R<sub>b</sub></span> + <span style="color:#c0185a;">W<sub>a</sub>R<sub>b</sub></span> − W<sub>b</sub>R<sub>b</sub> = <b>W<sub>a</sub>R<sub>a</sub> − W<sub>b</sub>R<sub>b</sub></b>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:0.76rem;color:#555;">
+  <div style="display:flex;gap:6px;"><span style="color:#6c3fcf;font-weight:700;flex-shrink:0;width:28px;">W<sub>a</sub></span><span>Actual Weight — น้ำหนักลงทุนจริง</span></div>
+  <div style="display:flex;gap:6px;"><span style="color:#6c3fcf;font-weight:700;flex-shrink:0;width:28px;">R<sub>a</sub></span><span>Actual Return — ผลตอบแทนจริง</span></div>
+  <div style="display:flex;gap:6px;"><span style="color:#6c3fcf;font-weight:700;flex-shrink:0;width:28px;">W<sub>b</sub></span><span>Benchmark Weight — น้ำหนัก Benchmark</span></div>
+  <div style="display:flex;gap:6px;"><span style="color:#6c3fcf;font-weight:700;flex-shrink:0;width:28px;">R<sub>b</sub></span><span>Benchmark Return — ผลตอบแทน Benchmark</span></div>
+</div>
+</div>
+
+<div style="margin-bottom:8px;">
+<div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;display:flex;align-items:center;gap:8px;"><span style="background:#6c3fcf;color:#e8d5ff;border-radius:6px;padding:2px 8px;font-size:0.68rem;">ตย.</span> ตัวอย่างการแยกผลการดำเนินงาน</div>
+<table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.73rem;margin-bottom:8px;">
+  <thead>
+    <tr style="background:#7c4dff;">
+      <th style="padding:6px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #9c71fc;" rowspan="2">หลักทรัพย์</th>
+      <th style="padding:6px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #9c71fc;" colspan="3">สัดส่วนเงินลงทุน (Weight)</th>
+      <th style="padding:6px 8px;font-weight:700;color:#fff;text-align:center;" colspan="3">อัตราผลตอบแทน (Return)</th>
+    </tr>
+    <tr style="background:#9c71fc;">
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #b39ddb;">Actual</th>
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #b39ddb;">Benchmark</th>
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #b39ddb;">Diff</th>
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #b39ddb;">Actual</th>
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;border-right:1px solid #b39ddb;">Benchmark</th>
+      <th style="padding:5px 8px;font-weight:700;color:#fff;text-align:center;">Diff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:6px 8px;font-weight:700;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">ตราสารทุน</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">50%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">60%</td>
+      <td style="padding:6px 8px;text-align:center;color:#c0185a;border-right:1px solid #e8d5ff;">−10%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">20%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">16%</td>
+      <td style="padding:6px 8px;text-align:center;color:#1a6b55;">+4%</td>
+    </tr>
+    <tr style="border-bottom:1px solid #e8d5ff;background:#fff;">
+      <td style="padding:6px 8px;font-weight:700;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">ตราสารหนี้</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">40%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">32%</td>
+      <td style="padding:6px 8px;text-align:center;color:#1a6b55;border-right:1px solid #e8d5ff;">+8%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">9%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">10%</td>
+      <td style="padding:6px 8px;text-align:center;color:#c0185a;">−1%</td>
+    </tr>
+    <tr style="background:#fff;">
+      <td style="padding:6px 8px;font-weight:700;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">ตลาดเงิน</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">10%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">8%</td>
+      <td style="padding:6px 8px;text-align:center;color:#1a6b55;border-right:1px solid #e8d5ff;">+2%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">6%</td>
+      <td style="padding:6px 8px;text-align:center;border-right:1px solid #e8d5ff;color:#1a1a1a;">5%</td>
+      <td style="padding:6px 8px;text-align:center;color:#1a6b55;">+1%</td>
+    </tr>
+  </tbody>
+</table>
+<div style="background:#f3eeff;border-radius:9px;padding:10px 12px;font-size:0.79rem;color:#1a1a1a;line-height:2.0;margin-bottom:6px;">
+  <b>ผลตอบแทนจริง</b> = 0.5×20% + 0.4×9% + 0.1×6% = <b>14.2%</b><br>
+  <b>ผลตอบแทน Benchmark</b> = 0.6×16% + 0.32×10% + 0.08×5% = <b>13.2%</b><br>
+  <b style="color:#6c3fcf;">ส่วนต่าง = 14.2% − 13.2% = 1%</b>
+</div>
+<div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid var(--purple);font-size:0.78rem;color:#1a1a1a;line-height:1.9;margin-bottom:5px;">
+  <b>1. Stock Selection</b> = W<sub>a</sub>(R<sub>a</sub>−R<sub>b</sub>)<br>
+  = 0.5×(20%−16%) + 0.4×(9%−10%) + 0.1×(6%−5%)<br>
+  = 2% − 0.4% + 0.1% = <b style="color:#1a6b55;">1.7%</b>
+</div>
+<div style="background:#fff;border-radius:9px;padding:10px 12px;border-left:4px solid #9c71fc;font-size:0.78rem;color:#1a1a1a;line-height:1.9;">
+  <b>2. Market Timing</b> = (W<sub>a</sub>−W<sub>b</sub>)×R<sub>b</sub><br>
+  = (0.5−0.6)×16% + (0.4−0.32)×10% + (0.1−0.08)×5%<br>
+  = −1.6% + 0.8% + 0.1% = <b style="color:#c0185a;">−0.7%</b>
+</div>
+<div style="background:#ede7ff;border-radius:8px;padding:8px 12px;margin-top:6px;font-size:0.78rem;color:#6c3fcf;font-weight:700;text-align:center;">
+  ✓ 1.7% + (−0.7%) = 1% ตรงกับส่วนต่างผลตอบแทน
+</div>
+</div>
+
 </div>`,
 };
 
@@ -6421,6 +7002,7 @@ const PART4_CARDS = [
   {id:'cfp2-p4-strat', num:'3', bg:'var(--lime)', color:'#1a2a00', title:'กลยุทธ์การบริหารกลุ่มหลักทรัพย์', sub:'Passive · Active · กระจายความเสี่ยง', type:'note'},
   {id:'cfp2-p4-bond',  num:'4', bg:'var(--pink)', color:'#fff', title:'กลยุทธ์การบริหารกลุ่มหลักทรัพย์ ตราสารหนี้', sub:'Buy & Hold · Indexing · เชิงรับ', type:'note'},
   {id:'cfp2-p4-perf',  num:'5', bg:'var(--teal)', color:'#1a2a00', title:'การวัดผลตอบแทนของกลุ่มหลักทรัพย์', sub:'อัตราผลตอบแทน · ปรับด้วยความเสี่ยง · ประเมินผล', type:'note'},
+  {id:'cfp2-p4-ratio', num:'6', bg:'var(--teal)', color:'#1a2a00', title:'การวัดผลตอบแทนของกลุ่มหลักทรัพย์ (2)', sub:'Sharpe Ratio · Treynor Ratio · Jensen Ratio', type:'note'},
 ];
 
 function openNotesPart(part) {
@@ -6516,6 +7098,7 @@ function openNoteDetail(id) {
     'cfp2-p4-strat': {sub:'CFP M2 · Part 4', title:'กลยุทธ์การบริหารกลุ่มหลักทรัพย์',             bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p4-bond':  {sub:'CFP M2 · Part 4', title:'กลยุทธ์การบริหารกลุ่มหลักทรัพย์ ตราสารหนี้', bg:'var(--pink)', color:'#fff'},
     'cfp2-p4-perf':  {sub:'CFP M2 · Part 4', title:'การวัดผลตอบแทนของกลุ่มหลักทรัพย์',           bg:'var(--teal)', color:'#1a2a00'},
+    'cfp2-p4-ratio': {sub:'CFP M2 · Part 4', title:'การวัดผลตอบแทนของกลุ่มหลักทรัพย์ (2)',        bg:'var(--teal)', color:'#1a2a00'},
     'cfp2-p2-ind':   {sub:'CFP M2 · Part 2', title:'ข้อมูลระดับอุตสาหกรรม',           bg:'var(--lime)', color:'#1a2a00'},
     'cfp2-p2-comp':  {sub:'CFP M2 · Part 2', title:'การวิเคราะห์สภาวะการแข่งขันในอุตสาหกรรม', bg:'var(--purple)', color:'#fff'},
     'cfp2-p2-biz':   {sub:'CFP M2 · Part 2', title:'การวิเคราะห์ข้อมูลบริษัท',        bg:'var(--pink)', color:'#fff'},
