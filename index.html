@@ -499,6 +499,10 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       <button class="cb2 cb2-gray" onclick="calcInput('C')">C</button>
       <button class="cb2 cb2-gray" onclick="calcInput('±')"><span style="font-size:1.7rem;">±</span></button>
       <button class="cb2 cb2-gray" onclick="calcInput('%')">%</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('⌫')" style="font-size:1.1rem;">⌫</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('√')" style="font-size:0.95rem;">√x</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('x²')" style="font-size:0.95rem;">x²</button>
+      <button class="cb2 cb2-gray" onclick="calcInput('xʸ')" style="font-size:0.95rem;">xʸ</button>
       <button class="cb2 cb2-op" onclick="calcInput('÷')"><span style="font-size:1.8rem;">÷</span></button>
       <button class="cb2 cb2-dark" onclick="calcInput('7')">7</button>
       <button class="cb2 cb2-dark" onclick="calcInput('8')">8</button>
@@ -7813,6 +7817,27 @@ function closeCalcSheet() {
 }
 function calcInput(v) {
   if (v === 'C') { calcVal='0'; calcExpr=''; calcPrevOp=null; calcPrevVal=null; calcJustEq=false; }
+  else if (v === '⌫') {
+    if (calcVal.length > 1) calcVal = calcVal.slice(0,-1);
+    else calcVal = '0';
+    calcJustEq = false;
+  }
+  else if (v === '√') {
+    const n = parseFloat(calcVal);
+    calcExpr = '√(' + calcVal + ') =';
+    calcVal = String(parseFloat(Math.sqrt(n).toFixed(10)));
+    calcJustEq = true;
+  }
+  else if (v === 'x²') {
+    const n = parseFloat(calcVal);
+    calcExpr = '(' + calcVal + ')² =';
+    calcVal = String(parseFloat((n*n).toFixed(10)));
+    calcJustEq = true;
+  }
+  else if (v === 'xʸ') {
+    calcPrevVal = parseFloat(calcVal); calcPrevOp = 'xʸ';
+    calcExpr = calcVal + ' ^ '; calcJustEq = false; calcVal = '0';
+  }
   else if (v === '±') { calcVal = calcVal.startsWith('-') ? calcVal.slice(1) : '-'+calcVal; }
   else if (v === '%') { calcVal = String(parseFloat(calcVal)/100); }
   else if (['÷','×','−','+'].includes(v)) {
@@ -7826,6 +7851,7 @@ function calcInput(v) {
       if (calcPrevOp==='÷') res = calcPrevVal/cur;
       else if (calcPrevOp==='×') res = calcPrevVal*cur;
       else if (calcPrevOp==='−') res = calcPrevVal-cur;
+      else if (calcPrevOp==='xʸ') res = Math.pow(calcPrevVal, cur);
       else res = calcPrevVal+cur;
       calcExpr = calcExpr + ' ' + calcVal + ' =';
       calcVal = String(parseFloat(res.toFixed(10)));
@@ -11740,6 +11766,30 @@ VFNNNdVU71j/P/iGMRRK8x1UAAAAAElFTkSuQmCC" transform="matrix(0.9898 0 0 1 0 0)">
         </div>
         <div style="background:#fff0f0;border-radius:8px;padding:8px 10px;font-size:0.8rem;color:#c00;font-weight:700;">
           ⚠️ หมายเหตุ: ใช้เฉพาะเมื่อทำไม่ได้จริงๆ และไม่ใช่ทุกข้อ
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span>
+        วิธี"กดเครื่องคิดเลข"ถอดรากที่ 4
+      </div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:0.82rem;color:#444;line-height:2;">
+          <div style="font-weight:700;margin-bottom:4px;">ตัวอย่าง: ถอดรากที่ 4 ของ 1.464</div>
+          <div>1. กด <b>1.464</b></div>
+          <div>2. กด <b>xʸ</b></div>
+          <div>3. กด <b>0.25</b> (คือ 1÷4)</div>
+          <div>4. กด <b>=</b> → ได้ <b>1.1</b></div>
+        </div>
+        <div style="background:#e8f5e0;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:0.82rem;color:#1a4a00;line-height:1.8;">
+          <div style="font-weight:700;margin-bottom:4px;">🧠 ทำไมกด 0.25?</div>
+          <div>รากที่ 4 = ยกกำลัง 1/4 = <b>0.25</b></div>
+          <div style="margin-top:4px;color:#555;">⁴√x = x^(1/4) = x^0.25</div>
+        </div>
+        <div style="background:#f0f0f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;color:#555;line-height:1.8;">
+          📌 <b>โน้ต:</b> วิธีนี้ใช้ได้กับรากที่มากกว่า 2 ทุกตัว เช่น รากที่ 3 กด 0.333 รากที่ 5 กด 0.2 — อาจได้ใช้ตอนคำนวณค่าเฉลี่ย <b>GM</b> หรือ <b>GA</b>
         </div>
       </div>
     </div>
