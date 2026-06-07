@@ -2448,7 +2448,73 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
 <div style="background:#e8f5f0;border-radius:8px;padding:8px 10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;">
   ✓ 1.7% + (−0.7%) = 1% ตรงกับส่วนต่างผลตอบแทน
 </div>`
-  }
+  },
+  {
+    q: "หากนายพรเทพต้องการทำกำไรแบบไม่จำกัดด้วยการลงทุนใน Option นายพรเทพควรเลือกลงทุนอย่างไร",
+    choices: [
+      "ซื้อ Call Option",
+      "ขาย Call Option",
+      "ซื้อ Put Option",
+      "ขาย Put Option",
+    ],
+    answer: 0,
+    explain: `ราคาสินทรัพย์อ้างอิงสามารถปรับตัวสูงขึ้นได้ไม่จำกัด จึงทำให้ผู้ซื้อ Call Option มีโอกาสได้รับ<b>กำไรไม่จำกัด</b> ขณะที่<b>ขาดทุนสูงสุดเพียงค่า Premium</b> ที่จ่ายไปเท่านั้น`
+  },
+  {
+    q: "หากนายมานพเชื่อว่าราคาหุ้น XYZ จะปรับตัวลดลงอย่างมากในอนาคต และต้องการได้รับประโยชน์จากการลดลงของราคาหุ้นดังกล่าว นายมานพควรเลือกลงทุนอย่างไร",
+    choices: [
+      "ซื้อ Call Option",
+      "ขาย Call Option",
+      "ซื้อ Put Option",
+      "ขาย Put Option",
+    ],
+    answer: 2,
+    explain: `Put Option คือ<b>สิทธิในการขาย</b> ผู้ซื้อ Put จะได้ประโยชน์เมื่อ<b>ราคาสินทรัพย์อ้างอิงปรับตัวลดลง</b> ยิ่งราคาลดลงมากเท่าไหร่ กำไรยิ่งมากขึ้นเท่านั้น`
+  },
+  {
+    q: "หากนายสมชายต้องการรับค่า Premium เป็นรายได้ และยอมรับความเสี่ยงที่อาจขาดทุนได้ไม่จำกัด นายสมชายควรเลือกลงทุนอย่างไร",
+    choices: [
+      "ซื้อ Call Option",
+      "ขาย Call Option",
+      "ซื้อ Put Option",
+      "ขาย Put Option",
+    ],
+    answer: 1,
+    explain: `ผู้<b>ขาย Call Option</b> จะได้รับ Premium ทันที แต่หากราคาสินทรัพย์อ้างอิงปรับตัวสูงขึ้นมาก ผู้ขายอาจ<b>ขาดทุนได้ไม่จำกัด</b> ขณะที่<b>กำไรสูงสุดเท่ากับ Premium</b> ที่ได้รับเท่านั้น`
+  },
+  {
+    q: "หากอัตราความผันผวน (Volatility) ของสินทรัพย์อ้างอิงเพิ่มขึ้น โดยปัจจัยอื่นคงที่ ข้อใดถูกต้องที่สุด",
+    choices: [
+      "ราคา Call Option เพิ่มขึ้น แต่ราคา Put Option ลดลง",
+      "ราคา Call Option ลดลง แต่ราคา Put Option เพิ่มขึ้น",
+      "ทั้งราคา Call Option และ Put Option เพิ่มขึ้น",
+      "ทั้งราคา Call Option และ Put Option ลดลง",
+    ],
+    answer: 2,
+    explain: `<b>Volatility ↑ → ทั้ง Call และ Put ↑</b><br><br>ยิ่งสินทรัพย์ผันผวนมาก โอกาสที่ราคาจะวิ่งไปถึง "จุดได้ประโยชน์" ยิ่งมากขึ้น ทั้งฝั่งขึ้นและฝั่งลง จึงทำให้ทั้ง Call และ Put มีมูลค่าสูงขึ้น`
+  },
+  {
+    q: "หากระยะเวลาคงเหลือก่อนหมดอายุของ Option เพิ่มขึ้น โดยปัจจัยอื่นคงที่ ข้อใดถูกต้องที่สุด",
+    choices: [
+      "ราคา Call Option และ Put Option มีแนวโน้มเพิ่มขึ้น",
+      "ราคา Call Option เพิ่มขึ้น แต่ Put Option ลดลง",
+      "ราคา Put Option เพิ่มขึ้น แต่ Call Option ลดลง",
+      "ราคา Call Option และ Put Option มีแนวโน้มลดลง",
+    ],
+    answer: 0,
+    explain: `<b>ระยะเวลาคงเหลือ ↑ → ทั้ง Call และ Put ↑</b><br><br>เวลาที่เพิ่มขึ้นเปรียบเหมือนโอกาสที่มากขึ้น ทั้ง Call และ Put ต่างมีเวลาให้ราคาสินทรัพย์วิ่งไปถึง "จุดได้ประโยชน์" มากขึ้น จึงมีมูลค่าสูงขึ้นทั้งคู่`
+  },
+  {
+    q: "หากอัตราดอกเบี้ยปราศจากความเสี่ยงเพิ่มขึ้น โดยปัจจัยอื่นคงที่ ข้อใดถูกต้องที่สุด",
+    choices: [
+      "ราคา Call Option เพิ่มขึ้น และราคา Put Option ลดลง",
+      "ราคา Call Option ลดลง และราคา Put Option เพิ่มขึ้น",
+      "ราคา Call Option และ Put Option เพิ่มขึ้น",
+      "ราคา Call Option และ Put Option ลดลง",
+    ],
+    answer: 0,
+    explain: `<b>ดอกเบี้ย ↑ → Call ↑, Put ↓</b><br><br><b>Call ได้ประโยชน์:</b> ผู้ซื้อ Call มีสิทธิซื้อในอนาคตโดยยังไม่ต้องจ่ายเงินจริงตอนนี้ ยิ่งดอกเบี้ยสูง การเลื่อนจ่ายเงินออกไปยิ่งมีประโยชน์ (Present Value ของ Strike Price ลดลง)<br><br><b>Put เสียเปรียบ:</b> ผู้ซื้อ Put จะได้รับเงินในอนาคต ยิ่งดอกเบี้ยสูง Present Value ของเงินที่จะได้รับยิ่งลดลง`
+  },
 ];
 
 // ============================================================
@@ -7413,6 +7479,65 @@ function openFormulaDetail(idx) {
       <!-- trick -->
       <div style="background:#fff3f6;border-radius:10px;padding:10px 12px;border-left:3px solid #F03E68;margin-bottom:14px;">
         <div style="font-size:0.78rem;color:#333;font-family:'Sarabun',sans-serif;line-height:1.7;"><b>💡 จำง่าย:</b> คน <b>Long = จ่าย Premium → สูตร −Premium</b> · คน <b>Short = รับ Premium → สูตร +Premium</b></div>
+      </div>
+
+      <!-- ปัจจัยที่ส่งผลต่อราคา Option -->
+      <div style="background:#f0f8ff;border-radius:12px;padding:14px;margin-bottom:14px;border-left:3px solid #4a90d9;">
+        <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;">📊 ปัจจัยที่ส่งผลต่อราคา Option</div>
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.75rem;">
+          <thead>
+            <tr style="background:#dbeeff;">
+              <th style="padding:6px 8px;text-align:left;font-weight:700;color:#1a3a6a;border-radius:6px 0 0 0;">ปัจจัย ↑</th>
+              <th style="padding:6px 8px;text-align:center;font-weight:700;color:#006640;">Call</th>
+              <th style="padding:6px 8px;text-align:center;font-weight:700;color:#a00030;">Put</th>
+              <th style="padding:6px 8px;text-align:left;font-weight:700;color:#555;border-radius:0 6px 0 0;">เหตุผลสั้นๆ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #dbeeff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">ราคาอ้างอิง</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#a00030;">↓</td>
+              <td style="padding:6px 8px;color:#555;line-height:1.5;">Call: ได้สิทธิซื้อถูก · Put: ขายแพงไม่จำเป็นแล้ว</td>
+            </tr>
+            <tr style="border-bottom:1px solid #dbeeff;background:#f5faff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">Strike (X)</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#a00030;">↓</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;color:#555;line-height:1.5;">Call: ต้องซื้อแพงขึ้น · Put: ได้สิทธิขายแพงขึ้น</td>
+            </tr>
+            <tr style="border-bottom:1px solid #dbeeff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">เวลาคงเหลือ</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;color:#555;">มีเวลาให้ลุ้นมากขึ้น ทั้งคู่ขึ้น</td>
+            </tr>
+            <tr style="border-bottom:1px solid #dbeeff;background:#f5faff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">Volatility</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;color:#555;">ยิ่งผันผวนมาก โอกาสกำไรมากขึ้น ทั้งคู่ขึ้น</td>
+            </tr>
+            <tr style="border-bottom:1px solid #dbeeff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">ดอกเบี้ย</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#a00030;">↓</td>
+              <td style="padding:6px 8px;color:#555;line-height:1.5;">Call: ยังไม่ต้องควักเงินซื้อวันนี้ · Put: PV ของเงินที่จะได้รับลดลง</td>
+            </tr>
+            <tr style="background:#f5faff;">
+              <td style="padding:6px 8px;font-weight:700;color:#1a3a6a;">ผลประโยชน์จากการถือ</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#a00030;">↓</td>
+              <td style="padding:6px 8px;text-align:center;font-weight:800;color:#006640;">↑</td>
+              <td style="padding:6px 8px;color:#555;line-height:1.5;">Call: ถือ Option ไม่ได้ผลนั้น · Put: คนอยากถือสินทรัพย์จริงมากกว่า</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="background:#fff;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:0.75rem;color:#444;font-family:'Sarabun',sans-serif;line-height:1.8;">
+          <b>🧠 จำเป็นคู่ๆ ตอนสอบ:</b><br>
+          เวลา, Volatility → <b>ทั้งคู่ขึ้น</b><br>
+          ราคาอ้างอิง, ดอกเบี้ย → <b>Call ↑ Put ↓</b><br>
+          Strike, ผลประโยชน์จากการถือ → <b>Call ↓ Put ↑</b>
+        </div>
       </div>
 
       <!-- เจอในบทเรียน -->
