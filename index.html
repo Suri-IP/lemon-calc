@@ -199,7 +199,7 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
 
   <!-- SMALL CARDS -->
   <div class="g2">
-    <div class="sc pu" onclick="openComingSoon()">
+    <div class="sc pu" onclick="goToCalendar()">
       <div class="sc-arr">
         <svg viewBox="0 0 21.2 21.2" style="width:28px;height:28px;" xmlns="http://www.w3.org/2000/svg">
           <circle fill="#FFFF1E" cx="10.6" cy="10.6" r="10.5"/>
@@ -694,16 +694,18 @@ function renderPlanner(){
 
   var noDate=document.getElementById('pl-no-date');
   var daysCard=document.getElementById('pl-days-card');
+  if(!noDate || !daysCard) return; // planner-screen ยังไม่ render
   if(!data){
     noDate.style.display='';
     daysCard.style.opacity='.4';
-    document.getElementById('pl-days-val').textContent='—';
-    document.getElementById('pl-total-hrs-clock').textContent='—';
-    document.getElementById('pl-real-hrs').textContent='— ชั่วโมง';
-    document.getElementById('pl-lesson-list').innerHTML='';
-    document.getElementById('pl-progress-fill').style.width='0%';
-    document.getElementById('pl-used-label').textContent='ใช้ไป — ชั่วโมง';
-    document.getElementById('pl-pct-label').textContent='—%';
+    var v;
+    v=document.getElementById('pl-days-val'); if(v) v.textContent='—';
+    v=document.getElementById('pl-total-hrs-clock'); if(v) v.textContent='—';
+    v=document.getElementById('pl-real-hrs'); if(v) v.textContent='— ชั่วโมง';
+    v=document.getElementById('pl-lesson-list'); if(v) v.innerHTML='';
+    v=document.getElementById('pl-progress-fill'); if(v) v.style.width='0%';
+    v=document.getElementById('pl-used-label'); if(v) v.textContent='ใช้ไป — ชั่วโมง';
+    v=document.getElementById('pl-pct-label'); if(v) v.textContent='—%';
     return;
   }
   noDate.style.display='none';
@@ -722,14 +724,15 @@ function renderPlanner(){
   var realHrs=effectiveDays*hrsPerDay;
   var perLesson=totalLessons>0?realHrs/totalLessons:0;
 
-  document.getElementById('pl-days-val').textContent=days+' วัน'+(busyDays>0?' (ว่าง '+effectiveDays+' วัน)':'');
-  document.getElementById('pl-total-hrs-clock').textContent=totalClockHrs.toLocaleString()+' ชั่วโมง';
-  document.getElementById('pl-real-hrs').textContent=realHrs.toFixed(1)+' ชั่วโมง';
+  var v2=document.getElementById('pl-days-val'); if(v2) v2.textContent=days+' วัน'+(busyDays>0?' (ว่าง '+effectiveDays+' วัน)':'');
+  var v3=document.getElementById('pl-total-hrs-clock'); if(v3) v3.textContent=totalClockHrs.toLocaleString()+' ชั่วโมง';
+  var v4=document.getElementById('pl-real-hrs'); if(v4) v4.textContent=realHrs.toFixed(1)+' ชั่วโมง';
 
   var lblEl=document.getElementById('pl-lesson-label');
   if(lblEl) lblEl.textContent='เฉลี่ยต่อบทเรียน ('+totalLessons+' บท)';
 
   var ll=document.getElementById('pl-lesson-list');
+  if(ll){
   ll.innerHTML='';
   var groups=[{label:'จรรยาบรรณ CFP2 (3 บท)',count:ETHICS_LESSONS}];
   if(extraMode==='yes'&&chkData.cfp1) groups.push({label:'CFP ชุดวิชาที่ 1 (8 บท)',count:CFP1_LESSONS});
@@ -751,6 +754,7 @@ function renderPlanner(){
   perRow.style.cssText='font-size:.8rem;font-family:Sarabun,sans-serif;color:var(--yellow);font-weight:700;padding:8px 0 0;text-align:right';
   perRow.textContent='เฉลี่ยบทละ ~'+perLesson.toFixed(1)+' ชั่วโมง';
   ll.appendChild(perRow);
+  } // end if(ll)
 
   var usedHrs=0,pct=0;
   if(startStr&&realHrs>0){
@@ -761,15 +765,19 @@ function renderPlanner(){
     var totalPlanned=(effectiveDays+daysPassed)*hrsPerDay;
     pct=totalPlanned>0?Math.min(100,Math.round(usedHrs/totalPlanned*100)):0;
     var barColor=pct===0?'var(--teal)':pct>=80?'var(--pink)':'var(--yellow)';
-    document.getElementById('pl-progress-fill').style.background=barColor;
-    document.getElementById('pl-progress-fill').style.width=pct+'%';
-    document.getElementById('pl-used-label').textContent='ใช้ไปแล้ว ~'+usedHrs.toFixed(1)+' ชม.';
-    document.getElementById('pl-pct-label').textContent=pct+'%';
+    var pf=document.getElementById('pl-progress-fill');
+    var ul=document.getElementById('pl-used-label');
+    var pl=document.getElementById('pl-pct-label');
+    if(pf){ pf.style.background=barColor; pf.style.width=pct+'%'; }
+    if(ul) ul.textContent='ใช้ไปแล้ว ~'+usedHrs.toFixed(1)+' ชม.';
+    if(pl) pl.textContent=pct+'%';
   } else {
-    document.getElementById('pl-progress-fill').style.background='var(--teal)';
-    document.getElementById('pl-progress-fill').style.width='0%';
-    document.getElementById('pl-used-label').textContent='เริ่มนับเมื่อตั้งค่าครั้งแรก';
-    document.getElementById('pl-pct-label').textContent='0%';
+    var pf2=document.getElementById('pl-progress-fill');
+    var ul2=document.getElementById('pl-used-label');
+    var pl2=document.getElementById('pl-pct-label');
+    if(pf2){ pf2.style.background='var(--teal)'; pf2.style.width='0%'; }
+    if(ul2) ul2.textContent='เริ่มนับเมื่อตั้งค่าครั้งแรก';
+    if(pl2) pl2.textContent='0%';
   }
 }
 // ============================================================
@@ -12019,15 +12027,141 @@ window.addEventListener('scroll', fixAppPadding, {passive: true});
 
 <script>
 function goToLinks(){
-  document.querySelectorAll('#quiz-screen,#planner-screen,#formulas-screen').forEach(function(el){el.style.display='none';});
-  document.querySelector('.app').style.display='none';
-  document.querySelector('.bnav').style.display='none';
+  ['quiz-screen','planner-screen','links-screen','calendar-screen'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.style.display='none';
+  });
+  var app=document.querySelector('.app'); if(app) app.style.display='none';
+  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='none';
   document.getElementById('links-screen').style.display='flex';
 }
 function closeLinks(){
   document.getElementById('links-screen').style.display='none';
-  document.querySelector('.app').style.display='flex';
-  document.querySelector('.bnav').style.display='flex';
+  var app=document.querySelector('.app'); if(app) app.style.display='flex';
+  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='flex';
+}
+</script>
+<!-- ===== CALENDAR SCREEN ===== -->
+<div id="calendar-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#FAFAE8;z-index:500;flex-direction:column;align-items:center;overflow-y:scroll;-webkit-overflow-scrolling:touch;max-width:420px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="width:100%;background:#A0FF2D;padding:18px 20px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+    <button onclick="closeCalendar()" style="background:rgba(0,0,0,0.12);border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div style="font-family:'Prompt',sans-serif;font-size:1.05rem;font-weight:800;color:#1A1A1A;">ปฏิทินสอบ CFP</div>
+  </div>
+
+  <!-- Accordion Body -->
+  <div style="width:100%;padding:16px 16px calc(110px + env(safe-area-inset-bottom,0px));">
+
+    <!-- Sub-title -->
+    <div style="font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:800;color:#3a4a00;margin-bottom:12px;padding:0 2px;">รอบสอบ CFP ปี 2569</div>
+
+    <div style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.07);">
+
+      <!-- Row 1 -->
+      <button onclick="toggleCal(1)" style="width:100%;background:none;border:none;border-bottom:1px solid #EDECCD;padding:15px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;">
+        <!-- dot stack -->
+        <div style="flex-shrink:0;width:12px;height:12px;border-radius:50%;background:#A0FF2D;margin-top:2px;"></div>
+        <div style="flex:1;">
+          <div style="font-family:'Prompt',sans-serif;font-size:0.92rem;font-weight:800;color:#1A1A1A;">ฉบับที่ 1</div>
+          <div style="font-family:'Sarabun',sans-serif;font-size:0.82rem;color:#888;margin-top:1px;">พื้นฐานการวางแผนการเงิน ภาษีและจรรยาบรรณ</div>
+        </div>
+        <svg id="cal-arr-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;transition:transform 0.25s;"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div id="cal-body-1" style="display:none;background:#FAFAE8;border-bottom:1px solid #EDECCD;padding:14px 18px;">
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.85rem;">
+          <thead><tr>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">รอบ</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">วัน / วันที่</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:right;">เวลา</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px 6px;"><span style="background:#A0FF2D;color:#1A1A1A;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">1/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 28 มี.ค. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">09.00–12.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#A0FF2D;color:#1A1A1A;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">2/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 30 พ.ค. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">09.00–12.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#A0FF2D;color:#1A1A1A;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">3/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 18 มิ.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">09.00–12.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#A0FF2D;color:#1A1A1A;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">4/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">อา. 20 ก.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">09.00–12.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#A0FF2D;color:#1A1A1A;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">5/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 21 พ.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">09.00–12.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Row 2 -->
+      <button onclick="toggleCal(2)" style="width:100%;background:none;border:none;border-bottom:1px solid #EDECCD;padding:15px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;">
+        <div style="flex-shrink:0;width:12px;height:12px;border-radius:50%;background:#9C6CFF;margin-top:2px;"></div>
+        <div style="flex:1;">
+          <div style="font-family:'Prompt',sans-serif;font-size:0.92rem;font-weight:800;color:#1A1A1A;">ฉบับที่ 2 <span style="font-weight:500;color:#aaa;font-size:0.75rem;">(หลักสูตรเดิม 85 ข้อ)</span></div>
+          <div style="font-family:'Sarabun',sans-serif;font-size:0.82rem;color:#888;margin-top:1px;">การวางแผนการลงทุน</div>
+        </div>
+        <svg id="cal-arr-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;transition:transform 0.25s;"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div id="cal-body-2" style="display:none;background:#FAFAE8;border-bottom:1px solid #EDECCD;padding:14px 18px;">
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.85rem;">
+          <thead><tr>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">รอบ</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">วัน / วันที่</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:right;">เวลา</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px 6px;"><span style="background:#9C6CFF;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">1/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 28 มี.ค. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–16.30</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#9C6CFF;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">2/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 30 พ.ค. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–16.30</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#9C6CFF;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">3/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 18 มิ.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–16.30</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#9C6CFF;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">4/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">อา. 20 ก.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–16.30</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#9C6CFF;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">5/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 21 พ.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–16.30</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Row 3 -->
+      <button onclick="toggleCal(3)" style="width:100%;background:none;border:none;padding:15px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;">
+        <div style="flex-shrink:0;width:12px;height:12px;border-radius:50%;background:#F03E68;margin-top:2px;"></div>
+        <div style="flex:1;">
+          <div style="font-family:'Prompt',sans-serif;font-size:0.92rem;font-weight:800;color:#1A1A1A;">ฉบับที่ 2 <span style="font-weight:500;color:#aaa;font-size:0.75rem;">(หลักสูตรปรับปรุงใหม่ 120 ข้อ)</span></div>
+          <div style="font-family:'Sarabun',sans-serif;font-size:0.82rem;color:#888;margin-top:1px;">การวางแผนการลงทุน</div>
+        </div>
+        <svg id="cal-arr-3" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0;transition:transform 0.25s;"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div id="cal-body-3" style="display:none;background:#FAFAE8;padding:14px 18px;">
+        <table style="width:100%;border-collapse:collapse;font-family:'Sarabun',sans-serif;font-size:0.85rem;">
+          <thead><tr>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">รอบ</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:left;">วัน / วันที่</th>
+            <th style="color:#888;font-weight:600;padding:4px 6px 8px;text-align:right;">เวลา</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="padding:6px 6px;"><span style="background:#F03E68;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">1/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">ส. 28 มี.ค. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–18.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#ddd;color:#aaa;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">2/69</span></td><td style="padding:6px 6px;color:#bbb;">—</td><td style="padding:6px 6px;color:#bbb;text-align:right;">ไม่เปิดสอบ</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#ddd;color:#aaa;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">3/69</span></td><td style="padding:6px 6px;color:#bbb;">—</td><td style="padding:6px 6px;color:#bbb;text-align:right;">ไม่เปิดสอบ</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#F03E68;color:#fff;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">4/69</span></td><td style="padding:6px 6px;color:#1A1A1A;">อา. 20 ก.ย. 69</td><td style="padding:6px 6px;color:#555;text-align:right;">13.30–18.00</td></tr>
+            <tr><td style="padding:6px 6px;"><span style="background:#ddd;color:#aaa;font-weight:700;padding:2px 8px;border-radius:999px;font-size:0.8rem;">5/69</span></td><td style="padding:6px 6px;color:#bbb;">—</td><td style="padding:6px 6px;color:#bbb;text-align:right;">ไม่เปิดสอบ</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function goToCalendar(){
+  ['quiz-screen','planner-screen','links-screen'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.style.display='none';
+  });
+  var app=document.querySelector('.app'); if(app) app.style.display='none';
+  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='none';
+  document.getElementById('calendar-screen').style.display='flex';
+}
+function closeCalendar(){
+  document.getElementById('calendar-screen').style.display='none';
+  var app=document.querySelector('.app'); if(app) app.style.display='flex';
+  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='flex';
+}
+function toggleCal(n){
+  var body = document.getElementById('cal-body-'+n);
+  var arr  = document.getElementById('cal-arr-'+n);
+  var open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arr.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 </script>
 </body>
