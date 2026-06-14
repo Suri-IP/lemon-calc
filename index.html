@@ -188,11 +188,12 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
         <button class="mc-btn">เริ่มเล่น ▶︎</button>
       </div>
     </div>
-    <div class="mc gr" onclick="openComingSoon()">
+    <div class="mc gr" onclick="openTips()">
       <div>
-        <div class="mc-title">CPF<br>module3</div>
-        <div class="mc-sub">0 บทเรียน · 0 ด่าน</div>
-        <button class="mc-btn">เริ่มเล่น ▶︎</button>
+        <div class="mc-title">Quick Tips</div>
+        <div class="mc-title">✦ for module2</div>
+        <div class="mc-sub">ทริคอื่นๆ</div>
+        <button class="mc-btn">เริ่มอ่าน ▶︎</button>
       </div>
     </div>
   </div>
@@ -8126,14 +8127,6 @@ renderCD();
 <div id="dropdown-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;">
   <div onclick="closeMenu()" style="position:absolute;inset:0;"></div>
   <div style="position:absolute;top:52px;right:18px;background:#fff;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.18);overflow:hidden;min-width:220px;">
-    <div onclick="openTips(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      ทริคอื่นๆ
-    </div>
-    <div onclick="openExamTips(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      การบริหารเวลาสอบ
-    </div>
     <div onclick="openRote(); closeMenu()" style="display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;border-bottom:1px solid #f0f0e8;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#1a1a1a;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       ท่องจำดื้อๆ
@@ -11719,10 +11712,32 @@ VFNNNdVU71j/P/iGMRRK8x1UAAAAAElFTkSuQmCC" transform="matrix(0.9898 0 0 1 0 0)">
       </div>
     </div>
 
+    <div style="background:#A0FF2D;border-radius:14px;padding:16px;margin-bottom:14px;">
+      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span style="background:#1a2a00;color:#A0FF2D;border-radius:6px;padding:2px 8px;font-size:0.68rem;">6</span>
+        การบริหารเวลาสอบ
+      </div>
+      <div style="background:#FAFAE8;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
+        <div style="margin-bottom:10px;">เวลาสอบ <span style="color:#c00;font-weight:700;">180 นาที</span> สำหรับ <span style="color:#c00;font-weight:700;">85 ข้อ</span> อาจดูเหมือนเยอะ แต่ถ้าเตรียมตัวไม่แน่นพอและบริหารเวลาไม่ดี อาจทำไม่ทันได้</div>
+        <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:10px 12px;margin-bottom:10px;">
+          หลายคนทำไม่ทันเพราะ<span style="color:#c00;font-weight:700;">ใช้เวลากับข้อที่ทำไม่ได้มากเกินไป</span><br><br>
+          ถ้าตัดสินใจได้เร็ว → ทำได้เลย<br>
+          ถ้าไม่ใช่ → <span style="color:#c00;font-weight:700;">รีบไปข้ออื่น</span> ยังไงก็ 1 คะแนนเท่ากัน<br><br>
+          อย่างน้อย<span style="font-weight:700;">ควรอ่านโจทย์ครบทุกข้อ</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.5);border-radius:8px;padding:10px 12px;margin-bottom:10px;">
+          ข้อที่ตัดตัวเลือกได้แต่ไม่แน่ใจ →<br>
+          <span style="color:#c00;font-weight:700;">มาร์คเอาไว้</span>แล้วไปทำข้ออื่นก่อน<br>
+          ถ้าไม่มาร์ค บางทีต้องกลับมาอ่านและตัดใหม่ทั้งหมด
+        </div>
+        <div style="background:rgba(255,229,31,0.5);border-radius:8px;padding:8px 10px;font-size:0.8rem;color:#c00;font-weight:700;">
+          ⚠️ ข้อที่เว้นไว้ก่อน → ถ้าไม่มีเวลากลับมาดู สุดท้ายต้องสุ่มตอบ — มาร์คตัวเลือกที่ตัดไปแล้วไว้เสมอ
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-
-<!-- ROTE SCREEN -->
 <div id="rote-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
   <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeRote()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
