@@ -157,9 +157,10 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
       </svg>
       <div class="logo">LemonCalc</div>
     </div>
-    <button class="menu-btn" aria-label="เข้าสู่ระบบ" onclick="openLoginMockup()" id="menu-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,235,0.65)" stroke-width="2" stroke-linecap="round">
-        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    <button class="menu-btn" aria-label="เมนู" onclick="toggleMenu()"  id="menu-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,235,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="11" width="14" height="10" rx="2"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
       </svg>
     </button>
   </div>
@@ -181,10 +182,9 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
 
   <!-- MODULE GRID -->
   <div class="g2">
-    <div class="mc y" onclick="goToStats()">
+    <div class="mc y" onclick="openComingSoon()">
       <div>
-        <div class="mc-title">My Practice</div>
-        <div class="mc-title">Stats</div>
+        <div class="mc-title">Stats<br>Overview</div>
         <div class="mc-sub">สถิติส่วนตัว</div>
         <button class="mc-btn">ดูสถิติ ▶︎</button>
       </div>
@@ -246,18 +246,24 @@ html,body{background:var(--bg);color:var(--ws);font-family:'Prompt',sans-serif;h
   <button class="nb li" aria-label="หน้าหลัก" onclick="goHome()">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
   </button>
-  <button class="nb pi" aria-label="เกร็ดสนามสอบ" onclick="goToExamTips()">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/></svg>
+  <button class="nb pi" aria-label="เกร็ดสนามสอบ CFP" onclick="openExamTips()">
+    <svg viewBox="0 0 66 66" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+      <path fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M44.9,22.9H19.5c-0.7,0-1.2,0.5-1.2,1.2v16.6c0,0.7,0.5,1.2,1.2,1.2h25.4c0.7,0,1.2-0.5,1.2-1.2V24.1C46.1,23.4,45.6,22.9,44.9,22.9z"/>
+      <path fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M38.5,22.9H25.9v-3.3c0-1,0.8-1.8,1.8-1.8h9.1c1,0,1.8,0.8,1.8,1.8V22.9z"/>
+      <path fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M36.8,29.7c6.7-1.1,9.3-4.2,9.3-4.2"/>
+      <path fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M18.3,25.5c0,0,2.6,3.1,9.2,4.2"/>
+      <path fill="white" d="M32.6,27.4l0.5,1c0.1,0.1,0.2,0.2,0.3,0.3l1.1,0.2c0.4,0.1,0.5,0.5,0.3,0.8L34,30.3c-0.1,0.1-0.2,0.3-0.1,0.4l0.2,1.1c0.1,0.4-0.3,0.7-0.7,0.5l-1-0.5c-0.1-0.1-0.3-0.1-0.4,0l-1,0.5c-0.3,0.2-0.7-0.1-0.7-0.5l0.2-1.1c0-0.1,0-0.3-0.1-0.4l-0.8-0.8c-0.3-0.3-0.1-0.7,0.3-0.8l1.1-0.2c0.1,0,0.3-0.1,0.3-0.3l0.5-1C32,27,32.5,27,32.6,27.4z"/>
+    </svg>
   </button>
   <button class="nb te2" aria-label="รวมสูตร" onclick="openFormulas()">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 10h10M4 14h7M4 18h5"/><path d="M17 14l2 2 4-4"/></svg>
   </button>
   <button class="nb pu2" aria-label="ติดต่อผู้พัฒนา" onclick="openDeveloperPage()">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M9 14s1 1.5 3 1.5 3-1.5 3-1.5"/>
-      <line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/>
-      <line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/>
+    <svg viewBox="0 0 66 66" width="57" height="57" style="margin-top:-1px;" xmlns="http://www.w3.org/2000/svg">
+      <path fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M42.5,23h-19c-1.4,0-2.5,1.1-2.5,2.5v14c0,1.4,1.1,2.5,2.5,2.5h3.7l-1.9,5l7.6-5h9.6c1.4,0,2.5-1.1,2.5-2.5v-14C45,24.1,43.9,23,42.5,23z"/>
+      <circle fill="white" cx="27.1" cy="32.8" r="1.6"/>
+      <circle fill="white" cx="33" cy="32.8" r="1.6"/>
+      <circle fill="white" cx="38.9" cy="32.8" r="1.6"/>
     </svg>
   </button>
 </div>
@@ -835,7 +841,7 @@ const QUIZ_DATA = [
       "ค่าเฉลี่ยเลขคณิต = 2.50%, ค่าเฉลี่ยเรขาคณิต = 0%",
       "ค่าเฉลี่ยเลขคณิต = 0%, ค่าเฉลี่ยเรขาคณิต = 0%",
     ],
-    id: 1, category: 'return', answer: 0,
+    answer: 0,
     explain: `<b>ค่าเฉลี่ยเลขคณิต (Arithmetic Mean)</b><br>
 = (15 + 20 + (−20) + (−15)) ÷ 4 = 0 ÷ 4 = <b>0%</b><br><br>
 <b>ค่าเฉลี่ยเรขาคณิต (Geometric Mean)</b><br>
@@ -852,7 +858,7 @@ const QUIZ_DATA = [
       "17.9%",
       "18.9%",
     ],
-    id: 2, category: 'expected_return', answer: 2,
+    answer: 2,
     explain: `<b>สูตร E(R) = (P<sub>1</sub>×R<sub>1</sub>) + (P<sub>2</sub>×R<sub>2</sub>) + (P<sub>3</sub>×R<sub>3</sub>) + … + (P<sub>n</sub>×R<sub>n</sub>)</b><br><br>
 = (0.5×25%) + (0.3×10%) + (0.2×12%)<br>
 = 12.5 + 3 + 2.4<br>
@@ -904,7 +910,7 @@ const QUIZ_DATA = [
       "1.67%",
       "-6.5%",
     ],
-    id: 3, category: 'expected_return', answer: 3,
+    answer: 3,
     explain: `<b>สูตร E(R<sub>A</sub>) = Σ P<sub>i</sub> × R<sub>i</sub></b><br><br>
 = (0.30 × 15%) + (0.20 × 20%) + (0.50 × −30%)<br>
 = 4.5% + 4.0% + (−15.0%)<br>
@@ -949,7 +955,7 @@ const QUIZ_DATA = [
       "B > C > A",
       "C > A > B",
     ],
-    id: 4, category: 'expected_return', answer: 0,
+    answer: 0,
     explain: `คำนวณ E(R) ของแต่ละหลักทรัพย์<br><br>
 <b>E(R<sub>A</sub>)</b> = (0.30×15%) + (0.20×20%) + (0.50×−30%)<br>
 = 4.5% + 4.0% − 15.0% = <b>−6.5%</b><br><br>
@@ -968,7 +974,7 @@ const QUIZ_DATA = [
       "A = -6.5, B = 2.5, C = 10",
       "A = 23.56, B = 7.5, C = 5",
     ],
-    id: 5, category: 'expected_return', answer: 0,
+    answer: 0,
     explain: `<b>สูตรความแปรปรวน σ² = Σ P<sub>i</sub> × (R<sub>i</sub> − E(R))²</b><br><br>
 จาก E(R) ที่คำนวณไว้: E(R<sub>A</sub>) = −6.5%, E(R<sub>B</sub>) = 2.5%, E(R<sub>C</sub>) = 10%<br><br>
 <b>σ²(A)</b><br>
@@ -995,7 +1001,7 @@ const QUIZ_DATA = [
       "ความแปรปรวน = 6.25, ส่วนเบี่ยงเบนมาตรฐาน = 2.5",
       "ความแปรปรวน = 39.0625, ส่วนเบี่ยงเบนมาตรฐาน = 6.25",
     ],
-    id: 6, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `จากข้อ 5 ความแปรปรวนของ A = <b>555.25</b><br><br>
 <b>ส่วนเบี่ยงเบนมาตรฐาน (SD) = √ความแปรปรวน</b><br>
 = √555.25 ≈ <b>23.56</b><br><br>
@@ -1009,7 +1015,7 @@ const QUIZ_DATA = [
       "113.64 บาท",
       "137.5 บาท",
     ],
-    id: 7, category: 'stock', answer: 2,
+    answer: 2,
     explain: `<b>สูตรมูลค่าหุ้นสามัญ (กรณีถือ n ปี)</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:12px;text-align:center;font-size:0.9rem;">
   P = Σ D<sub>t</sub>/(1+k)<sup>t</sup> + P<sub>n</sub>/(1+k)<sup>n</sup>
@@ -1039,7 +1045,7 @@ const QUIZ_DATA = [
       "15.11 บาท",
       "11.65 บาท",
     ],
-    id: 8, category: 'stock', answer: 1,
+    answer: 1,
     explain: `<b>สูตรมูลค่าหุ้นสามัญ กรณีถือตลอดไป (Perpetuity)</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;margin-bottom:12px;text-align:center;font-size:0.95rem;">
   P = D / k
@@ -1071,7 +1077,7 @@ const QUIZ_DATA = [
       "N=3, I/Y=5, PV=250,000, PMT=100,000, FV=โจทย์ถาม",
       "N=3, I/Y=5, PV=-250,000, PMT=100,000, FV=โจทย์ถาม",
     ],
-    id: 9, category: 'tmv', answer: 0,
+    answer: 0,
     explain: `<b>ตอบ</b> N=3, I/Y=5, <b>PV=โจทย์ถาม</b>, PMT=100,000, FV=0<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px;margin-bottom:12px;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
 <b>เหตุผล:</b><br>
@@ -1096,7 +1102,7 @@ const QUIZ_DATA = [
       "N=4, I/Y=6, PV=-180,000, PMT=0, FV=โจทย์ถาม",
       "N=4, I/Y=6, PV=0, PMT=50,000, FV=-180,000",
     ],
-    id: 10, category: 'tmv', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ</b> N=4, I/Y=6, <b>PV=-180,000</b>, PMT=50,000, FV=โจทย์ถาม<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px;margin-bottom:12px;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
 <b>เหตุผล:</b><br>
@@ -1119,7 +1125,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
       "ควร เพราะมูลค่าตลาดแพงกว่ามูลค่าที่แท้จริง 9.8 บาท",
       "ควร เพราะมูลค่าที่แท้จริงคือ 1,077.9 บาท",
     ],
-    id: 11, category: 'bond', answer: 0,
+    answer: 0,
     explain: `<b>ตอบ</b> ควรซื้อ เพราะมูลค่าที่แท้จริง > ราคาตลาด<br><br>
 
 <b>ใส่ตัวแปรในเครื่องคิดเลข</b>
@@ -1153,7 +1159,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
       "10%",
       "10.2%",
     ],
-    id: 12, category: 'current_yield', answer: 3,
+    answer: 3,
     explain: `<b>ตอบ 10.2%</b><br><br>
 <b>สูตร Current Yield (อัตราผลตอบแทนจากดอกเบี้ย)</b>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;text-align:center;font-size:0.9rem;font-weight:700;color:#1a1a1a;">
@@ -1188,7 +1194,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
       "24%",
       "26%",
     ],
-    id: 13, category: 'bond', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ 8.7726%</b><br><br>
 <b>ใส่ตัวแปรในเครื่องคิดเลข</b>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
@@ -1219,7 +1225,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
       "2%",
       "2.1064%",
     ],
-    id: 14, category: 'bond', answer: 3,
+    answer: 3,
     explain: `<b>ตอบ 2.1064%</b><br><br>
 <b>ใส่ตัวแปรในเครื่องคิดเลข</b>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:10px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;color:#1a1a1a;">
@@ -1240,7 +1246,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `บริษัท CPMALL จ่ายเงินปันผลทุกปี หุ้นละ 0.8 บาท หากนางสาวลำไยต้องการผลตอบแทนจากการลงทุน 12% ต่อปี ราคาหุ้นที่เหมาะสมของบริษัท CPMALL คือเท่าไหร่`,
     choices: ["มากกว่า 0.8 บาท", "9.6 บาท", "6.67 บาท", "15 บาท"],
-    id: 15, category: 'stock', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ 6.67 บาท</b><br><br>
 เงินปันผล<b>ไม่มีการเติบโต</b> (Constant Dividend) ใช้สูตร:<br>
 <div style="text-align:center;margin:10px 0;">
@@ -1260,7 +1266,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `ปีที่ผ่านมาบริษัท AAA จ่ายเงินปันผลหุ้นละ 0.5 บาท และมีการจ่ายเงินปันผลเพิ่มขึ้นปีละ 2% หากนักลงทุนต้องการผลตอบแทน 10% ต่อปี ราคาหุ้นที่เหมาะสมจะลงทุนของบริษัท AAA ควรเป็นเท่าไหร่`,
     choices: ["3.675 บาท", "5.673 บาท", "6.375 บาท", "7.365 บาท"],
-    id: 16, category: 'stock', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ 6.375 บาท</b><br><br>
 เงินปันผล<b>เติบโตคงที่ทุกปี</b> (Gordon Growth Model) ใช้สูตร:<br>
 <div style="text-align:center;margin:10px 0;">
@@ -1282,7 +1288,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `นายชาวีต้องการผลตอบแทนจากการลงทุน 10% ต่อปี หุ้นบริษัท Chiwa จ่ายเงินปันผลปีที่ผ่านมาหุ้นละ 0.4 บาท คาดการณ์ว่าในอีก 2 ปีข้างหน้าจะมีการจ่ายเงินปันผลเพิ่มขึ้น 10% และ 12% ตามลำดับ และหลังจากนั้นจะมีการจ่ายเงินปันผลเพิ่มขึ้นปีละ 3% ราคาหุ้นที่เหมาะสมจะลงทุนของบริษัท Chiwa สำหรับนายชาวีเป็นเท่าไหร่`,
     choices: ["6.7636 บาท", "6.80 บาท", "7.1636 บาท", "5.9927 บาท"],
-    id: 17, category: 'stock', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ 6.80 บาท</b><br><br>
 โจทย์นี้มีเงินปันผล <b>3 ช่วง</b> คำนวณ 3 ขั้นตอน<br><br>
 
@@ -1321,7 +1327,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `บ้านในย่าน A มีค่าเช่าเดือนละ 18,000 บาท โดยพื้นที่นี้มี Gross Rent Multiplier (GRM) เฉลี่ยอยู่ที่ 120 เท่า ราคาบ้านที่เหมาะสมในการลงทุนคือเท่าไหร่`,
     choices: ["1,800,000 บาท", "2,160,000 บาท", "2,592,000 บาท", "25,920,000 บาท"],
-    id: 18, category: 'property', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ 2,160,000 บาท</b><br><br>
 สูตร: <b>ราคาบ้าน = GRM × ค่าเช่ารายเดือน</b><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
@@ -1339,7 +1345,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `บ้านในเขต B มีราคาที่เหมาะสมอยู่ที่ 3,000,000 บาท มีค่าเช่าเดือนละ 25,000 บาท พื้นที่นี้มี Gross Rent Multiplier (GRM) เท่าไหร่`,
     choices: ["75 เท่า", "100 เท่า", "120 เท่า", "144 เท่า"],
-    id: 19, category: 'property', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ 120 เท่า</b><br><br>
 สูตรเดิม: ราคาบ้าน = GRM × ค่าเช่ารายเดือน<br>
 สลับหา GRM: <b>GRM = ราคาบ้าน ÷ ค่าเช่ารายเดือน</b><br>
@@ -1404,7 +1410,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
 </table>
 </div>`,
     choices: ["Volume=1, OI=2", "Volume=2, OI=2", "Volume=2, OI=3", "Volume=3, OI=2"],
-    id: 20, category: 'futures', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ Volume = 2, OI = 2</b><br><br>
 <b>นิยาม:</b><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
@@ -1507,7 +1513,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
 </table>
 </div>`,
     choices: ["Volume=2, OI=2", "Volume=2, OI=3", "Volume=3, OI=3", "Volume=2, OI=5"],
-    id: 21, category: 'futures', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ Volume = 2, OI = 3</b><br><br>
 <b>นิยาม:</b><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:8px 0;font-size:0.82rem;line-height:1.9;font-family:'Sarabun',sans-serif;">
@@ -1562,7 +1568,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `นางสาวเอ เปิดสถานะซื้อ (Long) SET50 Index Futures ที่ราคา 950 จุด จำนวน 10 สัญญา โดยมีขนาดสัญญา 200 บาทต่อจุด มูลค่าของสัญญาทั้งหมดคือเท่าไหร่`,
     choices: ["38,000 บาท", "19,000 บาท", "1,900,000 บาท", "ไม่มีคำตอบที่ถูกต้อง"],
-    id: 22, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ 1,900,000 บาท</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   <div><b>มูลค่าสัญญา</b> = ราคา Futures × Contract Size × จำนวนสัญญา</div>
@@ -1573,7 +1579,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `กองทุนหุ้นไทยมีพอร์ตลงทุนมูลค่า 80 ล้านบาท ผู้จัดการกองทุนคาดว่าตลาดหุ้นไทยอาจปรับตัวลดลง จึงต้องการใช้ SET50 Index Futures ป้องกันความเสี่ยง ปัจจุบัน SET50 Futures ซื้อขายที่ 920 จุด ขนาดสัญญา 200 บาทต่อจุด ควร Long หรือ Short และใช้กี่สัญญา`,
     choices: ["Long SET50 Futures 435 สัญญา", "Short SET50 Futures 435 สัญญา", "Long SET50 Futures 434 สัญญา", "Short SET50 Futures 434 สัญญา"],
-    id: 23, category: 'futures', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ Short SET50 Futures 435 สัญญา</b><br><br>
 <b>ทิศทาง:</b> คาดตลาดลง → <b style="color:#c62828;">Short</b> (ขาย) เพื่อป้องกัน<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
@@ -1591,7 +1597,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `กองทุนทองคำมีมูลค่าพอร์ต 24 ล้านบาท กังวลว่าราคาทองคำอาจปรับตัวลดลงในระยะสั้น จึงต้องการใช้ Gold Online Futures (GO) ป้องกันความเสี่ยง ปัจจุบัน GO ซื้อขายที่ 3,200 USD/ทรอยออนซ์ ขนาดสัญญา 10 ทรอยออนซ์ อัตราแลกเปลี่ยน 36 บาท/USD ควรทำสัญญาแบบใดและกี่สัญญา`,
     choices: ["Short Gold Futures 21 สัญญา", "Long Gold Futures 21 สัญญา", "Short Gold Futures 20.83 สัญญา", "Long Gold Futures 20.83 สัญญา"],
-    id: 24, category: 'futures', answer: 0,
+    answer: 0,
     explain: `<b>ตอบ Short Gold Futures 21 สัญญา</b><br><br>
 <b>ทิศทาง:</b> กังวลราคาทองลง → <b style="color:#c62828;">Short</b> (ขาย) เพื่อป้องกัน<br><br>
 <div style="background:#fff8e0;border-radius:8px;padding:8px 12px;font-size:0.8rem;font-family:'Sarabun',sans-serif;margin-bottom:8px;">
@@ -1609,7 +1615,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `นายเจลงทุนซื้อพุทออปชันแบบยุโรปของหุ้น DEF อายุ 6 เดือน ราคาใช้สิทธิ 100 บาท จำนวน 1 สิทธิ ค่าพรีเมียม 700 บาทต่อ 1 ออปชัน (มีสิทธิขายได้ 100 หุ้นต่อ 1 ออปชัน) เมื่อครบกำหนด ราคาหุ้น DEF อยู่ที่ 100 บาท นายเจจะได้กำไร/ขาดทุนเท่าไหร่`,
     choices: ["กำไร 700 บาท", "ขาดทุน 700 บาท", "ขาดทุน 70,000 บาท", "เท่าทุน"],
-    id: 25, category: 'futures', answer: 1,
+    answer: 1,
     explain: `<b>ตอบ ขาดทุน 700 บาท</b><br><br>
 ซื้อพุทออปชัน = <b>Long Put Option</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
@@ -1625,7 +1631,7 @@ PV และ PMT เป็นคนละทิศกัน → PV ลบ, PMT �
   {
     q: `จากโจทย์ข้อ 25 ถ้าหากราคาหุ้น DEF เท่ากับ 80 บาท นายเจจะได้กำไรหรือขาดทุนเท่าไหร่`,
     choices: ["กำไร 700 บาท", "ขาดทุน 700 บาท", "กำไร 1,300 บาท", "ขาดทุน 1,300 บาท"],
-    id: 26, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ กำไร 1,300 บาท</b><br><br>
 Long Put — ได้กำไรเมื่อ X &gt; S มากกว่า Premium<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
@@ -1639,7 +1645,7 @@ Long Put — ได้กำไรเมื่อ X &gt; S มากกว่า
   {
     q: `นายบันดิษลงทุนในลักษณะ Short Call Option ของหุ้น ABC ราคาใช้สิทธิ 100 บาท ค่าพรีเมียม 1,000 บาทต่อ 1 Option (100 หุ้นต่อ 1 Option) จงคำนวณกำไร/ขาดทุนต่อ 1 หุ้น ถ้าราคาหุ้น ณ วันครบกำหนดคือ 90, 100, 110, 120 ตามลำดับ`,
     choices: ["10, 10, 0, −10", "20, 10, 0, −10", "−20, −10, 0, 10", "−10, −10, 0, 10"],
-    id: 27, category: 'futures', answer: 0,
+    answer: 0,
     explain: `<b>ตอบ 10, 10, 0, −10</b><br><br>
 Premium/หุ้น = 1,000 ÷ 100 = <b>10 บาท/หุ้น</b><br>
 สูตร Short Call: Min(0, X−S) + Premium<br><br>
@@ -1659,7 +1665,7 @@ Breakeven ของฝั่ง Long อยู่ที่ราคา 110 บ�
   {
     q: `นายวิชัยสนใจลงทุนในสัญญา Futures ของดัชนี SET Index โดยบริษัทหลักทรัพย์แจ้งเงื่อนไขว่าสัญญามีขนาด 1,000 บาทต่อจุด และกำหนดให้นักลงทุนต้องวางเงินประกันเริ่มต้น 30,000 บาทต่อสัญญา พร้อมรักษายอดเงินในบัญชีไม่ให้ต่ำกว่า 20,000 บาท นายวิชัยซื้อสัญญา 1 สัญญาที่ราคา 600 จุด และราคาเคลื่อนไหวดังนี้<br><br><div style="overflow-x:auto;margin:10px 0;"><table style="width:100%;border-collapse:collapse;font-size:0.8rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 10px;text-align:center;border:1px solid #00695c;">วันที่</th><th style="padding:7px 10px;text-align:center;border:1px solid #00695c;">ราคา Futures (จุด)</th></tr></thead><tbody><tr><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">ซื้อ (วันที่ 1)</td><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">600.00</td></tr><tr><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">สิ้นวันที่ 1</td><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">596.00</td></tr><tr><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">สิ้นวันที่ 2</td><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">584.00</td></tr><tr><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">สิ้นวันที่ 3</td><td style="padding:7px 10px;text-align:center;border:1px solid #b2dfdb;">605.00</td></tr></tbody></table></div><br>นายวิชัยต้องวางเงินประกันเพิ่มหรือไม่ อย่างไร`,
     choices: ["ต้องวางเพิ่มสิ้นวันที่ 1 จำนวน 4,000 บาท", "ต้องวางเพิ่มสิ้นวันที่ 2 จำนวน 6,000 บาท", "ต้องวางเพิ่มสิ้นวันที่ 2 จำนวน 16,000 บาท", "ไม่ต้องวางเพิ่มเลยตลอด 3 วัน"],
-    id: 28, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ ต้องวางเพิ่มสิ้นวันที่ 2 จำนวน 16,000 บาท</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   สิ้นวันที่ 1: 30,000 + (596−600)×1,000 = <b>26,000</b> → เหนือ MM ไม่โดน<br>
@@ -1671,7 +1677,7 @@ Breakeven ของฝั่ง Long อยู่ที่ราคา 110 บ�
   {
     q: `จากสถานการณ์ของนายวิชัยในข้อ 28 หลังจากที่นายวิชัยได้วางเงินประกันเพิ่มตามที่บริษัทหลักทรัพย์เรียกแล้ว วันถัดมาราคา Futures ปรับตัวขึ้นมาปิดที่ 605 จุด ยอดบัญชีเงินประกันของนายวิชัย ณ สิ้นวันที่ 3 จะอยู่ที่เท่าไหร่`,
     choices: ["30,000 บาท", "35,000 บาท", "46,000 บาท", "51,000 บาท"],
-    id: 29, category: 'futures', answer: 3,
+    answer: 3,
     explain: `<b>ตอบ 51,000 บาท</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   หลังเติม VM สิ้นวันที่ 2: 14,000 + 16,000 = <b>30,000</b><br>
@@ -1681,7 +1687,7 @@ Breakeven ของฝั่ง Long อยู่ที่ราคา 110 บ�
   {
     q: `นางสาวพิมพ์ใจซื้อสัญญา Futures ของหุ้น ABC จำนวน 1 สัญญา ขนาดสัญญา 1,000 บาทต่อจุด ที่ราคา 500 จุด บริษัทหลักทรัพย์กำหนดเงินประกันเริ่มต้น 25,000 บาท และระดับเงินประกันขั้นต่ำ 18,000 บาท ราคา Futures ปิดสิ้นวันที่ 1 ที่ 493 จุด และสิ้นวันที่ 2 ที่ 485 จุด นางสาวพิมพ์ใจต้องวางเงินประกันประเภทใดและเป็นจำนวนเท่าไหร่`,
     choices: ["วาง Initial Margin เพิ่ม 15,000 บาท", "วาง Maintenance Margin เพิ่ม 8,000 บาท", "วาง Maintenance Margin เพิ่ม 15,000 บาท", "วาง Variation Margin เพิ่ม 15,000 บาท"],
-    id: 30, category: 'futures', answer: 3,
+    answer: 3,
     explain: `<b>ตอบ วาง Variation Margin เพิ่ม 15,000 บาท</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   สิ้นวันที่ 1: 25,000 + (493−500)×1,000 = <b>18,000</b> → เท่า MM พอดี ยังไม่โดน<br>
@@ -1696,7 +1702,7 @@ Breakeven ของฝั่ง Long อยู่ที่ราคา 110 บ�
   {
     q: `ข้อใดมีผลทำให้ราคาฟิวเจอร์สของสินค้าโภคภัณฑ์ลดลง เมื่อปัจจัยอื่นคงเดิม`,
     choices: ["อัตราดอกเบี้ยเพิ่มขึ้น", "ต้นทุนเก็บรักษาเพิ่มขึ้น", "Convenience Yield เพิ่มขึ้น", "ระยะเวลาสัญญาเพิ่มขึ้น"],
-    id: 31, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>ตอบ Convenience Yield เพิ่มขึ้น</b><br><br>
 สูตรโภคภัณฑ์: <b>F = S + SrT + SwT − SyT</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
@@ -1716,7 +1722,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "เพิ่มขึ้น เพราะต้นทุนในการถือครองเป็นปัจจัยที่ส่งผลบวกกับราคา Futures",
       "ราคาฟิวเจอร์ของสินทรัพย์ทางการเงินไม่มีต้นทุนการถือครองเข้ามาเกี่ยวข้อง"
     ],
-    id: 32, category: 'futures', answer: 3,
+    answer: 3,
     explain: `<b>สูตร Futures ทางการเงิน: F = S + SrT − SdT</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
   ตัวแปรในสูตร: <b>S, r, d, T</b><br>
@@ -1731,7 +1737,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `นักลงทุนขายสัญญาฟิวเจอร์สยาง (Short Futures) จำนวน 1 สัญญา ที่ราคา 80 บาทต่อกิโลกรัม โดยสัญญา 1 สัญญามีขนาด 5,000 กิโลกรัม บริษัทหลักทรัพย์กำหนดเงินประกันเริ่มต้น 10,000 บาท และเงินประกันขั้นต่ำ 7,000 บาท หากสิ้นวันราคาปิดที่ 81 บาท นักลงทุนต้องวางเงินประกันเพิ่มเท่าใด`,
     choices: ["2,000 บาท", "3,000 บาท", "5,000 บาท", "ไม่ต้องวางเพิ่ม เนื่องจากมีเพียงพอ"],
-    id: 33, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>Short Futures — ราคาขึ้น → ขาดทุน</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   P/L = (ราคาขาย − ราคาปิด) × ขนาดสัญญา<br>
@@ -1747,7 +1753,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `ปัจจุบัน SET50 Index อยู่ที่ 1,000 จุด อัตราดอกเบี้ย 8% ต่อปี หุ้นใน SET50 มีการจ่ายเงินปันผลที่อัตรา 4% ต่อปี จงหาราคาที่เหมาะสมของสัญญาฟิวเจอร์สอายุ 6 เดือน`,
     choices: ["1,000 จุด", "1,010 จุด", "1,020 จุด", "1,040 จุด"],
-    id: 34, category: 'futures', answer: 2,
+    answer: 2,
     explain: `<b>สูตร Futures ทางการเงิน: F = S + SrT − SdT</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   S = 1,000, r = 0.08, d = 0.04, T = 0.5<br>
@@ -1760,7 +1766,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `บริษัท MVP จำกัด มีลูกหนี้ 9,500,000 บาท และมีค่าเผื่อหนี้สงสัยจะสูญ 1,000,000 บาท บริษัท MVP จำกัด จะมีลูกหนี้การค้าสุทธิเท่าไหร่`,
     choices: ["−8.5 ล้านบาท", "8.5 ล้านบาท", "9.5 ล้านบาท", "10.5 ล้านบาท"],
-    id: 35, category: 'account', answer: 1,
+    answer: 1,
     explain: `<b>ลูกหนี้การค้า = ลูกหนี้สุทธิ</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
   ลูกหนี้สุทธิ = ลูกหนี้ − ค่าเผื่อหนี้สงสัยจะสูญ<br>
@@ -1777,7 +1783,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 วันที่ 25 มกราคม ซื้อสินค้าราคาเครื่องละ 1,000,000 บาท จำนวน 8 เครื่อง<br>
 ในระหว่างปี บริษัทขายสินค้าได้รวม 15 เครื่อง ต้นทุนขายตามวิธี FIFO เท่ากับเท่าใด`,
     choices: ["12,600,000 บาท", "13,400,000 บาท", "14,000,000 บาท", "15,200,000 บาท"],
-    id: 36, category: 'account', answer: 0,
+    answer: 0,
     explain: `<b>FIFO — เอาของเก่าออกก่อน</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   ขายได้ 15 เครื่อง<br>
@@ -1789,7 +1795,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `บริษัท XYZ จำกัด ซื้อสินค้าเพื่อขาย วันที่ 8 กุมภาพันธ์ ซื้อสินค้าราคาเครื่องละ 500,000 บาท จำนวน 20 เครื่อง และวันที่ 20 กุมภาพันธ์ ซื้อสินค้าราคาเครื่องละ 650,000 บาท จำนวน 10 เครื่อง ในระหว่างปี บริษัทขายสินค้าได้รวม 18 เครื่อง หากคิดต้นทุนขายตามวิธี LIFO จะเท่ากับเท่าไหร่`,
     choices: ["9,900,000 บาท", "10,500,000 บาท", "10,700,000 บาท", "11,000,000 บาท"],
-    id: 37, category: 'account', answer: 1,
+    answer: 1,
     explain: `<b>LIFO — เอาของใหม่ออกก่อน</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   ขายได้ 18 เครื่อง<br>
@@ -1828,7 +1834,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
 </tbody></table></div></div>`,
     choices: ["5.5%", "6.5%", "7.0%", "8.5%"],
-    id: 38, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `<b>E(R) = Σ P<sub>i</sub> × R<sub>i</sub></b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   = (0.25 × 18%) + (0.50 × 6%) + (0.25 × −4%)<br>
@@ -1865,7 +1871,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
 </tbody></table></div></div>`,
     choices: ["3.25%", "4.85%", "5.25%", "6.40%"],
-    id: 39, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `<b>E(R) = Σ P<sub>i</sub> × R<sub>i</sub></b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.1;font-family:'Sarabun',sans-serif;">
   = (0.40 × 14%) + (0.35 × 5%) + (0.25 × −10%)<br>
@@ -1902,7 +1908,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
 </tbody></table></div></div>`,
     choices: ["42.25", "60.75", "72.50", "88.63"],
-    id: 40, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `<b>σ² = Σ P<sub>i</sub> × [R<sub>i</sub> − E(R)]²</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   <b>หลักทรัพย์ C</b> — E(R<sub>C</sub>) = 6.5%<br>
@@ -1946,7 +1952,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr>
 </tbody></table></div></div>`,
     choices: ["<span style='font-size:1.05rem;'>σ²</span>ของ C = 7.79, <span style='font-size:1.05rem;'>σ²</span>ของ D = 9.41", "<span style='font-size:1.05rem;'>σ</span>ของ C = 7.79, <span style='font-size:1.05rem;'>σ</span>ของ D = 9.41", "<span style='font-size:1.05rem;'>σ²</span>ของ C = 60.75, <span style='font-size:1.05rem;'>σ²</span>ของ D = 88.63", "ไม่สามารถคำนวณได้เนื่องจากข้อมูลไม่เพียงพอ"],
-    id: 41, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `<b>σ = √σ²</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   σC = √60.75 = <b style="color:#2e7d32;">7.79%</b><br>
@@ -1960,7 +1966,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 42: ค่าสัมประสิทธิ์ความแปรปรวน (CV) ของหลักทรัพย์ C และ D คือเท่าไหร่<br><br><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div>`,
     choices: ["CV ของ C = 1.19, CV ของ D = 1.94", "CV ของ C = 0.83, CV ของ D = 0.51", "CV ของ C = 7.79, CV ของ D = 9.41", "CV ของ C และ D = 17.2"],
-    id: 42, category: 'expected_return', answer: 0,
+    answer: 0,
     explain: `<b>CV = σ / E(R)</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   σ ของ C = 7.79, E(R<sub>C</sub>) = 6.5%<br>
@@ -1972,7 +1978,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `จากตารางต่อไปนี้ใช้ตอบคำถามข้อ 38–43<br><br>ข้อ 43: ข้อใดถูกต้องเกี่ยวกับการเปรียบเทียบหลักทรัพย์ C และ D<br><br><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ C</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">18%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">50%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">6%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−4%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div><div style="margin-bottom:10px;"><div style="font-size:0.77rem;font-weight:700;color:#1a2a00;font-family:'Prompt',sans-serif;margin-bottom:4px;">หลักทรัพย์ D</div><div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.78rem;font-family:'Sarabun',sans-serif;"><thead><tr style="background:#004d40;color:#80cbc4;"><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">ความเป็นไปได้ (P<sub>i</sub>)</th><th style="padding:7px 8px;text-align:center;border:1px solid #00695c;">อัตราผลตอบแทน (R<sub>i</sub>)</th></tr></thead><tbody><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">40%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">14%</td></tr><tr style="background:#f0faf4;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">35%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">5%</td></tr><tr style="background:#fff;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">25%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;">−10%</td></tr><tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R)</td></tr></tbody></table></div></div>`,
     choices: ["หลักทรัพย์ C น่าลงทุนมากกว่า D เนื่องจากมีค่า CV สูงกว่า", "หลักทรัพย์ C น่าลงทุนมากกว่า D เนื่องจากมีค่า CV ต่ำกว่า", "หลักทรัพย์ D น่าลงทุนมากกว่า C เนื่องจากมีค่า CV สูงกว่า", "หลักทรัพย์ D น่าลงทุนมากกว่า C เนื่องจากมีค่า CV ต่ำกว่า"],
-    id: 43, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `CV ของ C = 1.19 &nbsp;·&nbsp; CV ของ D = 1.94<br><br>
 <div style="background:#fff3f6;border-radius:10px;padding:10px 14px;font-size:0.82rem;font-family:'Sarabun',sans-serif;line-height:1.85;">
   CV วัดความเสี่ยงต่อผลตอบแทน 1 หน่วย<br>
@@ -1985,7 +1991,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `นักลงทุนกำลังเปรียบเทียบหลักทรัพย์ 2 ตัว<br>หลักทรัพย์ X มี E(R) = 10% และ σ = 8%<br>หลักทรัพย์ Y มี E(R) = 10% และ σ = 12%<br>นักลงทุนที่มีเหตุผลควรเลือกหลักทรัพย์ใด`,
     choices: ["ควรเลือก X เพราะ CV = 1.25 ต่ำกว่า Y", "ควรเลือก Y เพราะ CV = 1.2", "ควรเลือก X เพราะความเสี่ยงต่ำกว่าในระดับผลตอบแทนเดียวกัน", "ควรเลือก X เพราะผลตอบแทนสุทธิสูงกว่า"],
-    id: 44, category: 'expected_return', answer: 2,
+    answer: 2,
     explain: `<b>E(R) เท่ากัน → ดูที่ SD เพียงอย่างเดียว</b><br><br>
   X: E(R) = 10%, σ = <b style="color:#2e7d32;">8%</b> &nbsp;·&nbsp; CV = 8÷10 = 0.80<br>
   Y: E(R) = 10%, σ = <b style="color:#c62828;">12%</b> &nbsp;·&nbsp; CV = 12÷10 = 1.20<br>
@@ -2021,7 +2027,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;" colspan="2">รวม</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">E(R) = 6.75%</td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">Variance = 58.75</td></tr>
 </tbody></table></div>`,
     choices: ["−5", "29.96", "36.00", "58.75"],
-    id: 45, category: 'expected_return', answer: 1,
+    answer: 1,
     explain: `<b>Semi-Variance</b> คำนวณเหมือน Variance แต่ใช้เฉพาะแถวที่ R<sub>i</sub> &lt; E(R)<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
   E(R) = <b style="color:#1565c0;">6.75%</b><br>
@@ -2039,7 +2045,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `หลักทรัพย์ A มีอัตราผลตอบแทนคาดหวัง −5% และหลักทรัพย์ B มีอัตราผลตอบแทนคาดหวัง 10% หากนายออมสินจัดสรรเงินลงทุนทั้งหมดลงในหลักทรัพย์ A และ B อย่างละครึ่ง อัตราผลตอบแทนที่คาดหวังของกลุ่มหลักทรัพย์คือเท่าใด`,
     choices: ["2.5%", "−2.5%", "−25%", "25%"],
-    id: 46, category: 'expected_return', answer: 0,
+    answer: 0,
     explain: `<b>E(R<sub>p</sub>) = [W<sub>1</sub> E(R<sub>1</sub>)] + [W<sub>2</sub> E(R<sub>2</sub>)]</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   = [0.5 × (−5%)] + [0.5 × 10%]<br>
@@ -2067,7 +2073,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
 <tr style="background:#e0faf2;"><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;" colspan="2">รวม W<sub>j</sub></td><td style="padding:7px 8px;text-align:center;border:1px solid #b2dfdb;font-weight:700;">1.00 ✓</td></tr>
 </tbody></table></div>`,
     choices: ["2.5%", "3.1%", "4.6%", "6.8%"],
-    id: 47, category: 'port', answer: 1,
+    answer: 1,
     explain: `<b>E(R<sub>p</sub>) = Σ W<sub>j</sub> E(R<sub>j</sub>)</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   = (0.40 × 8%) + (0.35 × 4%) + (0.25 × −6%)<br>
@@ -2078,7 +2084,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
   {
     q: `ถ้า W<sub>1</sub> = 0.3, W<sub>2</sub> = 0.3, W<sub>3</sub> = 0.3 และ E(R<sub>1</sub>) = −5%, E(R<sub>2</sub>) = 8%, E(R<sub>3</sub>) = 2% ค่า E(R<sub>p</sub>) ของกลุ่มหลักทรัพย์นี้คือเท่าไหร่`,
     choices: ["1.5%", "คำนวณไม่ได้ เพราะ W<sub>j</sub> รวมกันไม่เท่ากับ 1.00", "คำนวณไม่ได้ เพราะ W<sub>j</sub> เท่ากันทุกตัวไม่ได้", "E(R<sub>p</sub>) = 0"],
-    id: 48, category: 'port', answer: 1,
+    answer: 1,
     explain: `ตรวจสอบ W<sub>j</sub> รวม = 0.3 + 0.3 + 0.3 = <b style="color:#c62828;">0.9 ≠ 1.00</b> → คำนวณไม่ได้<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:0.82rem;line-height:2;font-family:'Sarabun',sans-serif;">
   ถ้าคำนวณโดยไม่สนใจเงื่อนไข W<sub>j</sub> = 1.00:<br>
@@ -2135,7 +2141,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "ρ₁₂ ≈ 0.99",
       "ρ₁₂ ≈ 1.00"
     ],
-    id: 49, category: 'port', answer: 2,
+    answer: 2,
     explain: `<b>สูตร: ρ₁₂ = σ₁₂ ÷ (σ₁ × σ₂)</b><br><br>
 <b>ขั้นที่ 1 — หา σ₁₂ (Covariance)</b><br>
 σ₁₂ = Σ P<sub>i</sub> × [R<sub>1i</sub>−E(R<sub>1</sub>)] × [R<sub>2i</sub>−E(R<sub>2</sub>)]<br><br>
@@ -2200,7 +2206,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "σ<sub>p</sub> ≈ 5.80%",
       "σ<sub>p</sub> ≈ 6.21%"
     ],
-    id: 50, category: 'port', answer: 3,
+    answer: 3,
     explain: `<div style="background:#e8f0ff;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
   📌 <b>"กลุ่มหลักทรัพย์"</b> คือ <b>พอร์ตการลงทุน (Portfolio)</b> นั่นเอง — อาจารย์บางท่านเรียกแบบแรก บางท่านเรียกแบบหลัง ความหมายเดียวกัน
 </div>
@@ -2241,7 +2247,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "E(R<sub>p</sub>) = 12%, σ<sub>p</sub> = 5.0%",
       "E(R<sub>p</sub>) = 14%, σ<sub>p</sub> = 3.5%"
     ],
-    id: 51, category: 'port', answer: 1,
+    answer: 1,
     explain: `<div style="background:#fff0f4;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.8;">
   📌 โจทย์นี้มี <b>หลักทรัพย์ปราศจากความเสี่ยง (R<sub>f</sub>)</b> รวมอยู่ในพอร์ต → Covariance = 0 → ใช้สูตรลัด
 </div>
@@ -2279,7 +2285,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "E(R<sub>A</sub>) = 28%",
       "E(R<sub>A</sub>) = 32%"
     ],
-    id: 52, category: 'port', answer: 2,
+    answer: 2,
     explain: `<b>กำหนด:</b> E(R<sub>m</sub>) = 20%, R<sub>f</sub> = 4%, σ²<sub>M</sub> = 16, σ²<sub>iM</sub> = 24<br><br>
 <b>สูตร SML: E(R<sub>A</sub>) = R<sub>f</sub> + [(E(R<sub>m</sub>) − R<sub>f</sub>) / σ²<sub>M</sub>] × σ²<sub>iM</sub></b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
@@ -2305,7 +2311,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "A = 2%, B = 4%, C = 8%, D = 12%",
       "A = 2%, B = 6%, C = 10%, D = 12%"
     ],
-    id: 53, category: 'port', answer: 0,
+    answer: 0,
     explain: `<b>กำหนด:</b> R<sub>f</sub> = 4%, E(R<sub>m</sub>) = 8%, R<sub>m</sub> − R<sub>f</sub> = 4%<br><br>
 <b>สูตร: E(R<sub>i</sub>) = R<sub>f</sub> + β<sub>i</sub>(R<sub>m</sub> − R<sub>f</sub>)</b><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
@@ -2358,7 +2364,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "C และ D เพราะราคา Overpriced",
       "C และ D เพราะราคา Underpriced"
     ],
-    id: 54, category: 'port', answer: 3,
+    answer: 3,
     explain: `เปรียบเทียบ K<sub>i</sub> กับ E(R) ของแต่ละหลักทรัพย์<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   A: K<sub>i</sub> 1.5% &lt; E(R) 2% → <b style="color:#c0185a;">Overpriced → ไม่ซื้อ</b><br>
@@ -2378,7 +2384,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "1,050 บาท",
       "1,070 บาท"
     ],
-    id: 55, category: 'duration', answer: 2,
+    answer: 2,
     explain: `<b>กำหนด:</b> ราคาปัจจุบัน = 1,000 บาท, Duration = 5 ปี, ดอกเบี้ยลดลง 1% (5% → 4%)<br><br>
 <b>หลักการ:</b> ดอกเบี้ยลด → ราคาตราสารหนี้เพิ่ม<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
@@ -2400,7 +2406,7 @@ y อยู่ฝั่งลบในสูตร ยิ่ง y มาก จ�
       "52.87%",
       "56.44%"
     ],
-    id: 56, category: 'return', answer: 2,
+    answer: 2,
     explain: `<b>กำหนด:</b> อัตราผลตอบแทนเฉลี่ยรายเดือน = 3.6% = 0.036<br><br>
 <b>สูตร:</b> อัตราผลตอบแทนต่อปี = (1 + ผลตอบแทนต่อเดือน)<sup>12</sup> − 1<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
@@ -2419,7 +2425,7 @@ A: ผลตอบแทน 10%, SD 15% &nbsp;|&nbsp; B: ผลตอบแท�
 C: ผลตอบแทน 22%, SD 25% &nbsp;|&nbsp; ตลาด: ผลตอบแทน 15%, SD 20%<br><br>
 โดยใช้ <b>Sharpe Ratio</b> ควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด`,
     choices: ["กลุ่ม A", "กลุ่ม B", "กลุ่ม C", "กลุ่ม A และ C เท่ากัน"],
-    id: 57, category: 'port_return', answer: 1,
+    answer: 1,
     explain: `<b>สูตร Sharpe:</b> S<sub>p</sub> = (R<sub>p</sub> − R<sub>f</sub>) / σ<sub>p</sub><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   A: (10−5)/15 = <b>0.33</b><br>
@@ -2437,7 +2443,7 @@ D: ผลตอบแทน 11%, Beta 0.6 &nbsp;|&nbsp; E: ผลตอบแท
 F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผลตอบแทน 15%, Beta 1<br><br>
 โดยใช้ <b>Treynor Ratio</b> ควรเลือกลงทุนในกลุ่มหลักทรัพย์ใด`,
     choices: ["กลุ่ม D", "กลุ่ม E", "กลุ่ม F เพราะ Treynor สูงสุด", "กลุ่ม D เพราะเท่ากับตลาด"],
-    id: 58, category: 'port_return', answer: 1,
+    answer: 1,
     explain: `<b>สูตร Treynor:</b> T<sub>p</sub> = (R<sub>p</sub> − R<sub>f</sub>) / β<sub>p</sub><br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.2;font-family:'Sarabun',sans-serif;">
   D: (11−5)/0.6 = <b>0.10</b> = ตลาด<br>
@@ -2459,7 +2465,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "G เพราะผลตอบแทนสูงกว่า",
       "H เพราะ Beta ต่ำกว่า"
     ],
-    id: 59, category: 'port_return', answer: 1,
+    answer: 1,
     explain: `<b>สูตร CAPM:</b> E(R<sub>i</sub>) = R<sub>f</sub> + β(E(R<sub>m</sub>) − R<sub>f</sub>)<br>
 <b>Alpha:</b> α = ผลตอบแทนจริง − CAPM<br><br>
 <div style="background:#f8f8ee;border-radius:10px;padding:10px 14px;margin:6px 0 10px;font-size:0.82rem;line-height:2.3;font-family:'Sarabun',sans-serif;">
@@ -2488,7 +2494,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "Stock Selection = 1%, Market Timing = 0%",
       "Stock Selection = 1.2%, Market Timing = −0.2%"
     ],
-    id: 60, category: 'port_return', answer: 0,
+    answer: 0,
     explain: `<b>ส่วนต่างผลตอบแทน</b> = ผลตอบแทนจริง − Benchmark<br>
 = (0.5×20%+0.4×9%+0.1×6%) − (0.6×16%+0.32×10%+0.08×5%)<br>
 = 14.2% − 13.2% = <b>1%</b><br><br>
@@ -2512,7 +2518,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ซื้อ Put Option",
       "ขาย Put Option",
     ],
-    id: 61, category: 'options', answer: 0,
+    answer: 0,
     explain: `ราคาสินทรัพย์อ้างอิงสามารถปรับตัวสูงขึ้นได้ไม่จำกัด จึงทำให้ผู้ซื้อ Call Option มีโอกาสได้รับ<b>กำไรไม่จำกัด</b> ขณะที่<b>ขาดทุนสูงสุดเพียงค่า Premium</b> ที่จ่ายไปเท่านั้น`
   },
   {
@@ -2523,7 +2529,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ซื้อ Put Option",
       "ขาย Put Option",
     ],
-    id: 62, category: 'options', answer: 2,
+    answer: 2,
     explain: `Put Option คือ<b>สิทธิในการขาย</b> ผู้ซื้อ Put จะได้ประโยชน์เมื่อ<b>ราคาสินทรัพย์อ้างอิงปรับตัวลดลง</b> ยิ่งราคาลดลงมากเท่าไหร่ กำไรยิ่งมากขึ้นเท่านั้น`
   },
   {
@@ -2534,7 +2540,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ซื้อ Put Option",
       "ขาย Put Option",
     ],
-    id: 63, category: 'options', answer: 1,
+    answer: 1,
     explain: `ผู้<b>ขาย Call Option</b> จะได้รับ Premium ทันที แต่หากราคาสินทรัพย์อ้างอิงปรับตัวสูงขึ้นมาก ผู้ขายอาจ<b>ขาดทุนได้ไม่จำกัด</b> ขณะที่<b>กำไรสูงสุดเท่ากับ Premium</b> ที่ได้รับเท่านั้น`
   },
   {
@@ -2545,7 +2551,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ทั้งราคา Call Option และ Put Option เพิ่มขึ้น",
       "ทั้งราคา Call Option และ Put Option ลดลง",
     ],
-    id: 64, category: 'options', answer: 2,
+    answer: 2,
     explain: `<b>Volatility ↑ → ทั้ง Call และ Put ↑</b><br><br>ยิ่งสินทรัพย์ผันผวนมาก โอกาสที่ราคาจะวิ่งไปถึง "จุดได้ประโยชน์" ยิ่งมากขึ้น ทั้งฝั่งขึ้นและฝั่งลง จึงทำให้ทั้ง Call และ Put มีมูลค่าสูงขึ้น`
   },
   {
@@ -2556,7 +2562,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ราคา Put Option เพิ่มขึ้น แต่ Call Option ลดลง",
       "ราคา Call Option และ Put Option มีแนวโน้มลดลง",
     ],
-    id: 65, category: 'options', answer: 0,
+    answer: 0,
     explain: `<b>ระยะเวลาคงเหลือ ↑ → ทั้ง Call และ Put ↑</b><br><br>เวลาที่เพิ่มขึ้นเปรียบเหมือนโอกาสที่มากขึ้น ทั้ง Call และ Put ต่างมีเวลาให้ราคาสินทรัพย์วิ่งไปถึง "จุดได้ประโยชน์" มากขึ้น จึงมีมูลค่าสูงขึ้นทั้งคู่`
   },
   {
@@ -2567,7 +2573,7 @@ F: ผลตอบแทน −10%, Beta −0.5 &nbsp;|&nbsp; ตลาด: ผ�
       "ราคา Call Option และ Put Option เพิ่มขึ้น",
       "ราคา Call Option และ Put Option ลดลง",
     ],
-    id: 66, category: 'options', answer: 0,
+    answer: 0,
     explain: `<b>ดอกเบี้ย ↑ → Call ↑, Put ↓</b><br><br><b>Call ได้ประโยชน์:</b> ผู้ซื้อ Call มีสิทธิซื้อในอนาคตโดยยังไม่ต้องจ่ายเงินจริงตอนนี้ ยิ่งดอกเบี้ยสูง การเลื่อนจ่ายเงินออกไปยิ่งมีประโยชน์ (Present Value ของ Strike Price ลดลง)<br><br><b>Put เสียเปรียบ:</b> ผู้ซื้อ Put จะได้รับเงินในอนาคต ยิ่งดอกเบี้ยสูง Present Value ของเงินที่จะได้รับยิ่งลดลง`
   },
 ];
@@ -2602,7 +2608,7 @@ function openQuiz() {
   qPeeked = QUIZ_DATA.map(() => false);
   qRevealed = QUIZ_DATA.map(() => false);
   qShuffled = QUIZ_DATA.map(q => shuffle(q.choices.map((text,i) => ({text, origIdx:i}))));
-  qTimerSec = 240 * 60; // 240 นาทีตายตัว
+  qTimerSec = 240 * QUIZ_DATA.length;
   document.getElementById('quiz-screen').style.display = 'flex';
   document.getElementById('quiz-screen').style.flexDirection = 'column';
   document.querySelector('.bnav').style.display = 'none';
@@ -2615,11 +2621,12 @@ function openQuiz() {
 }
 
 function closeAllScreens() {
-  ['planner-screen','rote-screen','examtips-screen','tips-screen','formulas-screen',
-   'links-screen','calendar-screen','stats-screen'].forEach(function(id){
-    var el = document.getElementById(id); if(el) el.style.display = 'none';
-  });
-  var bnav = document.querySelector('.bnav'); if(bnav) bnav.style.display = 'flex';
+  document.getElementById('planner-screen').style.display = 'none';
+  closeFormulas();
+  closeTips();
+  closeRote();
+  closeExamTips();
+  document.querySelector('.bnav').style.display = 'flex';
 }
 function goHome() {
   closeQuiz();
@@ -2796,7 +2803,6 @@ function showResult() {
   const correct = qAnswers.filter((a, i) => a === QUIZ_DATA[i].answer).length;
   const total = QUIZ_DATA.length;
   const peeked = qPeeked.filter(p => p).length;
-  saveSessionStats(); // บันทึก stats
   document.getElementById('result-score').textContent = `${correct}/${total}`;
   document.getElementById('result-peeked').textContent = `${peeked} ข้อ`;
   document.getElementById('result-emoji').textContent = correct === total ? '🏆' : correct >= total * 0.7 ? '🎉' : '📚';
@@ -2834,12 +2840,11 @@ function updateTimerDisplay() {
 
 // CALC
 function toggleMenu() {
-  var m = document.getElementById('dropdown-menu');
-  if (m) m.style.display = m.style.display === 'none' ? 'block' : 'none';
+  const m = document.getElementById('dropdown-menu');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
 }
 function closeMenu() {
-  var m = document.getElementById('dropdown-menu');
-  if (m) m.style.display = 'none';
+  document.getElementById('dropdown-menu').style.display = 'none';
 }
 function openNotes() {}
 function closeNotes() {}
@@ -8130,15 +8135,17 @@ renderCD();
   </div>
 </div>
 
-<!-- LOGIN MOCKUP -->
-<div id="login-mockup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:flex-end;justify-content:center;" onclick="closeLoginMockup()">
-  <div onclick="event.stopPropagation()" style="width:100%;max-width:420px;background:#fff;border-radius:24px 24px 0 0;padding:28px 24px 40px;display:flex;flex-direction:column;gap:14px;">
-    <div style="width:40px;height:4px;background:#e0e0e0;border-radius:999px;margin:0 auto 8px;"></div>
-    <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#1A1A1A;">LemonCalc</div>
-    <div style="font-family:'Sarabun',sans-serif;font-size:0.85rem;color:#888;margin-top:-8px;">ระบบสมาชิกกำลังพัฒนา — เร็วๆ นี้</div>
-    <button disabled style="width:100%;padding:14px;background:#A0FF2D;border:none;border-radius:14px;font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:700;color:#1A1A1A;opacity:0.5;cursor:not-allowed;">เข้าสู่ระบบ</button>
-    <button disabled style="width:100%;padding:14px;background:#fff;border:2px solid #A0FF2D;border-radius:14px;font-family:'Prompt',sans-serif;font-size:0.95rem;font-weight:700;color:#3a6600;opacity:0.5;cursor:not-allowed;">สมัครสมาชิก</button>
-    <div style="font-family:'Sarabun',sans-serif;font-size:0.78rem;color:#bbb;text-align:center;">ฟีเจอร์นี้จะช่วยบันทึกสถิติข้ามอุปกรณ์ได้</div>
+<!-- DROPDOWN MENU -->
+<div id="dropdown-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;">
+  <div onclick="closeMenu()" style="position:absolute;inset:0;"></div>
+  <div style="position:absolute;top:52px;right:18px;background:#fff;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.18);overflow:hidden;min-width:220px;">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;font-family:'Sarabun',sans-serif;font-size:0.8rem;color:#aaa;cursor:default;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <div>
+        <div style="color:#bbb;font-weight:700;">เข้าระบบ / สมัครสมาชิก</div>
+        <div style="font-size:0.72rem;color:#ccc;margin-top:2px;">ระบบสมาชิกกำลังพัฒนา — เร็วๆ นี้</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -11745,39 +11752,42 @@ VFNNNdVU71j/P/iGMRRK8x1UAAAAAElFTkSuQmCC" transform="matrix(0.9898 0 0 1 0 0)">
         <span style="background:#1a2a00;color:var(--lime);border-radius:6px;padding:2px 8px;font-size:0.68rem;">7</span>
         รวมการตีความตัวแปร
       </div>
-      <div style="background:#fff0f0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:0.78rem;font-family:'Sarabun',sans-serif;line-height:1.7;">
-        <span style="color:#e00;font-weight:700;">⚠️ คำเตือน:</span> ไม่แนะนำให้ทำแบบนี้ — แต่ถ้าไม่ได้จริงๆ หรือรีบ จัดไปก่อน
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;font-size:0.83rem;font-family:'Sarabun',sans-serif;line-height:1.75;">
-        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
-          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">1. ราคาหน้าตั๋ว</div>
-          <div>= <b>FV</b> (ราคาที่ซื้อคืนในอนาคต)</div>
+      <div style="background:#f8f8ee;border-radius:10px;padding:12px 14px;font-size:0.85rem;line-height:1.9;font-family:'Sarabun',sans-serif;color:#333;">
+        <div style="background:#fff0f0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:0.78rem;">
+          <span style="color:#e00;font-weight:700;">⚠️ คำเตือน:</span> ไม่แนะนำให้ทำแบบนี้ — แต่ถ้าไม่ได้จริงๆ หรือรีบ จัดไปก่อน
         </div>
-        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
-          <div style="font-weight:700;color:#1a1a1a;margin-bottom:4px;">2. ราคาที่ตลาดซื้อขายปัจจุบัน ≠ PV</div>
-          <div style="color:#e00;font-size:0.78rem;margin-bottom:4px;">อย่าโดนหลอกด้วยคำว่า "ปัจจุบัน"</div>
-          <div style="color:#555;font-size:0.78rem;">ถ้าเป็นโจทย์ประเมินมูลค่าหุ้น/ตราสารหนี้ — PV คือ<b>มูลค่าที่เหมาะสม</b>ที่โจทย์ให้หามาเทียบกับราคาตลาด</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:0.83rem;">
+          <div style="background:#fff;border-radius:10px;padding:10px 12px;">
+            <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">1. ราคาหน้าตั๋ว</div>
+            <div>= <b>FV</b> (ราคาที่ซื้อคืนในอนาคต)</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:10px 12px;">
+            <div style="font-weight:700;color:#1a1a1a;margin-bottom:4px;">2. ราคาที่ตลาดซื้อขายปัจจุบัน ≠ PV</div>
+            <div style="color:#e00;font-size:0.78rem;margin-bottom:4px;">อย่าโดนหลอกด้วยคำว่า "ปัจจุบัน"</div>
+            <div style="color:#555;font-size:0.78rem;">ถ้าเป็นโจทย์ประเมินมูลค่าหุ้น/ตราสารหนี้ — PV คือ<b>มูลค่าที่เหมาะสม</b>ที่โจทย์ให้หามาเทียบกับราคาตลาด</div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:10px 12px;">
+            <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">3. นำเงินไปลงทุน xxx บาท</div>
+            <div>= <b>(−)PV</b></div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:10px 12px;">
+            <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">4. นำเงินไปลงทุนงวดละ xxx บาท</div>
+            <div>= <b>(−)PMT</b></div>
+          </div>
         </div>
-        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
-          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">3. นำเงินไปลงทุน xxx บาท</div>
-          <div>= <b>(−)PV</b></div>
-        </div>
-        <div style="background:#f8f8ee;border-radius:10px;padding:10px 12px;">
-          <div style="font-weight:700;color:#1a1a1a;margin-bottom:2px;">4. นำเงินไปลงทุนงวดละ xxx บาท</div>
-          <div>= <b>(−)PMT</b></div>
-        </div>
-      </div>
-      <div style="margin-top:14px;border-top:1px solid #f0f0e0;padding-top:12px;">
-        <div style="font-size:0.72rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:6px;">💭 มุมมองส่วนตัว</div>
-        <div style="font-size:0.78rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.8;">
-          สิ่งที่มักผิดหรือสลับกันมี 3 ตัว — <b>PV, FV, PMT</b> โดยเฉพาะ <b>PV กับ FV</b> ทำให้สับสนบ่อย<br><br>
-          ส่วน PMT ถ้ามีคำว่า "งวดละ" หรือ "ครั้งละ" มักตีความถูก นอกจากว่าเผลอตีความว่าเป็น 0 ทั้งที่โจทย์บอกไว้แต่บอกอ้อมๆ
+        <div style="margin-top:14px;border-top:1px solid #f0f0e0;padding-top:12px;">
+          <div style="font-size:0.72rem;font-weight:700;color:#888;font-family:'Prompt',sans-serif;margin-bottom:6px;">💭 มุมมองส่วนตัว</div>
+          <div style="font-size:0.78rem;color:#555;line-height:1.8;">
+            สิ่งที่มักผิดหรือสลับกันมี 3 ตัว — <b>PV, FV, PMT</b> โดยเฉพาะ <b>PV กับ FV</b> ทำให้สับสนบ่อย<br><br>
+            ส่วน PMT ถ้ามีคำว่า "งวดละ" หรือ "ครั้งละ" มักตีความถูก นอกจากว่าเผลอตีความว่าเป็น 0 ทั้งที่โจทย์บอกไว้แต่บอกอ้อมๆ
+          </div>
         </div>
       </div>
     </div>
 
   </div>
-</div> style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+</div>
+<div id="rote-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
   <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
     <button onclick="closeRote()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -11826,46 +11836,65 @@ VFNNNdVU71j/P/iGMRRK8x1UAAAAAElFTkSuQmCC" transform="matrix(0.9898 0 0 1 0 0)">
   </div>
 </div>
 
-<div id="examtips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
-  <div style="background:var(--bg);padding:36px 16px 14px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
-    <button onclick="closeExamTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,235,0.1);border:none;color:var(--ws);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+<div id="examtips-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f5f5e0;z-index:500;flex-direction:column;max-width:420px;margin:0 auto;overflow:hidden;">
+  <div style="background:var(--pink);padding:36px 16px 18px;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+    <button onclick="closeExamTips()" style="width:36px;height:36px;border-radius:10px;background:rgba(0,0,0,0.15);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <div>
-      <div style="font-size:0.6rem;color:var(--muted);font-family:'Sarabun',sans-serif;">โน้ตส่วนตัว</div>
-      <div style="font-size:0.9rem;font-weight:700;color:var(--ws);">การบริหารเวลาสอบ</div>
+      <div style="font-size:0.6rem;color:rgba(255,255,255,0.7);font-family:'Sarabun',sans-serif;">จากประสบการณ์จริงของผู้พัฒนา</div>
+      <div style="font-size:1rem;font-weight:800;color:#fff;font-family:'Prompt',sans-serif;">เกร็ดสนามสอบ CFP</div>
     </div>
   </div>
-  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 120px;font-family:'Sarabun',sans-serif;font-size:0.87rem;line-height:1.85;">
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 120px;display:flex;flex-direction:column;gap:12px;">
 
-    <!-- แชร์ประสบการณ์ -->
-    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
-      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;">💬 แชร์ประสบการณ์</div>
-      <div style="color:#333;margin-bottom:10px;">เวลาสอบ <span style="color:#e00;font-weight:700;">180 นาที</span> สำหรับ <span style="color:#e00;font-weight:700;">85 ข้อ</span> อาจดูเหมือนเยอะ แต่ถ้าเตรียมไม่แน่พอและบริหารเวลาไม่ดี อาจทำไม่ทันได้</div>
-      <div style="background:#fff8e0;border-radius:10px;padding:12px;margin-bottom:10px;color:#333;">
-        หลายคนทำไม่ทันเพราะ<span style="color:#e00;font-weight:700;">ใช้เวลากับข้อที่ทำไม่ได้มากเกินไป</span><br><br>
-        ถ้าตัดสินใจได้เร็ว → ทำได้เลย<br>
-        ถ้าไม่ใช่ → <span style="color:#e00;font-weight:700;">รีบไปข้ออื่น</span> ยังไงก็ 1 คะแนนเท่ากัน<br><br>
-        อย่างน้อย<span style="font-weight:700;">ควรอ่านโจทย์ครบทุกข้อ</span>
-      </div>
-      <div style="background:#f0f8ff;border-radius:10px;padding:12px;color:#333;">
-        ข้อที่ตัดตัวเลือกได้แต่ไม่แน่ใจ →<br>
-        <span style="color:#e00;font-weight:700;">มาร์คเอาไว้</span>แล้วไปทำข้ออื่นก่อน<br>
-        ถ้าไม่มาร์ค บางทีต้องกลับมาอ่านและตัดใหม่ทั้งหมด
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="min-width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:#fff;flex-shrink:0;">1</div>
+        <div>
+          <div style="font-size:0.9rem;font-weight:700;color:#1A1A1A;font-family:'Prompt',sans-serif;margin-bottom:4px;">ข้อสอบเป็นกระดาษ ไม่ใช่หน้าจอคอมเหมือน IC</div>
+          <div style="font-size:0.84rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.7;">ทดลงกระดาษได้เต็มที่</div>
+        </div>
       </div>
     </div>
 
-    <!-- เซอร์ไพร์ส่วนตัว -->
-    <div style="background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;">
-      <div style="font-size:0.78rem;font-weight:800;color:#1a1a1a;font-family:'Prompt',sans-serif;margin-bottom:10px;">⚡ เซอร์ไพร์ส่วนตัว (M1)</div>
-      <div style="color:#333;margin-bottom:10px;">อ่านไปแน่นพอสมควร เน้นคำนวณเป็นพิเศษ คิดว่าถ้าทำได้ก็ถูกแน่นอน พอเจอโจทย์คำนวณที่ทำไม่ได้ ก็ยังพยายามวนคิดต่อ เพราะคิดว่าอ่านมาเยอะแล้ว</div>
-      <div style="background:#fff0f0;border-radius:10px;padding:12px;margin-bottom:10px;color:#333;">
-        <span style="color:#e00;font-weight:700;">สุดท้ายเสียเวลาไปมาก</span> แต่ยังชะล่าใจเพราะคิดว่ามีเวลาเหลือเยอะ
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="min-width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:#fff;flex-shrink:0;">2</div>
+        <div>
+          <div style="font-size:0.9rem;font-weight:700;color:#1A1A1A;font-family:'Prompt',sans-serif;margin-bottom:4px;">สนามสอบมีดินสอ และเครื่องคิดเลขสำรองเตรียมไว้ให้</div>
+          <div style="font-size:0.84rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.7;">ไม่ต้องกังวลมากนัก แต่ควรเตรียมของตัวเองมาให้พร้อม เพราะการยืมควรเป็นกรณีฉุกเฉินจริงๆ</div>
+        </div>
       </div>
-      <div style="color:#333;margin-bottom:10px;">พอทำถึงข้อ 60 กว่า เจอโจทย์เนื้อเรื่องยาว 1 หน้า ตอบหลายข้อ และมีถึง <span style="color:#e00;font-weight:700;">2 เรื่อง</span> ทำจนวินาทีสุดท้าย</div>
-      <div style="background:#f8f8ee;border-radius:10px;padding:12px;color:#333;">
-        ข้อที่เว้นไว้ก่อน → สุดท้าย<span style="color:#e00;font-weight:700;">ต้องสุ่มตอบ</span><br>
-        โชคดีที่ยังพอมาร์คเอาไว้ว่าตัดตัวเลือกไหนไปบ้างแล้ว
+    </div>
+
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="min-width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:#fff;flex-shrink:0;">3</div>
+        <div>
+          <div style="font-size:0.9rem;font-weight:700;color:#1A1A1A;font-family:'Prompt',sans-serif;margin-bottom:4px;">บางสนามสอบมีถุงพลาสติกให้ใส่ของมีค่า</div>
+          <div style="font-size:0.84rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.7;">เพื่อวางไว้ใต้โต๊ะ บางที่ให้เก็บในกระเป๋าและวางกระเป๋าไว้ใกล้ผู้คุมสอบ</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="min-width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:#fff;flex-shrink:0;">4</div>
+        <div>
+          <div style="font-size:0.9rem;font-weight:700;color:#1A1A1A;font-family:'Prompt',sans-serif;margin-bottom:4px;">โดยปกติผลสอบจะออกภายใน 3-4 สัปดาห์หลังการสอบ</div>
+          <div style="font-size:0.84rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.7;">หรือก่อนสอบรอบถัดไปประมาณ 1 เดือน</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="min-width:28px;height:28px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:800;color:#fff;flex-shrink:0;">5</div>
+        <div>
+          <div style="font-size:0.9rem;font-weight:700;color:#1A1A1A;font-family:'Prompt',sans-serif;margin-bottom:4px;">มีการแจ้งเตือนจากสมาคมฯ ผ่านแชทเฟซบุ๊กว่าผลสอบออกแล้ว</div>
+          <div style="font-size:0.84rem;color:#555;font-family:'Sarabun',sans-serif;line-height:1.7;">แต่ไม่มีอีเมลแจ้ง — ต้องเข้าไปเช็คผลสอบเองที่เว็บไซต์ของสมาคมฯ</div>
+        </div>
       </div>
     </div>
 
@@ -12026,14 +12055,12 @@ function closeDeveloperPage() {
 function fixAppPadding() {
   const bnav = document.querySelector('.bnav');
   if (!bnav) return;
-  // วัด height จริง ถ้า hidden ให้ใช้ค่า fallback 80px
-  const wasHidden = bnav.style.display === 'none';
-  if (wasHidden) bnav.style.visibility = 'hidden', bnav.style.display = 'flex';
-  const navH = bnav.getBoundingClientRect().height || 80;
-  if (wasHidden) bnav.style.display = 'none', bnav.style.visibility = '';
+  const navH = bnav.getBoundingClientRect().height;
   const pad = (navH + 16) + 'px';
+  // set ให้ .app
   const app = document.querySelector('.app');
   if (app) app.style.paddingBottom = pad;
+  // set ให้ทุก scroll container ใน full-screen panels
   document.querySelectorAll('.scroll-pad-target').forEach(el => {
     el.style.paddingBottom = pad;
   });
@@ -12044,66 +12071,6 @@ window.addEventListener('scroll', fixAppPadding, {passive: true});
 </script>
 
 <!-- ===== LINKS SCREEN ===== -->
-
-<!-- ===== EXAM TIPS SCREEN ===== -->
-<div id="examinfo-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#1A1A2E;z-index:500;flex-direction:column;align-items:center;overflow-y:scroll;-webkit-overflow-scrolling:touch;max-width:420px;margin:0 auto;">
-
-  <!-- Header -->
-  <div style="width:100%;background:#F03E68;padding:18px 20px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <button onclick="closeExamInfo()" style="background:rgba(0,0,0,0.15);border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <div style="font-family:'Prompt',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;line-height:1.3;">เกร็ดสนามสอบ CFP</div>
-  </div>
-
-  <!-- Content -->
-  <div style="width:100%;padding:20px 16px calc(110px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;">
-
-    <div style="font-family:'Sarabun',sans-serif;font-size:0.82rem;color:rgba(255,255,255,0.45);padding:0 4px 4px;">จากประสบการณ์จริงของผู้พัฒนา</div>
-
-    <!-- Tip 1 -->
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 18px 16px;border:1px solid rgba(240,62,104,0.25);">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#F03E68;flex-shrink:0;">1</div>
-        <div style="font-family:'Sarabun',sans-serif;font-size:0.92rem;color:rgba(255,255,255,0.88);line-height:1.7;">ข้อสอบเป็น<b style="color:#FFE51F;">กระดาษ</b> ไม่ใช่หน้าจอคอมเหมือน IC — ทดลงกระดาษได้เต็มที่</div>
-      </div>
-    </div>
-
-    <!-- Tip 2 -->
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 18px 16px;border:1px solid rgba(240,62,104,0.25);">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#F03E68;flex-shrink:0;">2</div>
-        <div style="font-family:'Sarabun',sans-serif;font-size:0.92rem;color:rgba(255,255,255,0.88);line-height:1.7;">สนามสอบมี<b style="color:#FFE51F;">ดินสอ และเครื่องคิดเลขสำรอง</b>เตรียมไว้ให้ ไม่ต้องกังวลมากนัก แต่ควรเตรียมของตัวเองมาให้พร้อม เพราะการยืมควรเป็นกรณีฉุกเฉินจริงๆ</div>
-      </div>
-    </div>
-
-    <!-- Tip 3 -->
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 18px 16px;border:1px solid rgba(240,62,104,0.25);">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#F03E68;flex-shrink:0;">3</div>
-        <div style="font-family:'Sarabun',sans-serif;font-size:0.92rem;color:rgba(255,255,255,0.88);line-height:1.7;">บางสนามสอบมี<b style="color:#FFE51F;">ถุงพลาสติกให้ใส่ของมีค่า</b> เพื่อวางไว้ใต้โต๊ะ บางที่ให้เก็บในกระเป๋าและวางกระเป๋าไว้ใกล้ผู้คุมสอบ</div>
-      </div>
-    </div>
-
-    <!-- Tip 4 -->
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 18px 16px;border:1px solid rgba(240,62,104,0.25);">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#F03E68;flex-shrink:0;">4</div>
-        <div style="font-family:'Sarabun',sans-serif;font-size:0.92rem;color:rgba(255,255,255,0.88);line-height:1.7;">โดยปกติ<b style="color:#FFE51F;">ผลสอบจะออกภายใน 3-4 สัปดาห์</b>หลังการสอบ หรือก่อนสอบรอบถัดไปประมาณ 1 เดือน</div>
-      </div>
-    </div>
-
-    <!-- Tip 5 -->
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:18px 18px 16px;border:1px solid rgba(240,62,104,0.25);">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:800;color:#F03E68;flex-shrink:0;">5</div>
-        <div style="font-family:'Sarabun',sans-serif;font-size:0.92rem;color:rgba(255,255,255,0.88);line-height:1.7;">มีการ<b style="color:#FFE51F;">แจ้งเตือนจากสมาคมฯ ผ่านแชทเฟซบุ๊ก</b>ว่าผลสอบออกแล้ว แต่ไม่มีอีเมลแจ้ง — ต้องเข้าไปเช็คผลสอบเองที่เว็บไซต์ของสมาคมฯ</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 <div id="links-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#1F2D00;z-index:500;flex-direction:column;align-items:center;overflow-y:scroll;-webkit-overflow-scrolling:touch;max-width:420px;margin:0 auto;">
 
   <!-- Header -->
@@ -12142,25 +12109,6 @@ window.addEventListener('scroll', fixAppPadding, {passive: true});
 </div>
 
 <script>
-function openLoginMockup(){
-  var m=document.getElementById('login-mockup');
-  if(m){ m.style.display='flex'; }
-}
-function closeLoginMockup(){
-  var m=document.getElementById('login-mockup');
-  if(m){ m.style.display='none'; }
-}
-function goToExamTips(){
-  ['quiz-screen','planner-screen','links-screen','calendar-screen','examinfo-screen'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
-  var app=document.querySelector('.app'); if(app) app.style.display='none';
-  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='none';
-  document.getElementById('examinfo-screen').style.display='flex';
-}
-function closeExamInfo(){
-  document.getElementById('examinfo-screen').style.display='none';
-  var app=document.querySelector('.app'); if(app) app.style.display='flex';
-  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='flex';
-}
 function goToLinks(){
   ['quiz-screen','planner-screen','links-screen','calendar-screen'].forEach(function(id){
     var el=document.getElementById(id); if(el) el.style.display='none';
@@ -12299,194 +12247,6 @@ function toggleCal(n){
   arr.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 </script>
-<!-- ===== STATS SCREEN ===== -->
-<div id="stats-screen" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#FAFAE8;z-index:500;flex-direction:column;align-items:center;overflow-y:scroll;-webkit-overflow-scrolling:touch;max-width:420px;margin:0 auto;">
 
-  <div style="width:100%;background:#FFE51F;padding:18px 20px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <button onclick="closeStats()" style="background:rgba(0,0,0,0.12);border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <div>
-      <div style="font-family:'Prompt',sans-serif;font-size:1.05rem;font-weight:800;color:#1A1A1A;">My Practice Stats</div>
-      <div style="font-family:'Sarabun',sans-serif;font-size:0.78rem;color:#3a3a00;">สถิติส่วนตัว</div>
-    </div>
-  </div>
-
-  <div id="stats-body" style="width:100%;padding:16px 16px calc(110px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;">
-    <div style="color:#888;font-family:'Sarabun',sans-serif;font-size:0.9rem;text-align:center;padding:40px 0;">กำลังโหลด...</div>
-  </div>
-</div>
-
-<script>
-const STATS_KEY = 'lemon_stats_v1';
-
-// Category labels
-const CAT_LABELS = {
-  'return':          'ผลตอบแทนเฉลี่ย',
-  'expected_return': 'Expected Return',
-  'stock':           'การประเมินมูลค่าหุ้น',
-  'tmv':             'Time Value of Money',
-  'bond':            'ตราสารหนี้',
-  'current_yield':   'Current Yield',
-  'property':        'อสังหาริมทรัพย์',
-  'futures':         'Futures',
-  'account':         'การบัญชี',
-  'port':            'กลุ่มหลักทรัพย์',
-  'duration':        'Duration',
-  'port_return':     'วัดผลตอบแทนกลุ่มหลักทรัพย์',
-  'options':         'Options',
-};
-
-function loadStats() {
-  try { return JSON.parse(localStorage.getItem(STATS_KEY)) || {}; } catch(e) { return {}; }
-}
-function saveStats(data) {
-  localStorage.setItem(STATS_KEY, JSON.stringify(data));
-}
-
-function saveSessionStats() {
-  var data = loadStats();
-  var today = new Date().toISOString().split('T')[0];
-
-  // streak
-  if (!data.lastDate) {
-    data.streak = 1;
-  } else if (data.lastDate === today) {
-    // same day, don't increment
-  } else {
-    var last = new Date(data.lastDate);
-    var now = new Date(today);
-    var diff = (now - last) / 86400000;
-    data.streak = diff === 1 ? (data.streak || 0) + 1 : 1;
-  }
-  data.lastDate = today;
-
-  // per-question stats
-  if (!data.questions) data.questions = {};
-  QUIZ_DATA.forEach(function(q, i) {
-    var id = String(q.id);
-    if (!data.questions[id]) data.questions[id] = { correct: 0, peeked: 0, attempts: 0, category: q.category };
-    var userAns = qAnswers[i];
-    if (userAns !== null) {
-      data.questions[id].attempts++;
-      if (userAns === q.answer && !qPeeked[i]) {
-        data.questions[id].correct++;
-      } else if (qPeeked[i]) {
-        data.questions[id].peeked++;
-      }
-    }
-  });
-
-  saveStats(data);
-}
-
-function renderStats() {
-  var data = loadStats();
-  var body = document.getElementById('stats-body');
-  if (!body) return;
-
-  var qs = data.questions || {};
-  var streak = data.streak || 0;
-
-  // --- streak card ---
-  var streakColor = streak >= 7 ? '#2a7a00' : streak >= 3 ? '#7a6000' : '#cc0033';
-  var html = '<div style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,0.07);display:flex;align-items:center;gap:16px;">'
-    + '<div style="font-size:2rem;">🔥</div>'
-    + '<div><div style="font-family:\'Prompt\',sans-serif;font-size:1.6rem;font-weight:800;color:' + streakColor + ';">' + streak + ' วัน</div>'
-    + '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.82rem;color:#888;">Streak ติดต่อกัน</div></div>'
-    + '</div>';
-
-  // --- category breakdown ---
-  var catMap = {};
-  Object.values(qs).forEach(function(q) {
-    var c = q.category;
-    if (!catMap[c]) catMap[c] = { correct: 0, peeked: 0, attempts: 0 };
-    catMap[c].correct += q.correct;
-    catMap[c].peeked += q.peeked;
-    catMap[c].attempts += q.attempts;
-  });
-
-  html += '<div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">'
-    + '<div style="font-family:\'Prompt\',sans-serif;font-size:0.88rem;font-weight:800;color:#1A1A1A;margin-bottom:12px;">% ถูกแยกตามหัวข้อ</div>';
-
-  var cats = Object.keys(catMap).sort();
-  if (cats.length === 0) {
-    html += '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.85rem;color:#aaa;">ยังไม่มีข้อมูล ทำโจทย์แล้วกดตรวจผลก่อนนะ</div>';
-  } else {
-    cats.forEach(function(c) {
-      var d = catMap[c];
-      var pct = d.attempts > 0 ? Math.round((d.correct / d.attempts) * 100) : 0;
-      var peekedPct = d.attempts > 0 ? Math.round((d.peeked / d.attempts) * 100) : 0;
-      var barColor = pct >= 70 ? '#4caf50' : pct >= 40 ? '#f59e0b' : '#ef4444';
-      var label = CAT_LABELS[c] || c;
-      html += '<div style="margin-bottom:12px;">'
-        + '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">'
-        + '<span style="font-family:\'Sarabun\',sans-serif;font-size:0.82rem;color:#333;">' + label + '</span>'
-        + '<span style="font-family:\'Prompt\',sans-serif;font-size:0.88rem;font-weight:700;color:' + barColor + ';">' + pct + '%</span>'
-        + '</div>'
-        + '<div style="height:6px;background:#EDECCD;border-radius:999px;overflow:hidden;">'
-        + '<div style="height:100%;width:' + pct + '%;background:' + barColor + ';border-radius:999px;transition:width 0.4s;"></div>'
-        + '</div>'
-        + (peekedPct > 0 ? '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.72rem;color:#bbb;margin-top:2px;">กดดูเฉลย ' + peekedPct + '%</div>' : '')
-        + '</div>';
-    });
-  }
-  html += '</div>';
-
-  // --- weak questions ---
-  var weak = Object.entries(qs)
-    .filter(function(e) { return e[1].attempts > 0; })
-    .map(function(e) {
-      var id = parseInt(e[0]);
-      var d = e[1];
-      var score = d.correct / d.attempts;
-      var q = QUIZ_DATA.find(function(q) { return q.id === id; });
-      return { id: id, score: score, peeked: d.peeked, attempts: d.attempts, category: d.category, q: q };
-    })
-    .filter(function(e) { return e.score < 0.6 || e.peeked > 0; })
-    .sort(function(a, b) { return a.score - b.score; })
-    .slice(0, 10);
-
-  html += '<div style="background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,0.07);">'
-    + '<div style="font-family:\'Prompt\',sans-serif;font-size:0.88rem;font-weight:800;color:#cc0033;margin-bottom:12px;">⚠️ ข้อที่ควรทบทวน</div>';
-
-  if (weak.length === 0) {
-    html += '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.85rem;color:#aaa;">ยังไม่มีข้อมูล หรือทำได้ดีทุกข้อแล้ว 🎉</div>';
-  } else {
-    weak.forEach(function(e) {
-      var pct = Math.round(e.score * 100);
-      var label = CAT_LABELS[e.category] || e.category;
-      var shortQ = e.q ? e.q.q.replace(/<[^>]+>/g, '').substring(0, 50) + '…' : 'ข้อ ' + e.id;
-      html += '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #EDECCD;">'
-        + '<div style="flex-shrink:0;width:32px;height:32px;border-radius:10px;background:#fff0f3;display:flex;align-items:center;justify-content:center;font-family:\'Prompt\',sans-serif;font-size:0.78rem;font-weight:700;color:#cc0033;">'+e.id+'</div>'
-        + '<div style="flex:1;min-width:0;">'
-        + '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.78rem;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + shortQ + '</div>'
-        + '<div style="font-family:\'Sarabun\',sans-serif;font-size:0.72rem;color:#bbb;">' + label + (e.peeked > 0 ? ' · กดเฉลย ' + e.peeked + ' ครั้ง' : '') + '</div>'
-        + '</div>'
-        + '<div style="flex-shrink:0;font-family:\'Prompt\',sans-serif;font-size:0.82rem;font-weight:700;color:' + (pct >= 50 ? '#f59e0b' : '#cc0033') + ';">' + pct + '%</div>'
-        + '</div>';
-    });
-  }
-  html += '<button onclick="if(confirm(\'ลบสถิติทั้งหมดใช่ไหม? ข้อมูลจะหายถาวร\')){localStorage.removeItem(\''+STATS_KEY+'\');renderStats();}" style="margin-top:14px;width:100%;padding:10px;background:#f5f5e8;border:1px solid #EDECCD;border-radius:10px;color:#aaa;font-family:\'Sarabun\',sans-serif;font-size:0.78rem;cursor:pointer;">รีเซ็ตสถิติทั้งหมด</button>';
-  html += '</div>';
-
-  body.innerHTML = html;
-}
-
-function goToStats() {
-  ['quiz-screen','planner-screen','links-screen','calendar-screen'].forEach(function(id){
-    var el=document.getElementById(id); if(el) el.style.display='none';
-  });
-  var app=document.querySelector('.app'); if(app) app.style.display='none';
-  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='none';
-  document.getElementById('stats-screen').style.display='flex';
-  renderStats();
-}
-function closeStats() {
-  document.getElementById('stats-screen').style.display='none';
-  var app=document.querySelector('.app'); if(app) app.style.display='flex';
-  var bnav=document.querySelector('.bnav'); if(bnav) bnav.style.display='flex';
-}
-</script>
 </body>
 </html>
