@@ -7771,6 +7771,72 @@ function closeFormulaNote() {
 // ===== TMV CALCULATOR =====
 let tmvOpen = false;
 let tmvMode = 'END';
+let tmvActive = null;
+
+const TMV_FIELDS = {
+  N:   { input:'tmv-n',   disp:'tmv-n-disp',   field:'tmv-field-N',   label:'N (งวด)' },
+  IY:  { input:'tmv-iy',  disp:'tmv-iy-disp',  field:'tmv-field-IY',  label:'I/Y (%)' },
+  PV:  { input:'tmv-pv',  disp:'tmv-pv-disp',  field:'tmv-field-PV',  label:'PV' },
+  PMT: { input:'tmv-pmt', disp:'tmv-pmt-disp', field:'tmv-field-PMT', label:'PMT' },
+  FV:  { input:'tmv-fv',  disp:'tmv-fv-disp',  field:'tmv-field-FV',  label:'FV' }
+};
+
+function tmvFocus(key) {
+  tmvActive = key;
+  // ไฮไลต์ช่องที่เลือก
+  Object.keys(TMV_FIELDS).forEach(k => {
+    const el = document.getElementById(TMV_FIELDS[k].field);
+    if (!el) return;
+    if (k === key) {
+      el.style.border = '2px solid var(--lime)';
+      el.style.background = 'rgba(160,255,45,0.18)';
+    } else {
+      el.style.border = '2px solid rgba(160,255,45,0.35)';
+      el.style.background = 'rgba(255,255,235,0.14)';
+    }
+  });
+  const lbl = document.getElementById('tmv-active-label');
+  if (lbl) lbl.textContent = TMV_FIELDS[key].label;
+}
+
+function tmvUpdateDisp(key) {
+  const f = TMV_FIELDS[key];
+  const v = document.getElementById(f.input).value;
+  const disp = document.getElementById(f.disp);
+  if (v === '') {
+    disp.textContent = '—';
+    disp.style.color = 'rgba(255,255,235,0.3)';
+  } else {
+    disp.textContent = v;
+    disp.style.color = 'var(--ws)';
+  }
+}
+
+function tmvNumpad(v) {
+  if (!tmvActive) {
+    const lbl = document.getElementById('tmv-active-label');
+    if (lbl) { lbl.textContent = 'แตะช่องก่อน!'; lbl.style.color = 'var(--pink)'; setTimeout(()=>{ lbl.textContent='— (ยังไม่ได้เลือก)'; lbl.style.color='var(--lime)'; },1200); }
+    return;
+  }
+  const input = document.getElementById(TMV_FIELDS[tmvActive].input);
+  let val = input.value;
+  if (v === 'CLR') {
+    val = '';
+  } else if (v === 'DEL') {
+    val = val.slice(0, -1);
+  } else if (v === '+/-') {
+    if (val === '' ) val = '-';
+    else if (val.startsWith('-')) val = val.slice(1);
+    else val = '-' + val;
+  } else if (v === '.') {
+    if (val.indexOf('.') === -1) val = (val === '' || val === '-') ? val + '0.' : val + '.';
+  } else {
+    // ตัวเลข 0-9
+    if (val.length < 15) val += v;
+  }
+  input.value = val;
+  tmvUpdateDisp(tmvActive);
+}
 
 function toggleTMV() {
   tmvOpen = !tmvOpen;
@@ -7801,14 +7867,18 @@ function tmvSetMode(mode) {
 }
 function tmvClear() {
   ['tmv-n','tmv-iy','tmv-pv','tmv-pmt','tmv-fv'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('tmv-result').textContent = 'กรอกค่าแล้วกด "หา..."';
-  document.getElementById('tmv-result').style.color = 'var(--lime)';
+  Object.keys(TMV_FIELDS).forEach(k => tmvUpdateDisp(k));
+  const res = document.getElementById('tmv-result');
+  res.style.display = 'block';
+  res.textContent = 'กรอกค่าแล้วกด "หา..."';
+  res.style.color = 'var(--lime)';
 }
 function tmvSolve(solve) {
   const g = id => { const v = document.getElementById(id).value.trim(); return v===''?null:parseFloat(v); };
   const n = g('tmv-n'), iy = g('tmv-iy'), pv = g('tmv-pv'), pmt = g('tmv-pmt'), fv = g('tmv-fv');
   const bgn = tmvMode === 'BGN' ? 1 : 0;
   const res = document.getElementById('tmv-result');
+  res.style.display = 'block';
   try {
     let ans;
     if (solve==='FV') {
@@ -12367,6 +12437,221 @@ AM = (10% + 30% − 20% + 0% + 20%) ÷ 5 = 40% ÷ 5 = <b>8%</b><br><br>
 GM = (1,373 ÷ 1,000)^(1/5) − 1 ≈ <b>6.55%</b><br><br>
 มูลค่าตาม GM = มูลค่าจริงตามตาราง = <b>1,373 บาท</b><br><br>
 <b>สรุป:</b> AM (1,469 บาท) จะให้ค่าสูงกว่าความเป็นจริงเสมอเมื่อผลตอบแทนผันผวน เพราะ AM ไม่ได้คำนึงถึงผล compounding ส่วน GM (1,373 บาท) สะท้อนมูลค่าจริงที่เกิดขึ้นจากการทบต้นตามลำดับปี`
+  },
+  {
+    q: `บริษัท HQ จำกัด มีกำไรสุทธิเท่ากับ 550 ล้านบาท มีจำนวนหุ้นที่ชำระแล้วเท่ากับ 250 ล้านหุ้น กำหนดให้อัตราส่วนราคาต่อกำไร (PER) ที่เหมาะสมเท่ากับ 15 เท่า จงคำนวณหาราคาที่เหมาะสม`,
+    choices: [
+      "33 บาท",
+      "30 บาท",
+      "27 บาท",
+      "25 บาท",
+    ],
+    answer: 0,
+    explain: `<b>สูตร: ราคาที่เหมาะสม = EPS × PER</b><br><br>
+<b>ขั้นที่ 1</b> หากำไรต่อหุ้น (EPS)<br>
+EPS = กำไรสุทธิ ÷ จำนวนหุ้น<br>
+= 550 ÷ 250 = <b>2.20 บาท/หุ้น</b><br><br>
+<b>ขั้นที่ 2</b> คูณด้วย PER ที่เหมาะสม<br>
+ราคาที่เหมาะสม = 2.20 × 15<br>
+= <b>33 บาท</b>`
+  },
+  {
+    q: `บริษัทน้ำผลไม้มาดี จำกัด มีส่วนของผู้ถือหุ้นเท่ากับ 560 ล้านบาท มีจำนวนหุ้นที่ชำระแล้วเท่ากับ 280 ล้านหุ้น กำหนดให้อัตราส่วนราคาปิดต่อมูลค่าทางบัญชี (PBV) ที่เหมาะสมเท่ากับ 2.5 เท่า จงคำนวณหาราคาที่เหมาะสม`,
+    choices: [
+      "4 บาท",
+      "5 บาท",
+      "6 บาท",
+      "7 บาท",
+    ],
+    answer: 1,
+    explain: `<b>สูตร: ราคาที่เหมาะสม</b><br>
+P = PBV × BV<br><br>
+<b>ขั้นที่ 1</b> หามูลค่าทางบัญชีต่อหุ้น (BV)<br>
+= ส่วนของผู้ถือหุ้น ÷ จำนวนหุ้น<br>
+= 560 ÷ 280 = <b>2 บาท/หุ้น</b><br><br>
+<b>ขั้นที่ 2</b> คูณด้วย PBV ที่เหมาะสม<br>
+ราคาที่เหมาะสม = 2 × 2.5<br>
+= <b>5 บาท</b>`
+  },
+  {
+    q: `บริษัท มาแว้ว จำกัด มีกำไรสุทธิเท่ากับ 1,000 ล้านบาท มีจำนวนหุ้นที่ชำระแล้วเท่ากับ 200 ล้านหุ้น กำหนดให้อัตราส่วนราคาต่อกำไร (PER) เท่ากับ 15 เท่า หากราคาตลาดของบริษัท มาแว้ว เท่ากับ 50 บาท นักลงทุนควร`,
+    choices: [
+      "ควรขาย เพราะ underpriced",
+      "ควรขาย เพราะ overpriced",
+      "ควรซื้อ เพราะ underpriced",
+      "ควรซื้อ เพราะ overpriced",
+    ],
+    answer: 2,
+    explain: `<b>ขั้นที่ 1</b> หากำไรต่อหุ้น (EPS)<br>
+EPS = กำไรสุทธิ ÷ จำนวนหุ้นที่ชำระแล้ว<br>
+= 1,000 ÷ 200 = <b>5 บาท</b><br><br>
+<b>ขั้นที่ 2</b> หาราคาที่เหมาะสม<br>
+สูตร: P = PER × EPS<br>
+= 15 × 5<br>
+= <b>75 บาท</b><br><br>
+<b>ขั้นที่ 3</b> เทียบกับราคาตลาด<br>
+ราคาตลาดของบริษัท มาแว้ว เท่ากับ 50 บาท ซึ่ง<b>ต่ำกว่า</b>ราคาที่เหมาะสม (75 บาท)<br>
+แปลว่าราคาตลาด <b>underpriced</b> หรือต่ำกว่าที่พยากรณ์<br>
+จึง <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">ควรซื้อ เพราะ underpriced</span><br><br>
+<b>Note:</b><br>
+ควรขาย ต้อง overpriced เท่านั้น<br>
+ควรซื้อ ต้อง underpriced เท่านั้น`
+  },
+  {
+    q: `ปัจจัยใดทำให้ราคา Warrant เพิ่มขึ้น`,
+    choices: [
+      "ราคาใช้สิทธิเพิ่มขึ้น",
+      "อายุคงเหลือลดลง",
+      "อัตราดอกเบี้ยเพิ่มขึ้น",
+      "เงินปันผลเพิ่มขึ้น",
+    ],
+    answer: 2,
+    explain: `<b>เฉลย: อัตราดอกเบี้ยเพิ่มขึ้น</b><br><br>
+สิ่งที่มีผล<b>ตรงกันข้าม</b>กับราคา Warrant มี 3 อย่าง คือ<br>
+1. ราคาใช้สิทธิ<br>
+2. เงินปันผล<br>
+3. จำนวน Warrant ที่จำหน่าย<br><br>
+จำง่ายๆ ว่า <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">"สิทธิ ปัน หน่าย"</span><br>
+3 อย่างนี้ ถ้า<b>เพิ่ม</b> ราคา Warrant จะ<b>ลด</b><br><br>
+ส่วนปัจจัยที่เหลือ (เช่น อัตราดอกเบี้ย, ความผันผวน, ราคาหุ้นอ้างอิง, อายุคงเหลือ) จะให้ผล<b>ไปในทิศทางเดียวกัน</b>กับราคา Warrant<br>
+ดังนั้นอัตราดอกเบี้ยเพิ่มขึ้น → ราคา Warrant เพิ่มขึ้น`
+  },
+  {
+    q: `ปัจจัยใดทำให้ราคา Warrant ลดลง`,
+    choices: [
+      "ความผันผวนของหุ้นอ้างอิงลดลง",
+      "อายุคงเหลือเพิ่มขึ้น",
+      "ราคาหุ้นอ้างอิงเพิ่มขึ้น",
+      "อัตราดอกเบี้ยเพิ่มขึ้น",
+    ],
+    answer: 0,
+    explain: `<b>เฉลย: ความผันผวนของหุ้นอ้างอิงลดลง</b><br><br>
+สิ่งที่มีผล<b>ตรงกันข้าม</b>กับราคา Warrant มี 3 อย่าง คือ<br>
+1. ราคาใช้สิทธิ<br>
+2. เงินปันผล<br>
+3. จำนวน Warrant ที่จำหน่าย<br><br>
+จำง่ายๆ ว่า <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">"สิทธิ ปัน หน่าย"</span><br>
+3 อย่างนี้ ถ้า<b>เพิ่ม</b> ราคา Warrant จะ<b>ลด</b><br><br>
+ส่วนปัจจัยที่เหลือ (เช่น ความผันผวน, ราคาหุ้นอ้างอิง, อายุคงเหลือ, อัตราดอกเบี้ย) จะให้ผล<b>ไปในทิศทางเดียวกัน</b>กับราคา Warrant<br>
+ดังนั้นความผันผวนของหุ้นอ้างอิง<b>ลดลง</b> → ราคา Warrant <b>ลดลง</b>ด้วย`
+  },
+  {
+    q: `หากคาดการณ์ว่าความผันผวนของราคาหุ้นอ้างอิงจะเพิ่มขึ้นอย่างมาก ราคาของ Warrant จะมีแนวโน้มเป็นอย่างไร`,
+    choices: [
+      "ลดลง",
+      "ไม่เปลี่ยนแปลง",
+      "เพิ่มขึ้น",
+      "เพิ่มขึ้นหรือลดลงก็ได้",
+    ],
+    answer: 2,
+    explain: `<b>เฉลย:</b> <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">เพิ่มขึ้น</span><br><br>
+<b>เหตุผล:</b><br>
+ความผันผวน (Volatility) ↑ → ราคา Warrant ↑<br>
+เพราะมีโอกาสที่หุ้นจะวิ่งไปในทิศทางที่ผู้ถือ Warrant ได้ประโยชน์มากขึ้น`
+  },
+  {
+    q: `หากบริษัทประกาศออก Warrant เพิ่มเติมจำนวนมาก ราคาของ Warrant เดิมจะมีแนวโน้มเป็นอย่างไร`,
+    choices: [
+      "เพิ่มขึ้น",
+      "ลดลง",
+      "ไม่เปลี่ยนแปลง",
+      "ขึ้นอยู่กับอัตราดอกเบี้ย",
+    ],
+    answer: 1,
+    explain: `<b>เฉลย:</b> <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">ลดลง</span><br><br>
+<b>เหตุผล:</b><br>
+จำนวน Warrant ที่ออกจำหน่าย ↑ → ราคา Warrant ↓ (ความสัมพันธ์ผกผัน)`
+  },
+  {
+    q: `กำหนดให้ราคาหุ้นเท่ากับ 100 บาท ราคาใช้สิทธิ 85 บาท มูลค่าเวลาเท่ากับ 50 บาท จงคำนวณหาราคาของใบสำคัญแสดงสิทธิ`,
+    choices: [
+      "10 บาท",
+      "65 บาท",
+      "150 บาท",
+      "185 บาท",
+    ],
+    answer: 1,
+    explain: `<b>สูตร</b><br>
+มูลค่าที่แท้จริงของ Warrant (IV) = ราคาหุ้น − ราคาใช้สิทธิ<br>
+มูลค่าของ Warrant = มูลค่าที่แท้จริง (IV) + มูลค่าเวลา (TV)<br><br>
+<b>วิธีทำ</b><br>
+IV = ราคาหุ้น − ราคาใช้สิทธิ<br>
+= 100 − 85 = <b>15</b><br><br>
+มูลค่า Warrant = IV + TV<br>
+= 15 + 50<br>
+= <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">65 บาท</span>`
+  },
+  {
+    q: `กำหนดให้ราคาหุ้นเท่ากับ 100 บาท ราคาใช้สิทธิ 110 บาท มูลค่าเวลาเท่ากับ 50 บาท จงคำนวณหาราคาของใบสำคัญแสดงสิทธิ`,
+    choices: [
+      "10 บาท",
+      "30 บาท",
+      "50 บาท",
+      "150 บาท",
+    ],
+    answer: 2,
+    explain: `<b>วิธีทำ</b><br>
+IV = ราคาหุ้น − ราคาใช้สิทธิ<br>
+= 100 − 110 = <b>−10</b><br><br>
+IV ติดลบ ให้ถือว่า IV = 0 เพราะในความเป็นจริงเราจะไม่ใช้สิทธิไปซื้อหุ้นที่ราคาสูงกว่าราคาตลาด<br>
+ดังนั้นมูลค่าที่แท้จริง <b>IV = 0</b><br><br>
+มูลค่า Warrant = IV + TV<br>
+= 0 + 50<br>
+= <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">50 บาท</span>`
+  },
+  {
+    q: `กำหนดให้ราคาหุ้น AAA เท่ากับ 120 บาท ราคาใช้สิทธิเท่ากับ 100 บาท ราคาใบสำคัญแสดงสิทธิหุ้น AAA เท่ากับ 40 บาท จงหามูลค่าเวลา`,
+    choices: [
+      "3",
+      "20",
+      "60",
+      "80",
+    ],
+    answer: 1,
+    explain: `<b>วิธีทำ</b><br>
+IV = ราคาหุ้น − ราคาใช้สิทธิ<br>
+IV = 120 − 100 = <b>20</b><br><br>
+มูลค่า Warrant = มูลค่าที่แท้จริง (IV) + มูลค่าเวลา (TV)<br>
+40 = 20 + TV<br>
+40 − 20 = TV<br>
+TV = <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">20</span>`
+  },
+  {
+    q: `หากราคาหุ้นลดลง 1 บาท ราคาวอร์แรนท์จะลดลง 0.3 บาท ถ้าราคาหุ้นลดลงจาก 120 บาท เป็น 80 บาท และนักลงทุนซื้อวอร์แรนท์ไว้ 1,000 หน่วย ตัวเลือกใดถูกต้อง`,
+    choices: [
+      "นักลงทุนจะได้รับผลกำไร 20,000 บาท",
+      "นักลงทุนจะได้รับผลขาดทุน 20,000 บาท",
+      "นักลงทุนจะได้รับผลกำไร 12,000 บาท",
+      "นักลงทุนจะได้รับผลขาดทุน 12,000 บาท",
+    ],
+    answer: 3,
+    explain: `<b>วิธีคิด</b> — <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">เทียบบัญญัติไตรยางค์ (Delta)</span><br>
+ราคาหุ้นลดลง 1 บาท → ราคา Warrant ลดลง 0.3 บาท (Delta = 0.3)<br><br>
+<b>ขั้นที่ 1</b> หาราคาหุ้นที่เปลี่ยนไป<br>
+หุ้นลดจาก 120 บาท → 80 บาท<br>
+ราคาหุ้นลดลง = 120 − 80 = <b>40 บาท</b><br><br>
+<b>ขั้นที่ 2</b> หาราคา Warrant ที่เปลี่ยนไป<br>
+ราคา Warrant ลดลง = 40 × 0.3 = <b>12 บาทต่อหน่วย</b><br>
+<span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">หุ้นลง → Warrant ลง → ขาดทุน</span><br><br>
+<b>ขั้นที่ 3</b> คำนวณกำไร/ขาดทุน<br>
+นักลงทุนถือ 1,000 หน่วย<br>
+ขาดทุน = 12 × 1,000 = <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">ขาดทุน 12,000 บาท</span>`
+  },
+  {
+    q: `ตัวเลือกใดถูกต้อง`,
+    choices: [
+      "ค่า delta เป็นค่าที่ใช้วัดความถูกแพงของวอร์แรนท์เมื่อเทียบกับการลงทุนในหุ้นอ้างอิงโดยตรง",
+      "Warrant ที่มีค่า gearing สูง จะสามารถทำกำไรให้นักลงทุนได้สูง",
+      "หากค่า premium ติดลบ หมายความว่า ซื้อหุ้นอ้างอิงผ่านวอร์แรนท์มีต้นทุนสูงกว่าการซื้อหุ้นโดยตรง",
+      "หากค่า delta = 0.2 หมายความว่า เมื่อราคาหุ้นอ้างอิงเพิ่มขึ้น 1 บาท ราคาวอร์แรนท์จะเพิ่มขึ้น 0.2%",
+    ],
+    answer: 1,
+    explain: `<b>เฉลย:</b> <span style="background:var(--lime);color:#1a2a00;padding:1px 6px;border-radius:4px;font-weight:700;">Warrant ที่มีค่า gearing สูง จะสามารถทำกำไรให้นักลงทุนได้สูง</span><br><br>
+- ค่า delta ใช้วัดความอ่อนไหว <span style="color:#e00;font-weight:700;">ไม่ใช่</span> ความถูกแพง<br>
+ตัวที่ใช้วัดความถูกแพงของวอร์แรนท์ คือ premium<br><br>
+- gearing สูง แปลว่ามีอัตราทดเยอะ ก็ทำกำไรได้เยอะ<br><br>
+- ค่า premium ติดลบ หมายความว่า ลงทุนถูกกว่าซื้อหุ้นโดยตรง <span style="color:#e00;font-weight:700;">ไม่ใช่</span> สูงกว่า<br><br>
+- delta เป็นตัวที่ใช้วัดบาทกับบาท ถ้าหุ้นอ้างอิงเพิ่ม 1 บาท ราคาวอร์แรนท์ต้องเพิ่ม 0.2 บาท <span style="color:#e00;font-weight:700;">ไม่ใช่</span> 0.2%`
   },
 ];
 
